@@ -1,67 +1,64 @@
 <template>
-  <v-layout class="rounded rounded-md" style="background-color: #f0f0f0; min-height: 100vh;">
+  <v-layout class="rounded rounded-md" style="background-color: #f0f0f0; min-height: 100vh; position: relative; justify-content: center; align-items: center;">
     <barraNav></barraNav>
-    <v-space></v-space>
-  <v-app>
-    <v-container>
-      <v-row justify="center">
-        <v-col cols="12" md="6">
-          <v-card>
-            <v-card-title class="headline">Citas InBody</v-card-title>
-            <v-card-text>
-              <v-form>
-                <v-row>
-                  <v-col cols="12" md="4">
-                    <v-select
-                      :items="days"
-                      label="Día"
-                      v-model="selectedDay"
-                    ></v-select>
-                  </v-col>
-                  <v-col cols="12" md="4">
-                    <v-select
-                      :items="months"
-                      label="Mes"
-                      v-model="selectedMonth"
-                    ></v-select>
-                  </v-col>
-                  <v-col cols="12" md="4">
-                    <v-text-field
-                      label="Año"
-                      v-model="selectedYear"
-                      readonly
-                    ></v-text-field>
-                  </v-col>
-                  <v-col cols="12">
-                    <v-select
-                      :items="times"
-                      label="Selecciona la hora de tu cita"
-                      v-model="selectedTime"
-                    ></v-select>
-                  </v-col>
-                  <v-col cols="12">
-                    <v-text-field
-                      label="Correo Electrónico"
-                      v-model="email"
-                      type="email"
-                    ></v-text-field>
-                  </v-col>
-                  <v-col cols="12" class="text-center">
-                    <img src="/INB270.png" alt="InBody" class="inbody-image">
-                  </v-col>
-                </v-row>
-              </v-form>
-            </v-card-text>
-            <v-card-actions>
-              <v-spacer></v-spacer>
-              <v-btn color="primary" @click="confirmAppointment">Confirmar</v-btn>
-            </v-card-actions>
-          </v-card>
-        </v-col>
-      </v-row>
-    </v-container>
-  </v-app>
-</v-layout>
+    <v-app>
+      <v-container class="container-margin">
+        <v-row justify="center">
+          <v-col cols="12" md="6">
+            <v-card>
+              <v-card-title class="headline">Citas InBody</v-card-title>
+              <v-card-text>
+                <v-form>
+                  <v-row>
+                    <v-col cols="12" md="4">
+                      <v-select
+                        :items="days"
+                        label="Día"
+                        v-model="selectedDay"
+                      ></v-select>
+                    </v-col>
+                    <v-col cols="12" md="4">
+                      <v-select
+                        :items="months"
+                        label="Mes"
+                        v-model="selectedMonth"
+                      ></v-select>
+                    </v-col>
+                    <v-col cols="12" md="4">
+                      <v-text-field
+                        label="Año"
+                        v-model="selectedYear"
+                        readonly
+                      ></v-text-field>
+                    </v-col>
+                    <v-col cols="12">
+                      <v-select
+                        :items="times"
+                        label="Selecciona la hora de tu cita"
+                        v-model="selectedTime"
+                      ></v-select>
+                    </v-col>
+                    <v-col cols="12">
+                      <v-text-field
+                        label="Correo Electrónico"
+                        v-model="email"
+                        type="email"
+                      ></v-text-field>
+                    </v-col>
+                  </v-row>
+                </v-form>
+              </v-card-text>
+              <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn color="primary" @click="confirmAppointment">Confirmar</v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-col>
+        </v-row>
+      </v-container>
+      <img src="/INB270.png" alt="InBody" class="inbody-image">
+    </v-app>
+  </v-layout>
 </template>
 
 <script>
@@ -98,9 +95,15 @@ export default {
 .v-application {
   background-color: #f5f5f5;
 }
+.container-margin {
+  margin-top: 110px; /* Ajusta este valor según sea necesario */
+}
 .inbody-image {
-  max-width: 100%;
-  height: auto;
+  position: absolute;
+  top: 100px; /* Ajusta este valor según sea necesario */
+  right: 10px; /* Ajusta este valor según sea necesario */
+  max-width: 1000px;
+  height: 500px;
 }
 </style>
 
