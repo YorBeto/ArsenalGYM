@@ -1,6 +1,6 @@
 <template>
   <v-layout class="rounded rounded-md" style="background-color: #f0f0f0; min-height: 100vh;">
-  <v-app>
+
     <barraNav></barraNav>
 
     <v-main>
@@ -26,17 +26,15 @@
         </v-tabs>
       </v-container>
     </v-main>
-  </v-app>
+
 </v-layout>
 
 </template>
 
-<script>
+<script setup>
 import barraNav from '@/components/barraNav.vue';
 
-export default {
-  name: 'App'
-}
+
 </script>
 
 <style scoped>

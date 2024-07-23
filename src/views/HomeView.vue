@@ -11,7 +11,7 @@
             <div class="inbody-text"> 
               <h2>EN ARSENAL NOS INTERESA TU SALUD</h2>
               <p>Conoce tu cuerpo con nuestro InBody, una máquina capaz de medir las características de tu cuerpo. Agenda tu cita para descubrir tus límites.</p>
-              <v-btn class="boton-agendar">AGENDAR</v-btn>
+             <router-link to="Inbody"><v-btn class="boton-agendar">AGENDAR</v-btn> </router-link> 
             </div>
           </div>
           <div class="gym-section">
