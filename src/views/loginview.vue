@@ -1,20 +1,22 @@
 <template>
-    <v-layout class="rounded rounded-md" style="background-color: #f0f0f0; min-height: 100vh;">
+     <v-layout class="rounded rounded-md" style="background-color: #f0f0f0; min-height: 100vh;">
       <v-app-bar color="black" style="height: 70px; font-size: 24px; display: flex; align-items: center;">
-        <v-img
-          src="/arsenal.png"
-          alt="Logo"
-          contain
-          class="imagen-izquierda"
-        ></v-img>
-        <v-spacer></v-spacer>
-        <div class="nav-buttons">
-          <router-link to="/"><v-btn class="boton-bar">INICIO</v-btn></router-link>
-          <v-btn class="boton-bar">INBODY</v-btn>
-          <v-btn class="boton-bar">PRODUCTOS</v-btn> 
-        </div>
-        <v-spacer></v-spacer>
-      </v-app-bar>
+      <v-img
+
+        src="/public/arsenal.png"
+        alt="Logo"
+        contain
+        class="imagen-izquierda"
+      ></v-img>
+      <v-spacer></v-spacer>
+      <div class="nav-buttons">
+        <router-link to="/"><v-btn class="boton-bar">INICIO</v-btn></router-link>
+        <v-btn class="boton-bar">INBODY</v-btn>
+       <router-link to="Producto"><v-btn class="boton-bar">PRODUCTOS</v-btn></router-link>
+      </div>
+      <v-spacer></v-spacer>
+      <router-link to="Login"><v-btn class="boton-bar boton-iniciar-sesion">Iniciar Sesion</v-btn></router-link>
+    </v-app-bar>
   
       <v-main style="background-color: #f0f0f0; display: flex; justify-content: center; align-items: center;">
         <div class="contenedores">
