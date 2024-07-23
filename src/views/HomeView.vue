@@ -13,12 +13,12 @@
         <v-btn class="boton-bar">INICIO</v-btn>
         <router-link to="/"><v-btn class="boton-bar">INICIO</v-btn></router-link>
         <v-btn class="boton-bar">INBODY</v-btn>
-
+<<<<<<< HEAD
        <router-link to="Producto"><v-btn class="boton-bar">PRODUCTOS</v-btn></router-link>
-
+=======
         <v-btn class="boton-bar">PRODUCTOS</v-btn>
         <v-btn class="boton-bar">INBODY</v-btn>
-
+>>>>>>> 75fc6037ed387192509cb4149c3b73b33ff8a2d9
       </div>
       <v-spacer></v-spacer>
       <router-link to="Login"><v-btn class="boton-bar boton-iniciar-sesion">Iniciar Sesion</v-btn></router-link>
@@ -209,3 +209,8 @@
   height: auto;
 }
 </style>
+
+
+<script setup>
+import barraNav from '@/components/barraNav.vue';
+</script>
