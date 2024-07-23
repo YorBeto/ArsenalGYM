@@ -10,12 +10,12 @@
       ></v-img>
       <v-spacer></v-spacer>
       <div class="nav-buttons">
-        <v-btn class="boton-bar">INICIO</v-btn>
+        <router-link to="/"><v-btn class="boton-bar">INICIO</v-btn></router-link>
         <v-btn class="boton-bar">INBODY</v-btn>
         <v-btn class="boton-bar">PRODUCTOS</v-btn>
       </div>
       <v-spacer></v-spacer>
-      <router-link to="ejemplo"><v-btn class="boton-bar boton-iniciar-sesion">LOGIN</v-btn></router-link>
+      <router-link to="Login"><v-btn class="boton-bar boton-iniciar-sesion">Iniciar Sesion</v-btn></router-link>
     </v-app-bar>
 
     <v-main style="background-color: #f0f0f0; display: flex; flex-direction: column; align-items: center;">
