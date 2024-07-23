@@ -1,21 +1,7 @@
 <template>
-    <v-layout class="rounded rounded-md" style="background-color: #f0f0f0; min-height: 100vh;">
-      <v-app-bar color="black" style="height: 70px; font-size: 24px; display: flex; align-items: center;">
-        <v-img
-          src="/arsenal.png"
-          alt="Logo"
-          contain
-          class="imagen-izquierda"
-        ></v-img>
-        <v-spacer></v-spacer>
-        <div class="nav-buttons">
-          <router-link to="/"><v-btn class="boton-bar">INICIO</v-btn></router-link>
-          <v-btn class="boton-bar">INBODY</v-btn>
-          <v-btn class="boton-bar">PRODUCTOS</v-btn> 
-        </div>
-        <v-spacer></v-spacer>
-      </v-app-bar>
-  
+     <v-layout class="rounded rounded-md" style="background-color: #f0f0f0; min-height: 100vh;">
+      <barraNav></barraNav>
+
       <v-main style="background-color: #f0f0f0; display: flex; justify-content: center; align-items: center;">
         <div class="contenedores">
           <div class="contenedor-izquierda">
@@ -156,10 +142,13 @@
   
   .campo-input-derecha {
     color: white; 
-  }
+  }         
   
   .campo-input-derecha::placeholder {
     color: white; 
   }
   </style>
   
+  <script setup>
+  import barraNav from '@/components/barraNav.vue';
+</script>
