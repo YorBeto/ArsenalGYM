@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import Loginview from '@/views/loginview.vue'
 import ProductosInicio from '@/views/ProductosInicioView.vue'
+import InbodyView from '@/views/InbodyView.vue'
 
 
 const router = createRouter({
@@ -27,6 +28,17 @@ const router = createRouter({
       component: Loginview
     },
 
+    {
+      path: '/Producto',
+      name: 'Producto',
+      component: ProductosInicio
+    },
+    {
+      path: '/Inbody',
+      name: 'Inbody',
+      component: InbodyView
+    },
+>>>>>>> 146a1537dc1276d02e6da41e58f34eeb61349903
    
   ]
 })
