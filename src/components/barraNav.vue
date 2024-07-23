@@ -5,7 +5,7 @@
       <div class="nav-buttons">
         <router-link to="/"><v-btn class="boton-bar">INICIO</v-btn></router-link>
         <router-link to="/Producto"><v-btn class="boton-bar">PRODUCTOS</v-btn></router-link>
-        <v-btn class="boton-bar">INBODY</v-btn>
+        <router-link to="Inbody"><v-btn class="boton-bar">INBODY</v-btn></router-link>
       </div>
       <v-spacer></v-spacer>
       <router-link to="/Login"><v-btn class="boton-bar boton-iniciar-sesion">Iniciar Sesion</v-btn></router-link>

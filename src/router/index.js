@@ -3,6 +3,7 @@ import HomeView from '../views/HomeView.vue'
 import EjemploView from '@/views/EjemploView.vue'
 import Loginview from '@/views/loginview.vue'
 import ProductosInicio from '@/views/ProductosInicioView.vue'
+import InbodyView from '@/views/InbodyView.vue'
 
 
 const router = createRouter({
@@ -35,6 +36,11 @@ const router = createRouter({
       path: '/Producto',
       name: 'Producto',
       component: ProductosInicio
+    },
+    {
+      path: '/Inbody',
+      name: 'Inbody',
+      component: InbodyView
     },
    
   ]
