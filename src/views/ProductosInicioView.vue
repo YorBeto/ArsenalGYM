@@ -1,16 +1,7 @@
 <template>
+  <v-layout class="rounded rounded-md" style="background-color: #f0f0f0; min-height: 100vh;">
   <v-app>
-    <v-app-bar color="black" app style="height: 70px; font-size: 24px; display: flex; align-items: center;">
-      <v-img src="/public/arsenal.png" alt="Logo" contain class="imagen-izquierda"></v-img>
-      <v-spacer></v-spacer>
-      <div class="nav-buttons">
-        <router-link to="/"><v-btn class="boton-bar">INICIO</v-btn></router-link>
-        <v-btn class="boton-bar">INBODY</v-btn>
-        <router-link to="Producto"><v-btn class="boton-bar">PRODUCTOS</v-btn></router-link>
-      </div>
-      <v-spacer></v-spacer>
-      <router-link to="Login"><v-btn class="boton-bar boton-iniciar-sesion">Iniciar Sesion</v-btn></router-link>
-    </v-app-bar>
+    <barraNav></barraNav>
 
     <v-main>
       <v-container>
@@ -36,9 +27,13 @@
       </v-container>
     </v-main>
   </v-app>
+</v-layout>
+
 </template>
 
 <script>
+import barraNav from '@/components/barraNav.vue';
+
 export default {
   name: 'App'
 }
