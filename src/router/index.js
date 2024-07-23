@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import EjemploView from '@/views/EjemploView.vue'
+import Loginview from '@/views/loginview.vue'
 
 
 const router = createRouter({
@@ -24,6 +25,12 @@ const router = createRouter({
       name: 'ejemplo',
       component: EjemploView
     },
+    {
+      path: '/Login',
+      name: 'Login',
+      component: Loginview
+    },
+   
   ]
 })
 
