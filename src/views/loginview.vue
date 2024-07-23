@@ -43,6 +43,9 @@
     </v-layout>
   </template>
   
+    <script setup>
+    import barraNav from '@/components/barraNav.vue';
+  </script>
   <style scoped>
   .imagen-izquierda {
     height: 50px;
@@ -149,6 +152,3 @@
   }
   </style>
   
-  <script setup>
-  import barraNav from '@/components/barraNav.vue';
-</script>
