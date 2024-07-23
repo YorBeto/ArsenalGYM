@@ -9,34 +9,14 @@
             <v-card>
               <v-card-title class="headline">Citas InBody</v-card-title>
               <v-card-text>
-                <v-form>
+                <v-form ref="form" v-model="valid" lazy-validation>
                   <v-row>
-                    <v-col cols="12" md="4">
-                      <v-select
-                        :items="days"
-                        label="Día"
-                        v-model="selectedDay"
-                      ></v-select>
-                    </v-col>
-                    <v-col cols="12" md="4">
-                      <v-select
-                        :items="months"
-                        label="Mes"
-                        v-model="selectedMonth"
-                      ></v-select>
-                    </v-col>
-                    <v-col cols="12" md="4">
-                      <v-text-field
-                        label="Año"
-                        v-model="selectedYear"
-                        readonly
-                      ></v-text-field>
-                    </v-col>
                     <v-col cols="12">
                       <v-select
-                        :items="times"
-                        label="Selecciona la hora de tu cita"
-                        v-model="selectedTime"
+                        :items="appointmentSlots"
+                        label="Selecciona tu cita"
+                        v-model="selectedAppointment"
+                        :rules="[v => !!v || 'Seleccione una cita']"
                       ></v-select>
                     </v-col>
                     <v-col cols="12">
@@ -44,21 +24,38 @@
                         label="Correo Electrónico"
                         v-model="email"
                         type="email"
+                        :rules="[v => !!v || 'Correo electrónico requerido', v => /.+@.+/.test(v) || 'Correo electrónico inválido']"
                       ></v-text-field>
                     </v-col>
                   </v-row>
                 </v-form>
               </v-card-text>
-              <v-card-actions>
-                <v-spacer></v-spacer>
-                <v-btn color="primary" @click="confirmAppointment">Confirmar</v-btn>
-              </v-card-actions>
             </v-card>
+          </v-col>
+        </v-row>
+        <v-row justify="center" class="mt-3">
+          <v-col cols="12" md="6" class="text-center">
+            <v-btn color="red" class="white--text" @click="confirmAppointment">Confirmar</v-btn>
           </v-col>
         </v-row>
       </v-container>
       <img src="/INB270.png" alt="InBody" class="inbody-image">
     </v-app>
+    <v-dialog v-model="dialog" max-width="290">
+      <v-card>
+        <v-card-title class="headline">Confirmación</v-card-title>
+        <v-card-text>
+          <div class="text-center">
+            <v-icon color="green" large>mdi-check-circle</v-icon>
+            <p>Cita agendada con éxito</p>
+          </div>
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="green darken-1" text @click="dialog = false">OK</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </v-layout>
 </template>
 
@@ -66,27 +63,39 @@
 export default {
   data() {
     return {
-      days: Array.from({ length: 31 }, (v, k) => k + 1),
-      months: [
-        'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
-        'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
-      ],
-      times: Array.from({ length: 24 * 4 }, (v, k) => {
-        const hour = Math.floor(k / 4).toString().padStart(2, '0');
-        const minute = (k % 4 * 15).toString().padStart(2, '0');
-        return `${hour}:${minute}`;
-      }),
-      selectedDay: null,
-      selectedMonth: null,
-      selectedYear: new Date().getFullYear(),
-      selectedTime: null,
-      email: ''
+      appointmentSlots: this.generateAppointmentSlots(),
+      selectedAppointment: null,
+      email: '',
+      valid: false,
+      dialog: false
     };
   },
   methods: {
+    generateAppointmentSlots() {
+      const slots = [];
+      const startHour = 9; // 9 AM
+      const endHour = 17; // 5 PM
+      const daysOfWeek = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes'];
+      const currentDate = new Date();
+      const endDate = new Date(currentDate.getFullYear(), 11, 31); // End of current year
+
+      while (currentDate <= endDate) {
+        if (currentDate.getDay() !== 0 && currentDate.getDay() !== 6) { // Exclude weekends
+          for (let hour = startHour; hour < endHour; hour++) {
+            slots.push(`${daysOfWeek[currentDate.getDay() - 1]} ${currentDate.toLocaleDateString()} ${hour}:00`);
+            slots.push(`${daysOfWeek[currentDate.getDay() - 1]} ${currentDate.toLocaleDateString()} ${hour}:30`);
+          }
+        }
+        currentDate.setDate(currentDate.getDate() + 1);
+      }
+
+      return slots;
+    },
     confirmAppointment() {
-      // Lógica para confirmar la cita
-      console.log('Cita confirmada:', this.selectedDay, this.selectedMonth, this.selectedYear, this.selectedTime, this.email);
+      if (this.$refs.form.validate()) {
+        console.log('Cita confirmada:', this.selectedAppointment, this.email);
+        this.dialog = true;
+      }
     }
   }
 };
