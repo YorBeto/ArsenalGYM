@@ -56,7 +56,7 @@
           <div class="visitanos-section">
             <h2>VISÍTANOS</h2>
             <div class="visitanos-content">
-              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3599.8266233107443!2d-103.43089429999999!3d25.5441515!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x868fdb933efabea1%3A0x4ff88cb25a0f6b13!2sGimnasio%20Arsenal%20Bosque!5e0!3m2!1ses!2smx!4v1721764484976!5m2!1ses!2smx" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3599.8266233107443!2d-103.43089429999999!3d25.5441515!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x868fdb933efabea1%3A0x4ff88cb25a0f6b13!2sGimnasio%20Arsenal%20Bosque!5e0!3m2!1ses!2smx!4v1721764484976!5m2!1ses!2smx" width="415" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
               <v-img src="/gymfuera.png" alt="Arsenal Gym" class="imagen-arsenal-gym"></v-img>
             </div>
           </div>
@@ -103,7 +103,7 @@
     max-width: 1200px; /* Ajusta el ancho máximo según sea necesario */
   }
   
-  .inbody-section, .gym-section {
+  .inbody-section {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -114,11 +114,26 @@
     padding: 20px;
     border: 1px solid #ddd;
     border-radius: 10px;
+    font-size: 20px;
+  }
+
+  .gym-section {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    width: 100%;
+    background-color: white;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    font-size: 20px;
   }
   
   .imagen-inbody, .imagen-arsenal {
     width: 30%;
-    height: auto;
+    height: 350px;
   }
   
   .inbody-text, .gym-text {
@@ -141,6 +156,7 @@
     text-align: center;
     border: 1px solid #ddd;
     border-radius: 10px;
+    font-size: 20px;
   }
   
   .membresias-table table {
@@ -173,6 +189,7 @@
     text-align: center;
     border: 1px solid #ddd;
     border-radius: 10px;
+    font-size: 20px;
   }
   
   .visitanos-content {
