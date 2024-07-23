@@ -1,16 +1,27 @@
-    <template>
- <v-app-bar color="black" app style="height: 70px; font-size: 24px; display: flex; align-items: center;">
-      <v-img src="/public/arsenal.png" alt="Logo" contain class="imagen-izquierda"></v-img>
-      <v-spacer></v-spacer>
-      <div class="nav-buttons">
-        <router-link to="/"><v-btn class="boton-bar">INICIO</v-btn></router-link>
-        <router-link to="/Producto"><v-btn class="boton-bar">PRODUCTOS</v-btn></router-link>
-        <router-link to="Inbody"><v-btn class="boton-bar">INBODY</v-btn></router-link>
-      </div>
-      <v-spacer></v-spacer>
-      <router-link to="/Login"><v-btn class="boton-bar boton-iniciar-sesion">Iniciar Sesion</v-btn></router-link>
-    </v-app-bar>
+<template>
+  <v-app-bar color="black" app style="height: 70px; font-size: 24px; display: flex; align-items: center;">
+    <v-img src="/public/arsenal.png" alt="Logo" contain class="imagen-izquierda"></v-img>
+    <v-spacer></v-spacer>
+    <div class="nav-buttons">
+      <router-link to="/"><v-btn class="boton-bar">INICIO</v-btn></router-link>
+      <router-link to="/Producto"><v-btn class="boton-bar">PRODUCTOS</v-btn></router-link>
+      <router-link to="/Inbody"><v-btn class="boton-bar">INBODY</v-btn></router-link>
+    </div>
+    <v-spacer></v-spacer>
+    <router-link to="/Login">
+      <v-avatar color="info">
+        <v-icon>mdi-account-circle</v-icon>
+      </v-avatar>
+    </router-link>
+  </v-app-bar>
 </template>
+
+<style scoped>
+.boton-bar {
+  color: white;
+  text-transform: none;
+}
+</style>
 
 <style scoped>
 .imagen-izquierda {
