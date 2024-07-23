@@ -2,7 +2,7 @@
   <v-layout class="rounded rounded-md" style="background-color: #f0f0f0; min-height: 100vh;">
     <v-app-bar color="black" style="height: 70px; font-size: 24px; display: flex; align-items: center;">
       <v-img
-        src="/images.png"
+        src="/public/arsenal.png"
         alt="Logo"
         contain
         class="imagen-izquierda"
@@ -18,11 +18,11 @@
     </v-app-bar>
 
     <v-main style="background-color: #f0f0f0; display: flex; flex-direction: column; align-items: center;">
-      <v-img src="/gymfondo1.jpg" alt="Gym Image" class="imagen-gym"></v-img>
+      <v-img src="/public/fondo.jpg" alt="Gym Image" class="imagen-gym"></v-img>
 
       <div class="contenido-abajo">
         <div class="inbody-section">
-          <v-img src="/INB270.webp" alt="InBody Image" class="imagen-inbody"></v-img>
+          <v-img src="/public/INB270.png" alt="InBody Image" class="imagen-inbody"></v-img>
           <div class="inbody-text"> 
             <h2>EN ARSENAL NOS INTERESA TU SALUD</h2>
             <p>Conoce tu cuerpo con nuestro InBody, una máquina capaz de medir las características de tu cuerpo. Agenda tu cita para descubrir tus límites.</p>
@@ -30,7 +30,7 @@
           </div>
         </div>
         <div class="gym-section">
-          <v-img src="/gymimagen2.jpg" alt="Arsenal Image" class="imagen-arsenal"></v-img>
+          <v-img src="/public/Avina.jpg" alt="Arsenal Image" class="imagen-arsenal"></v-img>
           <div class="gym-text">
             <p>En Arsenal somos un gimnasio que busca el bienestar de nuestros socios como también superar sus límites. Ofrecemos variedad de equipo, instructores y también contamos con clases de crossfit.</p>
           </div>
