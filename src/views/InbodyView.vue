@@ -1,7 +1,6 @@
 <template>
   <v-layout class="rounded rounded-md" style="background-color: #f0f0f0; min-height: 100vh;">
     <barraNav></barraNav>
-    <v-space></v-space>
   <v-app>
     <v-container>
       <v-row justify="center">
