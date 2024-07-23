@@ -156,7 +156,7 @@
   
   .campo-input-derecha {
     color: white; 
-  }
+  }         
   
   .campo-input-derecha::placeholder {
     color: white; 
