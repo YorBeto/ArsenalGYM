@@ -2,7 +2,7 @@
   <v-layout class="rounded rounded-md" style="background-color: #f0f0f0; min-height: 100vh;">
     <v-app-bar color="black" style="height: 70px; font-size: 24px; display: flex; align-items: center;">
       <v-img
-        src="/images.png"
+        src="/images.png" 
         alt="Logo"
         contain
         class="imagen-izquierda"
