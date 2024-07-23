@@ -11,8 +11,8 @@
       <v-spacer></v-spacer>
       <div class="nav-buttons">
         <v-btn class="boton-bar">INICIO</v-btn>
-        <v-btn class="boton-bar">INBODY</v-btn>
         <v-btn class="boton-bar">PRODUCTOS</v-btn>
+        <v-btn class="boton-bar">INBODY</v-btn>
       </div>
       <v-spacer></v-spacer>
       <router-link to="ejemplo"><v-btn class="boton-bar boton-iniciar-sesion">LOGIN</v-btn></router-link>
@@ -91,12 +91,14 @@
 .nav-buttons {
   display: flex;
   justify-content: center;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   width: 50%;
 }
 
 .boton-bar {
   color: white;
   font-size: 20px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 .boton-iniciar-sesion {
