@@ -37,7 +37,7 @@ const router = createRouter({
       path: '/Inbody',
       name: 'Inbody',
       component: InbodyView
-    }
+    },
 
    
   ]

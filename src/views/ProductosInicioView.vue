@@ -5,6 +5,15 @@
 
     <v-main>
       <v-container>
+        
+        <v-tabs>
+          <v-tab>PRE-ENTRENOS</v-tab>
+          <v-tab>PROTEÍNAS</v-tab>
+          <v-tab>CREATINAS</v-tab>
+          <v-tab>MULTIVITAMÍNICOS</v-tab>
+          <v-tab>MEMBRESÍAS</v-tab>
+        </v-tabs>
+
         <v-card class="my-4">
           <v-card-title>DESCRIPCIÓN DEL PRODUCTO</v-card-title>
           <v-card-text>
@@ -16,14 +25,6 @@
             tiene muchos beneficios para alcanzar los objetivos de composición corporal deseados.
           </v-card-text>
         </v-card>
-
-        <v-tabs>
-          <v-tab>PRE-ENTRENOS</v-tab>
-          <v-tab>PROTEÍNAS</v-tab>
-          <v-tab>CREATINAS</v-tab>
-          <v-tab>MULTIVITAMÍNICOS</v-tab>
-          <v-tab>MEMBRESÍAS</v-tab>
-        </v-tabs>
       </v-container>
     </v-main>
 
