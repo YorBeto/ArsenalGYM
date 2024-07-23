@@ -5,7 +5,7 @@
           src="/arsenal.png"
           alt="Logo"
           contain
-          class="imagen-izquierda"
+          class="imagen-izquierda" 
         ></v-img>
         <v-spacer></v-spacer>
         <div class="nav-buttons">
