@@ -10,9 +10,15 @@
       ></v-img>
       <v-spacer></v-spacer>
       <div class="nav-buttons">
+        <v-btn class="boton-bar">INICIO</v-btn>
         <router-link to="/"><v-btn class="boton-bar">INICIO</v-btn></router-link>
         <v-btn class="boton-bar">INBODY</v-btn>
+<<<<<<< HEAD
        <router-link to="Producto"><v-btn class="boton-bar">PRODUCTOS</v-btn></router-link>
+=======
+        <v-btn class="boton-bar">PRODUCTOS</v-btn>
+        <v-btn class="boton-bar">INBODY</v-btn>
+>>>>>>> 75fc6037ed387192509cb4149c3b73b33ff8a2d9
       </div>
       <v-spacer></v-spacer>
       <router-link to="Login"><v-btn class="boton-bar boton-iniciar-sesion">Iniciar Sesion</v-btn></router-link>
@@ -91,12 +97,14 @@
 .nav-buttons {
   display: flex;
   justify-content: center;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   width: 50%;
 }
 
 .boton-bar {
   color: white;
   font-size: 20px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 .boton-iniciar-sesion {
