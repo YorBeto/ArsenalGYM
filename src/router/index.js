@@ -38,7 +38,7 @@ const router = createRouter({
       name: 'Inbody',
       component: InbodyView
     },
->>>>>>> 146a1537dc1276d02e6da41e58f34eeb61349903
+
    
   ]
 })
