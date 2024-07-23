@@ -31,12 +31,10 @@
 
 </template>
 
-<script>
+<script setup>
 import barraNav from '@/components/barraNav.vue';
 
-export default {
-  name: 'App'
-}
+
 </script>
 
 <style scoped>
