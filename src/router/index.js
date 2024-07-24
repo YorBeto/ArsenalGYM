@@ -5,6 +5,7 @@ import ProductosInicio from '@/views/ProductosInicioView.vue'
 import InbodyView from '@/views/InbodyView.vue'
 import AdminInicioView from '@/views/AdminInicioView.vue'
 import RegistroView from '@/views/RegistroView.vue'
+import AdminsociosView from '@/views/AdminsociosView.vue'
 
 
 
@@ -50,6 +51,11 @@ const router = createRouter({
       path: '/Registro',
       name: 'Registro',
       component: RegistroView
+    },
+    {
+      path: '/socios',
+      name: 'socios',
+      component: AdminsociosView
     },
   ]
 })
