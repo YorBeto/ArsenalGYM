@@ -3,42 +3,64 @@
     <barraNav></barraNav>
 
     <v-main style="background-color: #f0f0f0; display: flex; justify-content: center; align-items: center;">
-      <div class="contenedores">
-        <div class="contenedor-izquierda">
-          <h2 class="titulo">Iniciar Sesión</h2>
-          <div class="contenedor-inputs">
-            <div class="item-input">
-              <label for="correo">Correo electrónico</label>
-              <input id="correo" type="email" class="campo-input">
-            </div>
-            <div class="item-input">
-              <label for="contrasena">Contraseña</label>
-              <input id="contrasena" type="password" class="campo-input">
-            </div>
-            <v-btn class="boton-ingresar">Ingresar</v-btn>
-            <v-btn class="boton-google">
-              <img src="/google.jpg" alt="Google Icono" class="google-icono">
-              Iniciar sesión con Google
-            </v-btn>
-          </div>
-          <a href="#" class="link">¿Has olvidado tu contraseña?</a>
-          <router-link to="Registro" class="link">¿No estás registrado?</router-link>
-        </div>
-        <div class="contenedor-derecha">
-          <h2 class="titulo">Team Arsenal</h2>
-          <div class="contenedor-inputs">
-            <div class="item-input">
-              <label for="usuario">Usuario:</label>
-              <input v-model="usuario" id="usuario" type="text" class="campo-input campo-input-derecha">
-            </div>
-            <div class="item-input">
-              <label for="contrasena-derecha">Contraseña:</label>
-              <input v-model="contrasena" id="contrasena-derecha" type="password" class="campo-input campo-input-derecha">
-            </div>
-            <v-btn @click="ingresar" class="boton-ingresar">Ingresar</v-btn>
-          </div>
-        </div>
-      </div>
+      <v-container>
+        <v-row>
+          <v-col cols="12" md="6">
+            <v-card class="pa-5" max-width="500">
+              <v-card-title class="titulo-formulario">
+                Iniciar Sesión
+              </v-card-title>
+              <v-card-text>
+                <v-form ref="form">
+                  <v-text-field
+                    v-model="correo"
+                    label="Correo electrónico"
+                    type="email"
+                    :rules="[v => !!v || 'Correo es requerido', v => /.+@.+/.test(v) || 'Correo debe ser válido']"
+                  ></v-text-field>
+                  <v-text-field
+                    v-model="contrasena1"
+                    label="Contraseña"
+                    type="password"
+                    :rules="[v => !!v || 'Contraseña es requerida']"
+                  ></v-text-field>
+                  <v-btn class="boton-ingresar" @click="ingresarFormulario1">Ingresar</v-btn>
+                </v-form>
+              </v-card-text>
+              <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn text class="link" @click="olvidarContrasena">¿Has olvidado tu contraseña?</v-btn>
+                <router-link to="/Registro" class="link">¿No estás registrado?</router-link>
+              </v-card-actions>
+            </v-card>
+          </v-col>
+          <v-col cols="12" md="6">
+            <v-card class="pa-5 card-gradiente" max-width="500">
+              <v-card-title class="titulo-formulario2">
+                Team Arsenal
+              </v-card-title>
+              <v-card-text>
+                <v-form ref="form2">
+                  <v-text-field
+                    v-model="usuario"
+                    label="Usuario"
+                    :rules="[v => !!v || 'Usuario es requerido']"
+                    class="campo-input-derecha"
+                  ></v-text-field>
+                  <v-text-field
+                    v-model="contrasena2"
+                    label="Contraseña"
+                    type="password"
+                    :rules="[v => !!v || 'Contraseña es requerida']"
+                    class="campo-input-derecha"
+                  ></v-text-field>
+                  <v-btn class="boton-ingresar" @click="ingresarFormulario2">Ingresar</v-btn>
+                </v-form>
+              </v-card-text>
+            </v-card>
+          </v-col>
+        </v-row>
+      </v-container>
     </v-main>
   </v-layout>
 </template>
@@ -48,12 +70,22 @@ import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import barraNav from '@/components/barraNav.vue';
 
+const correo = ref('');
+const contrasena1 = ref('');
 const usuario = ref('');
-const contrasena = ref('');
+const contrasena2 = ref('');
 const router = useRouter();
 
-const ingresar = () => {
-  if (usuario.value === 'Peniche1234' && contrasena.value === '123456') {
+const ingresarFormulario1 = () => {
+  if (correo.value === 'test@example.com' && contrasena1.value === 'password') {
+    router.push({ name: 'AdminInicio' });
+  } else {
+    alert('Correo o contraseña incorrectos');
+  }
+};
+
+const ingresarFormulario2 = () => {
+  if (usuario.value === 'Peniche1234' && contrasena2.value === '123456') {
     router.push({ name: 'AdminInicio' });
   } else if (usuario.value === 'Aviña123' && contrasena.value === '1234') {
     router.push({ name: 'Dashboard' });
@@ -61,97 +93,41 @@ const ingresar = () => {
     alert('Usuario o contraseña incorrectos');
   }
 };
-
 </script>
 
 <style scoped>
-.imagen-izquierda {
-  height: 50px;
-  width: 100px;
-  margin-left: 20px;
-}
-
-.nav-buttons {
+.v-main {
+  background-color: #f0f0f0;
   display: flex;
   justify-content: center;
-  width: 50%;
+  align-items: center;
 }
 
-.boton-bar {
-  color: white;
-  font-size: 20px;
-}
-
-.titulo {
+.titulo-formulario {
   text-align: center;
   margin-bottom: 20px;
   color: black;
+  font-size: 24px;
+  font-weight: bold;
 }
-
-.contenedores {
-  display: flex;
-}
-
-.contenedor-izquierda {
-  width: 500px;
-  height: 500px;
-  background-color: white;
-  border: 3px solid black;
-  padding: 20px;
-  margin-right: -1px; 
-  color: black;
-}
-
-.contenedor-derecha {
-  width: 500px;
-  height: 500px;
-  background: linear-gradient(to right, black, red);  
-  border: 3px solid black;
-  padding: 20px;
+.titulo-formulario2 {
+  text-align: center;
+  margin-bottom: 20px;
   color: white;
-  margin-left: -1px; 
+  font-size: 24px;
+  font-weight: bold;
 }
 
-.contenedor-inputs {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.item-input {
-  display: flex;
-  flex-direction: column;
-}
-
-.campo-input {
-  margin-top: 5px;
-  border: 2px solid black;
-  padding: 5px;
-  color: black;
+.card-gradiente {
+  background: linear-gradient(to right, black, red);
+  color: white;
 }
 
 .boton-ingresar {
   background: linear-gradient(to right, black, red);
   color: white;
-  margin-top: 10px;
-  padding: 10px 20px;
-}
-
-.boton-google {
-  background-color: white;
-  color: black;
-  border: 2px solid black;
-  margin-top: 10px;
-  padding: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.google-icono {
-  height: 20px;
-  width: 20px;
-  margin-right: 10px;
+  margin-top: 20px;
+  width: 100%;
 }
 
 .link {
@@ -159,13 +135,18 @@ const ingresar = () => {
   margin-top: 10px;
   color: black;
   text-decoration: none;
+  text-align: center;
 }
 
 .campo-input-derecha {
-  color: white; 
-}         
+  color: white;
+}
 
-.campo-input-derecha::placeholder {
-  color: white; 
+.campo-input-derecha input {
+  color: white;
+}
+
+.campo-input-derecha .v-label {
+  color: white !important;
 }
 </style>
