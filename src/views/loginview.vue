@@ -87,8 +87,6 @@ const ingresarFormulario1 = () => {
 const ingresarFormulario2 = () => {
   if (usuario.value === 'Peniche1234' && contrasena2.value === '123456') {
     router.push({ name: 'AdminInicio' });
-  } else if (usuario.value === 'Aviña123' && contrasena.value === '1234') {
-    router.push({ name: 'Dashboard' });
   } else {
     alert('Usuario o contraseña incorrectos');
   }
