@@ -1,6 +1,6 @@
 <template>
   <v-layout class="rounded rounded-md" style="background-color: #f4f4f4; min-height: 100vh;">
-    <barra-Nav></barra-Nav>
+    <barraNav></barraNav>
 
     <v-main style="background-color: #f4f4f4; display: flex; flex-direction: column; align-items: center; padding: 20px;">
       <v-img src="/public/fondo.jpg" alt="Gym Image" class="imagen-gym mb-5"></v-img>
@@ -67,7 +67,7 @@
       </v-main>
     </v-layout>
   </template>
-   
+  
   <style scoped>
   .imagen-izquierda {
     height: 50px;
