@@ -106,10 +106,11 @@ import BarralateralAdmin from '@/components/BarralateralAdmin.vue';
 }
 
 .user-photo {
-  width: 480px;
+  width: 565px;
   height: 300px;
-  display: flex;
-  justify-content: flex-start;
+  max-width: 100%; /* Ajustar el tamaño máximo de la imagen */
+  max-height: 100%; /* Ajustar el tamaño máximo de la imagen */
   margin-top: 30px;
+  padding-right: 60px;
 }
 </style>

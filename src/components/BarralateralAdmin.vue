@@ -1,7 +1,6 @@
 <template>
     <div>
         <aside class="sidebar">
-        <v-btn class="botones">Mi espacio</v-btn>
         <v-btn class="botones">Clientes</v-btn>
         <v-btn class="botones">Socios</v-btn>
         <v-btn class="botones">Citas</v-btn>
@@ -26,6 +25,7 @@
   margin-bottom: 5px;
   text-align: left;
   padding-left: 10px;
+  text-transform: capitalize;
 }
 
 .botonSalir {
