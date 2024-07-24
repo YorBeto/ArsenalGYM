@@ -1,7 +1,7 @@
 <template>
   <div id="admin-inicio">
     <nav class="navbar">
-      <img src="@/assets/arsenal.png" class="logo" />
+      <img src="../public/arsenal.png" class="logo" />
     </nav>
     <div class="content">
       <aside class="sidebar">
@@ -15,7 +15,7 @@
       </aside>
       <div class="main-content">
         <div class="welcome-message">
-          <div><img src="@/assets/peniche.png" class="user-photo" /></div>
+          <div><img src="../public/peniche.png" class="user-photo" /></div>
           <h1 class="mensaje">¡Bienvenido Peniche!</h1>
           <p>Último inicio: 23/07/2024</p>
           <p>Hora: 13:20 p.m</p>
