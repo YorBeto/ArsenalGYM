@@ -1,13 +1,13 @@
 <template>
   <div id="admin-inicio">
     <nav class="navbar">
-      <img src="../public/arsenal.png" class="logo" />
+      <img src="/public/arsenal.png" class="logo" />
     </nav>
     <div class="content">
       <BarralateralAdmin></BarralateralAdmin>
       <div class="main-content">
         <div class="welcome-message">
-          <div><img src="@/assets/peniche.png" class="user-photo" /></div>
+          <div><img src="/public/peniche.png" class="user-photo" /></div>
           <h1 class="mensaje">¡Bienvenido Peniche!</h1>
           <p>Último inicio: 23/07/2024</p>
           <p>Hora: 13:20 p.m</p>
@@ -70,7 +70,7 @@ import BarralateralAdmin from '@/components/BarralateralAdmin.vue';
 .navbar {
   background-color: #333;
   color: white;
-  padding: 0.5rem 1rem; /* Ajustado el padding de la barra de navegación */
+  padding: 0.5rem 1rem; 
   display: flex;
   align-items: center;
 }
@@ -110,8 +110,8 @@ import BarralateralAdmin from '@/components/BarralateralAdmin.vue';
 .user-photo {
   width: 565px;
   height: 300px;
-  max-width: 100%; /* Ajustar el tamaño máximo de la imagen */
-  max-height: 100%; /* Ajustar el tamaño máximo de la imagen */
+  max-width: 100%;
+  max-height: 100%; 
   margin-top: 30px;
   padding-right: 60px;
 }
