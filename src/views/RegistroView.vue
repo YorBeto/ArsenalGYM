@@ -78,9 +78,9 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="primary" :disabled="!formCompleto" @click="registrar">
+          <router-link to="/"><v-btn color="primary" :disabled="!formCompleto" @click="registrar">
             Registrarse
-          </v-btn>
+          </v-btn> </router-link>
         </v-card-actions>
       </v-card>
     </v-main>
@@ -143,6 +143,10 @@ export default {
     },
   },
 };
+</script>
+
+<script setup>
+import barraNav from '@/components/barraNav.vue';
 </script>
 
 <style scoped>
