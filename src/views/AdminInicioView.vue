@@ -4,18 +4,10 @@
       <img src="../public/arsenal.png" class="logo" />
     </nav>
     <div class="content">
-      <aside class="sidebar">
-        <button class="botones">Mi espacio</button>
-        <button class="botones">Clientes</button>
-        <button class="botones">Socios</button>
-        <button class="botones">Citas</button>
-        <button class="botones">Productos</button>
-        <button class="botones">Avisos</button>
-        <button class="botonSalir" color="red">Salir</button>
-      </aside>
+      <BarralateralAdmin></BarralateralAdmin>
       <div class="main-content">
         <div class="welcome-message">
-          <div><img src="../public/peniche.png" class="user-photo" /></div>
+          <div><img src="@/assets/peniche.png" class="user-photo" /></div>
           <h1 class="mensaje">¡Bienvenido Peniche!</h1>
           <p>Último inicio: 23/07/2024</p>
           <p>Hora: 13:20 p.m</p>
@@ -29,6 +21,11 @@
 export default {
   name: 'AdminInicioView'
 }
+</script>
+
+<script setup>
+import BarraAdmin from '@/components/BarraAdmin.vue';
+import BarralateralAdmin from '@/components/BarralateralAdmin.vue';
 </script>
 
 <style>
@@ -111,10 +108,11 @@ export default {
 }
 
 .user-photo {
-  width: 480px;
+  width: 565px;
   height: 300px;
-  display: flex;
-  justify-content: flex-start;
+  max-width: 100%; /* Ajustar el tamaño máximo de la imagen */
+  max-height: 100%; /* Ajustar el tamaño máximo de la imagen */
   margin-top: 30px;
+  padding-right: 60px;
 }
 </style>
