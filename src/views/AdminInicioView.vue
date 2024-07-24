@@ -9,8 +9,7 @@
         <div class="welcome-message">
           <div><img src="/public/peniche.png" class="user-photo" /></div>
           <h1 class="mensaje">¡Bienvenido Peniche!</h1>
-          <p>Último inicio: 23/07/2024</p>
-          <p>Hora: 13:20 p.m</p>
+          <p>Fecha y hora actual: {{ fechaHoraActual }}</p>
         </div>
       </div>
     </div>
@@ -19,18 +18,28 @@
 
 <script>
 export default {
-  name: 'AdminInicioView'
+  name: 'AdminInicioView',
+  mounted() {
+    // Recuperar la fecha y hora del inicio de sesión desde localStorage al cargar la página
+    const storedDateTime = localStorage.getItem('inicioSesionDateTime');
+    if (storedDateTime) {
+      this.fechaHoraActual = storedDateTime;
+    }
+  }
 }
 </script>
 
 <script setup>
-
+import { ref } from 'vue';
 import BarralateralAdmin from '@/components/BarralateralAdmin.vue';
+
+// Variable reactiva para almacenar la fecha y hora actual
+const fechaHoraActual = ref(new Date().toLocaleString());
 </script>
 
 <style>
 * {
-  margin: 0;   
+  margin: 0;
   padding: 0;
 }
 
@@ -70,7 +79,7 @@ import BarralateralAdmin from '@/components/BarralateralAdmin.vue';
 .navbar {
   background-color: #333;
   color: white;
-  padding: 0.5rem 1rem; 
+  padding: 0.5rem 1rem;
   display: flex;
   align-items: center;
 }
@@ -111,7 +120,7 @@ import BarralateralAdmin from '@/components/BarralateralAdmin.vue';
   width: 565px;
   height: 300px;
   max-width: 100%;
-  max-height: 100%; 
+  max-height: 100%;
   margin-top: 30px;
   padding-right: 60px;
 }
