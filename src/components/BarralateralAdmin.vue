@@ -9,12 +9,12 @@
         <v-btn class="botones">Avisos</v-btn>
         <v-btn class="botonSalir" color="red">Salir</v-btn>
       </aside>
-        
     </div>
 </template>
 
 
 <script setup>
+
 </script>
 
 <style scoped>
