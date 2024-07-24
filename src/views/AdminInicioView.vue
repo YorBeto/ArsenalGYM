@@ -24,13 +24,13 @@ export default {
 </script>
 
 <script setup>
-import BarraAdmin from '@/components/BarraAdmin.vue';
+
 import BarralateralAdmin from '@/components/BarralateralAdmin.vue';
 </script>
 
 <style>
 * {
-  margin: 0;
+  margin: 0;   
   padding: 0;
 }
 
