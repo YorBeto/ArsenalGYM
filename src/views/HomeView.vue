@@ -5,7 +5,7 @@
     <v-main style="background-color: #f4f4f4; display: flex; flex-direction: column; align-items: center; padding: 20px;">
       <v-img src="/public/fondo.jpg" alt="Gym Image" class="imagen-gym mb-5"></v-img>
 
-      <div class="contenido-abajo">
+      
         <div class="inbody-section mb-5">
           <v-img src="/public/INB270.png" alt="InBody Image" class="imagen-inbody"></v-img>
           <div class="inbody-text">
@@ -67,7 +67,7 @@
       </v-main>
     </v-layout>
   </template>
-  
+   
   <style scoped>
   .imagen-izquierda {
     height: 50px;
