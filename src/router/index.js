@@ -52,6 +52,11 @@ const router = createRouter({
       name: 'Registro',
       component: RegistroView
     },
+    {
+      path: '/socios',
+      name: 'socios',
+      component: AdminsociosView
+    },
   ]
 })
 
