@@ -22,7 +22,7 @@
             </v-btn>
           </div>
           <a href="#" class="link">¿Has olvidado tu contraseña?</a>
-          <a href="#" class="link">¿No estás registrado?</a>
+          <router-link to="Registro" class="link">¿No estás registrado?</router-link>
         </div>
         <div class="contenedor-derecha">
           <h2 class="titulo">Team Arsenal</h2>

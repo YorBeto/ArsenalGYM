@@ -1,6 +1,8 @@
 <template>
   <div id="admin-inicio">
-    <BarraAdmin></BarraAdmin>
+    <nav class="navbar">
+      <img src="/public/arsenal.png" class="logo" />
+    </nav>
     <div class="content">
       <BarralateralAdmin></BarralateralAdmin>
       <div class="main-content">
