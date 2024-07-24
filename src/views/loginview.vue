@@ -22,7 +22,7 @@
             </v-btn>
           </div>
           <a href="#" class="link">¿Has olvidado tu contraseña?</a>
-          <a href="#" class="link">¿No estás registrado?</a>
+          <router-link to="Registro" class="link">¿No estás registrado?</router-link>
         </div>
         <div class="contenedor-derecha">
           <h2 class="titulo">Team Arsenal</h2>
@@ -55,10 +55,13 @@ const router = useRouter();
 const ingresar = () => {
   if (usuario.value === 'Peniche1234' && contrasena.value === '123456') {
     router.push({ name: 'AdminInicio' });
+  } else if (usuario.value === 'Aviña123' && contrasena.value === '1234') {
+    router.push({ name: 'Dashboard' });
   } else {
     alert('Usuario o contraseña incorrectos');
   }
 };
+
 </script>
 
 <style scoped>

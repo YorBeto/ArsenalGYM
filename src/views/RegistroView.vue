@@ -1,173 +1,182 @@
 <template>
-    <v-layout class="rounded rounded-md" style="background-color: #f0f0f0; min-height: 100vh;">
-      <barraNav></barraNav>
-  
-      <v-main style="background-color: #f0f0f0; display: flex; justify-content: center; align-items: center;">
-        <div class="contenedores">
-          <div class="contenedor-izquierda">
-            <h2 class="titulo">Iniciar Sesión</h2>
-            <div class="contenedor-inputs">
-              <div class="item-input">
-                <label for="correo">Correo electrónico</label>
-                <input id="correo" type="email" class="campo-input">
-              </div>
-              <div class="item-input">
-                <label for="contrasena">Contraseña</label>
-                <input id="contrasena" type="password" class="campo-input">
-              </div>
-              <v-btn class="boton-ingresar">Ingresar</v-btn>
-              <v-btn class="boton-google">
-                <img src="/google.jpg" alt="Google Icono" class="google-icono">
-                Iniciar sesión con Google
-              </v-btn>
-            </div>
-            <a href="#" class="link">¿Has olvidado tu contraseña?</a>
-            <a @click="irARegistro" class="link" href="#">¿No estás registrado?</a>
-          </div>
-          <div class="contenedor-derecha">
-            <h2 class="titulo">Team Arsenal</h2>
-            <div class="contenedor-inputs">
-              <div class="item-input">
-                <label for="usuario">Usuario:</label>
-                <input v-model="usuario" id="usuario" type="text" class="campo-input campo-input-derecha">
-              </div>
-              <div class="item-input">
-                <label for="contrasena-derecha">Contraseña:</label>
-                <input v-model="contrasena" id="contrasena-derecha" type="password" class="campo-input campo-input-derecha">
-              </div>
-              <v-btn @click="ingresar" class="boton-ingresar">Ingresar</v-btn>
-            </div>
-          </div>
-        </div>
-      </v-main>
-    </v-layout>
-  </template>
-  
-  <script setup>
-  import { ref } from 'vue';
-  import { useRouter } from 'vue-router';
-  import barraNav from '@/components/barraNav.vue';
-  
-  const usuario = ref('');
-  const contrasena = ref('');
-  const router = useRouter();
-  
-  const ingresar = () => {
-    if (usuario.value === 'Peniche1234' && contrasena.value === '123456') {
-      router.push({ name: 'AdminInicio' });
-    } else {
-      alert('Usuario o contraseña incorrectos');
-    }
-  };
-  
-  const irARegistro = (event) => {
-    event.preventDefault();
-    router.push({ name: 'Registro' });
-  };
-  </script>
+  <v-layout class="rounded rounded-md" style="background-color: #f0f0f0; min-height: 100vh;">
+    <barraNav></barraNav>
+
+    <v-main style="background-color: #f0f0f0; display: flex; justify-content: center; align-items: center;">
+      <v-card class="pa-5 card-gradiente" max-width="1000">
+        <v-img src="/public/Arsenal.png" alt="Arsenal Logo" class="imagen-arsenal"></v-img>
+        <v-card-title class="titulo-formulario">
+          Registro
+        </v-card-title>
+        <v-card-text>
+          <v-form ref="form">
+            <v-row>
+              <v-col cols="12" md="6">
+                <v-text-field
+                  v-model="nombre"
+                  label="Nombre"
+                  :rules="[v => !!v || 'Nombre es requerido']"
+                ></v-text-field>
+              </v-col>
+              <v-col cols="12" md="6">
+                <v-text-field
+                  v-model="apellidos"
+                  label="Apellidos"
+                  :rules="[v => !!v || 'Apellidos son requeridos']"
+                ></v-text-field>
+              </v-col>
+              <v-col cols="12" md="6">
+                <v-text-field
+                  v-model="fechaNacimiento"
+                  label="Fecha de Nacimiento"
+                  type="date"
+                  :rules="[v => !!v || 'Fecha de nacimiento es requerida']"
+                ></v-text-field>
+              </v-col>
+              <v-col cols="12" md="6">
+                <v-select
+                  v-model="sexo"
+                  :items="['Masculino', 'Femenino']"
+                  label="Sexo"
+                  :rules="[v => !!v || 'Sexo es requerido']"
+                ></v-select>
+              </v-col>
+              <v-col cols="12" md="6">
+                <v-text-field
+                  v-model="correo"
+                  label="Correo"
+                  type="email"
+                  :rules="[v => !!v || 'Correo es requerido', v => /.+@.+/.test(v) || 'Correo debe ser válido']"
+                ></v-text-field>
+              </v-col>
+              <v-col cols="12" md="6">
+                <v-text-field
+                  v-model="telefono"
+                  label="Teléfono"
+                  type="tel"
+                  :rules="[v => !!v || 'Teléfono es requerido', v => /^[0-9]{10}$/.test(v) || 'Teléfono debe ser válido']"
+                ></v-text-field>
+              </v-col>
+              <v-col cols="12" v-if="datosBasicosCompletos">
+                <v-text-field
+                  v-model="contrasena"
+                  label="Contraseña"
+                  type="password"
+                  :rules="[v => !!v || 'Contraseña es requerida']"
+                ></v-text-field>
+              </v-col>
+              <v-col cols="12" v-if="datosBasicosCompletos">
+                <v-text-field
+                  v-model="confirmarContrasena"
+                  label="Confirmar Contraseña"
+                  type="password"
+                  :rules="[v => !!v || 'Confirmar contraseña es requerida', v => v === contrasena || 'Las contraseñas deben coincidir']"
+                ></v-text-field>
+              </v-col>
+            </v-row>
+          </v-form>
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="primary" :disabled="!formCompleto" @click="registrar">
+            Registrarse
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-main>
+  </v-layout>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      nombre: '',
+      apellidos: '',
+      fechaNacimiento: '',
+      sexo: '',
+      correo: '',
+      telefono: '',
+      contrasena: '',
+      confirmarContrasena: '',
+    };
+  },
+  computed: {
+    datosBasicosCompletos() {
+      return (
+        this.nombre &&
+        this.apellidos &&
+        this.fechaNacimiento &&
+        this.sexo &&
+        this.correo &&
+        /.+@.+/.test(this.correo) &&
+        this.telefono &&
+        /^[0-9]{10}$/.test(this.telefono)
+      );
+    },
+    formCompleto() {
+      return (
+        this.datosBasicosCompletos &&
+        this.contrasena &&
+        this.confirmarContrasena &&
+        this.contrasena === this.confirmarContrasena
+      );
+    },
+  },
+  methods: {
+    registrar() {
+      if (this.$refs.form.validate()) {
+        // Lógica para registrar al usuario
+        console.log('Usuario registrado:', {
+          nombre: this.nombre,
+          apellidos: this.apellidos,
+          fechaNacimiento: this.fechaNacimiento,
+          sexo: this.sexo,
+          correo: this.correo,
+          telefono: this.telefono,
+          contrasena: this.contrasena,
+        });
+
+        // Navegar a HomeView después de registrar
+        this.$router.push({ name: 'home' });
+      }
+    },
+  },
+};
+</script>
 
 <style scoped>
-.imagen-izquierda {
-  height: 50px;
-  width: 100px;
-  margin-left: 20px;
+.v-card {
+  width: 100%;
+  max-width: 600px;
+  margin-top: 15px;
+  margin-bottom: 25px;
+  background: linear-gradient(to bottom, black, red);
+  color: white; /* Asegura que el texto sea visible en el fondo oscuro */
 }
 
-.nav-buttons {
+.v-main {
+  background-color: #f0f0f0;
   display: flex;
   justify-content: center;
-  width: 50%;
-}
-
-.boton-bar {
-  color: white;
-  font-size: 20px;
-}
-
-.titulo {
-  text-align: center;
-  margin-bottom: 20px;
-  color: black;
-}
-
-.contenedores {
-  display: flex;
-}
-
-.contenedor-izquierda {
-  width: 500px;
-  height: 500px;
-  background-color: white;
-  border: 3px solid black;
-  padding: 20px;
-  margin-right: -1px; 
-  color: black;
-}
-
-.contenedor-derecha {
-  width: 500px;
-  height: 500px;
-  background: linear-gradient(to right, black, red);  
-  border: 3px solid black;
-  padding: 20px;
-  color: white;
-  margin-left: -1px; 
-}
-
-.contenedor-inputs {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.item-input {
-  display: flex;
-  flex-direction: column;
-}
-
-.campo-input {
-  margin-top: 5px;
-  border: 2px solid black;
-  padding: 5px;
-  color: black;
-}
-
-.boton-ingresar {
-  background: linear-gradient(to right, black, red);
-  color: white;
-  margin-top: 10px;
-  padding: 10px 20px;
-}
-
-.boton-google {
-  background-color: white;
-  color: black;
-  border: 2px solid black;
-  margin-top: 10px;
-  padding: 10px;
-  display: flex;
   align-items: center;
-  justify-content: center;
 }
 
-.google-icono {
-  height: 20px;
-  width: 20px;
-  margin-right: 10px;
+.v-btn {
+  margin-top: 20px;
 }
 
-.link {
+.imagen-arsenal {
+  width: 100%;
+  max-width: 150px;
+  margin: auto;
   display: block;
-  margin-top: 10px;
-  color: black;
-  text-decoration: none;
 }
 
-.campo-input-derecha {
-  color: white; 
-}         
-
-.campo-input-derecha::placeholder {
-  color: white; 
+.titulo-formulario {
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
 }
 </style>

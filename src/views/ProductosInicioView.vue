@@ -1,41 +1,67 @@
 <template>
   <v-layout class="rounded rounded-md" style="background-color: #f0f0f0; min-height: 100vh;">
-
     <barraNav></barraNav>
 
     <v-main>
       <v-container>
-        
         <v-tabs>
-          <v-tab>PRE-ENTRENOS</v-tab>
-          <v-tab>PROTEÍNAS</v-tab>
-          <v-tab>CREATINAS</v-tab>
-          <v-tab>MULTIVITAMÍNICOS</v-tab>
-          <v-tab>MEMBRESÍAS</v-tab>
+          <v-tab v-for="category in categories" :key="category">{{ category }}</v-tab>
         </v-tabs>
 
-        <v-card class="my-4">
-          <v-card-title>DESCRIPCIÓN DEL PRODUCTO</v-card-title>
-          <v-card-text>
-            Utiliza aislado de suero de leche triple de frío de última generación que se somete
-            a una nanofiltración sensible para preservar la calidad de su
-            aislado de suero ultrapuro. Este proceso innovador permite un mayor
-            contenido de glicomacropéptido que el procesamiento de intercambio iónico.
-            Este péptido tiene un alto contenido de aminoácidos de cadena ramificada y
-            tiene muchos beneficios para alcanzar los objetivos de composición corporal deseados.
-          </v-card-text>
-        </v-card>
+        <v-tabs-items>
+          <v-tab-item v-for="category in categories" :key="category">
+            <v-row>
+              <v-col v-for="product in getProductsByCategory(category)" :key="product.id" cols="12" md="4">
+                <v-card class="my-4">
+                  <v-img :src="product.image" class="white--text" height="200px"></v-img>
+                  <v-card-title>{{ product.name }}</v-card-title>
+                  <v-card-text>{{ product.description }}</v-card-text>
+                </v-card>
+              </v-col>
+            </v-row>
+          </v-tab-item>
+        </v-tabs-items>
       </v-container>
     </v-main>
-
-</v-layout>
-
+  </v-layout>
 </template>
 
 <script setup>
 import barraNav from '@/components/barraNav.vue';
+import { ref } from 'vue';
 
+// Categorías de productos
+const categories = ref([
+  'PRE-ENTRENOS',
+  'PROTEÍNAS',
+  'CREATINAS',
+  'MULTIVITAMÍNICOS',
+  'MEMBRESÍAS'
+]);
 
+// Productos (Ejemplo)
+const products = ref([
+  {
+    id: 1,
+    name: 'Producto 1',
+    description: 'Descripción del Producto 1',
+    image: 'ruta/a/la/imagen1.jpg',
+    category: 'PRE-ENTRENOS'
+  },
+  {
+    id: 2,
+    name: 'Producto 2',
+    description: 'Descripción del Producto 2',
+    image: 'ruta/a/la/imagen2.jpg',
+    category: 'PROTEÍNAS'
+  },
+  // Agrega más productos aquí...
+]);
+
+// Función para obtener productos por categoría
+function getProductsByCategory(category) {
+  return products.value.filter(product => product.category === category);
+}
 </script>
 
 <style scoped>
