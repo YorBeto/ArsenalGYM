@@ -5,7 +5,6 @@ import ProductosInicio from '@/views/ProductosInicioView.vue'
 import InbodyView from '@/views/InbodyView.vue'
 import AdminInicioView from '@/views/AdminInicioView.vue'
 import RegistroView from '@/views/RegistroView.vue'
-import Dashboard from '@/views/Dashboard.vue'
 
 
 
@@ -51,11 +50,6 @@ const router = createRouter({
       path: '/Registro',
       name: 'Registro',
       component: RegistroView
-    },
-    {
-      path: '/Dashboard',
-      name: 'Dashboard',
-      component: Dashboard
     },
   ]
 })

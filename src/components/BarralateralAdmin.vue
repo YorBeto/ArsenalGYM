@@ -2,11 +2,11 @@
     <div>
         <aside class="sidebar">
         <v-btn class="botones" @mouseover="activarColorGris()" @mouseleave="restaurarColorboton()" :color="coloresBotones1">Clientes</v-btn>
-        <v-btn class="botones" @mouseover="activarColorGris()" @mouseleave="restaurarColorboton()" :color="coloresBotones1">Socios</v-btn>
-        <v-btn class="botones" @mouseover="activarColorGris()" @mouseleave="restaurarColorboton()" :color="coloresBotones1">Citas</v-btn>
-        <v-btn class="botones" @mouseover="activarColorGris()" @mouseleave="restaurarColorboton()" :color="coloresBotones1">Productos</v-btn>
-        <v-btn class="botones" @mouseover="activarColorGris()" @mouseleave="restaurarColorboton()" :color="coloresBotones1">Avisos</v-btn>
-        <v-btn class="botones" @mousever="activarRojo()" @mouseleave="restaurarRojo()" :color="colorSalir">Salir</v-btn>
+        <v-btn class="botones">Socios</v-btn>
+        <v-btn class="botones">Citas</v-btn>
+        <v-btn class="botones">Productos</v-btn>
+        <v-btn class="botones">Avisos</v-btn>
+        <v-btn class="botonSalir" @mouseover="activarColorRojo()" @mouseleave="restaurarColor()" :color="colorSalir">Salir</v-btn>
       </aside>
     </div>
 </template>
