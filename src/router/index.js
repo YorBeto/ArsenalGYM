@@ -3,6 +3,8 @@ import HomeView from '../views/HomeView.vue'
 import Loginview from '@/views/loginview.vue'
 import ProductosInicio from '@/views/ProductosInicioView.vue'
 import InbodyView from '@/views/InbodyView.vue'
+import AdminInicioView from '@/views/AdminInicioView.vue'
+
 
 
 const router = createRouter({
@@ -38,6 +40,11 @@ const router = createRouter({
       name: 'Inbody',
       component: InbodyView
     },
+    {
+      path: '/AdminInicio',
+      name: 'AdminInicio',
+      component: AdminInicioView
+    }
 
    
   ]
