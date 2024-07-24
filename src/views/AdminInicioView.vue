@@ -1,21 +1,11 @@
 <template>
   <div id="admin-inicio">
-    <nav class="navbar">
-      <img src="../public/arsenal.png" class="logo" />
-    </nav>
+    <BarraAdmin></BarraAdmin>
     <div class="content">
-      <aside class="sidebar">
-        <button class="botones">Mi espacio</button>
-        <button class="botones">Clientes</button>
-        <button class="botones">Socios</button>
-        <button class="botones">Citas</button>
-        <button class="botones">Productos</button>
-        <button class="botones">Avisos</button>
-        <button class="botonSalir" color="red">Salir</button>
-      </aside>
+      <BarralateralAdmin></BarralateralAdmin>
       <div class="main-content">
         <div class="welcome-message">
-          <div><img src="../public/peniche.png" class="user-photo" /></div>
+          <div><img src="/public/peniche.png" class="user-photo" /></div>
           <h1 class="mensaje">¡Bienvenido Peniche!</h1>
           <p>Último inicio: 23/07/2024</p>
           <p>Hora: 13:20 p.m</p>
@@ -29,6 +19,11 @@
 export default {
   name: 'AdminInicioView'
 }
+</script>
+
+<script setup>
+import BarraAdmin from '@/components/BarraAdmin.vue';
+import BarralateralAdmin from '@/components/BarralateralAdmin.vue';
 </script>
 
 <style>
