@@ -1,6 +1,6 @@
     <template>
  <v-app-bar color="black" app style="height: 70px; font-size: 24px; display: flex; align-items: center;">
-      <v-img src="/public/arsenal.png" alt="Logo" contain class="imagen-izquierda"></v-img>
+      <v-img src="/public/arsenal.png" alt="Logo" contain class="imagen-izquierda" @click="scrollToTop"></v-img>
       <v-spacer></v-spacer>
       <div class="nav-buttons">
         <router-link to="/"><v-btn class="boton-bar">INICIO</v-btn></router-link>
