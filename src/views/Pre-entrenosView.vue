@@ -15,7 +15,7 @@
             </v-col>
           </v-row>
         </v-container>
-      </v-app-bar> 
+      </v-app-bar>     
   
       <v-main style=" background: linear-gradient(to right, black, red); display: flex; justify-content: center; align-items: center;">
         <v-container>

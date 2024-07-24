@@ -138,7 +138,7 @@ export default {
         });
 
         // Navegar a HomeView después de registrar
-        this.$router.push({ name: 'HomeView' });
+        this.$router.push({ name: 'home' });
       }
     },
   },

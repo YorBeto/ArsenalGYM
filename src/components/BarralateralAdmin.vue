@@ -2,11 +2,11 @@
     <div>
         <aside class="sidebar">
         <v-btn class="botones" @mouseover="activarColorGris()" @mouseleave="restaurarColorboton()" :color="coloresBotones1">Clientes</v-btn>
-       <router-link to="socios" > <v-btn class="botones">Socios</v-btn> </router-link>
+        <v-btn class="botones">Socios</v-btn>
         <v-btn class="botones">Citas</v-btn>
         <v-btn class="botones">Productos</v-btn>
         <v-btn class="botones">Avisos</v-btn>
-        <router-link to="/"><v-btn class="botonSalir" @mouseover="activarColorRojo()" @mouseleave="restaurarColor()" :color="colorSalir">Salir</v-btn> </router-link>
+        <v-btn class="botonSalir" @mouseover="activarColorRojo()" @mouseleave="restaurarColor()" :color="colorSalir">Salir</v-btn>
       </aside>
     </div>
 </template>
@@ -33,13 +33,13 @@ function restaurarColorboton() {
   coloresBoton.value = 'white';
 }
 
-const colorSalir = ref('red');
+const colorSalir = ref('white'); // rojo
 
-function activarColorRojo() {
+function activarRojo() {
   colorSalir.value = 'red';
 }
 
-function restaurarColor() {
+function restaurarRojo() {
   colorSalir.value = 'white';
 }
 </script>
@@ -54,6 +54,8 @@ function restaurarColor() {
   text-align: left;
   padding-left: 10px;
   text-transform: capitalize;
+  background-color: white;
+  border-color: white;
 }
 
 .botonSalir {
@@ -68,11 +70,6 @@ function restaurarColor() {
   border-color: red;
   color: white;
   text-transform: capitalize;
-}
-
-.botonSalir:hover {
-  background-color: red !important;
-  color: white !important;
 }
 
 .botones:hover {

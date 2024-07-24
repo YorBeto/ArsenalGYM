@@ -122,7 +122,7 @@ const items = ref([
 
 .imagen-inbody, .imagen-arsenal {
   width: 30%;
-  height: auto;
+  height: 400px;
 }
 
 .inbody-text, .gym-text {

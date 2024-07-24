@@ -24,13 +24,13 @@ export default {
 </script>
 
 <script setup>
-import BarraAdmin from '@/components/BarraAdmin.vue';
+
 import BarralateralAdmin from '@/components/BarralateralAdmin.vue';
 </script>
 
 <style>
 * {
-  margin: 0;
+  margin: 0;   
   padding: 0;
 }
 
@@ -70,7 +70,7 @@ import BarralateralAdmin from '@/components/BarralateralAdmin.vue';
 .navbar {
   background-color: #333;
   color: white;
-  padding: 0.5rem 1rem; /* Ajustado el padding de la barra de navegación */
+  padding: 0.5rem 1rem; 
   display: flex;
   align-items: center;
 }
@@ -110,8 +110,8 @@ import BarralateralAdmin from '@/components/BarralateralAdmin.vue';
 .user-photo {
   width: 565px;
   height: 300px;
-  max-width: 100%; /* Ajustar el tamaño máximo de la imagen */
-  max-height: 100%; /* Ajustar el tamaño máximo de la imagen */
+  max-width: 100%;
+  max-height: 100%; 
   margin-top: 30px;
   padding-right: 60px;
 }
