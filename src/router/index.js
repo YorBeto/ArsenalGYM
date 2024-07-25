@@ -8,6 +8,7 @@ import RegistroView from '@/views/RegistroView.vue'
 import AdminsociosView from '@/views/AdminsociosView.vue'
 import AdminCitasView from '@/views/AdminCitasView.vue'
 import AdminProductosView from '@/views/AdminProductosView.vue'
+import PostcompraView from '@/views/PostcompraView.vue'
 
 
 
@@ -68,6 +69,11 @@ const router = createRouter({
       path: '/adminproductos',
       name: 'adminproductos',
       component: AdminProductosView
+    },
+    {
+      path: '/postcompra',
+      name: 'postcompra',
+      component: PostcompraView
     },
   ]
 })

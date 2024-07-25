@@ -18,7 +18,7 @@ const items = ref([
     <barraNav></barraNav>
 
     <v-main style="background: linear-gradient(to right, black, red); display: flex; flex-direction: column; align-items: center; padding: 20px;">
-      <v-carousel class="carousel mb-5" cycle interval="5000" hide-delimiter-background height="500px">
+      <v-carousel class="carousel mb-5" cycle interval="5000" hide-delimiter-background height="50/0px">
         <v-carousel-item v-for="(item, i) in items" :key="i">
           <v-img :src="item.src" :alt="item.alt" class="carousel-image"></v-img>
         </v-carousel-item>
