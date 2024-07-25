@@ -20,8 +20,8 @@
 }
 
 .logo {
-  height: 100px;
-  height: 100px;
+  height: 150px;
+  width: 100px;
 }
 
 </style>

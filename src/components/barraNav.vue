@@ -21,11 +21,12 @@
   </v-app-bar>
 </template>
 
-<style scoped>
+<style>
 .imagen-izquierda {
-  height: 100px;
-  width: 100px;
-  margin-left: 20px;
+  width: 150px; /* Ajusta el ancho según sea necesario */
+  height: auto; /* Mantiene la proporción de la imagen */
+  cursor: pointer; /* Cambia el cursor al pasar sobre la imagen si es clickeable */
+  margin-left: 16px; /* Espaciado a la izquierda */
 }
 
 .nav-buttons {
