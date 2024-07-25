@@ -33,8 +33,8 @@
   
   const socios= ref([]);
   
-    const mostrarsocios = () =>{
-        fetch('http://mipagina.com/socios')
+    const mostrarcitas= () =>{
+        fetch('http://mipagina.com/citas')
         .then(response=> response.json())
         .then(json => {
           if(json.status=200){
