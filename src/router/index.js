@@ -6,6 +6,7 @@ import InbodyView from '@/views/InbodyView.vue'
 import AdminInicioView from '@/views/AdminInicioView.vue'
 import RegistroView from '@/views/RegistroView.vue'
 import AdminsociosView from '@/views/AdminsociosView.vue'
+import AdminCitasView from '@/views/AdminCitasView.vue'
 
 
 
@@ -57,7 +58,11 @@ const router = createRouter({
       name: 'socios',
       component: AdminsociosView
     },
-
+    {
+      path: '/citas',
+      name: 'citas',
+      component: AdminCitasView
+    },
   ]
 })
 
