@@ -33,7 +33,7 @@ function restaurarColorboton() {
   coloresBoton.value = 'white';
 }
 
-const colorSalir = ref('white'); // rojo
+const colorSalir = ref('white'); 
 
 function activarRojo() {
   colorSalir.value = 'red';

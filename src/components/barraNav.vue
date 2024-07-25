@@ -30,7 +30,7 @@
 
 .nav-buttons {
   display: flex;
-  gap: 16px; /* Espaciado uniforme entre botones */
+  gap: 16px; 
   justify-content: center;
   align-items: center;
 }
@@ -39,7 +39,7 @@
   color: white;
   font-size: 20px;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  min-width: 120px; /* Ancho mínimo para los botones */
+  min-width: 120px;
   text-align: center;
 }
 
