@@ -4,9 +4,9 @@
         <v-btn class="botones" @mouseover="activarColorGris()" @mouseleave="restaurarColorboton()" :color="coloresBotones1">Clientes</v-btn>
         <router-link to="socios"><v-btn class="botones" @mouseover="activarColorGris()" @mouseleave="restaurarColorboton()" :color="coloresBotones1">Socios</v-btn> </router-link> 
         <router-link to="citas"><v-btn class="botones" @mouseover="activarColorGris()" @mouseleave="restaurarColorboton()" :color="coloresBotones1">Citas</v-btn> </router-link>
-     <router-link to="adminproductos"><v-btn class="botones" @mouseover="activarColorGris()" @mouseleave="restaurarColorboton()" :color="coloresBotones1">Productos</v-btn></router-link>   
-    <router-link to="postcompra">   <v-btn class="botones" @mouseover="activarColorGris()" @mouseleave="restaurarColorboton()" :color="coloresBotones1">Avisos</v-btn> </router-link> 
-       <router-link to="/"><v-btn class="botonSalir" @mouseover="activarRojo()" @mouseleave="restaurarRojo()" :color="colorSalir">Salir</v-btn> </router-link> 
+        <router-link to="adminproductos"><v-btn class="botones" @mouseover="activarColorGris()" @mouseleave="restaurarColorboton()" :color="coloresBotones1">Productos</v-btn></router-link>   
+        <router-link to="postcompra">   <v-btn class="botones" @mouseover="activarColorGris()" @mouseleave="restaurarColorboton()" :color="coloresBotones1">Avisos</v-btn> </router-link> 
+        <router-link to="/"><v-btn class="botonSalir" @mouseover="activarRojo()" @mouseleave="restaurarRojo()" :color="colorSalir">Salir</v-btn> </router-link> 
       </aside>
     </div>
 </template>
