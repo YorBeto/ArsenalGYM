@@ -19,7 +19,8 @@
           :headers="headers"
           :items="inbody_citas"
           :search="search"
-        ></v-data-table>
+        >
+      </v-data-table>
       </div>
     </div>
   </template>
