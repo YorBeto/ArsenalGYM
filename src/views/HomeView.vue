@@ -5,11 +5,13 @@ import { ref } from 'vue';
 const items = ref([
   { src: '/fondogym1.jpg', alt: 'Image 1' },
   { src: '/fondogym2.jpg', alt: 'Image 2' },
-  { src: '/fondogym3.jpg', alt: 'Image 3' } 
+  { src: '/fondogym3.jpg', alt: 'Image 3' },
+  { src: '/imagenesInicio/Arsenal1.jpeg', alt: 'Image 4' },
+  { src: '/imagenesInicio/Arsenal2.jpg', alt: 'Image 5' },
+  { src: '/imagenesInicio/Arsenal3.jpg', alt: 'Image 6' },
+  { src: '/imagenesInicio/Arsenal4.jpeg', alt: 'Image 7' },
 ]);
 </script>
-
-
 
 <template>
   <v-layout class="rounded rounded-md" style="background-color: #f4f4f4; min-height: 100vh;">
