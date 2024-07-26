@@ -21,34 +21,45 @@
           :items="productos"
           :search="search"
         ></v-data-table>
+        <div class="button-group">
+          <v-btn @click="agregarProducto" color="primary">Agregar</v-btn>
+          <v-btn @click="editarProducto" color="secondary">Editar</v-btn>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
-
 <script setup>
-
 import BarralateralAdmin from '@/components/BarralateralAdmin.vue';
-import {ref,onMounted} from 'vue';
-const search = ref('')
+import { ref, onMounted } from 'vue';
 
-const productos= ref([]);
+const search = ref('');
+const productos = ref([]);
 
-  const mostrarproductos = () =>{
-      fetch('http://mipagina.com/productos')
-      .then(response=> response.json())
-      .then(json => {
-        if(json.status==200){
-          productos.value=json.data
-        }
-      })
-  }
+const mostrarproductos = () => {
+  fetch('http://mipagina.com/productos')
+    .then(response => response.json())
+    .then(json => {
+      if (json.status == 200) {
+        productos.value = json.data;
+      }
+    });
+};
 
-  onMounted(()=>{
-    mostrarproductos();
-  })
+const agregarProducto = () => {
+  // Implement the function to add a product
+  console.log('Agregar producto');
+};
 
+const editarProducto = () => {
+  // Implement the function to edit a product
+  console.log('Editar producto');
+};
+
+onMounted(() => {
+  mostrarproductos();
+});
 </script>
 
 <style>
@@ -78,6 +89,7 @@ const productos= ref([]);
   flex-direction: column;
   flex: 1;
   padding: 1rem;
+  overflow-y: scroll;
 }
 
 .barra-busqueda {
@@ -86,5 +98,12 @@ const productos= ref([]);
 
 .v-data-table {
   flex: 1;
+}
+
+.button-group {
+  display: flex;
+  justify-content: flex-start;
+  gap: 1rem;
+  margin-top: 1rem;
 }
 </style>
