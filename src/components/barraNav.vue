@@ -11,7 +11,7 @@
     <router-link to="/Login">
       <v-btn icon class="boton-bar boton-iniciar-sesion">
         <v-icon>mdi-account</v-icon>
-      </v-btn>
+      </v-btn> 
     </router-link>
     <router-link to="/Compras">
       <v-btn icon class="boton-bar boton-compras">
@@ -23,15 +23,14 @@
 
 <style scoped>
 .imagen-izquierda {
-  width: 150px; /* Ajusta el ancho según sea necesario */
-  height: auto; /* Mantiene la proporción de la imagen */
-  cursor: pointer; /* Cambia el cursor al pasar sobre la imagen si es clickeable */
-  margin-left: 16px; /* Espaciado a la izquierda */
+  height: 100px;
+  width: 100px;
+  margin-left: 20px;
 }
  
 .nav-buttons {
   display: flex;
-  gap: 16px; 
+  gap: 16px; /* Espaciado uniforme entre botones */
   justify-content: center;
   align-items: center;
 
@@ -39,7 +38,6 @@
 
 .boton-bar {
   color: white;
-
   font-size: 20px;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   min-width: 120px;
@@ -48,7 +46,6 @@
 
 .boton-iniciar-sesion, .boton-compras {
   margin-right: 40px;
-  color: white;
 }
 </style>
 
