@@ -1,7 +1,7 @@
 <template>
     <div>
         <aside class="sidebar">
-        <v-btn class="botones" @mouseover="activarColorGris()" @mouseleave="restaurarColorboton()" :color="coloresBotones1">Clientes</v-btn>
+        <router-link to="clientes"><v-btn class="botones" @mouseover="activarColorGris()" @mouseleave="restaurarColorboton()" :color="coloresBotones1">Clientes</v-btn> </router-link> 
         <router-link to="socios"><v-btn class="botones" @mouseover="activarColorGris()" @mouseleave="restaurarColorboton()" :color="coloresBotones1">Socios</v-btn> </router-link> 
         <router-link to="citas"><v-btn class="botones" @mouseover="activarColorGris()" @mouseleave="restaurarColorboton()" :color="coloresBotones1">Citas</v-btn> </router-link>
         <router-link to="adminproductos"><v-btn class="botones" @mouseover="activarColorGris()" @mouseleave="restaurarColorboton()" :color="coloresBotones1">Productos</v-btn></router-link>   

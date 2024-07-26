@@ -21,7 +21,7 @@
   </v-app-bar>
 </template> 
 
-<style>
+<style scoped>
 .imagen-izquierda {
   width: 150px; /* Ajusta el ancho según sea necesario */
   height: auto; /* Mantiene la proporción de la imagen */
