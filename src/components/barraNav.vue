@@ -23,19 +23,14 @@
 
 <style scoped>
 .imagen-izquierda {
-  width: 150px; 
-  height: auto; 
-  cursor: pointer; 
-  margin-left: 16px; 
+  height: 100px;
+  width: 100px;
+  margin-left: 20px;
 }
  
 .nav-buttons {
   display: flex;
-
-  gap: 10px; 
-
-  gap: 16px; 
-
+  gap: 16px; /* Espaciado uniforme entre botones */
   justify-content: center;
   align-items: center;
 
@@ -43,44 +38,6 @@
 
 .boton-bar {
   color: white;
-
-  background-color: transparent;
-  font-size: 20px;
-  font-family: Arial, Helvetica, sans-serif; 
-}
-
-.boton-bar:hover {
-  background-color: rgba(255, 255, 255, 0.1); 
-}
-
-.boton-compras .v-icon,
-.boton-iniciar-sesion .v-icon {
-  color: white; 
-  margin-right: 25px;
-}
-
-.boton-compras {
-  margin-right: 30px;
-}
-
-.v-btn {
-  color: white; 
-}
-
-.v-btn .v-icon {
-  color: white; 
-}
-
-.v-btn:focus {
-  background-color: transparent; 
-}
-
-
-.right-buttons {
-  display: flex;
-  gap: 8px; 
-
-
   font-size: 20px;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   min-width: 120px;
@@ -89,8 +46,6 @@
 
 .boton-iniciar-sesion, .boton-compras {
   margin-right: 40px;
-  color: white;
-
 }
 </style>
 

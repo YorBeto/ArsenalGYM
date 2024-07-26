@@ -27,8 +27,8 @@
 </template>
 
 <script setup>
+import { ref, onMounted } from 'vue';
 import barraNav from '@/components/barraNav.vue';
-import { ref } from 'vue';
 
 // Categorías de productos
 const categories = ref([
@@ -39,24 +39,26 @@ const categories = ref([
   'MEMBRESÍAS'
 ]);
 
-// Productos (Ejemplo)
-const products = ref([
-  {
-    id: 1,
-    name: 'Producto 1',
-    description: 'Descripción del Producto 1',
-    image: 'ruta/a/la/imagen1.jpg',
-    category: 'PRE-ENTRENOS'
-  },
-  {
-    id: 2,
-    name: 'Producto 2',
-    description: 'Descripción del Producto 2',
-    image: 'ruta/a/la/imagen2.jpg',
-    category: 'PROTEÍNAS'
-  },
-  // Agrega más productos aquí...
-]);
+// Productos
+const products = ref([]);
+
+// Función para obtener productos del backend
+const mostrarproductos = () => {
+  fetch('http://mipagina.com/productos')
+     .then(response => response.json())
+    .then(json => {
+      if (json.status === 200) {
+        products.value = json.data;
+      }
+    })
+    .catch(error => {
+      console.error('Error fetching products:', error);
+    });
+};
+
+onMounted(() => {
+  mostrarproductos();
+});
 
 // Función para obtener productos por categoría
 function getProductsByCategory(category) {
