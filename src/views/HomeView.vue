@@ -3,13 +3,11 @@ import barraNav from '@/components/barraNav.vue';
 import { ref } from 'vue';
 
 const items = ref([
-  { src: '/fondogym1.jpg', alt: 'Image 1' },
-  { src: '/fondogym2.jpg', alt: 'Image 2' },
-  { src: '/fondogym3.jpg', alt: 'Image 3' },
-  { src: '/imagenesInicio/Arsenal1.jpeg', alt: 'Image 4' },
-  { src: '/imagenesInicio/Arsenal2.jpg', alt: 'Image 5' },
-  { src: '/imagenesInicio/Arsenal3.jpg', alt: 'Image 6' },
-  { src: '/imagenesInicio/Arsenal4.jpeg', alt: 'Image 7' },
+  { src: '/p1.jpg', alt: 'Image 1' },
+  { src: '/p2.jpg', alt: 'Image 2' },
+  { src: '/p3.jpg', alt: 'Image 3' },
+  { src: '/p4.jpg', alt: 'Image 4' },
+  { src: '/p5.jpg', alt: 'Image 5' }
 ]);
 </script>
 
@@ -46,7 +44,7 @@ const items = ref([
         </div>
       </div>
       
-      <!-- Sección de Membresías -->
+     
       <div class="membresias-section mb-5">
         <h2>MEMBRESÍAS</h2>
         <div class="membresias-table">
@@ -138,7 +136,7 @@ const items = ref([
   color: white;
 }
 
-/* Estilos para la sección de Membresías */
+
 .membresias-section {
   width: 100%;
   background-color: white;
@@ -163,7 +161,7 @@ const items = ref([
 }
 
 .membresias-table th {
-  background-color: black;
+  background: black;
 }
 
 .membresias-table td {
@@ -171,7 +169,6 @@ const items = ref([
   color: black;
 }
 
-/* Estilos para la sección de Visítanos */
 .visitanos-section {
   width: 100%;
   background-color: white;
