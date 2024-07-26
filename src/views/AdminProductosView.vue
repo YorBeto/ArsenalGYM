@@ -22,7 +22,7 @@
           :search="search"
         ></v-data-table>
         <div class="button-group">
-          <v-btn @click="agregarProducto" color="primary">Agregar</v-btn>
+          <router-link to="agregarproductos"><v-btn @click="agregarProducto" color="primary">Agregar</v-btn></router-link>
           <v-btn @click="editarProducto" color="secondary">Editar</v-btn>
         </div>
       </div>

@@ -10,6 +10,7 @@ import AdminCitasView from '@/views/AdminCitasView.vue'
 import AdminProductosView from '@/views/AdminProductosView.vue'
 import PostcompraView from '@/views/PostcompraView.vue'
 import AdminClientesView from '@/views/AdminClientesView.vue'
+import AdminAgregarProductoView from '@/views/AdminAgregarProductoView.vue'
 
 
 
@@ -70,6 +71,11 @@ const router = createRouter({
       path: '/adminproductos',
       name: 'adminproductos',
       component: AdminProductosView
+    },
+    {
+      path: '/agregarproductos',
+      name: 'agregarproductos',
+      component: AdminAgregarProductoView
     },
     {
       path: '/clientes',
