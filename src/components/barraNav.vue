@@ -1,39 +1,25 @@
 <template>
   <v-app-bar color="black" app style="height: 70px; font-size: 24px; display: flex; align-items: center;">
-    <v-img
-      src="/arsenal.png"
-      alt="Logo"
-      contain
-      class="imagen-izquierda"
-      @click="scrollToTop"
-    ></v-img>
+    <v-img src="/arsenal.png" alt="Logo" contain class="imagen-izquierda" @click="scrollToTop"></v-img>
     <v-spacer></v-spacer>
-    <div class="nav-buttons">
-      <router-link to="/">
-        <v-btn class="boton-bar">INICIO</v-btn>
-      </router-link>
-      <router-link to="/Producto">
-        <v-btn class="boton-bar">PRODUCTOS</v-btn>
-      </router-link>
-      <router-link to="Inbody">
-        <v-btn class="boton-bar">INBODY</v-btn>
-      </router-link>
+    <div class="nav-buttons"> 
+      <router-link to="/"><v-btn class="boton-bar">INICIO</v-btn></router-link>
+      <router-link to="/Producto"><v-btn class="boton-bar">PRODUCTOS</v-btn></router-link>
+      <router-link to="Inbody"><v-btn class="boton-bar">INBODY</v-btn></router-link>
     </div>
     <v-spacer></v-spacer>
-    <div class="right-buttons">
-      <router-link to="/Login">
-        <v-btn icon class="boton-bar boton-iniciar-sesion">
-          <v-icon>mdi-account</v-icon>
-        </v-btn>
-      </router-link>
-      <router-link to="/Compras">
-        <v-btn icon class="boton-bar boton-compras">
-          <v-icon>mdi-cart</v-icon>
-        </v-btn>
-      </router-link>
-    </div>
+    <router-link to="/Login">
+      <v-btn icon class="boton-bar boton-iniciar-sesion">
+        <v-icon>mdi-account</v-icon>
+      </v-btn> 
+    </router-link>
+    <router-link to="/Compras">
+      <v-btn icon class="boton-bar boton-compras">
+        <v-icon>mdi-cart</v-icon>
+      </v-btn>
+    </router-link>
   </v-app-bar>
-</template>
+</template> 
 
 <style scoped>
 .imagen-izquierda {
@@ -42,16 +28,22 @@
   cursor: pointer; 
   margin-left: 16px; 
 }
-
+ 
 .nav-buttons {
   display: flex;
+
   gap: 10px; 
+
+  gap: 16px; 
+
   justify-content: center;
   align-items: center;
+
 }
 
 .boton-bar {
   color: white;
+
   background-color: transparent;
   font-size: 20px;
   font-family: Arial, Helvetica, sans-serif; 
@@ -87,6 +79,18 @@
 .right-buttons {
   display: flex;
   gap: 8px; 
+
+
+  font-size: 20px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  min-width: 120px;
+  text-align: center;
+}
+
+.boton-iniciar-sesion, .boton-compras {
+  margin-right: 40px;
+  color: white;
+
 }
 </style>
 
