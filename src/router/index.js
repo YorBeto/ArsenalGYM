@@ -11,6 +11,8 @@ import AdminProductosView from '@/views/AdminProductosView.vue'
 import PostcompraView from '@/views/PostcompraView.vue'
 import AdminClientesView from '@/views/AdminClientesView.vue'
 import AdminAgregarProductoView from '@/views/AdminAgregarProductoView.vue'
+import AdminEditarProductoView from '@/views/AdminEditarProductoView.vue'
+
 
 
 
@@ -86,6 +88,11 @@ const router = createRouter({
       path: '/postcompra',
       name: 'postcompra',
       component: PostcompraView
+    },
+    {
+      path: '/editar',
+      name: 'editar',
+      component: AdminEditarProductoView
     },
   ]
 })
