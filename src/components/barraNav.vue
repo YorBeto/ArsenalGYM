@@ -2,7 +2,7 @@
   <v-app-bar color="black" app style="height: 70px; font-size: 24px; display: flex; align-items: center;">
     <v-img src="/arsenal.png" alt="Logo" contain class="imagen-izquierda" @click="scrollToTop"></v-img>
     <v-spacer></v-spacer>
-    <div class="nav-buttons">
+    <div class="nav-buttons"> 
       <router-link to="/"><v-btn class="boton-bar">INICIO</v-btn></router-link>
       <router-link to="/Producto"><v-btn class="boton-bar">PRODUCTOS</v-btn></router-link>
       <router-link to="Inbody"><v-btn class="boton-bar">INBODY</v-btn></router-link>
@@ -19,7 +19,7 @@
       </v-btn>
     </router-link>
   </v-app-bar>
-</template>
+</template> 
 
 <style>
 .imagen-izquierda {
@@ -28,16 +28,18 @@
   cursor: pointer; /* Cambia el cursor al pasar sobre la imagen si es clickeable */
   margin-left: 16px; /* Espaciado a la izquierda */
 }
-
+ 
 .nav-buttons {
   display: flex;
   gap: 16px; 
   justify-content: center;
   align-items: center;
+
 }
 
 .boton-bar {
   color: white;
+
   font-size: 20px;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   min-width: 120px;
@@ -46,6 +48,7 @@
 
 .boton-iniciar-sesion, .boton-compras {
   margin-right: 40px;
+  color: white;
 }
 </style>
 
