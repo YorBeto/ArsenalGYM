@@ -5,18 +5,20 @@ import { ref } from 'vue';
 const items = ref([
   { src: '/fondogym1.jpg', alt: 'Image 1' },
   { src: '/fondogym2.jpg', alt: 'Image 2' },
-  { src: '/fondogym3.jpg', alt: 'Image 3' } 
+  { src: '/fondogym3.jpg', alt: 'Image 3' },
+  { src: '/imagenesInicio/Arsenal1.jpeg', alt: 'Image 4' },
+  { src: '/imagenesInicio/Arsenal2.jpg', alt: 'Image 5' },
+  { src: '/imagenesInicio/Arsenal3.jpg', alt: 'Image 6' },
+  { src: '/imagenesInicio/Arsenal4.jpeg', alt: 'Image 7' },
 ]);
 </script>
-
-
 
 <template>
   <v-layout class="rounded rounded-md" style="background-color: #f4f4f4; min-height: 100vh;">
     <barraNav></barraNav>
 
     <v-main style="background: linear-gradient(to right, black, red); display: flex; flex-direction: column; align-items: center; padding: 20px;">
-      <v-carousel class="carousel mb-5" cycle interval="5000" hide-delimiter-background height="500px">
+      <v-carousel class="carousel mb-5" cycle interval="5000" hide-delimiter-background height="50/0px">
         <v-carousel-item v-for="(item, i) in items" :key="i">
           <v-img :src="item.src" :alt="item.alt" class="carousel-image"></v-img>
         </v-carousel-item>

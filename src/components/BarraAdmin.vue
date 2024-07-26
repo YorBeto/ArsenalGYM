@@ -4,7 +4,7 @@
 <template>
     <div>
         <nav class="navbar">
-      <img src="/public/arsenal.png" class="logo" />
+      <img src="/arsenal.png" class="logo" />
     </nav>
     </div>
 </template>
@@ -14,14 +14,14 @@
 .navbar {
   background-color: #333;
   color: white;
-  padding: 0.5rem 1rem; /* Ajustado el padding de la barra de navegación */
+  padding: 0.5rem 1rem; 
   display: flex;
   align-items: center;
 }
 
 .logo {
-  height: 100px;
-  height: 100px;
+  height: 150px;
+  width: 100px;
 }
 
 </style>

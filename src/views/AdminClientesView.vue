@@ -18,7 +18,7 @@
           </div>
           <v-data-table
             :headers="headers"
-            :items="citas"
+            :items="clientes"
             :search="search"
           ></v-data-table>
         </div>
@@ -33,20 +33,20 @@
   import {ref,onMounted} from 'vue';
   const search = ref('')
   
-  const citas= ref([]);
+  const clientes= ref([]);
   
-    const mostrarcitas = () =>{
-        fetch('http://mipagina.com/citas')
+    const mostrarclientes = () =>{
+        fetch('http://mipagina.com/clientes')
         .then(response=> response.json())
         .then(json => {
           if(json.status==200){
-            citas.value=json.data
+            clientes.value=json.data
           }
         })
     }
   
     onMounted(()=>{
-      mostrarcitas();
+      mostrarclientes();
     })
   
   </script>
