@@ -99,7 +99,7 @@ const ingresarFormulario1 = async () => {
 
     if (result.success) {
       userStore.setUsuario(result.user);
-      router.push({ name: 'perfilcliente' });
+      router.push({ name: 'clienteinicio' });
     } else {
       alert(result.message);
     }
