@@ -1,4 +1,5 @@
 <template>
+ 
   <v-layout class="rounded rounded-md" style="background-color: #f0f0f0; min-height: 100vh;">
     <barraNav></barraNav>
 
@@ -99,7 +100,7 @@ const ingresarFormulario1 = async () => {
 
     if (result.success) {
       userStore.setUsuario(result.user);
-      router.push({ name: 'perfilcliente' });
+      router.push({ name: 'clienteinicio' });
     } else {
       alert(result.message);
     }
