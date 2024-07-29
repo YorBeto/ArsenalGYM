@@ -5,13 +5,14 @@
     <v-main style="background-color: #f0f0f0; display: flex; justify-content: center; align-items: center;">
       <v-container>
         <v-row>
+          <!-- Formulario para clientes -->
           <v-col cols="12" md="6">
             <v-card class="pa-5" max-width="500">
               <v-card-title class="titulo-formulario">
                 Iniciar Sesión
               </v-card-title>
               <v-card-text>
-                <v-form ref="form">
+                <v-form ref="form1">
                   <v-text-field
                     v-model="correo"
                     label="Correo electrónico"
@@ -34,6 +35,8 @@
               </v-card-actions>
             </v-card>
           </v-col>
+
+          <!-- Formulario para socios -->
           <v-col cols="12" md="6">
             <v-card class="pa-5 card-gradiente" max-width="500">
               <v-card-title class="titulo-formulario2">
@@ -68,6 +71,7 @@
 <script setup>
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
+import { useUserStore } from '@/stores/userStore';
 import barraNav from '@/components/barraNav.vue';
 
 const correo = ref('');
@@ -75,20 +79,64 @@ const contrasena1 = ref('');
 const usuario = ref('');
 const contrasena2 = ref('');
 const router = useRouter();
+const userStore = useUserStore();
 
-const ingresarFormulario1 = () => {
-  if (correo.value === 'test@example.com' && contrasena1.value === 'password') {
-    router.push({ name: 'AdminInicio' });
-  } else {
-    alert('Correo o contraseña incorrectos');
+const ingresarFormulario1 = async () => {
+  try {
+    const response = await fetch('http://mipagina.com/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        correo: correo.value,
+        contrasena: contrasena1.value
+      })
+    });
+
+    // Leer la respuesta en formato JSON
+    const result = await response.json();
+
+    if (result.success) {
+      userStore.setUsuario(result.user);
+      router.push({ name: 'perfilcliente' });
+    } else {
+      alert(result.message);
+    }
+  } catch (error) {
+    console.error('Error en la solicitud:', error);
   }
 };
 
-const ingresarFormulario2 = () => {
+const ingresarFormulario2 =  async () => {
   if (usuario.value === 'Peniche1234' && contrasena2.value === '123456') {
     router.push({ name: 'AdminInicio' });
-  } else {
-    alert('Usuario o contraseña incorrectos');
+  } 
+  else {
+    try {
+    const response = await fetch('http://mipagina.com/loginSocios', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        usuario: usuario.value,
+        contrasena: contrasena2.value
+      })
+    });
+
+    // Leer la respuesta en formato JSON
+    const result = await response.json();
+
+    if (result.success) {
+      userStore.setUsuario(result.user);
+      router.push({ name: 'postcompra' });
+    } else {
+      alert(result.message);
+    }
+  } catch (error) {
+    console.error('Error en la solicitud:', error);
+  }
   }
 };
 </script>
@@ -132,19 +180,12 @@ const ingresarFormulario2 = () => {
   display: block;
   margin-top: 10px;
   color: black;
-  text-decoration: none;
   text-align: center;
+  text-decoration: underline;
+  cursor: pointer;
 }
 
-.campo-input-derecha {
-  color: white;
-}
-
-.campo-input-derecha input {
-  color: white;
-}
-
-.campo-input-derecha .v-label {
-  color: white !important;
+.link:hover {
+  color: red;
 }
 </style>
