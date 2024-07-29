@@ -34,7 +34,7 @@ import BarraNav from './components/BarraNav.vue';
 const items = ref([
   { image: '/inbody.webp',text: 'Conoce nuestra maquina diseñada para evaluar tus estándares, para guiarte y demostrar tu seguimiento.', titulo: 'InBody' },
   { image: '/arsenals.png', text: 'Nos enfocamos en fomentar un ambiente sano, donde nadie se sienta excluido y supere sus limites.', titulo: 'Nuestro Equipo'},
-  { image: '/arsenal.png', text: 'Suplementos dietéticos que pueden ser utilizados para apoyar la salud muscular, mejorar el rendimiento deportivo o complementar la dieta.', titulo: 'Suplementos' },
+  { image: '/arsenal.png', text: 'Suplementos dietéticos que pueden ser utilizados para apoyar la salud muscular, mejorar el rednimiento deportivo o complementar la dieta.', titulo: 'Suplementos' },
   { image: '/equipo.png', text: 'Todo el equipamiento necesario para tus rutinas, lo tienes en Arsenal' , titulo: 'Maquinas Exclusivas'},
 ]);
 
@@ -49,13 +49,13 @@ const items = ref([
   height: 100%;
 }
 .carousel-container {
-  max-width: 80%; /* Ajusta el ancho máximo del carrusel */
+  max-width: 80%; 
 }
 .text-center {
   text-align: center;
 }
 .fondo {
-  background-color: rgb(243, 243, 250);
+  background: linear-gradient(to right, black, red);
 }
 .carousel-card {
   width: 80%;
