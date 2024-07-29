@@ -11,6 +11,7 @@ import AdminProductosView from '@/views/AdminProductosView.vue'
 import PostcompraView from '@/views/PostcompraView.vue'
 import AdminClientesView from '@/views/AdminClientesView.vue'
 import PerfilUsuarioView from '@/views/PerfilUsuarioView.vue'
+import AdminAgregarProductoView from '@/views/AdminAgregarProductoView.vue'
 
 
 
