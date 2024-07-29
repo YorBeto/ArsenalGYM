@@ -1,7 +1,7 @@
 <template>
-  <div>
+
     <barraNav></barraNav>
-  </div>
+
     <div id="admin-inicio">
       <div class="content">
         <BarraLatCliente></BarraLatCliente>
@@ -18,6 +18,7 @@
   <script setup>
   import BarraLatCliente from '@/components/BarraLatCliente.vue';
   import barraNav from '@/components/barraNav.vue';
+  
   </script>
   
   <style scoped>
