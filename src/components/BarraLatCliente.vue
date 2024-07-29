@@ -42,7 +42,6 @@ const coloresBotonesCE = {
   inbody: 'grey'
 };
   
-
 function activarColorGris() {
   coloresBotonesCE.value = 'grey'
 }
