@@ -23,14 +23,15 @@
 
 <style scoped>
 .imagen-izquierda {
-  height: 100px;
-  width: 100px;
-  margin-left: 20px;
+  width: 150px; /* Ajusta el ancho según sea necesario */
+  height: auto; /* Mantiene la proporción de la imagen */
+  cursor: pointer; /* Cambia el cursor al pasar sobre la imagen si es clickeable */
+  margin-left: 16px; /* Espaciado a la izquierda */
 }
  
 .nav-buttons {
   display: flex;
-  gap: 16px; /* Espaciado uniforme entre botones */
+  gap: 16px; 
   justify-content: center;
   align-items: center;
 
@@ -39,13 +40,15 @@
 .boton-bar {
   color: white;
   font-size: 20px;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   min-width: 120px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; 
   text-align: center;
 }
 
+
 .boton-iniciar-sesion, .boton-compras {
   margin-right: 40px;
+  color: white;
 }
 </style>
 

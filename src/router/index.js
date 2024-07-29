@@ -73,6 +73,12 @@ const router = createRouter({
       component: AdminProductosView
     },
     {
+      path: '/agregarproductos',
+      name: 'agregarproductos',
+      component: AdminAgregarProductoView
+    },
+    {
+
       path: '/clientes',
       name: 'clientes',
       component: AdminClientesView

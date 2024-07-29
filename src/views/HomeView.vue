@@ -46,7 +46,7 @@ const items = ref([
         </div>
       </div>
       
-      <!-- Sección de Membresías -->
+     
       <div class="membresias-section mb-5">
         <h2>MEMBRESÍAS</h2>
         <div class="membresias-table">
@@ -138,7 +138,7 @@ const items = ref([
   color: white;
 }
 
-/* Estilos para la sección de Membresías */
+
 .membresias-section {
   width: 100%;
   background-color: white;
@@ -163,7 +163,7 @@ const items = ref([
 }
 
 .membresias-table th {
-  background-color: black;
+  background: black;
 }
 
 .membresias-table td {
@@ -171,7 +171,6 @@ const items = ref([
   color: black;
 }
 
-/* Estilos para la sección de Visítanos */
 .visitanos-section {
   width: 100%;
   background-color: white;
