@@ -6,64 +6,48 @@
         <div class="contenedor">
             <BarralateralAdmin></BarralateralAdmin>
             <div class="main-content">
-                <div class="barra-busqueda">
-                    <v-text-field
-                        v-model="search"
-                        label="Search"
-                        prepend-inner-icon="mdi-magnify"
-                        variant="outlined"
-                        hide-details
-                        single-line
-                    ></v-text-field>
-                </div>
-                <v-data-table
-                    :headers="headers"
-                    :items="productos"
-                    :search="search"
-                ></v-data-table>
-                <div class="button-group">
-                    <v-btn @click="agregarProducto" color="primary">Agregar</v-btn>
-                    <v-btn @click="editarProducto" color="secondary">Editar</v-btn>
+                <!-- Botón para regresar -->
+                <v-btn icon @click="regresar">
+                    <v-icon>mdi-arrow-left</v-icon>
+                </v-btn>
+                <!-- Formulario para agregar productos -->
+                <div class="formulario-producto">
+                    <v-card>
+                        <v-card-title>
+                            <span class="headline">Agregar Producto</span>
+                        </v-card-title>
+                        <v-card-text>
+                            <v-container>
+                                <v-row>
+                                    <v-col cols="12">
+                                        <v-text-field v-model="form.id_producto" label="ID Producto" required></v-text-field>
+                                    </v-col>
+                                    <v-col cols="12">
+                                        <v-text-field v-model="form.nombre" label="Nombre" required></v-text-field>
+                                    </v-col>
+                                    <v-col cols="12">
+                                        <v-text-field v-model="form.descripcion" label="Descripción" required></v-text-field>
+                                    </v-col>
+                                    <v-col cols="12">
+                                        <v-text-field v-model="form.precio" label="Precio" required></v-text-field>
+                                    </v-col>
+                                    <v-col cols="12">
+                                        <v-text-field v-model="form.stock" label="Stock"></v-text-field>
+                                    </v-col>
+                                    <v-col cols="12">
+                                        <v-text-field v-model="form.id_categoria" label="ID Categoría" required></v-text-field>
+                                    </v-col>
+                                </v-row>
+                            </v-container>
+                        </v-card-text>
+                        <v-card-actions>
+                            <v-spacer></v-spacer>
+                            <v-btn color="blue darken-1" text @click="submitForm">Guardar</v-btn>
+                        </v-card-actions>
+                    </v-card>
                 </div>
             </div>
         </div>
-        <!-- Formulario para agregar productos -->
-        <v-dialog v-model="dialog" max-width="500px">
-            <v-card>
-                <v-card-title>
-                    <span class="headline">Agregar Producto</span>
-                </v-card-title>
-                <v-card-text>
-                    <v-container>
-                        <v-row>
-                            <v-col cols="12">
-                                <v-text-field v-model="form.id_producto" label="ID Producto" required></v-text-field>
-                            </v-col>
-                            <v-col cols="12">
-                                <v-text-field v-model="form.nombre" label="Nombre" required></v-text-field>
-                            </v-col>
-                            <v-col cols="12">
-                                <v-text-field v-model="form.descripcion" label="Descripción" required></v-text-field>
-                            </v-col>
-                            <v-col cols="12">
-                                <v-text-field v-model="form.precio" label="Precio" required></v-text-field>
-                            </v-col>
-                            <v-col cols="12">
-                                <v-text-field v-model="form.stock" label="Stock"></v-text-field>
-                            </v-col>
-                            <v-col cols="12">
-                                <v-text-field v-model="form.id_categoria" label="ID Categoría" required></v-text-field>
-                            </v-col>
-                        </v-row>
-                    </v-container>
-                </v-card-text>
-                <v-card-actions>
-                    <v-spacer></v-spacer>
-                    <v-btn color="blue darken-1" text @click="closeDialog">Cancelar</v-btn>
-                    <v-btn color="blue darken-1" text @click="submitForm">Guardar</v-btn>
-                </v-card-actions>
-            </v-card>
-        </v-dialog>
     </div>
 </template>
 
@@ -71,9 +55,6 @@
 import BarralateralAdmin from '@/components/BarralateralAdmin.vue';
 import { ref, onMounted } from 'vue';
 
-const search = ref('');
-const productos = ref([]);
-const dialog = ref(false);
 const form = ref({
     id_producto: '',
     nombre: '',
@@ -93,14 +74,6 @@ const mostrarproductos = () => {
         });
 };
 
-const agregarProducto = () => {
-    dialog.value = true;
-};
-
-const closeDialog = () => {
-    dialog.value = false;
-};
-
 const submitForm = () => {
     fetch('http://mipagina.com/insertarproducto', {
         method: 'POST',
@@ -112,12 +85,23 @@ const submitForm = () => {
         .then(response => response.json())
         .then(json => {
             if (json.status == 200) {
-                mostrarproductos();
-                closeDialog();
+                alert('Producto agregado exitosamente');
+                form.value = {
+                    id_producto: '',
+                    nombre: '',
+                    descripcion: '',
+                    precio: '',
+                    stock: '',
+                    id_categoria: ''
+                };
             } else {
                 alert(json.message);
             }
         });
+};
+
+const regresar = () => {
+    window.history.back();
 };
 
 onMounted(() => {
@@ -155,10 +139,6 @@ onMounted(() => {
     overflow-y: scroll;
 }
 
-.barra-busqueda {
-    margin-bottom: 1rem;
-}
-
 .v-data-table {
     flex: 1;
 }
@@ -168,5 +148,9 @@ onMounted(() => {
     justify-content: flex-start;
     gap: 1rem;
     margin-top: 1rem;
+}
+
+.formulario-producto {
+    margin-top: 2rem;
 }
 </style>

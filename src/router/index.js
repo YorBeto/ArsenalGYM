@@ -79,6 +79,11 @@ const router = createRouter({
       component: AdminAgregarProductoView
     },
     {
+      path: '/editarproductos',
+      name: 'editarproductos',
+      component: AdminEditarProductoView
+    },
+    {
 
       path: '/clientes',
       name: 'clientes',
