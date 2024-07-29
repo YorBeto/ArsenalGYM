@@ -131,7 +131,7 @@ const ingresarFormulario2 =  async () => {
 
     if (result.success) {
       userStore.setUsuario(result.user);
-      router.push({ name: 'postcompra' });
+      router.push({ name: 'perfilsocios' });
     } else {
       alert(result.message);
     }

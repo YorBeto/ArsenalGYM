@@ -1,7 +1,7 @@
 <template>
     <div>
       <aside class="sidebar">
-        <BarraAdmin></BarraAdmin>
+
         <v-btn 
           class="botones" 
           @mouseover="activarColorGris('inbody')" 
@@ -51,7 +51,7 @@
   <script setup>
   import { ref } from 'vue';
   import { useRouter } from 'vue-router';
-  import BarraAdmin from './components/BarraAdmin.vue';
+
   
   const router = useRouter();
   

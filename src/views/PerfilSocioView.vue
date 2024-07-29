@@ -12,8 +12,8 @@
   
   <script setup>
   import { ref } from 'vue';
-  import barraNav from './components/barraNav.vue';
-  import Barralateralcliente from './components/Barralateralcliente.vue';
+  import barraNav from '@/components/barraNav.vue';
+ import Barralateralcliente from '@/components/Barralateralcliente.vue';
   
   const cerrarSesion = () => {
     alert('Cerrar sesión');
