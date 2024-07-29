@@ -22,13 +22,13 @@
           :color="coloresBotonesCE"
           >Inbody</v-btn
         >
-        <router-link to="/"><v-btn
+        <v-btn
           class="botonSalirC"
           @mouseover="activarColorR()"
           @mouseleave="restaurarColorR()"
           :color="colorR"
-          >Salir</v-btn
-        ></router-link>
+          >Cerrar Sesión</v-btn
+        >
       </aside>
     </div>
   </template>
@@ -65,7 +65,7 @@ function restaurarColorR() {
   .botones, .botonSalirC {
     height: 40px;
     width: 180px;
-    font-size: 22px;
+    font-size: 21px;
     font-family: Arial, Helvetica, sans-serif;
     color: black;
     margin-bottom: 5px;
@@ -77,7 +77,8 @@ function restaurarColorR() {
     justify-content: center; /* Align text to the left */
     padding-left: 10px;
     border-radius: 5px;
-    letter-spacing: 1px; 
+    letter-spacing: 1px;
+    text-decoration: none; 
   }
   
   .botones:hover {
@@ -90,6 +91,7 @@ function restaurarColorR() {
     background-color: red !important;
     border-color: red;
     color: white !important;
+    text-decoration: none;
   }
   </style>
   
