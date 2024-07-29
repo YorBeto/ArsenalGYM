@@ -78,7 +78,7 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <router-link to="/"><v-btn color="primary" :disabled="!formCompleto" @click="registrar">
+          <router-link to="Login"><v-btn color="primary" :disabled="!formCompleto" @click="registrar">
             Registrarse
           </v-btn> </router-link>
         </v-card-actions>
@@ -87,66 +87,76 @@
   </v-layout>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      nombre: '',
-      apellidos: '',
-      fechaNacimiento: '',
-      sexo: '',
-      correo: '',
-      telefono: '',
-      contrasena: '',
-      confirmarContrasena: '',
-    };
-  },
-  computed: {
-    datosBasicosCompletos() {
-      return (
-        this.nombre &&
-        this.apellidos &&
-        this.fechaNacimiento &&
-        this.sexo &&
-        this.correo &&
-        /.+@.+/.test(this.correo) &&
-        this.telefono &&
-        /^[0-9]{10}$/.test(this.telefono)
-      );
-    },
-    formCompleto() {
-      return (
-        this.datosBasicosCompletos &&
-        this.contrasena &&
-        this.confirmarContrasena &&
-        this.contrasena === this.confirmarContrasena
-      );
-    },
-  },
-  methods: {
-    registrar() {
-      if (this.$refs.form.validate()) {
-        // Lógica para registrar al usuario
-        console.log('Usuario registrado:', {
-          nombre: this.nombre,
-          apellidos: this.apellidos,
-          fechaNacimiento: this.fechaNacimiento,
-          sexo: this.sexo,
-          correo: this.correo,
-          telefono: this.telefono,
-          contrasena: this.contrasena,
-        });
-
-        // Navegar a HomeView después de registrar
-        this.$router.push({ name: 'home' });
-      }
-    },
-  },
-};
-</script>
-
 <script setup>
+import { ref, computed } from 'vue';
+import { useRouter } from 'vue-router';
 import barraNav from '@/components/barraNav.vue';
+
+const nombre = ref('');
+const apellidos = ref('');
+const fechaNacimiento = ref('');
+const sexo = ref('');
+const correo = ref('');
+const telefono = ref('');
+const contrasena = ref('');
+const confirmarContrasena = ref('');
+const router = useRouter();
+
+const datosBasicosCompletos = computed(() => {
+  return (
+    nombre.value &&
+    apellidos.value &&
+    fechaNacimiento.value &&
+    sexo.value &&
+    correo.value &&
+    /.+@.+/.test(correo.value) &&
+    telefono.value &&
+    /^[0-9]{10}$/.test(telefono.value)
+  );
+});
+
+const formCompleto = computed(() => {
+  return (
+    datosBasicosCompletos.value &&
+    contrasena.value &&
+    confirmarContrasena.value &&
+    contrasena.value === confirmarContrasena.value
+  );
+});
+
+const registrar = async () => {
+  if (formCompleto.value) {
+    const requestData = {
+      nombre: nombre.value,
+      apellidos: apellidos.value,
+      fechaNacimiento: fechaNacimiento.value,
+      sexo: sexo.value === 'Masculino' ? 'M' : 'F',
+      correo: correo.value,
+      telefono: telefono.value,
+      contrasena: contrasena.value
+    };
+
+    try {
+      const response = await fetch('http://mipagina.com/registro', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(requestData)
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        router.push({ name: 'home' });
+      } else {
+        console.error('Error al registrar:', result.message);
+      }
+    } catch (error) {
+      console.error('Error en la solicitud:', error);
+    }
+  }
+};
 </script>
 
 <style scoped>

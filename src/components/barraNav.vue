@@ -11,7 +11,7 @@
     <router-link to="/Login">
       <v-btn icon class="boton-bar boton-iniciar-sesion">
         <v-icon>mdi-account</v-icon>
-      </v-btn>
+      </v-btn> 
     </router-link>
     <router-link to="/Compras">
       <v-btn icon class="boton-bar boton-compras">
@@ -39,12 +39,12 @@
 
 .boton-bar {
   color: white;
-
   font-size: 20px;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   min-width: 120px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; 
   text-align: center;
 }
+
 
 .boton-iniciar-sesion, .boton-compras {
   margin-right: 40px;

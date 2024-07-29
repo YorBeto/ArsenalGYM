@@ -13,10 +13,21 @@
                   <v-row>
                     <v-col cols="12">
                       <v-select
-                        :items="appointmentSlots"
-                        label="Selecciona tu cita"
-                        v-model="selectedAppointment"
-                        :rules="[v => !!v || 'Seleccione una cita']"
+                        :items="fechas"
+                        label="Selecciona una fecha"
+                        v-model="selectedDate"
+                        @change="fetchAvailableTimes"
+                        :rules="[v => !!v || 'Seleccione una fecha']"
+                      ></v-select>
+                    </v-col>
+                    <v-col cols="12">
+                      <v-select
+                        :items="availableTimes"
+                        label="Selecciona la hora"
+                        v-model="selectedTime"
+                        :rules="[v => !!v || 'Seleccione una hora']"
+                        :item-color="getTimeColor"
+                        :disabled="!selectedDate"
                       ></v-select>
                     </v-col>
                     <v-col cols="12">
@@ -63,40 +74,53 @@
 export default {
   data() {
     return {
-      appointmentSlots: this.generateAppointmentSlots(),
-      selectedAppointment: null,
+      fechas: [],
+      availableTimes: [],
+      selectedDate: null,
+      selectedTime: null,
       email: '',
       valid: false,
       dialog: false
     };
   },
   methods: {
-    generateAppointmentSlots() {
-      const slots = [];
-      const startHour = 9; // 9 AM
-      const endHour = 17; // 5 PM
-      const daysOfWeek = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes'];
-      const currentDate = new Date();
-      const endDate = new Date(currentDate.getFullYear(), 11, 31); // End of current year
-
-      while (currentDate <= endDate) {
-        if (currentDate.getDay() !== 0 && currentDate.getDay() !== 6) { // Exclude weekends
-          for (let hour = startHour; hour < endHour; hour++) {
-            slots.push(`${daysOfWeek[currentDate.getDay() - 1]} ${currentDate.toLocaleDateString()} ${hour}:00`);
-            slots.push(`${daysOfWeek[currentDate.getDay() - 1]} ${currentDate.toLocaleDateString()} ${hour}:30`);
-          }
+    fetchFechas() {
+      fetch('/appointment/dates')
+        .then(response => response.json())
+        .then(data => {
+          this.fechas = data;
+        });
+    },
+    fetchAvailableTimes() {
+  if (this.selectedDate) {
+    fetch(`/appointment/available`)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
         }
-        currentDate.setDate(currentDate.getDate() + 1);
-      }
-
-      return slots;
+        return response.json();
+      })
+      .then(data => {
+        console.log('Available dates and times:', data); // Log para depuración
+        this.availableTimes = data.filter(item => item.FECHA === this.selectedDate);
+      })
+      .catch(error => {
+        console.error('There has been a problem with your fetch operation:', error);
+      });
+  }
+},
+    getTimeColor(time) {
+      return time.ESTADO_FH === 'OCUPADO' ? 'red' : 'black';
     },
     confirmAppointment() {
       if (this.$refs.form.validate()) {
-        console.log('Cita confirmada:', this.selectedAppointment, this.email);
+        console.log('Cita confirmada:', this.selectedDate, this.selectedTime, this.email);
         this.dialog = true;
       }
     }
+  },
+  mounted() {
+    this.fetchFechas();
   }
 };
 </script>

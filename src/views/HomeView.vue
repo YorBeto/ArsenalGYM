@@ -3,11 +3,13 @@ import barraNav from '@/components/barraNav.vue';
 import { ref } from 'vue';
 
 const items = ref([
-  { src: '/p1.jpg', alt: 'Image 1' },
-  { src: '/p2.jpg', alt: 'Image 2' },
-  { src: '/p3.jpg', alt: 'Image 3' },
-  { src: '/p4.jpg', alt: 'Image 4' },
-  { src: '/p5.jpg', alt: 'Image 5' }
+  { src: '/fondogym1.jpg', alt: 'Image 1' },
+  { src: '/fondogym2.jpg', alt: 'Image 2' },
+  { src: '/fondogym3.jpg', alt: 'Image 3' },
+  { src: '/imagenesInicio/Arsenal1.jpeg', alt: 'Image 4' },
+  { src: '/imagenesInicio/Arsenal2.jpg', alt: 'Image 5' },
+  { src: '/imagenesInicio/Arsenal3.jpg', alt: 'Image 6' },
+  { src: '/imagenesInicio/Arsenal4.jpeg', alt: 'Image 7' },
 ]);
 </script>
 
