@@ -22,13 +22,13 @@
           :color="coloresBotonesCE"
           >Inbody</v-btn
         >
-        <v-btn
+        <router-link to="/"><v-btn
           class="botonSalirC"
           @mouseover="activarColorR()"
           @mouseleave="restaurarColorR()"
           :color="colorR"
           >Salir</v-btn
-        >
+        ></router-link>
       </aside>
     </div>
   </template>

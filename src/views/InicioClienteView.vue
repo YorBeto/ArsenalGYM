@@ -1,14 +1,13 @@
 <template>
-  <div id="admin-cliente">
-    <nav class="navbar">
-      <barraNav></barraNav> -
-    </nav>
-    <br>
-    <div class="content">
-      <BarraLatCliente></BarraLatCliente>
-    </div>
+  <div>
+    <barraNav></barraNav>
   </div>
-</template>
+    <div id="admin-inicio">
+      <div class="content">
+        <BarraLatCliente></BarraLatCliente>
+      </div>
+    </div>
+  </template>
   
   <script>
   export default {
@@ -19,6 +18,7 @@
   <script setup>
   import BarraLatCliente from '@/components/BarraLatCliente.vue';
   import barraNav from '@/components/barraNav.vue';
+  
   </script>
   
   <style scoped>
