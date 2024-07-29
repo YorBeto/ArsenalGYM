@@ -10,12 +10,9 @@ import AdminCitasView from '@/views/AdminCitasView.vue'
 import AdminProductosView from '@/views/AdminProductosView.vue'
 import PostcompraView from '@/views/PostcompraView.vue'
 import AdminClientesView from '@/views/AdminClientesView.vue'
-<<<<<<< HEAD
 import AdminAgregarProductoView from '@/views/AdminAgregarProductoView.vue'
 import AdminEditarProductoView from '@/views/AdminEditarProductoView.vue'
 
-=======
->>>>>>> 38133be6fa1102cf3f41c3ffd8d35315a5518aaf
 
 
 
@@ -78,14 +75,12 @@ const router = createRouter({
       component: AdminProductosView
     },
     {
-<<<<<<< HEAD
       path: '/agregarproductos',
       name: 'agregarproductos',
       component: AdminAgregarProductoView
     },
     {
-=======
->>>>>>> 38133be6fa1102cf3f41c3ffd8d35315a5518aaf
+
       path: '/clientes',
       name: 'clientes',
       component: AdminClientesView
@@ -95,14 +90,12 @@ const router = createRouter({
       name: 'postcompra',
       component: PostcompraView
     },
-<<<<<<< HEAD
     {
       path: '/editar',
       name: 'editar',
       component: AdminEditarProductoView
     },
-=======
->>>>>>> 38133be6fa1102cf3f41c3ffd8d35315a5518aaf
+
   ]
 })
 

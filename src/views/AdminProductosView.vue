@@ -21,18 +21,14 @@
           :items="productos"
           :search="search"
         ></v-data-table>
-<<<<<<< HEAD
         <div class="button-group">
           <router-link to="agregarproductos"><v-btn @click="agregarProducto" color="primary">Agregar</v-btn></router-link>
           <router-link to="editar"><v-btn @click="editarProducto" color="secondary">Editar</v-btn></router-link>
         </div>
-=======
->>>>>>> 38133be6fa1102cf3f41c3ffd8d35315a5518aaf
       </div>
     </div>
   </div>
 </template>
-<<<<<<< HEAD
 
 <script setup>
 import BarralateralAdmin from '@/components/BarralateralAdmin.vue';
@@ -61,35 +57,10 @@ const editarProducto = () => {
   console.log('Editar producto');
 };
 
-onMounted(() => {
-  mostrarproductos();
-});
-=======
-
-
-<script setup>
-
-import BarralateralAdmin from '@/components/BarralateralAdmin.vue';
-import {ref,onMounted} from 'vue';
-const search = ref('')
-
-const productos= ref([]);
-
-  const mostrarproductos = () =>{
-      fetch('http://mipagina.com/productos')
-      .then(response=> response.json())
-      .then(json => {
-        if(json.status==200){
-          productos.value=json.data
-        }
-      })
-  }
-
   onMounted(()=>{
     mostrarproductos();
   })
 
->>>>>>> 38133be6fa1102cf3f41c3ffd8d35315a5518aaf
 </script>
 
 <style>
@@ -119,10 +90,7 @@ const productos= ref([]);
   flex-direction: column;
   flex: 1;
   padding: 1rem;
-<<<<<<< HEAD
   overflow-y: scroll;
-=======
->>>>>>> 38133be6fa1102cf3f41c3ffd8d35315a5518aaf
 }
 
 .barra-busqueda {
@@ -132,7 +100,6 @@ const productos= ref([]);
 .v-data-table {
   flex: 1;
 }
-<<<<<<< HEAD
 
 .button-group {
   display: flex;
@@ -140,6 +107,4 @@ const productos= ref([]);
   gap: 1rem;
   margin-top: 1rem;
 }
-=======
->>>>>>> 38133be6fa1102cf3f41c3ffd8d35315a5518aaf
 </style>
