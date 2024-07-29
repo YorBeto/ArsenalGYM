@@ -23,7 +23,7 @@
         ></v-data-table>
         <div class="button-group">
           <router-link to="agregarproductos"><v-btn @click="agregarProducto" color="primary">Agregar</v-btn></router-link>
-          <router-link to="editar"><v-btn @click="editarProducto" color="secondary">Editar</v-btn></router-link>
+          <router-link to="editarproductos"><v-btn @click="editarProducto" color="secondary">Editar</v-btn></router-link>
         </div>
       </div>
     </div>
