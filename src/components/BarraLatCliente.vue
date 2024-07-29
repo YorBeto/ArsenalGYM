@@ -62,7 +62,6 @@ function restaurarColorR() {
 </script>
   
   <style scoped>
-  /* General styles for the buttons */
   .botones, .botonSalirC {
     height: 40px;
     width: 180px;
@@ -78,7 +77,7 @@ function restaurarColorR() {
     justify-content: center; /* Align text to the left */
     padding-left: 10px;
     border-radius: 5px;
-    letter-spacing: 1px;
+    letter-spacing: 1px; 
   }
   
   .botones:hover {

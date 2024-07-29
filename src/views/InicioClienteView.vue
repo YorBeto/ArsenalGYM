@@ -1,7 +1,9 @@
 <template>
   <div>
-    <barraNav></barraNav>
+    <barraNav></barraNav> -
   </div>
+  <br>
+  <br>
     <div id="admin-inicio">
       <div class="content">
         <BarraLatCliente></BarraLatCliente>
@@ -55,6 +57,7 @@
     background-color: red;
     border-color: red;
     color: white;
+    text-decoration: none;
   }
   
   #admin-cliente{
