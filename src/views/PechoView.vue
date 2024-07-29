@@ -5,7 +5,7 @@
           <v-img 
             src="/arsenal.png" 
             alt="Logo"
-            class="sidebar-logo"
+            class="sidebar-logo" 
           ></v-img>
         </div>
         <v-list dense>
