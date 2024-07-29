@@ -1,13 +1,14 @@
 <template>
-  <div>
-    <barraNav></barraNav>
-  </div>
-    <div id="admin-inicio">
-      <div class="content">
-        <BarraLatCliente></BarraLatCliente>
-      </div>
+  <div id="admin-cliente">
+    <nav class="navbar">
+      <barraNav></barraNav> -
+    </nav>
+    <br>
+    <div class="content">
+      <BarraLatCliente></BarraLatCliente>
     </div>
-  </template>
+  </div>
+</template>
   
   <script>
   export default {
@@ -56,7 +57,7 @@
     color: white;
   }
   
-  #admin-inicio {
+  #admin-cliente{
     display: flex;
     flex-direction: column;
     height: 100vh;
@@ -72,6 +73,7 @@
     padding: 0.5rem 1rem;
     display: flex;
     align-items: center;
+    
   }
   
   .logo {
@@ -91,6 +93,7 @@
     height: 100vh;
     display: flex;
     flex-direction: column;
+    
   }
   
   .sidebar-btn-logout {
