@@ -2,6 +2,7 @@
   <div id="admin-inicio">
     <nav class="navbar">
       <img src="/public/arsenal.png" class="logo" />
+      <span class="mensaje1">Sucursal Bosque</span>
     </nav>
     <div class="content">
       <BarralateralAdmin></BarralateralAdmin>
@@ -41,6 +42,13 @@ const fechaHoraActual = ref(new Date().toLocaleString());
 * {
   margin: 0;
   padding: 0;
+}
+
+.mensaje1{
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  margin-left: 520px;
+  font-size: 25px;
+  font-weight: bold;
 }
 
 .botones {
@@ -85,8 +93,9 @@ const fechaHoraActual = ref(new Date().toLocaleString());
 }
 
 .logo {
-  height: 100px;
-  height: 100px;
+  height: 100%;
+  width: 100px;
+  margin-left: 100px;
 }
 
 .content {

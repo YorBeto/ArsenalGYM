@@ -23,15 +23,30 @@
 
 <style scoped>
 .imagen-izquierda {
+<<<<<<<<< Temporary merge branch 1
   width: 150px; /* Ajusta el ancho según sea necesario */
   height: auto; /* Mantiene la proporción de la imagen */
   cursor: pointer; /* Cambia el cursor al pasar sobre la imagen si es clickeable */
   margin-left: 16px; /* Espaciado a la izquierda */
+=========
+  width: 150px; 
+  height: auto; 
+  cursor: pointer; 
+  margin-left: 16px; 
+>>>>>>>>> Temporary merge branch 2
 }
  
 .nav-buttons {
   display: flex;
+<<<<<<<<< Temporary merge branch 1
   gap: 16px; 
+=========
+
+  gap: 10px; 
+
+  gap: 16px; 
+
+>>>>>>>>> Temporary merge branch 2
   justify-content: center;
   align-items: center;
 
@@ -40,6 +55,46 @@
 .boton-bar {
   color: white;
 
+<<<<<<<<< Temporary merge branch 1
+=========
+  background-color: transparent;
+  font-size: 20px;
+  font-family: Arial, Helvetica, sans-serif; 
+}
+
+.boton-bar:hover {
+  background-color: rgba(255, 255, 255, 0.1); 
+}
+
+.boton-compras .v-icon,
+.boton-iniciar-sesion .v-icon {
+  color: white; 
+  margin-right: 25px;
+}
+
+.boton-compras {
+  margin-right: 30px;
+}
+
+.v-btn {
+  color: white; 
+}
+
+.v-btn .v-icon {
+  color: white; 
+}
+
+.v-btn:focus {
+  background-color: transparent; 
+}
+
+
+.right-buttons {
+  display: flex;
+  gap: 8px; 
+
+
+>>>>>>>>> Temporary merge branch 2
   font-size: 20px;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   min-width: 120px;
@@ -49,6 +104,10 @@
 .boton-iniciar-sesion, .boton-compras {
   margin-right: 40px;
   color: white;
+<<<<<<<<< Temporary merge branch 1
+=========
+
+>>>>>>>>> Temporary merge branch 2
 }
 </style>
 
