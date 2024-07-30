@@ -1,8 +1,6 @@
 <template>
     <div id="admin-inicio">
-      <nav class="navbar">
-        <img src="/public/arsenal.png" class="logo" />
-      </nav>
+        <BarraAdminNew></BarraAdminNew>
       <div class="contenedor">
         <BarralateralAdmin></BarralateralAdmin>
         <div class="main-content">
@@ -29,7 +27,8 @@
   
   <script setup>
   
-  import BarralateralAdmin from '@/components/BarralateralAdmin.vue';
+  import BarraAdminNew from '@/components/BarraAdminNew.vue';
+import BarralateralAdmin from '@/components/BarralateralAdmin.vue';
   import {ref,onMounted} from 'vue';
   const search = ref('')
   
