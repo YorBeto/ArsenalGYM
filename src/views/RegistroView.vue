@@ -137,7 +137,7 @@ const registrar = async () => {
     };
 
     try {
-      const response = await fetch('http://mipagina.com/registro', {
+      const response = await fetch('http://mipagina.com/registro2', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
