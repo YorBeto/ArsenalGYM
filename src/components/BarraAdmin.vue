@@ -2,11 +2,13 @@
 </script>
 
 <template>
-    <div>
-        <nav class="navbar">
-      <img src="/arsenal.png" class="logo" />
+  <div>
+    <nav class="navbar">
+      <img src="/arsenal.png" alt="Logo" class="logo1"/>
     </nav>
-    </div>
+    <main class="content">
+    </main>
+  </div>
 </template>
 
 <style scoped>
@@ -19,9 +21,10 @@
   align-items: center;
 }
 
-.logo {
-  height: 150px;
-  width: 100px;
+.logo1{
+  height: 100%;
+  
 }
+
 
 </style>
