@@ -1,7 +1,9 @@
 <template>
-
+  <div>
     <barraNav></barraNav>
-
+  </div>
+  <br>
+  <br>
     <div id="admin-inicio">
       <div class="content">
         <BarraLatCliente></BarraLatCliente>
@@ -55,12 +57,13 @@
     background-color: red;
     border-color: red;
     color: white;
+    text-decoration: none;
   }
-  
-  #admin-inicio {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
+
+  .content {
+  display: flex;
+  flex: 1;
+  margin-top: 20px; /* Ajusta el valor según sea necesario */
   }
   
   .mensaje {
@@ -73,6 +76,7 @@
     padding: 0.5rem 1rem;
     display: flex;
     align-items: center;
+    
   }
   
   .logo {
@@ -87,12 +91,14 @@
   }
   
   .sidebar {
-    background-color: #555;
-    padding: 1rem;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-  }
+  background-color: #555;
+  padding: 1rem;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  margin-top: 50px; /* Ajusta el valor según sea necesario */
+}
+  
   
   .sidebar-btn-logout {
     background-color: #e74c3c;

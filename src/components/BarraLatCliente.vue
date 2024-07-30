@@ -5,64 +5,67 @@
           class="botones"
           @mouseover="activarColorGris()"
           @mouseleave="restaurarColorboton()"
-          :color="coloresBotonesC"
+          :color="coloresBotonesCW"
           >Mi informacion</v-btn
         >
         <v-btn
           class="botones"
           @mouseover="activarColorGris()"
           @mouseleave="restaurarColorboton()"
-          :color="coloresBotonesc"
+          :color="coloresBotonesCE"
           >Mis compras</v-btn
         >
         <v-btn
           class="botones"
           @mouseover="activarColorGris()"
           @mouseleave="restaurarColorboton()"
-          :color="coloresBotonesc"
+          :color="coloresBotonesCE"
           >Inbody</v-btn
         >
-        <router-link to="/"><v-btn
+        <v-btn
           class="botonSalirC"
           @mouseover="activarColorR()"
           @mouseleave="restaurarColorR()"
           :color="colorR"
-          >Salir</v-btn
-        ></router-link>
+          >Cerrar Sesión</v-btn
+        >
       </aside>
     </div>
   </template>
   
-  <script setup>
-  import { ref } from 'vue'
+<script setup>
+import { ref } from 'vue'
+
+const coloresBotonesCE = {
+  info: 'grey',
+  compras: 'grey',
+  inbody: 'grey'
+};
   
-  const coloresBotonesC = ref('grey')
-  
-  function activarColorGris() {
-    coloresBotonesC.value = 'grey'
-  }
-  
-  function restaurarColorboton() {
-    coloresBotonesC.value = 'white'
-  }
-  
-  const colorR = ref('white')
-  
-  function activarColorR() {
-    colorR.value = 'red'
-  }
-  
-  function restaurarColorR() {
-    colorR.value = 'white'
-  }
-  </script>
+function activarColorGris() {
+  coloresBotonesCE.value = 'grey'
+}
+
+function restaurarColorboton() {
+  coloresBotonesCE.value = 'white'
+}
+
+const colorR = ref('white')
+
+function activarColorR() {
+  colorR.value = 'red'
+}
+
+function restaurarColorR() {
+  colorR.value = 'white'
+}
+</script>
   
   <style scoped>
-  /* General styles for the buttons */
   .botones, .botonSalirC {
     height: 40px;
     width: 180px;
-    font-size: 22px;
+    font-size: 21px;
     font-family: Arial, Helvetica, sans-serif;
     color: black;
     margin-bottom: 5px;
@@ -75,6 +78,7 @@
     padding-left: 10px;
     border-radius: 5px;
     letter-spacing: 1px;
+    text-decoration: none; 
   }
   
   .botones:hover {
@@ -87,6 +91,7 @@
     background-color: red !important;
     border-color: red;
     color: white !important;
+    text-decoration: none;
   }
   </style>
   
