@@ -1,5 +1,5 @@
 <template>
-  <v-app-bar color="black" app style="height: 70px; font-size: 24px; display: flex; align-items: center;">
+  <v-app-bar color="black" app style="height: 70px; font-size: 24px; display: flex; align-items: center; position: fixed;">
     <v-img src="/arsenal.png" alt="Logo" contain class="imagen-izquierda" @click="scrollToTop"></v-img>
     <v-spacer></v-spacer>
     <div class="nav-buttons"> 
@@ -22,6 +22,9 @@
 </template> 
 
 <style scoped>
+
+
+
 .imagen-izquierda {
   width: 150px; /* Ajusta el ancho según sea necesario */
   height: auto; /* Mantiene la proporción de la imagen */
