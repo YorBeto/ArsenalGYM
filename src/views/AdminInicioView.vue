@@ -1,9 +1,6 @@
 <template>
   <div id="admin-inicio">
-    <nav class="navbar">
-      <img src="/public/arsenal.png" class="logo1" />
-      <span class="mensaje1">Sucursal Bosque</span>
-    </nav>
+      <BarraAdminNew></BarraAdminNew> 
     <div class="content">
       <BarralateralAdmin></BarralateralAdmin>
       <div class="main-content">
@@ -33,6 +30,7 @@ export default {
 <script setup>
 import { ref } from 'vue';
 import BarralateralAdmin from '@/components/BarralateralAdmin.vue';
+import BarraAdminNew from '@/components/BarraAdminNew.vue';
 
 // Variable reactiva para almacenar la fecha y hora actual
 const fechaHoraActual = ref(new Date().toLocaleString());

@@ -13,7 +13,6 @@ import AdminClientesView from '@/views/AdminClientesView.vue'
 import PerfilUsuarioView from '@/views/PerfilUsuarioView.vue'
 import AdminAgregarProductoView from '@/views/AdminAgregarProductoView.vue'
 import AdminEditarProductoView from '@/views/AdminEditarProductoView.vue'
-import PerfilSocioView from '@/views/PerfilSocioView.vue'
 
 
 
@@ -101,12 +100,6 @@ const router = createRouter({
       name: 'perfilcliente',
       component: PerfilUsuarioView
     },
-    {
-      path: '/perfilSocios',
-      name: 'perfilSocios',
-      component: PerfilSocioView
-    },
-    
   ]
 })
 
