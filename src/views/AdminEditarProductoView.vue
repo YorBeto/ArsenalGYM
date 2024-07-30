@@ -6,21 +6,25 @@
     <div class="contenedor">
       <BarralateralAdmin></BarralateralAdmin>
       <div class="main-content">
-        <h2>Buscar Producto</h2>
-        <v-form @submit.prevent="buscarProducto">
+        <!-- Botón para regresar -->
+        <v-btn icon @click="regresar" class="mb-4">
+          <v-icon>mdi-arrow-left</v-icon>
+        </v-btn>
+        <h2 class="mb-4">Buscar Producto</h2>
+        <v-form @submit.prevent="buscarProducto" class="mb-4">
           <v-text-field v-model="form.id_producto" label="ID Producto" required></v-text-field>
           <v-btn type="submit" color="primary">Buscar Producto</v-btn>
         </v-form>
         <div v-if="producto">
-          <h2>Editar Producto</h2>
+          <h2 class="mb-4">Editar Producto</h2>
           <v-form @submit.prevent="actualizarProducto">
             <v-text-field v-model="form.nombre" label="Nombre" required></v-text-field>
             <v-text-field v-model="form.descripcion" label="Descripción" required></v-text-field>
             <v-text-field v-model="form.precio" label="Precio" required></v-text-field>
             <v-text-field v-model="form.stock" label="Stock"></v-text-field>
             <v-text-field v-model="form.id_categoria" label="ID Categoría" required></v-text-field>
-            <v-btn type="submit" color="secondary">Actualizar Producto</v-btn>
-            <v-btn @click="eliminarProducto" color="red">Eliminar Producto</v-btn>
+            <v-btn type="submit" color="secondary" class="mt-4">Actualizar Producto</v-btn>
+            <v-btn @click="eliminarProducto" color="red" class="mt-4">Eliminar Producto</v-btn>
           </v-form>
         </div>
       </div>
@@ -104,6 +108,10 @@ const eliminarProducto = () => {
       }
     });
 };
+
+const regresar = () => {
+    window.history.back();
+};
 </script>
 
 <style>
@@ -134,5 +142,9 @@ const eliminarProducto = () => {
   flex: 1;
   padding: 1rem;
   overflow-y: scroll;
+}
+
+.mb-4 {
+  margin-bottom: 1rem;
 }
 </style>

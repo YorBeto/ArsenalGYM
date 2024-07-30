@@ -35,7 +35,13 @@
                                         <v-text-field v-model="form.stock" label="Stock"></v-text-field>
                                     </v-col>
                                     <v-col cols="12">
-                                        <v-text-field v-model="form.id_categoria" label="ID Categoría" required></v-text-field>
+                                        <v-select 
+                                            v-model="form.id_categoria" 
+                                            :items="categorias" 
+                                            item-text="NOMBRE" 
+                                            label="Categoría" 
+                                            required
+                                        ></v-select>
                                     </v-col>
                                 </v-row>
                             </v-container>
@@ -61,15 +67,19 @@ const form = ref({
     descripcion: '',
     precio: '',
     stock: '',
-    id_categoria: ''
+    categorias: ''
 });
 
-const mostrarproductos = () => {
-    fetch('http://mipagina.com/productos')
+const categorias = ref([]);
+
+const fetchCategorias = () => {
+    fetch('http://mipagina.com/categorias')
         .then(response => response.json())
         .then(json => {
-            if (json.status == 200) {
-                productos.value = json.data;
+            if (json.status === 200) {
+                categorias.value = json.data;
+            } else {
+                alert(json.message);
             }
         });
 };
@@ -82,22 +92,22 @@ const submitForm = () => {
         },
         body: JSON.stringify(form.value)
     })
-        .then(response => response.json())
-        .then(json => {
-            if (json.status == 200) {
-                alert('Producto agregado exitosamente');
-                form.value = {
-                    id_producto: '',
-                    nombre: '',
-                    descripcion: '',
-                    precio: '',
-                    stock: '',
-                    id_categoria: ''
-                };
-            } else {
-                alert(json.message);
-            }
-        });
+    .then(response => response.json())
+    .then(json => {
+        if (json.status === 200) {
+            alert('Producto agregado exitosamente');
+            form.value = {
+                id_producto: '',
+                nombre: '',
+                descripcion: '',
+                precio: '',
+                stock: '',
+                categorias: ''
+            };
+        } else {
+            alert(json.message);
+        }
+    });
 };
 
 const regresar = () => {
@@ -105,7 +115,7 @@ const regresar = () => {
 };
 
 onMounted(() => {
-    mostrarproductos();
+    fetchCategorias();
 });
 </script>
 

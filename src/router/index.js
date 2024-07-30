@@ -102,16 +102,6 @@ const router = createRouter({
       name: 'perfilcliente',
       component: PerfilUsuarioView
     },
-    {
-      path: '/clienteInicio',
-      name: 'clienteinicio',
-      component: InicioClienteView
-    },
-    {
-      path: '/PerfilSocio',
-      name: 'perfilsocios',
-      component: PerfilSocioView
-    }
   ]
 })
 
