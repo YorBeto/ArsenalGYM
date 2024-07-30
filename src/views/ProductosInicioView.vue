@@ -4,7 +4,7 @@
 
     <v-main>
       <v-container>
-        <v-tabs>
+        <v-tabs class="centered-tabs" background-color="#ffffff" slider-color="red">
           <v-tab v-for="category in categories" :key="category">{{ category }}</v-tab>
         </v-tabs>
 
@@ -30,7 +30,6 @@
 import { ref, onMounted } from 'vue';
 import barraNav from '@/components/barraNav.vue';
 
-// Categorías de productos
 const categories = ref([
   'PRE-ENTRENOS',
   'PROTEÍNAS',
@@ -39,13 +38,11 @@ const categories = ref([
   'MEMBRESÍAS'
 ]);
 
-// Productos
 const products = ref([]);
 
-// Función para obtener productos del backend
 const mostrarproductos = () => {
   fetch('http://mipagina.com/productos')
-     .then(response => response.json())
+    .then(response => response.json())
     .then(json => {
       if (json.status === 200) {
         products.value = json.data;
@@ -60,31 +57,27 @@ onMounted(() => {
   mostrarproductos();
 });
 
-// Función para obtener productos por categoría
 function getProductsByCategory(category) {
   return products.value.filter(product => product.category === category);
 }
 </script>
 
 <style scoped>
-.imagen-izquierda {
-  height: 50px;
-  width: 100px;
-  margin-left: 20px;
-}
-
-.nav-buttons {
+.centered-tabs {
   display: flex;
   justify-content: center;
-  width: 50%;
+  align-items: center;
 }
 
-.boton-bar {
-  color: white;
-  font-size: 20px;
+.v-tabs {
+  width: 100%;
 }
 
-.boton-iniciar-sesion {
-  margin-right: 40px; /* Ajusta este valor para mover el botón a la izquierda */
+.v-tab {
+  margin: 0 10px; 
+}
+
+.v-tabs-items {
+  margin-top: 20px;
 }
 </style>
