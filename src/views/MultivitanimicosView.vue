@@ -1,34 +1,17 @@
 <template>
   <v-layout class="rounded rounded-md main-app">
-    <v-app-bar color="black" class="app-bar">
-      <v-container fluid>
-        <v-row no-gutters>
-          <v-col cols="auto" class="d-flex align-center">
-            <v-img src="/arsenal.png" alt="Logo" contain class="imagen-barra-izquierda"></v-img>
-          </v-col>
-          <v-col class="d-flex justify-center align-center">
-            <p class="title-text">MULTIVITAMINICOS</p>
-          </v-col>
-          <v-col cols="auto" class="d-flex align-center barra-derecha">
-            <v-img src="/carro3.png" alt="Carrito" contain class="imagen-barra-derecha"></v-img>
-            <v-btn class="boton-barra-derecha">INICIAR SESIÓN</v-btn>
-          </v-col>
-        </v-row>
-      </v-container>
-    </v-app-bar>
-
     <v-main class="main-container">
       <v-container>
         <v-row>
           <v-col cols="12" sm="6" md="4" v-for="producto in productos" :key="producto.id">
             <v-card>
               <v-img
-  :src="producto.imagen"
-  :alt="producto.nombre"
-  contain
-  height="200px"
-  class="imagen-producto"
-></v-img>
+                :src="producto.imagen"
+                :alt="producto.nombre"
+                contain
+                height="200px"
+                class="imagen-producto"
+              ></v-img>
 
               <v-card-title class="text-center">{{ producto.nombre }}</v-card-title>
               <v-card-subtitle class="text-center">{{ producto.precio }}</v-card-subtitle>
@@ -51,7 +34,7 @@ export default {
   data() {
     return {
       productos: [
-        { id: 1, nombre: 'INOSINITOL', precio: '$420.00', imagen: '/multivitaminicos/m1.jpg', cantidad: 0, descripcion: 'SUPLEMENTO-RED GOLD' },
+      { id: 1, nombre: 'INOSINITOL', precio: '$420.00', imagen: '/multivitaminicos/m1.jpg', cantidad: 0, descripcion: 'SUPLEMENTO-RED GOLD' },
         { id: 2, nombre: 'HMB', precio: '$450.00', imagen: '/multivitaminicos/m2.jpg', cantidad: 0, descripcion: 'SUPLEMENTO-OPTIMUM NUTRITION' },
         { id: 3, nombre: 'HMB1000', precio: '$480.00', imagen: '/multivitaminicos/m3.jpg', cantidad: 0, descripcion: 'SUPLEMENTO-BLACK' },
         { id: 4, nombre: 'CAFFEIN', precio: '$520.00', imagen: '/multivitaminicos/m4.jpg', cantidad: 0, descripcion: 'SUPLEMENTO-ALLMAX' },
@@ -100,41 +83,8 @@ export default {
   flex-direction: column;
 }
 
-.app-bar {
-  height: 70px;
-  display: flex;
-  align-items: center;
-}
-
-.imagen-barra-izquierda {
-  height: 50px;
-  width: 50px;
-  margin-left: 130px;
-}
-
-.imagen-barra-derecha {
-  height: 50px;
-  width: 50px;
-}
-
-.barra-derecha {
-  display: flex;
-  align-items: center;
-}
-
-.boton-barra-derecha {
-  margin-left: 10px;
-  color: white;
-}
-
-.title-text {
-  font-size: 50px;
-  color: white;
-  margin: 0;
-}
-
 .main-container {
-  background: linear-gradient(to right, black, red);
+  color:white;
   flex: 1;
   display: flex;
   justify-content: center;
@@ -147,6 +97,7 @@ export default {
   align-items: center;
   justify-content: center;
   padding: 16px;
+ 
 }
 
 .v-card-title,

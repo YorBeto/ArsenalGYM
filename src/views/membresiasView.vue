@@ -1,21 +1,6 @@
 <template>
   <v-layout class="main-app rounded rounded-md">
-    <v-app-bar color="black" class="app-bar">
-      <v-container fluid>
-        <v-row no-gutters>
-          <v-col cols="auto" class="d-flex align-center">
-            <v-img src="/arsenal.png" alt="Logo" contain class="imagen-barra-izquierda"></v-img>
-          </v-col>
-          <v-col class="d-flex justify-center align-center">
-            <p class="title-text">MEMBRESIAS</p>
-          </v-col>
-          <v-col cols="auto" class="d-flex align-center barra-derecha">
-            <v-img src="/carro3.png" alt="Carrito" contain class="imagen-barra-derecha"></v-img>
-            <v-btn class="boton-barra-derecha">INICIAR SESIÓN</v-btn>
-          </v-col>
-        </v-row>
-      </v-container>
-    </v-app-bar>
+    <!-- Eliminar el v-app-bar -->
 
     <v-main class="main-container">
       <v-container>
@@ -48,7 +33,7 @@ export default {
         { id: 5, title: 'Membresía Semestral (CrossFit)', price: '$1,920.00', image: '/arsenalblanco.png' },
         { id: 6, title: 'Membresía Anual (CrossFit)', price: '$7,550.00', image: '/arsenalblanco.png' }
       ]
-    }
+    }  
   }
 }
 </script>
@@ -60,41 +45,8 @@ export default {
   flex-direction: column;
 }
 
-.app-bar {
-  height: 70px;
-  display: flex;
-  align-items: center;
-}
-
-.imagen-barra-izquierda {
-  height: 60px;
-  width: 60px;
-  margin-left: 130px;
-}
-
-.imagen-barra-derecha {
-  height: 50px;
-  width: 50px;
-}
-
-.barra-derecha {
-  display: flex;
-  align-items: center;
-}
-
-.boton-barra-derecha {
-  margin-left: 10px;
-  color: white;
-}
-
-.title-text {
-  font-size: 50px;
-  color: white;
-  margin: 0;
-}
-
 .main-container {
-  background: linear-gradient(to right, black, red);
+  color:white; 
   flex: 1;
   display: flex;
   justify-content: center;

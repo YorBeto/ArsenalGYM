@@ -1,34 +1,17 @@
 <template>
   <v-layout class="rounded rounded-md main-app">
-    <v-app-bar color="black" class="app-bar">
-      <v-container fluid>
-        <v-row no-gutters>
-          <v-col cols="auto" class="d-flex align-center">
-            <v-img src="/arsenal.png" alt="Logo" contain class="imagen-barra-izquierda"></v-img>
-          </v-col>
-          <v-col class="d-flex justify-center align-center">
-            <p class="title-text">PRE-ENTRENOS</p>
-          </v-col>
-          <v-col cols="auto" class="d-flex align-center barra-derecha">
-            <v-img src="/carro3.png" alt="Carrito" contain class="imagen-barra-derecha"></v-img>
-            <v-btn class="boton-barra-derecha">INICIAR SESIÓN</v-btn>
-          </v-col>
-        </v-row>
-      </v-container>
-    </v-app-bar>
-
     <v-main class="main-container">
       <v-container>
         <v-row>
           <v-col cols="12" sm="6" md="4" v-for="producto in productos" :key="producto.id">
             <v-card>
               <v-img
-  :src="producto.imagen"
-  :alt="producto.nombre"
-  contain
-  height="200px"
-  class="imagen-producto"
-></v-img>
+                :src="producto.imagen"
+                :alt="producto.nombre" 
+                contain
+                height="200px"
+                class="imagen-producto"
+              ></v-img>
 
               <v-card-title class="text-center">{{ producto.nombre }}</v-card-title>
               <v-card-subtitle class="text-center">{{ producto.precio }}</v-card-subtitle>
@@ -51,7 +34,7 @@ export default {
   data() {
     return {
       productos: [
-        { id: 1, nombre: 'C4', precio: '$849.00',  imagen: '/pre-entrenos/c4.jpg', cantidad: 0, descripcion: 'PRE-WORKOUT,WATERMELON.' },
+      { id: 1, nombre: 'C4', precio: '$849.00',  imagen: '/pre-entrenos/c4.jpg', cantidad: 0, descripcion: 'PRE-WORKOUT,WATERMELON.' },
         { id: 2, nombre: 'PSYCHOTIC.', precio: '$500.99', imagen: '/pre-entrenos/psychotic.jpg', cantidad: 0, descripcion: 'PRE-WORKOUT,BLUEBERRY.' },
         { id: 3, nombre: 'RYSE', precio: '$690.49', imagen: '/pre-entrenos/ryse.jpg', cantidad: 0, descripcion: 'PRE-WORKOUT,ORANGE.' },
         { id: 4, nombre: 'RYSE-RING-POOP', precio: '$739.49', imagen: '/pre-entrenos/Ryse2.jpg', cantidad: 0, descripcion: 'PRE-WORKOUT,CHERRY-RING-POP.' },
@@ -84,7 +67,7 @@ export default {
 <style scoped>
 .imagen-producto {
   width: 100%;
-}
+} 
 
 .main-app {
   min-height: 100vh;
@@ -92,41 +75,8 @@ export default {
   flex-direction: column;
 }
 
-.app-bar {
-  height: 70px;
-  display: flex;
-  align-items: center;
-}
-
-.imagen-barra-izquierda {
-  height: 50px;
-  width: 50px;
-  margin-left: 130px;
-}
-
-.imagen-barra-derecha {
-  height: 50px;
-  width: 50px;
-}
-
-.barra-derecha {
-  display: flex;
-  align-items: center;
-}
-
-.boton-barra-derecha {
-  margin-left: 10px;
-  color: white;
-}
-
-.title-text {
-  font-size: 50px;
-  color: white;
-  margin: 0;
-}
-
 .main-container {
-  background: linear-gradient(to right, black, red);
+  color:white;
   flex: 1;
   display: flex;
   justify-content: center;
@@ -139,6 +89,7 @@ export default {
   align-items: center;
   justify-content: center;
   padding: 16px;
+ 
 }
 
 .v-card-title,
