@@ -1,7 +1,7 @@
 <template>
   <div id="admin-inicio">
     <nav class="navbar">
-      <img src="/public/arsenal.png" class="logo" />
+      <img src="/public/arsenal.png" class="logo1" />
       <span class="mensaje1">Sucursal Bosque</span>
     </nav>
     <div class="content">
@@ -46,7 +46,7 @@ const fechaHoraActual = ref(new Date().toLocaleString());
 
 .mensaje1{
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-  margin-left: 520px;
+  margin-left: 565px;
   font-size: 25px;
   font-weight: bold;
 }
@@ -92,10 +92,9 @@ const fechaHoraActual = ref(new Date().toLocaleString());
   align-items: center;
 }
 
-.logo {
-  height: 100%;
-  width: 100px;
-  margin-left: 100px;
+.logo1{
+  height: 100px;
+  margin-left: 50px;
 }
 
 .content {
