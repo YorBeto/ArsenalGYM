@@ -5,7 +5,7 @@ import { ref } from 'vue';
 const items = ref([
   { src: '/p1.jpg', alt: 'Image 1' },
   { src: '/p2.jpg', alt: 'Image 2' },
-  { src: '/p3.jpg', alt: 'Image 3' },
+  { src: '/p3.jpg', alt: 'Image 3' }, 
   { src: '/p4.jpg', alt:'Image 4' }, 
   { src: '/p5.jpg', alt: 'Image 5' },
 ]);
@@ -174,7 +174,7 @@ const items = ref([
   background-color: white;
   padding: 20px;
   text-align: center;
-  border: 1px solid #ddd;
+  border: 1px solid black;
   border-radius: 10px;
 }
 
