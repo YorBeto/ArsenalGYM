@@ -3,7 +3,7 @@
     <barraNav></barraNav>
 
     <v-main style="background-color: #f0f0f0; display: flex; justify-content: center; align-items: center;">
-      <v-card class="pa-5 card-gradiente" max-width="1000">
+      <v-card class="pa-5 card-gradiente" max-width="1000">  
         <v-img src="/public/Arsenal.png" alt="Arsenal Logo" class="imagen-arsenal"></v-img>
         <v-card-title class="titulo-formulario">
           Registro

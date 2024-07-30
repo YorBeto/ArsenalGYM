@@ -100,7 +100,7 @@ const ingresarFormulario1 = async () => {
 
     if (result.success) {
       userStore.setUsuario(result.user);
-      router.push({ name: 'clienteinicio' });
+      router.push({ name: 'perfilcliente' });
     } else {
       alert(result.message);
     }
@@ -131,7 +131,7 @@ const ingresarFormulario2 =  async () => {
 
     if (result.success) {
       userStore.setUsuario(result.user);
-      router.push({ name: 'perfilsocios' });
+      router.push({ name: 'perfilSocios' });
     } else {
       alert(result.message);
     }

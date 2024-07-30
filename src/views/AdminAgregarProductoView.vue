@@ -39,6 +39,7 @@
                                             v-model="form.id_categoria" 
                                             :items="categorias" 
                                             item-text="NOMBRE" 
+                                            item-value="ID_CATEGORIA"
                                             label="Categoría" 
                                             required
                                         ></v-select>
@@ -59,7 +60,7 @@
 
 <script setup>
 import BarralateralAdmin from '@/components/BarralateralAdmin.vue';
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, watch } from 'vue';
 
 const form = ref({
     id_producto: '',
@@ -67,22 +68,30 @@ const form = ref({
     descripcion: '',
     precio: '',
     stock: '',
-    categorias: ''
+    id_categoria: ''
 });
 
 const categorias = ref([]);
 
 const fetchCategorias = () => {
-    fetch('http://mipagina.com/categorias')
+    fetch('http://mipagina.com/categoriasCombobox')
         .then(response => response.json())
         .then(json => {
+            console.log('Response from API:', json); // Verificación de datos
             if (json.status === 200) {
                 categorias.value = json.data;
             } else {
                 alert(json.message);
             }
+        })
+        .catch(error => {
+            console.error('Error fetching categories:', error);
         });
 };
+
+watch(categorias, (newVal) => {
+    console.log('Categorias:', newVal); // Verificación del contenido de categorias
+});
 
 const submitForm = () => {
     fetch('http://mipagina.com/insertarproducto', {
@@ -102,7 +111,7 @@ const submitForm = () => {
                 descripcion: '',
                 precio: '',
                 stock: '',
-                categorias: ''
+                id_categoria: ''
             };
         } else {
             alert(json.message);
