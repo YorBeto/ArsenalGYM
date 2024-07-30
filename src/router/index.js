@@ -12,8 +12,6 @@ import PostcompraView from '@/views/PostcompraView.vue'
 import AdminClientesView from '@/views/AdminClientesView.vue'
 import PerfilUsuarioView from '@/views/PerfilUsuarioView.vue'
 import AdminAgregarProductoView from '@/views/AdminAgregarProductoView.vue'
-import AdminEditarProductoView from '@/views/AdminEditarProductoView.vue'
-import InicioClienteView from '@/views/InicioClienteView.vue'
 
 
 
@@ -101,11 +99,6 @@ const router = createRouter({
       name: 'perfilcliente',
       component: PerfilUsuarioView
     },
-    {
-      path: '/clienteInicio',
-      name: 'clienteinicio',
-      component: InicioClienteView
-    }
   ]
 })
 
