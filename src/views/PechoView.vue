@@ -1,31 +1,5 @@
 <template>
   <v-app id="inspire">
-    <v-navigation-drawer app v-model="drawer" dark permanent class="navigation-drawer-gradient">
-      <div class="sidebar-header">
-        <v-img 
-          src="/arsenal.png" 
-          alt="Logo"
-          class="sidebar-logo"
-        ></v-img>
-      </div>
-      <v-list dense>
-        <v-list-item v-for="(item, index) in menuItems" :key="index">
-          <v-btn block class="menu-btn">{{ item }}</v-btn>
-        </v-list-item>
-      </v-list>
-    </v-navigation-drawer>
-
-    <v-app-bar app color="black" dark>
-      <v-app-bar-nav-icon @click="drawer = !drawer">
-        <v-img src="/arsenal.png" alt="Logo" class="app-bar-logo" contain></v-img>
-      </v-app-bar-nav-icon>
-      <v-spacer></v-spacer>
-      <v-btn text class="text" color="white">INICIO</v-btn>
-      <v-btn text class="text" color="white">INBODY</v-btn>
-      <v-btn text class="text" color="white">PRODUCTOS</v-btn>
-      <v-spacer></v-spacer>
-    </v-app-bar>
-
     <v-main>
       <v-container fluid class="background-color">
         <v-row justify="center" class="text-center">
@@ -64,8 +38,6 @@
 <script setup>
 import { ref } from 'vue'
 
-const drawer = ref(false)
-const menuItems = ref(['Pecho', 'Hombro', 'Triceps', 'Biceps', 'Espalda', 'Pierna'])
 const exercises = ref([
   { title: 'Press de banca con barra', video: 'https://www.youtube.com/embed/GeLq8cMODLc', description: 'Ejercicio para trabajar el pectoral mayor.' },
   { title: 'Press de banca inclinado con mancuerna', video: 'https://www.youtube.com/embed/sNXrm1GjfH8', description: 'Ejercicio para el pectoral superior.' },
@@ -75,44 +47,8 @@ const exercises = ref([
 </script>
 
 <style scoped>
-.navigation-drawer-gradient {
-  background: linear-gradient(to right, red, black);
-}
-
-.sidebar-header {
-  display: flex;
-  justify-content: center;
-  padding: 16px;
-}
-
-.sidebar-logo {
-  width: 100%; 
-  max-width: 150px; 
-  margin-bottom: 20px; 
-}
-
-.app-bar-logo {
-  max-height: 100px;
-  max-width: 100px;
-}
-
-.menu-btn {
-  background-color: gray;
-  color: black;
-  margin-bottom: 8px;
-}
-
-.v-toolbar {
-  background-color: black;
-  color: black;
-}
-
-.v-btn {
-  color: black;
-}
-
 .background-color {
-  background: linear-gradient(to right, red, black);
+  background-color:white ;
   min-height: 100vh;
   padding-top: 20px;
 }
