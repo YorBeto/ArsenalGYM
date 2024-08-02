@@ -173,6 +173,7 @@ function restaurarRojo() {
 <style scoped>
 .container {
   display: flex;
+  height: 100vh;
 }
 
 .sidebar {
@@ -183,8 +184,10 @@ function restaurarRojo() {
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: sticky; /* Mantiene el sidebar fijo en su posición durante el scroll */
+  position: fixed; /* Fija la barra lateral en su lugar */
   top: 0; /* Alinea el sidebar al principio del contenedor */
+  left: 0;
+  overflow-y: auto; /* Permite el desplazamiento vertical si es necesario */
 }
 
 .botones {
@@ -199,7 +202,7 @@ function restaurarRojo() {
   border-color: var(--color-boton, white);
   letter-spacing: 1px;
   transition: background-color 0.3s, color 0.3s;
-  margin-top: 20px; /* Ajusta el margen superior para bajar los botones */
+  margin-top: 10px; /* Espacio entre botones */
 }
 
 .botonSalir {
@@ -227,8 +230,8 @@ function restaurarRojo() {
 .rutinas {
   display: flex;
   flex-direction: column;
-  align-items: center; 
-  margin-top: 5px; /* Ajusta el margen superior para separar los botones de rutina del resto */
+  align-items: center;
+  margin-top: 10px; /* Espacio entre los botones de rutina */
 }
 
 .botonesR {
@@ -250,5 +253,12 @@ function restaurarRojo() {
   color: white;
 }
 
-
+main {
+  flex: 1;
+  margin-left: 200px; /* Deja espacio para la barra lateral */
+  padding: 20px;
+  height: 100vh;
+  margin-top: 40px; /* Agrega margen superior para bajar el contenido principal */
+  overflow-y: auto; /* Barra de desplazamiento solo en el área principal */
+}
 </style>
