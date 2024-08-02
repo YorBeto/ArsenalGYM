@@ -15,8 +15,6 @@ import AdminEditarProductoView from '@/views/AdminEditarProductoView.vue'
 import PerfilSocioView from '@/views/PerfilSocioView.vue'
 import AdminProductosView from '@/views/AdminProductosView.vue'
 
-
-
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
