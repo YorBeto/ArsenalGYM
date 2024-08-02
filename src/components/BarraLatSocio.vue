@@ -3,7 +3,7 @@
     <aside class="sidebar">
       <v-btn
         class="botones"
-        @mouseover="activarColorGris()" @mouseleave="restaurarColorboton()"
+        @mouseover="activarColorGris" @mouseleave="restaurarColorboton"
         :color="coloresBotones1"
       >Inbody</v-btn>
       <v-btn
@@ -67,14 +67,6 @@
         @mouseleave="restaurarColorboton()"
         :color="coloresBotones1"
       >
-        Novedades
-      </v-btn>
-      <v-btn
-        class="botones"
-        @mouseover="activarColorGris()"
-        @mouseleave="restaurarColorboton()"
-        :color="coloresBotones1"
-      >
         Membresia
       </v-btn>
       <v-btn
@@ -120,17 +112,30 @@ import Pecho from '@/views/PechoView.vue';
 import Pierna from '@/views/PernaView.vue';
 
 // Estados
-const colorBoton = ref('white');
-const colorBotonR = ref('white');
-const colorSalir = ref('white');
-const coloresBotones1 = ref('white');
-const coloresBotonesR = ref('white');
+
 const showRutinas = ref(false);
 const currentComponent = ref(null);
 
 // Funciones
 function toggleRutinas() {
   showRutinas.value = !showRutinas.value;
+}
+
+const coloresBotones1 = {
+  inbody: 'white',
+  rutinas: 'white',
+  membresia: 'white',
+  clases: 'white',
+  historial: 'white'
+}
+
+const coloresBotonesR = {
+  bicep: 'white',
+  tricep: 'white',
+  espalda: 'white',
+  hombro: 'white',
+  pecho: 'white',
+  pierna: 'white'
 }
 
 function mostrarContenido(componente) {
@@ -146,20 +151,22 @@ function mostrarContenido(componente) {
 }
 
 function activarColorGris() {
-  colorBoton.value = 'grey';
+  coloresBotones1.value = 'grey';
 }
 
 function restaurarColorboton() {
-  colorBoton.value = 'white';
+  coloresBotones1.value = 'white';
 }
 
 function activarColorR() {
-  colorBotonR.value = 'grey';
+  coloresBotonesR.value = 'grey';
 }
 
 function restaurarColorR() {
-  colorBotonR.value = 'white';
+  coloresBotonesR.value = 'white';
 }
+
+const colorSalir = ref ('white');
 
 function activarRojo() {
   colorSalir.value = 'red';
@@ -187,7 +194,7 @@ function restaurarRojo() {
   position: fixed; /* Fija la barra lateral en su lugar */
   top: 0; /* Alinea el sidebar al principio del contenedor */
   left: 0;
-  overflow-y: auto; /* Permite el desplazamiento vertical si es necesario */
+  margin-top: 60px;
 }
 
 .botones {
@@ -202,7 +209,7 @@ function restaurarRojo() {
   border-color: var(--color-boton, white);
   letter-spacing: 1px;
   transition: background-color 0.3s, color 0.3s;
-  margin-top: 10px; /* Espacio entre botones */
+  margin-top: 3px; /* Espacio entre botones */
 }
 
 .botonSalir {
@@ -219,7 +226,8 @@ function restaurarRojo() {
   letter-spacing: 1px;
   font-weight: normal;
   transition: background-color 0.3s, color 0.3s;
-  margin-top: auto; /* Mueve el botón de cerrar sesión al final del sidebar */
+  margin-top: 560px;
+  position: fixed;
 }
 
 .botones:hover {
