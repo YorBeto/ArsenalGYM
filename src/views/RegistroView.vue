@@ -136,6 +136,8 @@ const registrar = async () => {
       contrasena: contrasena.value
     };
 
+    console.log('Datos a enviar:', requestData); // Agregar consola para depuración
+
     try {
       const response = await fetch('http://mipagina.com/registro', {
         method: 'POST',
