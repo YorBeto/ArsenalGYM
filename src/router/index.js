@@ -16,8 +16,6 @@ import AdminEditarProductoView from '@/views/AdminEditarProductoView.vue'
 
 
 
-
-
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -99,7 +97,7 @@ const router = createRouter({
       path: '/perfil',
       name: 'perfilcliente',
       component: PerfilUsuarioView
-    }
+    },
   ]
 })
 
