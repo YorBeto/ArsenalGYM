@@ -16,8 +16,8 @@
                         :items="fechas"
                         label="Selecciona una fecha"
                         v-model="selectedDate"
-                        @change="fetchAvailableTimes"
                         :rules="[v => !!v || 'Seleccione una fecha']"
+                        @change="fetchAvailableTimes"
                       ></v-select>
                     </v-col>
                     <v-col cols="12">
@@ -85,30 +85,27 @@ export default {
   },
   methods: {
     fetchFechas() {
-      fetch('/appointment/dates')
+      fetch('/fechas-futuras')
         .then(response => response.json())
         .then(data => {
-          this.fechas = data;
+          this.fechas = data.map(fecha => fecha.FECHAS);
+        })
+        .catch(error => {
+          console.error('Error fetching dates:', error);
         });
     },
     fetchAvailableTimes() {
-  if (this.selectedDate) {
-    fetch(`/appointment/available`)
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        return response.json();
-      })
-      .then(data => {
-        console.log('Available dates and times:', data); // Log para depuración
-        this.availableTimes = data.filter(item => item.FECHA === this.selectedDate);
-      })
-      .catch(error => {
-        console.error('There has been a problem with your fetch operation:', error);
-      });
-  }
-},
+      if (this.selectedDate) {
+        fetch('/horarios')
+          .then(response => response.json())
+          .then(data => {
+            this.availableTimes = data;
+          })
+          .catch(error => {
+            console.error('Error fetching available times:', error);
+          });
+      }
+    },
     getTimeColor(time) {
       return time.ESTADO_FH === 'OCUPADO' ? 'red' : 'black';
     },
