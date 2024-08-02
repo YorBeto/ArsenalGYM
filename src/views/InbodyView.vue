@@ -46,7 +46,7 @@
         </v-row>
         <v-row justify="center" class="mt-3">
           <v-col cols="12" md="6" class="text-center">
-            <v-btn color="red" class="white--text" @click="confirmAppointment">Confirmar</v-btn>
+            <v-btn color="red" class="white--text" @click="confirmAppointment" :disabled="!valid">Confirmar</v-btn>
           </v-col>
         </v-row>
       </v-container>
@@ -86,9 +86,29 @@ export default {
   methods: {
     fetchFechas() {
       fetch('/fechas-futuras')
-        .then(response => response.json())
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
+        })
         .then(data => {
-          this.fechas = data.map(fecha => fecha.FECHAS);
+          console.log('Datos recibidos del servidor:', data);
+          this.fechas = data
+            .map(fecha => {
+              const date = new Date(fecha.FECHAS);
+              if (isNaN(date)) {
+                console.error('Fecha inválida:', fecha.FECHAS);
+                return null;
+              }
+              const day = date.getDay();
+              if (day >= 1 && day <= 5) {
+                return fecha.FECHAS;
+              }
+              return null;
+            })
+            .filter(Boolean);
+          console.log('Fechas filtradas:', this.fechas);
         })
         .catch(error => {
           console.error('Error fetching dates:', error);
@@ -96,10 +116,15 @@ export default {
     },
     fetchAvailableTimes() {
       if (this.selectedDate) {
-        fetch('/horarios')
+        fetch(`/horarios?fecha=${this.selectedDate}`)
           .then(response => response.json())
           .then(data => {
-            this.availableTimes = data;
+            this.availableTimes = data.map(hora => {
+              return {
+                text: hora.HORA, 
+                estado: hora.ESTADO_FH
+              };
+            });
           })
           .catch(error => {
             console.error('Error fetching available times:', error);
@@ -107,7 +132,7 @@ export default {
       }
     },
     getTimeColor(time) {
-      return time.ESTADO_FH === 'OCUPADO' ? 'red' : 'black';
+      return time.estado === 'OCUPADO' ? 'red' : 'black';
     },
     confirmAppointment() {
       if (this.$refs.form.validate()) {
