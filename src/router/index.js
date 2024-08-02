@@ -7,14 +7,14 @@ import AdminInicioView from '@/views/AdminInicioView.vue'
 import RegistroView from '@/views/RegistroView.vue'
 import AdminsociosView from '@/views/AdminsociosView.vue'
 import AdminCitasView from '@/views/AdminCitasView.vue'
-import AdminProductosView from '@/views/AdminProductosView.vue'
 import PostcompraView from '@/views/PostcompraView.vue'
 import AdminClientesView from '@/views/AdminClientesView.vue'
 import PerfilUsuarioView from '@/views/PerfilUsuarioView.vue'
 import AdminAgregarProductoView from '@/views/AdminAgregarProductoView.vue'
 import AdminEditarProductoView from '@/views/AdminEditarProductoView.vue'
 import PerfilSocioView from '@/views/PerfilSocioView.vue'
-import CarritoView from '@/views/CarritoView.vue'
+
+
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -27,9 +27,6 @@ const router = createRouter({
     {
       path: '/about',
       name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
       component: () => import('../views/AboutView.vue')
     },
    
@@ -104,11 +101,6 @@ const router = createRouter({
       path: '/perfilsocio',
       name: 'perfilsocio',
       component: PerfilSocioView
-    },
-    {
-      path: '/carrito',
-      name: 'carrito',
-      component: CarritoView
     }
   ]
 })
