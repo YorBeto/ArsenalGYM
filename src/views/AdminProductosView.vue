@@ -37,7 +37,7 @@ const search = ref('');
 const productos = ref([]);
 
 const mostrarproductos = () => {
-  fetch('http://mipagina.com/productos')
+  fetch('http://mipagina.com/productos_servicios')
     .then(response => response.json())
     .then(json => {
       if (json.status == 200) {

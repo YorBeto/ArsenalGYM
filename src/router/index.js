@@ -13,6 +13,13 @@ import AdminClientesView from '@/views/AdminClientesView.vue'
 import PerfilUsuarioView from '@/views/PerfilUsuarioView.vue'
 import AdminAgregarProductoView from '@/views/AdminAgregarProductoView.vue'
 import AdminEditarProductoView from '@/views/AdminEditarProductoView.vue'
+import PechoView from '@/views/PechoView.vue'
+import HombroView from '@/views/HombroView.vue'
+import BicepsView from '@/views/BicepsView.vue'
+import TricepView from '@/views/TricepView.vue'
+import EspaldaView from '@/views/EspaldaView.vue'
+import PernaView from '@/views/PernaView.vue'
+
 
 
 
@@ -99,6 +106,36 @@ const router = createRouter({
       path: '/perfil',
       name: 'perfilcliente',
       component: PerfilUsuarioView
+    },
+    {
+      path: '/rutinapecho',
+      name: 'rutinapecho',
+      component: PechoView
+    },
+    {
+      path: '/rutinaHombro',
+      name: 'rutinaHombro',
+      component: HombroView
+    },
+    {
+      path: '/rutinaBicep',
+      name: 'rutinaBicep',
+      component: BicepsView
+    },
+    {
+      path: '/rutinatriceps',
+      name: 'rutinatriceps',
+      component: TricepView
+    },
+    {
+      path: '/rutinaEspalda',
+      name: 'rutinaEspalda',
+      component: EspaldaView
+    },
+    {
+      path: '/rutinapierna',
+      name: 'rutinapierna',
+      component: PernaView
     },
   ]
 })
