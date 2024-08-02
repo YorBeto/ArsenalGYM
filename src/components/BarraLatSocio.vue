@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <aside class="sidebar">
       <v-btn
         class="botones"
@@ -17,11 +17,13 @@
       <div v-if="showRutinas" class="rutinas">
         <v-btn
           class="botonesR"
-          @mouseover="activarColorR" @mouseleave="restaurarColorR"
+          @mouseover="activarColorR" @mouseleave="restaurarColorR()"
+          @click="mostrarContenido('Bicep')"
         >Bicep</v-btn>
         <v-btn
           class="botonesR"
           @mouseover="activarColorR()" @mouseleave="restaurarColorR()"
+          @click="mostrarContenido('Tricep')"
           :color="coloresBotonesR"
         >
           Tricep
@@ -29,6 +31,7 @@
         <v-btn
           class="botonesR"
           @mouseover="activarColorR()" @mouseleave="restaurarColorR()"
+          @click="mostrarContenido('Espalda')"
           :color="coloresBotonesR"
         >
           Espalda
@@ -36,6 +39,7 @@
         <v-btn
           class="botonesR"
           @mouseover="activarColorR()" @mouseleave="restaurarColorR()"
+          @click="mostrarContenido('Hombro')"
           :color="coloresBotonesR"
         >
           Hombro
@@ -43,6 +47,7 @@
         <v-btn
           class="botonesR"
           @mouseover="activarColorR()" @mouseleave="restaurarColorR()"
+          @click="mostrarContenido('Pecho')"
           :color="coloresBotonesR"
         >
           Pecho
@@ -50,6 +55,7 @@
         <v-btn
           class="botonesR"
           @mouseover="activarColorR()" @mouseleave="restaurarColorR()"
+          @click="mostrarContenido('Pierna')"
           :color="coloresBotonesR"
         >
           Pierna
@@ -96,21 +102,47 @@
         Cerrar Sesión
       </v-btn>
     </aside>
+
+    <main>
+      <!-- Aquí se renderizarán los componentes según la selección -->
+      <component :is="currentComponent"></component>
+    </main>
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue';
+import Bicep from '@/views/BicepsView.vue';
+import Tricep from '@/views/TricepView.vue';
+import Espalda from '@/views/EspaldaView.vue';
+import Hombro from '@/views/HombroView.vue';
+import Pecho from '@/views/PechoView.vue';
+import Pierna from '@/views/PernaView.vue';
 
+// Estados
 const colorBoton = ref('white');
 const colorBotonR = ref('white');
 const colorSalir = ref('white');
-
-// Estado de visibilidad para los botones de rutinas
+const coloresBotones1 = ref('white');
+const coloresBotonesR = ref('white');
 const showRutinas = ref(false);
+const currentComponent = ref(null);
 
+// Funciones
 function toggleRutinas() {
   showRutinas.value = !showRutinas.value;
+}
+
+function mostrarContenido(componente) {
+  const componentes = {
+    'Bicep': Bicep,
+    'Tricep': Tricep,
+    'Espalda': Espalda,
+    'Hombro': Hombro,
+    'Pecho': Pecho,
+    'Pierna': Pierna
+  };
+  currentComponent.value = componentes[componente] || null;
 }
 
 function activarColorGris() {
@@ -138,17 +170,21 @@ function restaurarRojo() {
 }
 </script>
 
-
 <style scoped>
+.container {
+  display: flex;
+}
+
 .sidebar {
   width: 200px;
-  height: 100vh;
+  height: 100%;
   padding: 20px;
   background: linear-gradient(to bottom, black, red);
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 65px;
+  position: sticky; /* Mantiene el sidebar fijo en su posición durante el scroll */
+  top: 0; /* Alinea el sidebar al principio del contenedor */
 }
 
 .botones {
@@ -163,6 +199,7 @@ function restaurarRojo() {
   border-color: var(--color-boton, white);
   letter-spacing: 1px;
   transition: background-color 0.3s, color 0.3s;
+  margin-top: 20px; /* Ajusta el margen superior para bajar los botones */
 }
 
 .botonSalir {
@@ -179,6 +216,7 @@ function restaurarRojo() {
   letter-spacing: 1px;
   font-weight: normal;
   transition: background-color 0.3s, color 0.3s;
+  margin-top: auto; /* Mueve el botón de cerrar sesión al final del sidebar */
 }
 
 .botones:hover {
@@ -190,6 +228,7 @@ function restaurarRojo() {
   display: flex;
   flex-direction: column;
   align-items: center; 
+  margin-top: 5px; /* Ajusta el margen superior para separar los botones de rutina del resto */
 }
 
 .botonesR {
@@ -204,12 +243,12 @@ function restaurarRojo() {
   border-color: var(--color-botonR, white);
   letter-spacing: 1px;
   margin-bottom: 6px;
-  
 }
 
 .botonesR:hover {
   --color-botonR: grey;
   color: white;
 }
-</style>
 
+
+</style>
