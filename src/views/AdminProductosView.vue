@@ -1,28 +1,112 @@
 <template>
   <div id="admin-inicio">
-      <BarraAdminNew></BarraAdminNew>
+    <BarraAdminNew></BarraAdminNew>
     <div class="contenedor">
       <BarralateralAdmin></BarralateralAdmin>
       <div class="main-content">
         <div class="barra-busqueda">
           <v-text-field
             v-model="search"
-            label="Search"
+            label="Buscar productos"
             prepend-inner-icon="mdi-magnify"
             variant="outlined"
             hide-details
             single-line
           ></v-text-field>
         </div>
-        <v-data-table
-          :headers="headers"
-          :items="productos"
-          :search="search"
-        ></v-data-table>
-        <div class="button-group">
-          <router-link to="agregarproductos"><v-btn @click="agregarProducto" color="primary">Agregar</v-btn></router-link>
-          <router-link to="editarproductos"><v-btn @click="editarProducto" color="secondary">Editar</v-btn></router-link>
+        <div class="data-table-container">
+          <v-data-table
+            :headers="headers"
+            :items="filteredProducts"
+            :search="search"
+            class="data-table"
+          >
+            <template v-slot:item.actions="{ item }">
+              <v-icon @click="editProduct(item)" class="mr-2">mdi-pencil</v-icon>
+              <v-icon @click="confirmDeleteProduct(item.ID_PRODUCTO)" class="red--text">mdi-delete</v-icon>
+            </template>
+            <template v-slot:no-data>
+              <v-alert type="error" border="left" colored-border>
+                No se encontraron productos.
+              </v-alert>
+            </template>
+          </v-data-table>
+          <!-- Botón para redirigir a Agregar Productos -->
+          <v-row class="add-button-container">
+            <v-col class="text-right">
+              <v-btn color="primary" @click="goToAddProduct">Agregar Producto</v-btn>
+            </v-col>
+          </v-row>
         </div>
+
+        <!-- Ventana emergente para editar producto -->
+        <v-dialog v-model="editDialog" max-width="800px" max-height="750px">
+          <v-card>
+            <v-card-title>
+              <span class="headline">Editar Producto</span>
+            </v-card-title>
+            <v-card-subtitle>
+              <v-form ref="form" v-model="valid">
+                <v-text-field
+                  v-model="selectedProduct.NOMBRE"
+                  label="Nombre"
+                  :rules="[rules.required]"
+                  required
+                ></v-text-field>
+                <v-textarea
+                  v-model="selectedProduct.DESCRIPCION"
+                  label="Descripción"
+                  :rules="[rules.required]"
+                  required
+                ></v-textarea>
+                <v-text-field
+                  v-model="selectedProduct.PRECIO"
+                  label="Precio"
+                  type="number"
+                  :rules="[rules.required, rules.number]"
+                  required
+                ></v-text-field>
+                <v-text-field
+                  v-model="selectedProduct.STOCK"
+                  label="Stock"
+                  type="number"
+                  :rules="[rules.required, rules.number]"
+                  required
+                ></v-text-field>
+                <div class="category-buttons">
+                  <v-btn
+                    v-for="category in categories"
+                    :key="category.ID_CATEGORIA"
+                    :class="{'v-btn--active': selectedProduct.ID_CATEGORIA === category.ID_CATEGORIA}"
+                    @click="selectedProduct.ID_CATEGORIA = category.ID_CATEGORIA"
+                  >
+                    {{ category.NOMBRE }}
+                  </v-btn>
+                </div>
+              </v-form>
+            </v-card-subtitle>
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn text @click="editDialog = false">Cancelar</v-btn>
+              <v-btn color="primary" @click="updateProduct">Confirmar</v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-dialog>
+
+        <!-- Ventana emergente para confirmación de eliminación -->
+        <v-dialog v-model="confirmDialog" max-width="400px">
+          <v-card>
+            <v-card-title class="headline">Confirmar Eliminación</v-card-title>
+            <v-card-subtitle>
+              ¿Estás seguro de que deseas eliminar este producto?
+            </v-card-subtitle>
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn text @click="confirmDialog = false">Cancelar</v-btn>
+              <v-btn color="red" @click="deleteProduct">Eliminar</v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-dialog>
       </div>
     </div>
   </div>
@@ -31,13 +115,14 @@
 <script setup>
 import BarraAdminNew from '@/components/BarraAdminNew.vue';
 import BarralateralAdmin from '@/components/BarralateralAdmin.vue';
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, watch } from 'vue';
+import { useRouter } from 'vue-router';
 
 const search = ref('');
 const productos = ref([]);
 
 const mostrarproductos = () => {
-  fetch('http://mipagina.com/productos_servicios')
+  fetch('http://mipagina.com/productos')
     .then(response => response.json())
     .then(json => {
       if (json.status == 200) {
@@ -46,20 +131,68 @@ const mostrarproductos = () => {
     });
 };
 
-const agregarProducto = () => {
-  // Implement the function to add a product
-  console.log('Agregar producto');
+const updateProduct = async () => {
+  if (valid.value) {
+    try {
+      const response = await fetch('http://mipagina.com/producto/actualizar', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(selectedProduct.value)
+      });
+      const data = await response.json();
+      if (data.status === 200) {
+        await fetchProducts();
+        editDialog.value = false;
+      } else {
+        console.error('Error updating product:', data.message);
+      }
+    } catch (error) {
+      console.error('Error updating product:', error);
+    }
+  }
 };
 
-const editarProducto = () => {
-  // Implement the function to edit a product
-  console.log('Editar producto');
+const confirmDeleteProduct = (id) => {
+  productToDelete.value = id;
+  confirmDialog.value = true;
 };
 
-  onMounted(()=>{
-    mostrarproductos();
-  })
+const deleteProduct = async () => {
+  if (productToDelete.value !== null) {
+    try {
+      const response = await fetch('http://mipagina.com/producto/eliminar', {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ id_producto: productToDelete.value })
+      });
+      const data = await response.json();
+      if (data.status === 200) {
+        await fetchProducts();
+        confirmDialog.value = false;
+        productToDelete.value = null;
+      } else {
+        console.error('Error deleting product:', data.message);
+      }
+    } catch (error) {
+      console.error('Error deleting product:', error);
+    }
+  }
+};
 
+const goToAddProduct = () => {
+  router.push({ name: 'agregarproductos' });
+};
+
+onMounted(() => {
+  fetchProducts();
+  fetchCategories();
+});
+
+watch(search, filterProducts); // Watch search query to filter products
 </script>
 
 <style>
@@ -88,22 +221,41 @@ const editarProducto = () => {
   display: flex;
   flex-direction: column;
   flex: 1;
+  height: 880px;
   padding: 1rem;
-  overflow-y: scroll;
+  overflow: hidden;
 }
 
 .barra-busqueda {
   margin-bottom: 1rem;
 }
 
-.v-data-table {
+.data-table-container {
+  display: flex;
+  flex-direction: column;
   flex: 1;
+  overflow: hidden;
 }
 
-.button-group {
-  display: flex;
-  justify-content: flex-start;
-  gap: 1rem;
+.data-table {
+  flex: 1;
+  overflow-y: auto; /* Enable vertical scrolling */
+}
+
+.add-button-container {
   margin-top: 1rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.category-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+.v-btn--active {
+  background-color: #3f51b5;
+  color: white;
 }
 </style>

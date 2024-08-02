@@ -13,7 +13,7 @@
         <h2 class="mb-4">Buscar Producto</h2>
         <v-form @submit.prevent="buscarProducto" class="mb-4">
           <v-text-field v-model="form.id_producto" label="ID Producto" required></v-text-field>
-          <v-btn type="submit" color="primary">Buscar Producto</v-btn>
+          <v-btn class="search-button" ype="submit" color="primary">Buscar Producto</v-btn>
         </v-form>
         <div v-if="producto">
           <h2 class="mb-4">Editar Producto</h2>
@@ -22,9 +22,22 @@
             <v-text-field v-model="form.descripcion" label="Descripción" required></v-text-field>
             <v-text-field v-model="form.precio" label="Precio" required></v-text-field>
             <v-text-field v-model="form.stock" label="Stock"></v-text-field>
-            <v-text-field v-model="form.id_categoria" label="ID Categoría" required></v-text-field>
-            <v-btn type="submit" color="secondary" class="mt-4">Actualizar Producto</v-btn>
-            <v-btn @click="eliminarProducto" color="red" class="mt-4">Eliminar Producto</v-btn>
+            <div class="button-group mb-4">
+              <span>Seleccione la categoría:</span>
+              <v-btn
+                v-for="categoria in categorias"
+                :key="categoria.ID_CATEGORIA"
+                :color="form.id_categoria === categoria.ID_CATEGORIA ? 'primary' : ''"
+                @click="form.id_categoria = categoria.ID_CATEGORIA"
+                outlined
+              >
+                {{ categoria.NOMBRE }}
+              </v-btn>
+            </div>
+            <div class="action-buttons">
+              <v-btn type="submit" color="secondary" class="mt-4">Actualizar Producto</v-btn>
+              <v-btn @click="eliminarProducto" color="red" class="mt-4">Eliminar Producto</v-btn>
+            </div>
           </v-form>
         </div>
       </div>
@@ -33,7 +46,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import BarralateralAdmin from '@/components/BarralateralAdmin.vue';
 
 const form = ref({
@@ -46,7 +59,22 @@ const form = ref({
 });
 
 const producto = ref(null);
+const categorias = ref([]);
 
+// Fetch categories
+const fetchCategorias = () => {
+  fetch('http://mipagina.com/categorias')
+    .then(response => response.json())
+    .then(json => {
+      if (json.status === 200) {
+        categorias.value = json.data;
+      } else {
+        alert(json.message);
+      }
+    });
+};
+
+// Search for product
 const buscarProducto = () => {
   fetch(`http://mipagina.com/producto/buscar?id_producto=${form.value.id_producto}`)
     .then(response => response.json())
@@ -68,6 +96,7 @@ const buscarProducto = () => {
     });
 };
 
+// Update product
 const actualizarProducto = () => {
   fetch('http://mipagina.com/producto/actualizar', {
     method: 'POST',
@@ -92,6 +121,7 @@ const actualizarProducto = () => {
     });
 };
 
+// Delete product
 const eliminarProducto = () => {
   fetch('http://mipagina.com/producto/eliminar', {
     method: 'DELETE',
@@ -109,9 +139,15 @@ const eliminarProducto = () => {
     });
 };
 
+// Go back
 const regresar = () => {
-    window.history.back();
+  window.history.back();
 };
+
+// Fetch categories on mount
+onMounted(() => {
+  fetchCategorias();
+});
 </script>
 
 <style>
@@ -146,5 +182,25 @@ const regresar = () => {
 
 .mb-4 {
   margin-bottom: 1rem;
+}
+
+.button-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  font-size: 17px;
+}
+
+.action-buttons {
+  display: flex;
+  flex-direction: row;
+  margin-top: 75px;
+  gap: 1rem;
+}
+
+.search-button {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 50px;
 }
 </style>
