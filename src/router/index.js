@@ -13,6 +13,7 @@ import PerfilUsuarioView from '@/views/PerfilUsuarioView.vue'
 import AdminAgregarProductoView from '@/views/AdminAgregarProductoView.vue'
 import AdminEditarProductoView from '@/views/AdminEditarProductoView.vue'
 import PerfilSocioView from '@/views/PerfilSocioView.vue'
+import AdminProductosView from '@/views/AdminProductosView.vue'
 
 
 
