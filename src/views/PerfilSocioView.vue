@@ -2,7 +2,7 @@
     <v-app>
       <barraNav></barraNav>
       
-        <Barralateralcliente></Barralateralcliente>
+        <BarraLatSocio></BarraLatSocio>
         <v-container class="d-flex flex-column justify-space-between fill-height">
           <v-btn class="close-button" @click="cerrarSesion">Cerrar sesión</v-btn>
           <v-btn class="back-button" @click="regresar">Regresar</v-btn>
@@ -11,9 +11,9 @@
   </template>
   
   <script setup>
-  import { ref } from 'vue';
+  
   import barraNav from '@/components/barraNav.vue';
- import Barralateralcliente from '@/components/Barralateralcliente.vue';
+  import BarraLatSocio from '@/components/BarraLatSocio.vue';
   
   const cerrarSesion = () => {
     alert('Cerrar sesión');
