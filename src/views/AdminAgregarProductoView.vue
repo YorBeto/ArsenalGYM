@@ -7,7 +7,7 @@
             <BarralateralAdmin></BarralateralAdmin>
             <div class="main-content">
                 <!-- Botón para regresar -->
-                <v-btn icon @click="regresar">
+                <v-btn icon @click="regresar" class="mb-4">
                     <v-icon>mdi-arrow-left</v-icon>
                 </v-btn>
                 <!-- Formulario para agregar productos -->
@@ -35,14 +35,20 @@
                                         <v-text-field v-model="form.stock" label="Stock"></v-text-field>
                                     </v-col>
                                     <v-col cols="12">
-                                        <v-select 
-                                            v-model="form.id_categoria" 
-                                            :items="categorias" 
-                                            item-text="NOMBRE" 
-                                            item-value="ID_CATEGORIA"
-                                            label="Categoría" 
-                                            required
-                                        ></v-select>
+                                        <div class="category-selection">
+                                            <span>Seleccione la categoría:</span>
+                                            <div class="button-group">
+                                                <v-btn 
+                                                    v-for="categoria in categorias" 
+                                                    :key="categoria.ID_CATEGORIA"
+                                                    :color="form.id_categoria === categoria.ID_CATEGORIA ? 'primary' : ''"
+                                                    @click="form.id_categoria = categoria.ID_CATEGORIA"
+                                                    outlined
+                                                >
+                                                    {{ categoria.NOMBRE }}
+                                                </v-btn>
+                                            </div>
+                                        </div>
                                     </v-col>
                                 </v-row>
                             </v-container>
@@ -60,7 +66,7 @@
 
 <script setup>
 import BarralateralAdmin from '@/components/BarralateralAdmin.vue';
-import { ref, onMounted, watch } from 'vue';
+import { ref, onMounted } from 'vue';
 
 const form = ref({
     id_producto: '',
@@ -74,10 +80,9 @@ const form = ref({
 const categorias = ref([]);
 
 const fetchCategorias = () => {
-    fetch('http://mipagina.com/categoriasCombobox')
+    fetch('http://mipagina.com/categorias')
         .then(response => response.json())
         .then(json => {
-            console.log('Response from API:', json); // Verificación de datos
             if (json.status === 200) {
                 categorias.value = json.data;
             } else {
@@ -88,10 +93,6 @@ const fetchCategorias = () => {
             console.error('Error fetching categories:', error);
         });
 };
-
-watch(categorias, (newVal) => {
-    console.log('Categorias:', newVal); // Verificación del contenido de categorias
-});
 
 const submitForm = () => {
     fetch('http://mipagina.com/insertarproducto', {
@@ -147,7 +148,6 @@ onMounted(() => {
 .contenedor {
     display: flex;
     flex: 1;
-    overflow: hidden;
 }
 
 .main-content {
@@ -155,21 +155,28 @@ onMounted(() => {
     flex-direction: column;
     flex: 1;
     padding: 1rem;
-    overflow-y: scroll;
 }
 
-.v-data-table {
-    flex: 1;
+.mb-4 {
+    margin-bottom: 1rem;
 }
 
 .button-group {
     display: flex;
-    justify-content: flex-start;
-    gap: 1rem;
-    margin-top: 1rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    font-size: 17px;
 }
 
 .formulario-producto {
-    margin-top: 2rem;
+    margin-top: 1rem;
+    flex: 1;
+}
+
+.category-selection {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 17px;
 }
 </style>
