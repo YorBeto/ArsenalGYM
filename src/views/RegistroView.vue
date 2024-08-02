@@ -92,6 +92,7 @@ import { ref, computed } from 'vue';
 import { useRouter } from 'vue-router';
 import barraNav from '@/components/barraNav.vue';
 
+
 const nombre = ref('');
 const apellidos = ref('');
 const fechaNacimiento = ref('');
@@ -150,6 +151,7 @@ const registrar = async () => {
       const result = await response.json();
 
       if (result.success) {
+        alert("Registro Exitoso");
         router.push({ name: 'home' });
       } else {
         console.error('Error al registrar:', result.message);

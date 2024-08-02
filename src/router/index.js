@@ -14,8 +14,7 @@ import PerfilUsuarioView from '@/views/PerfilUsuarioView.vue'
 import AdminAgregarProductoView from '@/views/AdminAgregarProductoView.vue'
 import AdminEditarProductoView from '@/views/AdminEditarProductoView.vue'
 import PerfilSocioView from '@/views/PerfilSocioView.vue'
-
-
+import CarritoView from '@/views/CarritoView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -105,6 +104,11 @@ const router = createRouter({
       path: '/perfilsocio',
       name: 'perfilsocio',
       component: PerfilSocioView
+    },
+    {
+      path: '/carrito',
+      name: 'carrito',
+      component: CarritoView
     }
   ]
 })
