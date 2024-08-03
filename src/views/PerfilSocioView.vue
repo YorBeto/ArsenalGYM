@@ -1,13 +1,12 @@
 <template>
-  
     <v-app>
       <barraNav></barraNav>
       
-      <BarraLatSocio></BarraLatSocio>
-      
-          
-
-    
+        <BarraLatSocio></BarraLatSocio>
+        <v-container class="d-flex flex-column justify-space-between fill-height">
+          <v-btn class="close-button" @click="cerrarSesion">Cerrar sesión</v-btn>
+          <v-btn class="back-button" @click="regresar">Regresar</v-btn>
+      </v-container>
     </v-app>
   </template>
   

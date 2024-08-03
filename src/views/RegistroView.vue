@@ -84,6 +84,40 @@
         </v-card-actions>
       </v-card>
     </v-main>
+
+    <!-- Dialogo para mostrar el mensaje de confirmación -->
+    <v-dialog v-model="dialog" max-width="290">
+      <v-card>
+        <v-card-title class="headline">Confirmación</v-card-title>
+        <v-card-text>
+          <div class="text-center">
+            <v-icon color="green" large>mdi-check-circle</v-icon>
+            <p>Registro exitoso</p>
+          </div>
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="green darken-1" text @click="dialog = false">OK</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+
+    <!-- Dialogo para mostrar el mensaje de error -->
+    <v-dialog v-model="errorDialog" max-width="290">
+      <v-card>
+        <v-card-title class="headline">Error</v-card-title>
+        <v-card-text>
+          <div class="text-center">
+            <v-icon color="red" large>mdi-alert-circle</v-icon>
+            <p>{{ errorMessage }}</p>
+          </div>
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="red darken-1" text @click="errorDialog = false">OK</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </v-layout>
 </template>
 
@@ -101,6 +135,9 @@ const telefono = ref('');
 const contrasena = ref('');
 const confirmarContrasena = ref('');
 const router = useRouter();
+const dialog = ref(false);
+const errorDialog = ref(false);
+const errorMessage = ref('');
 
 const datosBasicosCompletos = computed(() => {
   return (
@@ -150,11 +187,18 @@ const registrar = async () => {
       const result = await response.json();
 
       if (result.success) {
-        router.push({ name: 'home' });
+        dialog.value = true;
+        setTimeout(() => {
+          router.push({ name: 'home' });
+        }, 3000); // Redirigir después de 3 segundos
       } else {
+        errorMessage.value = result.message;
+        errorDialog.value = true;
         console.error('Error al registrar:', result.message);
       }
     } catch (error) {
+      errorMessage.value = 'Error en la solicitud';
+      errorDialog.value = true;
       console.error('Error en la solicitud:', error);
     }
   }

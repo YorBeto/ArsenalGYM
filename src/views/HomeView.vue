@@ -6,7 +6,7 @@ const items = ref([
   { src: '/p1.jpg', alt: 'Image 1' },
   { src: '/p2.jpg', alt: 'Image 2' },
   { src: '/p3.jpg', alt: 'Image 3' }, 
-  { src: '/p4.jpg', alt:'Image 4' }, 
+  { src: '/p4.jpg', alt: 'Image 4' }, 
   { src: '/p5.jpg', alt: 'Image 5' },
 ]);
 </script>
@@ -75,7 +75,7 @@ const items = ref([
         </div>
       </div>
 
-      <!-- Sección de Visítanos -->
+ 
       <div class="visitanos-section">
         <h2>VISÍTANOS</h2>
         <div class="visitanos-content">
