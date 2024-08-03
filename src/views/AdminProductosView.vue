@@ -16,15 +16,11 @@
         </div>
         <div class="data-table-container">
           <v-data-table
-            :headers="mostrarproductos"
+            :headers="headers"
             :items="filteredProducts"
             :search="search"
             class="data-table"
           >
-            <template v-slot:item.actions="{ item }">
-              <v-icon @click="editProduct(item)" class="mr-2">mdi-pencil</v-icon>
-              <v-icon @click="confirmDeleteProduct(item.ID_PRODUCTO)" class="red--text">mdi-delete</v-icon>
-            </template>
             <template v-slot:no-data>
               <v-alert type="error" border="left" colored-border>
                 No se encontraron productos.
@@ -34,7 +30,7 @@
           <!-- Botón para redirigir a Agregar Productos -->
           <v-row class="add-button-container">
             <v-col class="text-right">
-              <v-btn color="primary" @click="goToAddProduct">Agregar Producto</v-btn>
+              <v-btn color="primary" @click="goToAddProductPage">Agregar Producto</v-btn>
             </v-col>
           </v-row>
         </div>
@@ -119,143 +115,131 @@ import { ref, onMounted, watch } from 'vue';
 import { useRouter } from 'vue-router';
 
 const search = ref('');
-const productos = ref([]);
+const products = ref([]);
+const filteredProducts = ref([]);
+const headers = [
+  { text: 'ID Producto', value: 'ID_PRODUCTO' },
+  { text: 'Nombre', value: 'NOMBRE' },
+  { text: 'Descripción', value: 'DESCRIPCION' },
+  { text: 'Precio', value: 'PRECIO' },
+  { text: 'Stock', value: 'STOCK' },
+  { text: 'Categoría', value: 'CATEGORIA' }
+];
 
-const mostrarproductos = () => {
-  fetch('http://mipagina.com/adminproductos')
-    .then(response => response.json())
-    .then(json => {
-      if (json.status == 200) {
-        productos.value = json.data;
-      }
-    });
+const selectedProduct = ref({});
+const editDialog = ref(false);
+const confirmDialog = ref(false);
+const categories = ref([]);
+const valid = ref(false);
+const rules = {
+  required: value => !!value || 'Campo requerido',
+  number: value => !isNaN(value) || 'Debe ser un número'
 };
 
-const updateProduct = async () => {
-  if (valid.value) {
-    try {
-      const response = await fetch('http://mipagina.com/producto/actualizar', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(selectedProduct.value)
-      });
-      const data = await response.json();
-      if (data.status === 200) {
-        await fetchProducts();
-        editDialog.value = false;
-      } else {
-        console.error('Error updating product:', data.message);
-      }
-    } catch (error) {
-      console.error('Error updating product:', error);
+const router = useRouter();
+
+const fetchProducts = async () => {
+  try {
+    const response = await fetch('http://mipagina.com/productos');
+    const data = await response.json();
+    if (data.status === 200) {
+      products.value = data.data;
+      filteredProducts.value = products.value;
     }
+  } catch (error) {
+    console.error('Error fetching products:', error);
   }
 };
 
-const confirmDeleteProduct = (id) => {
-  productToDelete.value = id;
-  confirmDialog.value = true;
-};
-
-const deleteProduct = async () => {
-  if (productToDelete.value !== null) {
-    try {
-      const response = await fetch('http://mipagina.com/producto/eliminar', {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ id_producto: productToDelete.value })
-      });
-      const data = await response.json();
-      if (data.status === 200) {
-        await fetchProducts();
-        confirmDialog.value = false;
-        productToDelete.value = null;
-      } else {
-        console.error('Error deleting product:', data.message);
-      }
-    } catch (error) {
-      console.error('Error deleting product:', error);
+const fetchCategories = async () => {
+  try {
+    const response = await fetch('http://mipagina.com/categorias');
+    const data = await response.json();
+    if (data.status === 200) {
+      categories.value = data.data;
     }
+  } catch (error) {
+    console.error('Error fetching categories:', error);
   }
 };
 
-const goToAddProduct = () => {
+const goToAddProductPage = () => {
   router.push({ name: 'agregarproductos' });
 };
+
+watch(search, (newValue) => {
+  filteredProducts.value = products.value.filter(product =>
+    product.NOMBRE.toLowerCase().includes(newValue.toLowerCase())
+  );
+});
 
 onMounted(() => {
   fetchProducts();
   fetchCategories();
 });
-
-watch(search, filterProducts); // Watch search query to filter products
 </script>
 
-<style>
+<style scoped>
 #admin-inicio {
   display: flex;
   flex-direction: column;
   height: 100vh;
 }
 
-.navbar {
-  background-color: #333;
-  padding: 1rem;
-}
-
-.logo {
-  max-height: 50px;
-}
-
 .contenedor {
   display: flex;
   flex: 1;
-  overflow: hidden;
 }
 
 .main-content {
+  flex: 1;
+  padding: 16px;
   display: flex;
   flex-direction: column;
-  flex: 1;
-  height: 880px;
-  padding: 1rem;
-  overflow: hidden;
 }
 
 .barra-busqueda {
-  margin-bottom: 1rem;
+  margin-bottom: 16px;
 }
 
 .data-table-container {
-  display: flex;
-  flex-direction: column;
   flex: 1;
-  overflow: hidden;
 }
 
 .data-table {
-  flex: 1;
-  overflow-y: auto; /* Enable vertical scrolling */
+  margin-bottom: 16px;
 }
 
 .add-button-container {
-  margin-top: 1rem;
-  display: flex;
-  justify-content: flex-end;
+  margin-top: 16px;
 }
 
 .category-buttons {
   display: flex;
   flex-wrap: wrap;
-  margin-top: 1rem;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.category-buttons .v-btn {
+  min-width: 100px;
+}
+
+.v-card {
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.v-dialog {
+  max-width: 800px;
+  max-height: 750px;
+}
+
+.v-icon {
+  cursor: pointer;
 }
 
 .v-btn--active {
-  background-color: #3f51b5;
-  color: white;
+  background-color: #e0e0e0;
 }
 </style>
