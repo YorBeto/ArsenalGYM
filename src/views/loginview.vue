@@ -1,5 +1,4 @@
 <template>
- 
   <v-layout class="rounded rounded-md" style="background-color: #f0f0f0; min-height: 100vh;">
     <barraNav></barraNav>
 
@@ -84,7 +83,7 @@ const userStore = useUserStore();
 
 const ingresarFormulario1 = async () => {
   try {
-    const response = await fetch('http://mipagina.com/login', {
+    const response = await fetch('http://mipagina.com/loginClientes', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -95,51 +94,53 @@ const ingresarFormulario1 = async () => {
       })
     });
 
-    // Leer la respuesta en formato JSON
+    if (!response.ok) {
+      throw new Error('Network response was not ok: ' + response.statusText);
+    }
+
     const result = await response.json();
 
     if (result.success) {
       userStore.setUsuario(result.user);
-      router.push({ name: 'perfilcliente' });
+      router.push({ name: 'perfilusuario' });
     } else {
       alert(result.message);
     }
   } catch (error) {
     console.error('Error en la solicitud:', error);
+    alert('Hubo un error al intentar iniciar sesión. Por favor, inténtelo de nuevo.');
   }
 };
-
-const ingresarFormulario2 =  async () => {
+const ingresarFormulario2 = async () => {
   if (usuario.value === 'Peniche1234' && contrasena2.value === '123456') {
     router.push({ name: 'AdminInicio' });
-  } 
-  else {
-    try {
-    const response = await fetch('http://mipagina.com/loginSocios', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        usuario: usuario.value,
-        contrasena: contrasena2.value
-      })
-    });
+  } else {
+  
+      const response = await fetch('http://mipagina.com/loginSocios', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          usuario: usuario.value,
+          contrasena: contrasena2.value
+        })
+      });
 
-    // Leer la respuesta en formato JSON
-    const result = await response.json();
+      const result = await response.json();
 
-    if (result.success) {
-      userStore.setUsuario(result.user);
-      router.push({ name: 'perfilSocios' });
-    } else {
-      alert(result.message);
+      if (result.success) {
+        userStore.setUsuario(result.user);
+        router.push({ name: 'perfilsocio' });
+      } else {
+        alert(result.message);
+      }
+    } 
+      console.error('Error en la solicitud:', error);
+      alert('Hubo un error al intentar iniciar sesión. Por favor, inténtelo de nuevo.');
     }
-  } catch (error) {
-    console.error('Error en la solicitud:', error);
-  }
-  }
-};
+  
+
 </script>
 
 <style scoped>

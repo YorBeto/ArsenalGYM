@@ -5,7 +5,7 @@
         class="botones"
         @mouseover="activarColorGris()" @mouseleave="restaurarColorboton()"
         :color="coloresBotones1"
-      >Inbody</v-btn>
+      >Perfil</v-btn>
       <v-btn
         class="botones"
         @mouseover="activarColorGris()" @mouseleave="restaurarColorboton()"
@@ -63,14 +63,16 @@
       >
         Novedades
       </v-btn>
-      <v-btn
-        class="botones"
-        @mouseover="activarColorGris()"
-        @mouseleave="restaurarColorboton()"
-        :color="coloresBotones1"
+  
+      <v-btn :router-link to="perfilmembresia"
+      class="botones"
+      @mouseover="activarColorGris()"
+      @mouseleave="restaurarColorboton()"
+      :color="coloresBotones1"
       >
-        Membresia
-      </v-btn>
+      Membresia
+      </v-btn> 
+
       <v-btn
         class="botones"
         @mouseover="activarColorGris()"

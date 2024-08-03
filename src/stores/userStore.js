@@ -1,16 +1,17 @@
-// src/stores/userStore.js
+
+
+// stores/userStore.js
 import { defineStore } from 'pinia';
 
-export const useUserStore = defineStore('user', {
+export const useUserStore = defineStore('userStore', {
   state: () => ({
-    usuario: {}
+    usuario: null,
+    nombre: '', // Agrega un campo para el nombre
   }),
   actions: {
-    setUsuario(data) {
-      this.usuario = data;
-    },
-    clearUsuario() {
-      this.usuario = {};
+    setUsuario(user) {
+      this.usuario = user;
+      this.nombre = user.nombre; // Asegúrate de que el nombre esté en la respuesta del login
     }
   }
 });

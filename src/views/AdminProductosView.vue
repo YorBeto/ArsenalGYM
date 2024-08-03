@@ -16,7 +16,7 @@
         </div>
         <div class="data-table-container">
           <v-data-table
-            :headers="headers"
+            :headers="mostrarproductos"
             :items="filteredProducts"
             :search="search"
             class="data-table"
@@ -122,7 +122,7 @@ const search = ref('');
 const productos = ref([]);
 
 const mostrarproductos = () => {
-  fetch('http://mipagina.com/productos')
+  fetch('http://mipagina.com/adminproductos')
     .then(response => response.json())
     .then(json => {
       if (json.status == 200) {

@@ -7,13 +7,15 @@ import AdminInicioView from '@/views/AdminInicioView.vue'
 import RegistroView from '@/views/RegistroView.vue'
 import AdminsociosView from '@/views/AdminsociosView.vue'
 import AdminCitasView from '@/views/AdminCitasView.vue'
-import AdminProductosView from '@/views/AdminProductosView.vue'
+
 import PostcompraView from '@/views/PostcompraView.vue'
 import AdminClientesView from '@/views/AdminClientesView.vue'
 import PerfilUsuarioView from '@/views/PerfilUsuarioView.vue'
 import AdminAgregarProductoView from '@/views/AdminAgregarProductoView.vue'
 import AdminEditarProductoView from '@/views/AdminEditarProductoView.vue'
 import PerfilSocioView from '@/views/PerfilSocioView.vue'
+import AdminProductosView from '@/views/AdminProductosView.vue'
+import PerfilSocioMembresiaView from '@/views/PerfilSocioMembresiaView.vue'
 
 
 
@@ -98,13 +100,18 @@ const router = createRouter({
     },
     {
       path: '/perfil',
-      name: 'perfilcliente',
+      name: 'perfilusuario',
       component: PerfilUsuarioView
     },
     {
       path: '/perfilsocio',
       name: 'perfilsocio',
       component: PerfilSocioView
+    },
+    {
+      path: '/perfilmembresia',
+      name: 'perfilmembresia',
+      component: PerfilSocioMembresiaView
     }
   ]
 })
