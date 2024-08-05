@@ -3,12 +3,14 @@
     <aside class="sidebar">
       <v-btn
         class="botones"
-        @mouseover="activarColorGris" @mouseleave="restaurarColorboton"
+        @mouseover="activarColorGris"
+        @mouseleave="restaurarColorboton"
         :color="coloresBotones1"
       >Inbody</v-btn>
       <v-btn
         class="botones"
-        @mouseover="activarColorGris()" @mouseleave="restaurarColorboton()"
+        @mouseover="activarColorGris"
+        @mouseleave="restaurarColorboton"
         :color="coloresBotones1"
         @click="toggleRutinas"
       >Rutinas</v-btn>
@@ -17,78 +19,85 @@
       <div v-if="showRutinas" class="rutinas">
         <v-btn
           class="botonesR"
-          @mouseover="activarColorR" @mouseleave="restaurarColorR()"
+          @mouseover="activarColorR"
+          @mouseleave="restaurarColorR"
           @click="mostrarContenido('Bicep')"
         >Bicep</v-btn>
         <v-btn
           class="botonesR"
-          @mouseover="activarColorR()" @mouseleave="restaurarColorR()"
+          @mouseover="activarColorR"
+          @mouseleave="restaurarColorR"
           @click="mostrarContenido('Tricep')"
           :color="coloresBotonesR"
-        >
-          Tricep
-        </v-btn>
+        >Tricep</v-btn>
         <v-btn
           class="botonesR"
-          @mouseover="activarColorR()" @mouseleave="restaurarColorR()"
+          @mouseover="activarColorR"
+          @mouseleave="restaurarColorR"
           @click="mostrarContenido('Espalda')"
           :color="coloresBotonesR"
-        >
-          Espalda
-        </v-btn>
+        >Espalda</v-btn>
         <v-btn
           class="botonesR"
-          @mouseover="activarColorR()" @mouseleave="restaurarColorR()"
+          @mouseover="activarColorR"
+          @mouseleave="restaurarColorR"
           @click="mostrarContenido('Hombro')"
           :color="coloresBotonesR"
-        >
-          Hombro
-        </v-btn>
+        >Hombro</v-btn>
         <v-btn
           class="botonesR"
-          @mouseover="activarColorR()" @mouseleave="restaurarColorR()"
+          @mouseover="activarColorR"
+          @mouseleave="restaurarColorR"
           @click="mostrarContenido('Pecho')"
           :color="coloresBotonesR"
-        >
-          Pecho
-        </v-btn>
+        >Pecho</v-btn>
         <v-btn
           class="botonesR"
-          @mouseover="activarColorR()" @mouseleave="restaurarColorR()"
+          @mouseover="activarColorR"
+          @mouseleave="restaurarColorR"
           @click="mostrarContenido('Pierna')"
           :color="coloresBotonesR"
-        >
-          Pierna
-        </v-btn>
+        >Pierna</v-btn>
       </div>
       <v-btn
         class="botones"
-        @mouseover="activarColorGris()"
-        @mouseleave="restaurarColorboton()"
+        @mouseover="activarColorGris"
+        @mouseleave="restaurarColorboton"
         :color="coloresBotones1"
+        @click="mostrarContenido('Novedades')"
       >
         Membresia
       </v-btn>
+  
+      <v-btn :router-link to="perfilmembresia"
+      class="botones"
+      @mouseover="activarColorGris()"
+      @mouseleave="restaurarColorboton()"
+      :color="coloresBotones1"
+      >
+      Membresia
+      </v-btn> 
+
       <v-btn
         class="botones"
-        @mouseover="activarColorGris()"
-        @mouseleave="restaurarColorboton()"
+        @mouseover="activarColorGris"
+        @mouseleave="restaurarColorboton"
         :color="coloresBotones1"
       >
         Clases
       </v-btn>
       <v-btn
         class="botones"
-        @mouseover="activarColorGris()"
-        @mouseleave="restaurarColorboton()"
+        @mouseover="activarColorGris"
+        @mouseleave="restaurarColorboton"
         :color="coloresBotones1"
       >
         Historial
       </v-btn>
       <v-btn
         class="botonSalir"
-        @mouseover="activarRojo()"
-        @mouseleave="restaurarRojo()"
+        @mouseover="activarRojo"
+        @mouseleave="restaurarRojo"
         :color="colorSalir"
       >
         Cerrar Sesión
@@ -96,7 +105,6 @@
     </aside>
 
     <main>
-      <!-- Aquí se renderizarán los componentes según la selección -->
       <component :is="currentComponent"></component>
     </main>
   </div>
@@ -110,9 +118,9 @@ import Espalda from '@/views/EspaldaView.vue';
 import Hombro from '@/views/HombroView.vue';
 import Pecho from '@/views/PechoView.vue';
 import Pierna from '@/views/PernaView.vue';
+import Novedades from '@/views/NovedadesView.vue';
 
 // Estados
-
 const showRutinas = ref(false);
 const currentComponent = ref(null);
 
@@ -127,7 +135,7 @@ const coloresBotones1 = {
   membresia: 'white',
   clases: 'white',
   historial: 'white'
-}
+};
 
 const coloresBotonesR = {
   bicep: 'white',
@@ -136,16 +144,17 @@ const coloresBotonesR = {
   hombro: 'white',
   pecho: 'white',
   pierna: 'white'
-}
+};
 
 function mostrarContenido(componente) {
   const componentes = {
-    'Bicep': Bicep,
-    'Tricep': Tricep,
-    'Espalda': Espalda,
-    'Hombro': Hombro,
-    'Pecho': Pecho,
-    'Pierna': Pierna
+    Bicep,
+    Tricep,
+    Espalda,
+    Hombro,
+    Pecho,
+    Pierna,
+    Novedades 
   };
   currentComponent.value = componentes[componente] || null;
 }
@@ -166,7 +175,7 @@ function restaurarColorR() {
   coloresBotonesR.value = 'white';
 }
 
-const colorSalir = ref ('white');
+const colorSalir = ref('white');
 
 function activarRojo() {
   colorSalir.value = 'red';
@@ -191,8 +200,8 @@ function restaurarRojo() {
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: fixed; /* Fija la barra lateral en su lugar */
-  top: 0; /* Alinea el sidebar al principio del contenedor */
+  position: fixed;
+  top: 0;
   left: 0;
   margin-top: 60px;
 }
@@ -209,7 +218,7 @@ function restaurarRojo() {
   border-color: var(--color-boton, white);
   letter-spacing: 1px;
   transition: background-color 0.3s, color 0.3s;
-  margin-top: 3px; /* Espacio entre botones */
+  margin-top: 3px;
 }
 
 .botonSalir {
@@ -239,7 +248,7 @@ function restaurarRojo() {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 10px; /* Espacio entre los botones de rutina */
+  margin-top: 10px;
 }
 
 .botonesR {
@@ -263,10 +272,10 @@ function restaurarRojo() {
 
 main {
   flex: 1;
-  margin-left: 200px; /* Deja espacio para la barra lateral */
+  margin-left: 200px;
   padding: 20px;
   height: 100vh;
-  margin-top: 40px; /* Agrega margen superior para bajar el contenido principal */
-  overflow-y: auto; /* Barra de desplazamiento solo en el área principal */
+  margin-top: 40px;
+  overflow-y: auto;
 }
 </style>
