@@ -1,68 +1,90 @@
 <template>
-  <v-app class="fondo">
-    <BarraNav></BarraNav>
-    <v-main class="fondo">
-      <v-container class="fill-height d-flex flex-column justify-center align-center">
-        <div class="text-center mb-4">
-          <h1>Conoce nuestras novedades</h1>
-        </div>
-        <v-card class="carousel-card">
-          <v-carousel class="carousel-container" hide-delimiter-background>
-            <v-carousel-item v-for="(item, i) in items" :key="i">
-              <v-row class="d-flex justify-center align-center fill-height">
-                <v-col cols="5">       
-                  <v-img :src="item.image" alt="Imagen"></v-img>
-                </v-col>
-                <v-col cols="5" class="d-flex align-center">
-                  <div class="text-center"><h1>{{item.titulo}}</h1>
-                    <br>
-                    {{ item.text }}</div>
-                </v-col>
-              </v-row>
-            </v-carousel-item>
-          </v-carousel>
+  <v-container>
+    <v-row justify="center">
+      <v-col cols="12">
+        <v-typography variant="h3" class="text-center mb-5">
+          Novedades
+        </v-typography>
+      </v-col>
+      <v-col
+        v-for="novedad in novedades"
+        :key="novedad.id"
+        cols="12"
+        md="6"
+        lg="4"
+        class="d-flex"
+      >
+        <v-card class="novedad-card">
+          <v-card-title class="headline">{{ novedad.title }}</v-card-title>
+          <v-card-subtitle>{{ novedad.date }}</v-card-subtitle>
+          <v-card-text>
+            {{ novedad.description }}
+          </v-card-text>
+          <v-img :src="novedad.image" class="image"></v-img>
         </v-card>
-      </v-container>
-    </v-main>
-  </v-app>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
-<script setup>
-import { ref } from 'vue';
-import BarraNav from './components/BarraNav.vue';
-
-const items = ref([
-  { image: '/inbody.webp',text: 'Conoce nuestra maquina diseñada para evaluar tus estándares, para guiarte y demostrar tu seguimiento.', titulo: 'InBody' },
-  { image: '/arsenals.png', text: 'Nos enfocamos en fomentar un ambiente sano, donde nadie se sienta excluido y supere sus limites.', titulo: 'Nuestro Equipo'},
-  { image: '/arsenal.png', text: 'Suplementos dietéticos que pueden ser utilizados para apoyar la salud muscular, mejorar el rednimiento deportivo o complementar la dieta.', titulo: 'Suplementos' },
-  { image: '/equipo.png', text: 'Todo el equipamiento necesario para tus rutinas, lo tienes en Arsenal' , titulo: 'Maquinas Exclusivas'},
-]);
-
+<script>
+export default {
+  data() {
+    return {
+      novedades: [
+        {
+          id: 1,
+          title: "Nueva Maquina de Pecho",
+          date: "2024-08-01",
+          description: "Visitanos y prueba nuesra nueva maquina de pecho.",
+          image: "/pecho.jpg"
+        },
+        {
+          id: 2,
+          title: "Nuevo Suplemento Proteico",
+          date: "2024-08-02",
+          description: "Descubre nuestro nuevo suplemento proteico para aumentar tu masa muscular.",
+          image: "/preentreno.jpg"
+        },
+        {
+          id: 3,
+          title: "Evento de Levantamiento de Pesas",
+          date: "2024-08-03",
+          description: "Participa en nuestro próximo evento de levantamiento de pesas y demuestra tu fuerza.",
+          image: "/evento.jpg"
+        }
+      ]
+    };
+  }
+};
 </script>
 
-<style>
-.my-logo {
-  max-width: 50px;
-  margin-right: 10px;
-}
-.fill-height {
-  height: 100%;
-}
-.carousel-container {
-  max-width: 80%; 
-}
+<style scoped>
 .text-center {
   text-align: center;
 }
-.fondo {
-  background: linear-gradient(to right, black, red);
+.mb-5 {
+  margin-bottom: 3rem;
 }
-.carousel-card {
-  width: 80%;
-  padding: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+.novedad-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  background-color: white;
+  transition: transform 0.3s;
 }
-.mb-4 {
-  margin-bottom: 1.5rem;
+.novedad-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+.image {
+  margin-top: auto;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  height: 200px;
+}
+.v-card-title {
+  font-weight: bold;
 }
 </style>
