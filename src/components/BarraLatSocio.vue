@@ -69,14 +69,7 @@
         Novedades
       </v-btn>
   
-      <v-btn :router-link to="perfilmembresia"
-      class="botones"
-      @mouseover="activarColorGris()"
-      @mouseleave="restaurarColorboton()"
-      :color="coloresBotones1"
-      >
-      Membresia
-      </v-btn> 
+
 
       <v-btn
         class="botones"
@@ -235,7 +228,7 @@ function restaurarRojo() {
   letter-spacing: 1px;
   font-weight: normal;
   transition: background-color 0.3s, color 0.3s;
-  margin-top: 560px;
+  margin-top: 500px; /* Ajustar esta propiedad */
   position: fixed;
 }
 

@@ -36,7 +36,7 @@ export default {
           id: 1,
           title: "Nueva Maquina de Pecho",
           date: "2024-08-01",
-          description: "Visitanos y prueba nuesra nueva maquina de pecho.",
+          description: "Visitanos y prueba nuestra nueva maquina de pecho.",
           image: "/pecho.jpg"
         },
         {

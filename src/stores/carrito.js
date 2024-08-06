@@ -1,4 +1,3 @@
-// src/stores/carrito.js
 import { defineStore } from 'pinia';
 
 export const useCarritoStore = defineStore('carrito', {
@@ -15,7 +14,10 @@ export const useCarritoStore = defineStore('carrito', {
       }
     },
     removeProducto(ID_PRODUCTO) {
-      this.productos = this.productos.filter(p => p.ID_PRODUCTO !== ID_PRODUCTO);
+      const productIndex = this.productos.findIndex(p => p.ID_PRODUCTO === ID_PRODUCTO);
+      if (productIndex !== -1) {
+        this.productos.splice(productIndex, 1);
+      }
     },
     clearCarrito() {
       this.productos = [];
