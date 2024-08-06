@@ -40,12 +40,12 @@ const items = ref([
       <div class="gym-section mb-5">
         <v-img src="/Avina.jpg" alt="Arsenal Image" class="imagen-arsenal"></v-img>
         <div class="gym-text">
-          <p>En Arsenal somos un gimnasio que busca el bienestar de nuestros socios como también superar sus límites.
-             Arsenal es un lugar especialmente diseñado y equipado para que acudas a realizar una actividad física en diversas intensidades. 
-             El propósito es que logres estimular tus músculos a través de ejercicios adecuados a tus necesidades y condiciones.
-             Nuestra meta es que logres obtener los cambios que desees en tu cuerpo, que te sientas más seguro y así poder seguir buscando mejorar cada día más.
-             Aquí podrás quemar grasa y reducir tu peso, hasta llegar a tu peso ideal.
-             Ofrecemos variedad de equipo, instructores y también contamos con clases de crossfit. </p>
+          <p>En Arsenal somos un gimnasio que busca el bienestar de nuestros socios como también superar sus límites. 
+            Ofrecemos variedad de equipo, instructores y también contamos con clases de crossfit. 
+            Arsenal es un lugar especialmente diseñado y equipado para que acudas a realizar una actividad física en diversas intensidades. 
+            El propósito es estimular tus músculos a través de ejercicios adecuados a tus necesidades y condiciones.
+            Nuestro proposito es que logres obtener los cambios que desees en tu cuerpo, que te sientas más seguro y así poder seguir buscando mejorar cada día más.
+          Aquí podrás quemar grasa y redicir tu beso, hasta llegar a tu peso ideal.</p>
         </div>
       </div>
       
@@ -92,10 +92,139 @@ const items = ref([
   </v-layout>
 </template>
 
-
-
-
 <style scoped>
+
+.cartainfo, .cartainfo2 {
+  width: 100%;
+  display: flex;
+  flex-direction: row; 
+  padding: 16px; 
+}
+
+.cartainfo {
+  display: flex;
+  flex-direction: row; /* Alinea los elementos en una fila */
+  align-items: flex-start; /* Alinea el contenido en la parte superior del contenedor */
+  padding: 16px; /* Espaciado alrededor del contenido */
+}
+
+.gym-text-container {
+  flex: 15; /* Permite que el texto ocupe el espacio disponible */
+  padding-right: 6px; /* Espaciado entre el texto y la imagen */
+}
+
+.gym-text2 {
+  flex: 1 1 50%; 
+  margin-top: 190px;
+  padding-left: 90px;
+}
+
+.gym-text{
+  flex: 1 1 50%; /* Permite que el texto ocupe el 50% restante del card */
+  padding: 16px; /* Espaciado alrededor del texto */
+  box-sizing: border-box; /* Incluye el padding en el ancho total */
+  margin-top: 160px;
+}
+
+.imagen-inicio {
+  flex: 1 1 40%; /* Ajusta el ancho de la imagen según sea necesario */
+  height: auto; /* Mantiene la proporción de la imagen */
+}
+
+.imagen-avina{
+  flex: 1 1 40%; /* Permite que la imagen ocupe el 50% del ancho del card */
+  margin-left: 15px;
+}
+
+/* Responsive Styles */
+@media (max-width: 600px) {
+  .carousel {
+    height: 300px; /* Reduce la altura del carrusel para pantallas pequeñas */
+  }
+
+  .carousel-image {
+    height: 300px; /* Ajusta la altura de las imágenes del carrusel */
+  }
+
+  /* Ajustes para el primer card */
+  .imagen-inicio {
+    width: 100%; /* Ocupa el ancho completo del contenedor */
+    height: auto; /* Mantiene la proporción de la imagen */
+    margin-left: 0; /* Elimina el margen izquierdo en pantallas pequeñas */
+    margin-top: 10px; /* Ajusta el margen superior si es necesario */
+    display: flex;
+    flex-direction: column;
+  }
+
+  .gym-text-container {
+    flex: 1 1 100%; /* El texto ocupa el 100% del ancho */
+    padding-right: 0; /* Elimina el espaciado derecho en pantallas pequeñas */
+    padding-left: 0; /* Elimina el espaciado izquierdo en pantallas pequeñas */
+  }
+
+  .gym-text2 {
+    margin-top: 10px; /* Ajusta el margen superior para pantallas pequeñas */
+    padding-left: 0; /* Elimina el padding izquierdo en pantallas pequeñas */
+    text-align: center; /* Centra el texto en pantallas pequeñas */
+  }
+
+  /* Ajustes para el segundo card */
+  .imagen-avina {
+    width: 100%; /* Ocupa el ancho completo del contenedor */
+    height: auto; /* Mantiene la proporción de la imagen */
+    margin-left: 0; /* Elimina el margen izquierdo en pantallas pequeñas */
+    margin-top: 10px; /* Ajusta el margen superior si es necesario */
+  }
+
+  .gym-text {
+    flex: 1 1 100%; /* El texto ocupa el 100% del ancho del card */
+    padding: 6px; /* Añade padding para espaciado alrededor del texto */
+    text-align: center; /* Centra el texto en pantallas pequeñas */
+  }
+
+  /* Ajustes para la sección 'Visítanos' */
+  .visitanos-content {
+    flex-direction: column; /* Alinea los elementos verticalmente en pantallas pequeñas */
+    align-items: center; /* Centra los elementos horizontalmente */
+    margin-top: 20px; /* Ajusta el margen superior si es necesario */
+  }
+
+  .mapa-arsenal-gym {
+    width: 100%; /* Ocupa el ancho completo del contenedor */
+    height: 250px; /* Ajusta la altura del mapa para pantallas pequeñas */
+  }
+
+  .imagen-arsenal-gym {
+    width: 100%; /* Ocupa el ancho completo del contenedor */
+    height: auto; /* Mantiene la proporción de la imagen */
+    margin-top: 20px; /* Ajusta el margen superior si es necesario */
+  }
+
+  /* Ajustes generales para flex containers */
+  .d-flex {
+    flex-direction: column; /* Cambia la dirección del flex para pantallas pequeñas */
+  }
+
+  .cartainfo {
+    flex-direction: column; /* Cambia la dirección del flex para pantallas pequeñas */
+    align-items: center; /* Centra los elementos en pantallas pequeñas */
+  }
+
+  .cartainfo2 {
+    width: 100%;
+    padding: 16px;
+  }
+}
+
+.d-flex {
+    flex-direction: column;
+  }
+
+.imagen-inicio{
+  height: 490px;
+  margin-left: 115px;
+}
+
 .carousel {
   width: 100%;
   height: 500px;
@@ -130,17 +259,11 @@ const items = ref([
   height: 400px;
 }
 
-.inbody-text, .gym-text {
-  width: 65%;
-  padding: 20px;
-}
-
 .boton-agendar {
   margin-top: 10px;
   background-color: #d32f2f;
   color: white;
 }
-
 
 .membresias-section {
   width: 100%;
@@ -194,7 +317,6 @@ const items = ref([
   width: 58%;
   height: 450px;
 }
+
 </style>
-
-
 
