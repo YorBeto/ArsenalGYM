@@ -35,7 +35,7 @@ import BarralateralAdmin from '@/components/BarralateralAdmin.vue';
   const clientes= ref([]);
   
     const mostrarclientes = () =>{
-        fetch('http://mipagina.com/clientes')
+        fetch('http://mipagina.com/Empleados')
         .then(response=> response.json())
         .then(json => {
           if(json.status==200){
