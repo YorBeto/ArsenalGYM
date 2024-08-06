@@ -41,11 +41,11 @@ const items = ref([
         <v-img src="/Avina.jpg" alt="Arsenal Image" class="imagen-arsenal"></v-img>
         <div class="gym-text">
           <p>En Arsenal somos un gimnasio que busca el bienestar de nuestros socios como también superar sus límites. 
-            Ofrecemos variedad de equipo, instructores y también contamos con clases de crossfit. 
-            Arsenal es un lugar especialmente diseñado y equipado para que acudas a realizar una actividad física en diversas intensidades. 
-            El propósito es estimular tus músculos a través de ejercicios adecuados a tus necesidades y condiciones.
-            Nuestro proposito es que logres obtener los cambios que desees en tu cuerpo, que te sientas más seguro y así poder seguir buscando mejorar cada día más.
-          Aquí podrás quemar grasa y redicir tu beso, hasta llegar a tu peso ideal.</p>
+             Ofrecemos variedad de equipo, instructores y también contamos con clases de crossfit. 
+             Arsenal es un lugar especialmente diseñado y equipado para que acudas a realizar una actividad física en diversas intensidades. 
+             El propósito es estimular tus músculos a través de ejercicios adecuados a tus necesidades y condiciones.
+             Nuestro proposito es que logres obtener los cambios que desees en tu cuerpo, que te sientas más seguro y así poder seguir buscando mejorar cada día más.
+             Aquí podrás quemar grasa y redicir tu peso, hasta llegar a tu peso ideal.</p>
         </div>
       </div>
       
