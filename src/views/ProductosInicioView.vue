@@ -1,19 +1,31 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, computed, onMounted } from 'vue';
 import barraNav from '@/components/barraNav.vue';
-import PreEntrenos from '@/views/Pre-entrenosView.vue';
-import Proteinas from '@/views/ProteinasView.vue';
-import Creatinas from '@/views/CreatinaView.vue';
-import Multivitaminicos from '@/views/MultivitanimicosView.vue';
-import Membresias from '@/views/membresiasView.vue';
-const categories = ref([ 
-  'PRE-ENTRENOS',
-  'PROTEÍNAS',
-  'CREATINAS',
-  'MULTIVITAMÍNICOS',
-  'MEMBRESÍAS' 
-]);
-const tab = ref(0); 
+import { useProductosStore } from '@/stores/productos';
+import { useCarritoStore } from '@/stores/carrito'; // Crear este store para manejar el carrito
+
+const store = useProductosStore();
+const carritoStore = useCarritoStore(); // Inicializar el store del carrito
+const selectedCategory = ref(''); // Ref para la categoría seleccionada
+
+onMounted(() => {
+  store.fetchProductos();
+});
+
+const categories = computed(() => {
+  // Obtener las categorías únicas de los productos
+  const allCategories = store.productos.map(producto => producto.CATEGORIA);
+  return [...new Set(allCategories)];
+});
+
+const filteredProductos = computed(() => {
+  // Filtrar los productos según la categoría seleccionada
+  return store.productos.filter(producto => producto.CATEGORIA === selectedCategory.value || selectedCategory.value === '');
+});
+
+const addToCart = (producto) => {
+  carritoStore.addProducto(producto);
+};
 </script>
 
 <template>
@@ -21,47 +33,43 @@ const tab = ref(0);
     <barraNav></barraNav>
     <v-main>
       <v-container>
-        <v-tabs v-model="tab" class="centered-tabs" background-color="black" slider-color="red">
-          <v-tab v-for="category in categories" :key="category">{{ category }}</v-tab>
+        <!-- v-tabs para las categorías -->
+        <v-tabs v-model="selectedCategory" background-color="primary" dark>
+          <v-tab v-for="category in categories" :key="category" :value="category">
+            {{ category }}
+          </v-tab>
+          <v-tab value="">Todas</v-tab> <!-- Tab para mostrar todos los productos -->
         </v-tabs>
-        <v-tabs-items v-model="tab">
-          <v-tab-item v-if="tab === 0"> 
-            <pre-entrenos />
-          </v-tab-item>
-          <v-tab-item v-if="tab === 1">
-            <proteinas />
-          </v-tab-item>
-          <v-tab-item v-if="tab === 2">
-            <creatinas />
-          </v-tab-item>
-          <v-tab-item v-if="tab === 3">
-            <multivitaminicos />
-          </v-tab-item>
-          <v-tab-item v-if="tab === 4">
-            <membresias />
-          </v-tab-item>
-        </v-tabs-items>
+
+        <!-- Productos filtrados -->
+        <v-row>
+          <v-col v-for="producto in filteredProductos" :key="producto.ID_PRODUCTO" cols="12" md="6" lg="4">
+            <v-card class="mx-auto my-4" max-width="344">
+              <v-card-title>{{ producto.NOMBRE }}</v-card-title>
+              <v-card-subtitle>{{ producto.CATEGORIA }}</v-card-subtitle>
+              <v-card-text>
+                <p>{{ producto.DESCRIPCION }}</p>
+                <p>{{ producto.PRECIO }} MX</p>
+                <p v-if="producto.STOCK !== null">Stock: {{ producto.STOCK }}</p>
+              </v-card-text>
+              <v-card-actions>
+                <v-btn color="primary" @click="addToCart(producto)">Agregar al carrito</v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-col>
+        </v-row>
       </v-container>
     </v-main>
   </v-layout>
 </template>
 
+
 <style scoped>
-.centered-tabs {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.v-tabs {
-  width: 100%;
-}
-
-.v-tab {
-  margin: 0 10px; 
-}
-
-.v-tabs-items {
-  margin-top: 20px;
+.producto-card {
+  background-color: white;
+  border: 1px solid #ddd;
+  padding: 16px;
+  margin-bottom: 16px;
+  border-radius: 8px;
 }
 </style>
