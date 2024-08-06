@@ -1,7 +1,6 @@
 <template>
   <v-layout class="rounded rounded-md" style="background-color: #f0f0f0; min-height: 100vh; position: relative; justify-content: center; align-items: center;">
     <barraNav></barraNav>
-
     <v-app>
       <v-container class="container-margin">
         <v-row justify="center">
@@ -85,7 +84,7 @@ export default {
   },
   methods: {
     fetchFechas() {
-      fetch('/fechas-futuras')
+      fetch('http://tu-servidor-dominio/fechas-futuras')
         .then(response => {
           if (!response.ok) {
             throw new Error('Network response was not ok');
@@ -93,14 +92,9 @@ export default {
           return response.json();
         })
         .then(data => {
-          console.log('Datos recibidos del servidor:', data);
           this.fechas = data
             .map(fecha => {
               const date = new Date(fecha.FECHAS);
-              if (isNaN(date)) {
-                console.error('Fecha inválida:', fecha.FECHAS);
-                return null;
-              }
               const day = date.getDay();
               if (day >= 1 && day <= 5) {
                 return fecha.FECHAS;
@@ -108,7 +102,6 @@ export default {
               return null;
             })
             .filter(Boolean);
-          console.log('Fechas filtradas:', this.fechas);
         })
         .catch(error => {
           console.error('Error fetching dates:', error);
@@ -116,7 +109,7 @@ export default {
     },
     fetchAvailableTimes() {
       if (this.selectedDate) {
-        fetch(`/horarios?fecha=${this.selectedDate}`)
+        fetch(`http://tu-servidor-dominio/horarios?fecha=${this.selectedDate}`)
           .then(response => response.json())
           .then(data => {
             this.availableTimes = data.map(hora => {
@@ -152,12 +145,12 @@ export default {
   background-color: #f5f5f5;
 }
 .container-margin {
-  margin-top: 110px; /* Ajusta este valor según sea necesario */
+  margin-top: 110px;
 }
 .inbody-image {
   position: absolute;
-  top: 100px; /* Ajusta este valor según sea necesario */
-  right: 10px; /* Ajusta este valor según sea necesario */
+  top: 100px;
+  right: 10px;
   max-width: 1000px;
   height: 500px;
 }
