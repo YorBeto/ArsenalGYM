@@ -6,15 +6,15 @@
           <v-img src="/arsenal.png" alt="Logo" contain class="imagen-izquierda" @click="scrollToTop"></v-img>
         </v-col>
 
-        <v-col cols="auto">
+        <v-col cols="auto" >
           <v-row no-gutters class="nav-buttons">
             <v-col cols="auto">
               <router-link to="/"><v-btn class="boton-bar">INICIO</v-btn></router-link>
             </v-col>
-            <v-col cols="auto">
+            <v-col>
               <router-link to="/Producto"><v-btn class="boton-bar">PRODUCTOS</v-btn></router-link>
             </v-col>
-            <v-col cols="auto">
+            <v-col>
               <router-link to="Inbody"><v-btn class="boton-bar">INBODY</v-btn></router-link>
             </v-col>
           </v-row>
