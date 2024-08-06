@@ -30,7 +30,7 @@
               </router-link>
             </v-col>
             <v-col cols="auto">
-              <router-link to="/Compras">
+              <router-link to="/carrito">
                 <v-btn icon class="boton-bar boton-compras">
                   <v-icon>mdi-cart</v-icon>
                 </v-btn>

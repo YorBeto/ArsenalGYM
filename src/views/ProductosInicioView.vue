@@ -2,8 +2,10 @@
 import { ref, computed, onMounted } from 'vue';
 import barraNav from '@/components/barraNav.vue';
 import { useProductosStore } from '@/stores/productos';
+import { useCarritoStore } from '@/stores/carrito'; // Crear este store para manejar el carrito
 
 const store = useProductosStore();
+const carritoStore = useCarritoStore(); // Inicializar el store del carrito
 const selectedCategory = ref(''); // Ref para la categoría seleccionada
 
 onMounted(() => {
@@ -20,6 +22,10 @@ const filteredProductos = computed(() => {
   // Filtrar los productos según la categoría seleccionada
   return store.productos.filter(producto => producto.CATEGORIA === selectedCategory.value || selectedCategory.value === '');
 });
+
+const addToCart = (producto) => {
+  carritoStore.addProducto(producto);
+};
 </script>
 
 <template>
@@ -36,17 +42,27 @@ const filteredProductos = computed(() => {
         </v-tabs>
 
         <!-- Productos filtrados -->
-        <div v-for="producto in filteredProductos" :key="producto.ID_PRODUCTO" class="producto-card">
-          <h3>{{ producto.NOMBRE }}</h3>
-          <p>{{ producto.DESCRIPCION }}</p>
-          <p>{{ producto.PRECIO }} MX</p>
-          <p>Categoría: {{ producto.CATEGORIA }}</p>
-          <p v-if="producto.STOCK !== null">Stock: {{ producto.STOCK }}</p>
-        </div>
+        <v-row>
+          <v-col v-for="producto in filteredProductos" :key="producto.ID_PRODUCTO" cols="12" md="6" lg="4">
+            <v-card class="mx-auto my-4" max-width="344">
+              <v-card-title>{{ producto.NOMBRE }}</v-card-title>
+              <v-card-subtitle>{{ producto.CATEGORIA }}</v-card-subtitle>
+              <v-card-text>
+                <p>{{ producto.DESCRIPCION }}</p>
+                <p>{{ producto.PRECIO }} MX</p>
+                <p v-if="producto.STOCK !== null">Stock: {{ producto.STOCK }}</p>
+              </v-card-text>
+              <v-card-actions>
+                <v-btn color="primary" @click="addToCart(producto)">Agregar al carrito</v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-col>
+        </v-row>
       </v-container>
     </v-main>
   </v-layout>
 </template>
+
 
 <style scoped>
 .producto-card {

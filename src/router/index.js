@@ -15,6 +15,7 @@ import AdminAgregarProductoView from '@/views/AdminAgregarProductoView.vue'
 import AdminEditarProductoView from '@/views/AdminEditarProductoView.vue'
 import PerfilSocioView from '@/views/PerfilSocioView.vue'
 import PerfilSocioMembresiaView from '@/views/PerfilSocioMembresiaView.vue'
+import CarritoView from '@/views/CarritoView.vue'
 
 
 
@@ -108,6 +109,11 @@ const router = createRouter({
       path: '/perfilmembresia',
       name: 'perfilmembresia',
       component: PerfilSocioMembresiaView
+    },
+    {
+      path: '/carrito',
+      name: 'carrito',
+      component: CarritoView
     }
   ]
 })
