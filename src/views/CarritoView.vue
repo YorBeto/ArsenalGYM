@@ -1,5 +1,9 @@
 <template>
+  <barraNav></barraNav>
     <v-container>
+      <br>
+      <br>
+      <br>
       <h1>Bienvenido al carrito</h1>
       <div v-if="carritoStore.productos.length === 0">
         <p>Tu carrito está vacío</p>
@@ -26,6 +30,7 @@
   
   <script setup>
   import { useCarritoStore } from '@/stores/carrito';
+  import barraNav from '@/components/barraNav.vue';
   
   const carritoStore = useCarritoStore();
   
