@@ -87,10 +87,39 @@ const items = ref([
   </v-layout>
 </template>
 
-
-
-
 <style scoped>
+
+.cartainfo, .cartainfo2 {
+  width: 100%;
+  display: flex;
+  flex-direction: row; 
+  padding: 16px; 
+}
+
+.imagen-avina{
+  flex: 1 1 40%; /* Permite que la imagen ocupe el 50% del ancho del card */
+  margin-left: 95px;
+}
+
+.imagen-inicio{
+  flex: 1 1 40%; /* Permite que la imagen ocupe el 50% del ancho del card */
+  height: 490px;
+  margin-left: 115px;
+}
+
+.gym-text {
+  flex: 1 1 50%; /* Permite que el texto ocupe el 50% restante del card */
+  padding: 16px; /* Espaciado alrededor del texto */
+  box-sizing: border-box; /* Incluye el padding en el ancho total */
+}
+
+.gym-text2 {
+  flex: 1 1 50%; /* Permite que el texto ocupe el 50% restante del card */
+  padding: 16px; /* Espaciado alrededor del texto */
+  box-sizing: border-box; /* Incluye el padding en el ancho total */
+  margin-left: 100px
+}
+
 .carousel {
   width: 100%;
   height: 500px;
@@ -125,17 +154,11 @@ const items = ref([
   height: 400px;
 }
 
-.inbody-text, .gym-text {
-  width: 65%;
-  padding: 20px;
-}
-
 .boton-agendar {
   margin-top: 10px;
   background-color: #d32f2f;
   color: white;
 }
-
 
 .membresias-section {
   width: 100%;
@@ -189,7 +212,5 @@ const items = ref([
   width: 58%;
   height: 450px;
 }
+
 </style>
-
-
-
