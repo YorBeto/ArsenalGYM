@@ -66,7 +66,7 @@
         :color="coloresBotones1"
         @click="mostrarContenido('Novedades')"
       >
-        Membresia
+        Novedades
       </v-btn>
   
 

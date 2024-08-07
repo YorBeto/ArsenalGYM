@@ -1,7 +1,6 @@
 <template>
   <v-layout class="rounded rounded-md" style="background-color: #f0f0f0; min-height: 100vh;">
     <barraNav></barraNav>
-
     <v-main style="background-color: #f0f0f0; display: flex; justify-content: center; align-items: center;">
       <v-card class="pa-5 card-gradiente" max-width="1000">  
         <v-img src="/public/Arsenal.png" alt="Arsenal Logo" class="imagen-arsenal"></v-img>
@@ -9,7 +8,7 @@
           Registro
         </v-card-title>
         <v-card-text>
-          <v-form ref="form">
+            <v-form ref="form">
             <v-row>
               <v-col cols="12" md="6">
                 <v-text-field
@@ -90,6 +89,7 @@
 <script setup>
 import { ref, computed } from 'vue';
 import { useRouter } from 'vue-router';
+import { useUserStore } from '@/stores/userStore';
 import barraNav from '@/components/barraNav.vue';
 
 const nombre = ref('');
@@ -101,6 +101,9 @@ const telefono = ref('');
 const contrasena = ref('');
 const confirmarContrasena = ref('');
 const router = useRouter();
+const dialog = ref(false);
+const errorDialog = ref(false);
+const errorMessage = ref('');
 
 const datosBasicosCompletos = computed(() => {
   return (
@@ -150,7 +153,10 @@ const registrar = async () => {
       const result = await response.json();
 
       if (result.success) {
-        router.push({ name: 'home' });
+        dialog.value = true;
+        setTimeout(() => {
+          router.push({ name: 'home' });
+        }, 3000); // Redirigir después de 3 segundos
       } else {
         console.error('Error al registrar:', result.message);
       }
