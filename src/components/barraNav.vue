@@ -1,7 +1,7 @@
 <template>
-  <v-app-bar color="black" app dense>
+  <v-app-bar color="black" app style="height: 70px; font-size: 24px; display: flex; align-items: center; position: fixed; width: 100%; z-index: 1000;">
     <v-container fluid>
-      <v-row align="center" justify="space-between">
+      <v-row class="but">
         <v-col cols="auto" class="d-flex align-center">
           <v-img
             src="/arsenal.png"
@@ -82,6 +82,14 @@
 </template>
 
 <style scoped>
+
+.but{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+
+}
+
 .imagen-izquierda {
   width: 50px; /* Ajusta el ancho según sea necesario */
   height: auto; /* Mantiene la proporción de la imagen */
