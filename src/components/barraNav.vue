@@ -3,7 +3,7 @@
     <v-container fluid>
       <v-row align="center" justify="space-between">
         <v-col cols="auto" class="d-flex align-center">
-          <v-img
+          <v-img 
             src="/arsenal.png"
             alt="Logo"
             contain
@@ -38,7 +38,7 @@
           </v-btn>
         </v-col>
 
-        <v-col cols="auto" class="d-flex justify-end">
+        <v-col cols="auto" class="d-flex justify-end align-center">
           <v-row no-gutters>
             <v-col cols="auto">
               <router-link to="/Login">
@@ -47,12 +47,19 @@
                 </v-btn>
               </router-link>
             </v-col>
-            <v-col cols="auto">
+            <v-col cols="auto" class="cart-container d-flex align-center">
               <router-link to="/carrito">
-                <v-btn icon class="boton-bar boton-compras">
+                <v-btn icon class="boton-bar boton-compras" :class="{ 'cart-updated': isCartUpdated }">
                   <v-icon>mdi-cart</v-icon>
                 </v-btn>
               </router-link>
+              <v-badge
+                v-if="carritoCount > 0"
+                color="red"
+                :content="carritoCount"
+                overlap
+                class="cart-badge"
+              ></v-badge>
             </v-col>
           </v-row>
         </v-col>
@@ -128,10 +135,52 @@
     min-width: 80px;
   }
 }
+
+.cart-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.cart-badge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  font-size: 12px;
+  min-width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border-radius: 50%;
+  background-color: black;
+  color: black;
+}
+
+.cart-updated {
+  animation: shake 0.5s;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
 </style>
 
 <script>
 export default {
+  props: {
+    carritoCount: {
+      type: Number,
+      default: 0
+    },
+    isCartUpdated: {
+      type: Boolean,
+      default: false
+    }
+  },
   data() {
     return {
       menuVisible: false
