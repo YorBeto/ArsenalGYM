@@ -77,9 +77,10 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
+          <router-link to="Login"><v-btn color="primary" :disabled="!formCompleto" @click="registrar"></v-btn>
           <v-btn color="primary" :disabled="!formCompleto" @click="registrar">
             Registrarse
-          </v-btn>
+          </v-btn> </router-link>
         </v-card-actions>
       </v-card>
     </v-main>
@@ -176,7 +177,7 @@ const registrar = async () => {
   margin-top: 15px;
   margin-bottom: 25px;
   background: linear-gradient(to bottom, black, red);
-  color: white; /* Asegura que el texto sea visible en el fondo oscuro */
+  color: white; 
 }
 
 .v-main {
