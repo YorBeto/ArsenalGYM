@@ -18,5 +18,5 @@ const usuario = computed(() => userStore.usuario);
 </script>
 
 <style scoped>
-/* Estilos opcionales */
+
 </style>
