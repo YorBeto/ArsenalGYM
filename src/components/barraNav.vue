@@ -32,12 +32,6 @@
           </v-row>
         </v-col>
 
-        <v-col class="d-flex d-md-none" cols="auto">
-          <v-btn icon @click="toggleMenu">
-            <v-icon>mdi-menu</v-icon>
-          </v-btn>
-        </v-col>
-
         <v-col cols="auto" class="d-flex justify-end align-center">
           <v-row no-gutters>
             <v-col cols="auto">
@@ -66,12 +60,22 @@
       </v-row>
     </v-container>
 
+    <!-- Botón del menú móvil -->
+    <v-col class="d-flex d-md-none" cols="auto">
+      <v-btn icon @click="toggleMenu">
+        <v-icon>mdi-menu</v-icon>
+      </v-btn>
+    </v-col>
+
+    <!-- Menú desplegable -->
     <v-menu
       v-model="menuVisible"
       offset-y
       absolute
       top
       transition="slide-x-reverse-transition"
+      class="menu-desplegable"
+      :style="menuStyles"
     >
       <v-list>
         <v-list-item link :to="{ path: '/' }">
@@ -121,12 +125,10 @@ export default {
 
 
 <style scoped>
-
-.but{
+.but {
   display: flex;
   align-items: center;
   justify-content: space-around;
-
 }
 
 .imagen-izquierda {
@@ -150,6 +152,12 @@ export default {
 
 .v-menu__content {
   min-width: 200px;
+}
+
+.menu-desplegable {
+  position: fixed;
+  right: 0; /* Ajusta la posición del menú a la derecha de la pantalla */
+  top: 70px; /* Ajusta según la posición de tu barra de navegación */
 }
 
 .d-md-flex {
