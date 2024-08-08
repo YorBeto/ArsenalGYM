@@ -9,13 +9,14 @@ import AdminsociosView from '@/views/AdminsociosView.vue'
 import AdminCitasView from '@/views/AdminCitasView.vue'
 import AdminProductosView from '@/views/AdminProductosView.vue'
 import PostcompraView from '@/views/PostcompraView.vue'
-import AdminClientesView from '@/views/AdminClientesView.vue'
 import PerfilUsuarioView from '@/views/PerfilUsuarioView.vue'
 import AdminAgregarProductoView from '@/views/AdminAgregarProductoView.vue'
 import AdminEditarProductoView from '@/views/AdminEditarProductoView.vue'
 import PerfilSocioView from '@/views/PerfilSocioView.vue'
 import PerfilSocioMembresiaView from '@/views/PerfilSocioMembresiaView.vue'
-import CarritoView from '@/views/CarritoView.vue'
+import CarritoView from '@/views/CarritoView.vue' 
+import AdminEmpleadosView from '@/views/AdminEmpleadosView.vue'
+import AdminRegistrarEmpleadoView from '@/views/AdminRegistrarEmpleadoView.vue'
 
 
 
@@ -86,9 +87,15 @@ const router = createRouter({
     },
     {
 
-      path: '/clientes',
-      name: 'clientes',
-      component: AdminClientesView
+      path: '/empleados',
+      name: 'empleados',
+      component: AdminEmpleadosView
+    },
+    {
+
+      path: '/registrarempleados',
+      name: 'registrarempleados',
+      component: AdminRegistrarEmpleadoView
     },
     {
       path: '/postcompra',

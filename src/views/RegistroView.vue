@@ -1,7 +1,6 @@
 <template>
   <v-layout class="rounded rounded-md" style="background-color: #f0f0f0; min-height: 100vh;">
     <barraNav></barraNav>
-
     <v-main style="background-color: #f0f0f0; display: flex; justify-content: center; align-items: center;">
       <v-card class="pa-5 card-gradiente" max-width="1000">  
         <v-img src="/public/Arsenal.png" alt="Arsenal Logo" class="imagen-arsenal"></v-img>
@@ -78,9 +77,9 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <router-link to="Login"><v-btn color="primary" :disabled="!formCompleto" @click="registrar">
+          <v-btn color="primary" :disabled="!formCompleto" @click="registrar">
             Registrarse
-          </v-btn> </router-link>
+          </v-btn>
         </v-card-actions>
       </v-card>
     </v-main>
@@ -90,6 +89,7 @@
 <script setup>
 import { ref, computed } from 'vue';
 import { useRouter } from 'vue-router';
+import { useUserStore } from '@/stores/userStore';
 import barraNav from '@/components/barraNav.vue';
 
 const nombre = ref('');
@@ -101,6 +101,8 @@ const telefono = ref('');
 const contrasena = ref('');
 const confirmarContrasena = ref('');
 const router = useRouter();
+
+const userStore = useUserStore();
 
 const datosBasicosCompletos = computed(() => {
   return (
@@ -136,7 +138,7 @@ const registrar = async () => {
       contrasena: contrasena.value
     };
 
-    console.log('Datos a enviar:', requestData); // Agregar consola para depuración
+    console.log('Datos a enviar:', requestData);
 
     try {
       const response = await fetch('http://mipagina.com/registro', {
@@ -150,7 +152,13 @@ const registrar = async () => {
       const result = await response.json();
 
       if (result.success) {
-        router.push({ name: 'home' });
+        userStore.setUsuario({
+          nombre: result.data.nombre,
+          correo: result.data.correo,
+          fecha_registro: result.data.fecha_registro
+        });
+
+        router.push({ name: 'perfilusuario' });
       } else {
         console.error('Error al registrar:', result.message);
       }

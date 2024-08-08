@@ -16,13 +16,13 @@
         </div>
         <v-data-table
           :headers="headers"
-          :items="productos"
+          :items="clientes"
           :search="search"
         ></v-data-table>
         <div class="acciones">
           <v-btn color="primary" class="agregar-btn">
-            <router-link to="/agregarproductos" class="router-link">
-              Agregar Producto
+            <router-link to="/registrarempleados" class="router-link">
+              Registrar Empleado
             </router-link>
           </v-btn>
         </div>
@@ -37,20 +37,20 @@ import BarralateralAdmin from '@/components/BarralateralAdmin.vue';
 import { ref, onMounted } from 'vue';
 
 const search = ref('');
-const productos = ref([]);
+const clientes = ref([]);
 
-const mostrarproductos = () => {
-  fetch('http://mipagina.com/productos')
+const mostrarempleados = () => {
+  fetch('http://mipagina.com/empleados')
     .then(response => response.json())
     .then(json => {
       if (json.status == 200) {
-        productos.value = json.data;
+        clientes.value = json.data;
       }
     });
 };
 
 onMounted(() => {
-  mostrarproductos();
+  mostrarempleados();
 });
 </script>
 

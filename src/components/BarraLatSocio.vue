@@ -6,7 +6,7 @@
         @mouseover="activarColorGris"
         @mouseleave="restaurarColorboton"
         :color="coloresBotones1"
-      >Inbody</v-btn>
+      >InBody</v-btn>
       <v-btn
         class="botones"
         @mouseover="activarColorGris"
@@ -66,7 +66,7 @@
         :color="coloresBotones1"
         @click="mostrarContenido('Novedades')"
       >
-        Membresia
+        Novedades
       </v-btn>
   
 
@@ -246,7 +246,7 @@ function restaurarRojo() {
 
 .botonesR {
   height: 100px;
-  width: 135px;
+  width: 145px;
   font-size: 20px;
   font-family: Arial, Helvetica, sans-serif;
   text-align: left;

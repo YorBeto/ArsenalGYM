@@ -7,7 +7,7 @@
         class="imagen-izquierda"
         @click="toggleSidebar"
       ></v-img>
-      <v-btn class="invisible">boton</v-btn>
+
       <v-spacer></v-spacer>
       <div class="nav-buttons"> 
         <router-link to="/">
@@ -40,30 +40,12 @@
   
   // Estado para controlar la visibilidad del sidebar
   const isSidebarVisible = ref(false);
-  
-  // Función para alternar la visibilidad del sidebar
-  const toggleSidebar = () => {
-    isSidebarVisible.value = !isSidebarVisible.value;
-  };
   </script>
 
   <style scoped>
-.invisible {
-  position: fixed; /* Posiciona el botón de forma absoluta respecto al contenedor */
-  top: 15px; /* Ajusta la posición vertical del botón */
-  left: 90px; /* Ajusta la posición horizontal del botón */
-  z-index: 1; /* El botón está detrás de la imagen */
-  color: rgb(6, 253, 253); /* Color del texto del botón */
-  background-color: transparent; /* Fondo transparente para ver la imagen detrás */
-  border: none; /* Sin borde para mayor visibilidad */
-  padding: 10px 20px; /* Tamaño del botón */
-  border-radius: 5px; /* Bordes redondeados del botón */
-} 
-
   .imagen-izquierda {
     width: 150px; /* Ajusta el ancho según sea necesario */
-    height: auto; /* Mantiene la proporción de la imagen */
-    cursor: pointer; /* Cambia el cursor al pasar sobre la imagen si es clickeable */
+    height: auto; /* Cambia el cursor al pasar sobre la imagen si es clickeable */
     margin-left: 100px; /* Espaciado a la izquierda */
     position: fixed;
   }
