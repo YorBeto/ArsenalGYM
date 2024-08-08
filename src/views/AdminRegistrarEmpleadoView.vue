@@ -123,7 +123,7 @@
     rfc: value => /^([A-ZÑ&]{3,4})(\d{6})((\D|\d){3})?$/.test(value) || 'RFC no válido',
     numeroSeguro: value => /^[0-9]{11}$/.test(value) || 'Número de Seguro Social no válido',
   };
-  
+
   const limpiarFormulario = () => {
     nombre.value = '';
     apellidos.value = '';

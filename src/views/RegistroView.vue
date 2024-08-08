@@ -8,7 +8,7 @@
           Registro
         </v-card-title>
         <v-card-text>
-            <v-form ref="form">
+          <v-form ref="form">
             <v-row>
               <v-col cols="12" md="6">
                 <v-text-field
@@ -77,9 +77,9 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <router-link to="Login"><v-btn color="primary" :disabled="!formCompleto" @click="registrar">
+          <v-btn color="primary" :disabled="!formCompleto" @click="registrar">
             Registrarse
-          </v-btn> </router-link>
+          </v-btn>
         </v-card-actions>
       </v-card>
     </v-main>
@@ -101,9 +101,8 @@ const telefono = ref('');
 const contrasena = ref('');
 const confirmarContrasena = ref('');
 const router = useRouter();
-const dialog = ref(false);
-const errorDialog = ref(false);
-const errorMessage = ref('');
+
+const userStore = useUserStore();
 
 const datosBasicosCompletos = computed(() => {
   return (
@@ -139,7 +138,7 @@ const registrar = async () => {
       contrasena: contrasena.value
     };
 
-    console.log('Datos a enviar:', requestData); // Agregar consola para depuración
+    console.log('Datos a enviar:', requestData);
 
     try {
       const response = await fetch('http://mipagina.com/registro', {
@@ -153,10 +152,13 @@ const registrar = async () => {
       const result = await response.json();
 
       if (result.success) {
-        dialog.value = true;
-        setTimeout(() => {
-          router.push({ name: 'home' });
-        }, 3000); // Redirigir después de 3 segundos
+        userStore.setUsuario({
+          nombre: result.data.nombre,
+          correo: result.data.correo,
+          fecha_registro: result.data.fecha_registro
+        });
+
+        router.push({ name: 'perfilusuario' });
       } else {
         console.error('Error al registrar:', result.message);
       }
