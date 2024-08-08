@@ -1,4 +1,3 @@
-// src/stores/productos.js
 import { defineStore } from 'pinia';
 
 export const useProductosStore = defineStore('productos', {
@@ -13,7 +12,8 @@ export const useProductosStore = defineStore('productos', {
           throw new Error('Error fetching productos');
         }
         const data = await response.json();
-        this.productos = data.data;
+        console.log('Datos de productos:', data); // Verifica la estructura de los datos
+        this.productos = data.data; // Asegúrate de que esta propiedad es correcta
       } catch (error) {
         console.error('Error fetching productos:', error);
       }

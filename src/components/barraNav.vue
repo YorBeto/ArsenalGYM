@@ -88,6 +88,38 @@
   </v-app-bar>
 </template>
 
+<script>
+export default {
+  props: {
+    carritoCount: {
+      type: Number,
+      default: 0
+    },
+    isCartUpdated: {
+      type: Boolean,
+      default: false
+    }
+  },
+  data() {
+    return {
+      menuVisible: false
+    };
+  },
+  methods: {
+    scrollToTop() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    },
+    toggleMenu() {
+      this.menuVisible = !this.menuVisible;
+    }
+  }
+};
+</script>
+
+
 <style scoped>
 
 .but{
@@ -98,9 +130,9 @@
 }
 
 .imagen-izquierda {
-  width: 50px; /* Ajusta el ancho según sea necesario */
-  height: auto; /* Mantiene la proporción de la imagen */
-  cursor: pointer; /* Cambia el cursor al pasar sobre la imagen si es clickeable */
+  width: 60px; 
+  height: auto; 
+  cursor: pointer; 
 }
 
 .boton-bar {
@@ -136,7 +168,7 @@
     display: flex;
   }
   .imagen-izquierda {
-    width: 40px; /* Ajusta el ancho para pantallas más pequeñas */
+    width: 50px; 
   }
   .boton-bar {
     font-size: 14px;
@@ -177,33 +209,3 @@
 }
 </style>
 
-<script>
-export default {
-  props: {
-    carritoCount: {
-      type: Number,
-      default: 0
-    },
-    isCartUpdated: {
-      type: Boolean,
-      default: false
-    }
-  },
-  data() {
-    return {
-      menuVisible: false
-    };
-  },
-  methods: {
-    scrollToTop() {
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-      });
-    },
-    toggleMenu() {
-      this.menuVisible = !this.menuVisible;
-    }
-  }
-};
-</script>
