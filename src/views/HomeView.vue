@@ -45,7 +45,7 @@ const items = ref([
              Arsenal es un lugar especialmente diseñado y equipado para que acudas a realizar una actividad física en diversas intensidades. 
              El propósito es estimular tus músculos a través de ejercicios adecuados a tus necesidades y condiciones.
              Nuestro proposito es que logres obtener los cambios que desees en tu cuerpo, que te sientas más seguro y así poder seguir buscando mejorar cada día más.
-             Aquí podrás quemar grasa y redicir tu peso, hasta llegar a tu peso ideal.</p>
+             Aquí podrás trabajar en tu cuerpo, hasta llegar a tu peso ideal. .</p>
         </div>
       </div>
       
@@ -319,4 +319,3 @@ const items = ref([
 }
 
 </style>
-
