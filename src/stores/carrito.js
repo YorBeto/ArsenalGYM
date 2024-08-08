@@ -9,9 +9,9 @@ export const useCarritoStore = defineStore('carrito', {
 addProducto(producto) {
   const existingProduct = this.productos.find(p => p.ID_PRODUCTO === producto.ID_PRODUCTO);
   if (existingProduct) {
-    existingProduct.cantidad += 1; // Aumenta la cantidad si ya está en el carrito
+    existingProduct.cantidad += 1; 
   } else {
-    this.productos.push({ ...producto, cantidad: 1 }); // Agrega el producto con cantidad inicial
+    this.productos.push({ ...producto, cantidad: 1 });  
   }
 }
 ,

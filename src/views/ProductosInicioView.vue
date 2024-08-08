@@ -1,3 +1,37 @@
+<template>
+  <v-layout class="rounded rounded-md" style="background-color: #f0f0f0; min-height: 100vh;">
+    <barraNav :carrito-count="carritoCount" :is-cart-updated="isCartUpdated"></barraNav>
+    <v-main>
+      <v-container>
+        <v-tabs v-model="selectedCategory" background-color="primary" dark>
+          <v-tab v-for="category in categories" :key="category" :value="category">
+            {{ category }}
+          </v-tab>
+          <v-tab value="">Todas</v-tab>
+        </v-tabs>
+
+        <v-row>
+          <v-col v-for="producto in filteredProductos" :key="producto.ID_PRODUCTO" cols="12" md="6" lg="4">
+            <v-card class="producto-card mx-auto my-4" max-width="344">
+              <v-img :src="producto.IMAGEN" aspect-ratio="16/9" contain @error="handleImageError"></v-img>
+              <v-card-title>{{ producto.NOMBRE }}</v-card-title>
+              <v-card-subtitle>{{ producto.CATEGORIA }}</v-card-subtitle>
+              <v-card-text>
+                <p>{{ producto.DESCRIPCION }}</p>
+                <p>{{ producto.PRECIO }} MX</p>
+                <p v-if="producto.STOCK !== null">Stock: {{ producto.STOCK }}</p>
+              </v-card-text>
+              <v-card-actions>
+                <v-btn color="primary" @click="addToCart(producto)">Agregar al carrito</v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-col>
+        </v-row>
+      </v-container>
+    </v-main>
+  </v-layout>
+</template>
+
 <script setup>
 import { ref, computed, onMounted } from 'vue';
 import barraNav from '@/components/barraNav.vue';
@@ -32,41 +66,13 @@ const addToCart = (producto) => {
     isCartUpdated.value = false;
   }, 1000);
 };
+
+const handleImageError = (event) => {
+  event.target.src = '@/assets/imagen-local.jpg'; // Imagen por defecto si falla la carga
+};
+
+console.log('Productos:', store.productos);
 </script>
-
-<template>
-  <v-layout class="rounded rounded-md" style="background-color: #f0f0f0; min-height: 100vh;">
-    <barraNav :carrito-count="carritoCount" :is-cart-updated="isCartUpdated"></barraNav>
-    <v-main>
-      <v-container>
-        <v-tabs v-model="selectedCategory" background-color="primary" dark>
-          <v-tab v-for="category in categories" :key="category" :value="category">
-            {{ category }}
-          </v-tab>
-          <v-tab value="">Todas</v-tab>
-        </v-tabs>
-
-        <v-row>
-          <v-col v-for="producto in filteredProductos" :key="producto.ID_PRODUCTO" cols="12" md="6" lg="4">
-            <v-card class="producto-card mx-auto my-4" max-width="344">
-              <v-card-title>{{ producto.NOMBRE }}</v-card-title>
-              <v-card-subtitle>{{ producto.CATEGORIA }}</v-card-subtitle>
-              <v-card-text>
-                <p>{{ producto.DESCRIPCION }}</p>
-                <p>{{ producto.PRECIO }} MX</p>
-                <p v-if="producto.STOCK !== null">Stock: {{ producto.STOCK }}</p>
-              </v-card-text>
-              <v-card-actions>
-                <v-btn color="primary" @click="addToCart(producto)">Agregar al carrito</v-btn>
-              </v-card-actions>
-            </v-card>
-          </v-col>
-        </v-row>
-      </v-container>
-    </v-main>
-  </v-layout>
-</template>
-
 
 <style scoped>
 .producto-card {
@@ -75,5 +81,8 @@ const addToCart = (producto) => {
   padding: 16px;
   margin-bottom: 16px;
   border-radius: 8px;
+}
+.v-img {
+  border: 1px solid red; /* Para ayudar a depurar la visibilidad de las imágenes */
 }
 </style>

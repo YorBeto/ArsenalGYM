@@ -92,6 +92,38 @@
   </v-app-bar>
 </template>
 
+<script>
+export default {
+  props: {
+    carritoCount: {
+      type: Number,
+      default: 0
+    },
+    isCartUpdated: {
+      type: Boolean,
+      default: false
+    }
+  },
+  data() {
+    return {
+      menuVisible: false
+    };
+  },
+  methods: {
+    scrollToTop() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    },
+    toggleMenu() {
+      this.menuVisible = !this.menuVisible;
+    }
+  }
+};
+</script>
+
+
 <style scoped>
 .but {
   display: flex;
@@ -100,9 +132,9 @@
 }
 
 .imagen-izquierda {
-  width: 50px; /* Ajusta el ancho según sea necesario */
-  height: auto; /* Mantiene la proporción de la imagen */
-  cursor: pointer; /* Cambia el cursor al pasar sobre la imagen si es clickeable */
+  width: 60px; 
+  height: auto; 
+  cursor: pointer; 
 }
 
 .boton-bar {
@@ -144,7 +176,7 @@
     display: flex;
   }
   .imagen-izquierda {
-    width: 40px; /* Ajusta el ancho según sea necesario */  
+    width: 40px; /* Ajusta el ancho para pantallas más pequeñas */
   }
   .boton-bar {
     font-size: 14px;
@@ -199,17 +231,8 @@ export default {
   },
   data() {
     return {
-      menuVisible: false,
-      menuPosition: { top: '70px', left: '80px' } // Initial position
+      menuVisible: false
     };
-  },
-  computed: {
-    menuStyles() {
-      return {
-        top: this.menuPosition.top,
-        left: this.menuPosition.left,
-      };
-    }
   },
   methods: {
     scrollToTop() {
@@ -220,16 +243,6 @@ export default {
     },
     toggleMenu() {
       this.menuVisible = !this.menuVisible;
-      if (this.menuVisible) {
-        this.calculateMenuPosition();
-      }
-    },
-    calculateMenuPosition() {
-      // Calculate position based on the menu icon
-      this.menuPosition = {
-        top: '70px',
-        left: '0px' // Mueve el menú a la esquina derecha
-      };
     }
   }
 };
