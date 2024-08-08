@@ -38,26 +38,14 @@ import { ref, onMounted } from 'vue';
 
 const search = ref('');
 const productos = ref([]);
-const headers = [
-  { text: 'Nombre', value: 'NOMBRE' },
-  { text: 'Descripción', value: 'DESCRIPCION' },
-  { text: 'Precio', value: 'PRECIO' },
-  { text: 'Stock', value: 'STOCK' },
-  { text: 'Categoría', value: 'CATEGORIA' }
-];
 
 const mostrarproductos = () => {
   fetch('http://mipagina.com/productos')
     .then(response => response.json())
     .then(json => {
-      if (json.status === 200) {
+      if (json.status == 200) {
         productos.value = json.data;
-      } else {
-        console.error('Error fetching products:', json.message);
       }
-    })
-    .catch(error => {
-      console.error('Network error:', error);
     });
 };
 
