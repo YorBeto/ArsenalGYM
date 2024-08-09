@@ -1,7 +1,8 @@
+PERFIL USUARIO
+
 <template>
   <v-app>
     <barraNav></barraNav>
-    <BarraLatCliente></BarraLatCliente>
     <div class="main-container">
       <BarraLatCliente class="sidebar"></BarraLatCliente>
       <div class="container">
@@ -40,7 +41,7 @@ const usuario = computed(() => userStore.usuario);
 
 .container {
   flex-grow: 1; /* Permite que el contenedor ocupe el espacio restante */
-  padding-left: 180px;
+  padding-left: 200px;
   padding-top: 80px;
 }
 
