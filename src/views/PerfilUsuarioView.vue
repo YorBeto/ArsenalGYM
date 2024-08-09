@@ -1,6 +1,7 @@
 <template>
   <v-app>
     <barraNav></barraNav>
+    <BarraLatCliente></BarraLatCliente>
     <div class="main-container">
       <BarraLatCliente class="sidebar"></BarraLatCliente>
       <div class="container">
@@ -28,5 +29,23 @@ const usuario = computed(() => userStore.usuario);
 </script>
 
 <style scoped>
-/* Estilos opcionales */
+.main-container {
+  display: flex;
+  height: 100vh; /* Asegura que la altura ocupe toda la pantalla */
+}
+
+.sidebar {
+  width: 200px; /* Ajusta el ancho según sea necesario */
+}
+
+.container {
+  flex-grow: 1; /* Permite que el contenedor ocupe el espacio restante */
+  padding-left: 180px;
+  padding-top: 80px;
+}
+
+v-card {
+  width: 100px; /* Ajusta el tamaño del card según sea necesario */
+
+}
 </style>
