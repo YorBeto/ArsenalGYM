@@ -16,6 +16,7 @@ import PerfilSocioView from '@/views/PerfilSocioView.vue'
 import PerfilSocioMembresiaView from '@/views/PerfilSocioMembresiaView.vue'
 import CarritoView from '@/views/CarritoView.vue' 
 import AdminEmpleadosView from '@/views/AdminEmpleadosView.vue'
+import AdminRegistrarEmpleadoView from '@/views/AdminRegistrarEmpleadoView.vue'
 
 
 
@@ -89,6 +90,12 @@ const router = createRouter({
       path: '/empleados',
       name: 'empleados',
       component: AdminEmpleadosView
+    },
+    {
+
+      path: '/registrarempleados',
+      name: 'registrarempleados',
+      component: AdminRegistrarEmpleadoView
     },
     {
       path: '/postcompra',

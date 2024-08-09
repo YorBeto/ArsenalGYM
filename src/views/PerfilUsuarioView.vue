@@ -28,23 +28,5 @@ const usuario = computed(() => userStore.usuario);
 </script>
 
 <style scoped>
-.main-container {
-  display: flex;
-  height: 100vh; /* Asegura que la altura ocupe toda la pantalla */
-}
-
-.sidebar {
-  width: 200px; /* Ajusta el ancho según sea necesario */
-}
-
-.container {
-  flex-grow: 1; /* Permite que el contenedor ocupe el espacio restante */
-  padding-left: 200px;
-  padding-top: 80px;
-}
-
-v-card {
-  width: 100px; /* Ajusta el tamaño del card según sea necesario */
-
-}
+/* Estilos opcionales */
 </style>

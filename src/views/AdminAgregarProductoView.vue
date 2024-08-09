@@ -1,182 +1,105 @@
 <template>
-    <div id="admin-inicio">
-        <nav class="navbar">
-            <img src="/public/arsenal.png" class="logo" />
-        </nav>
-        <div class="contenedor">
-            <BarralateralAdmin></BarralateralAdmin>
-            <div class="main-content">
-                <!-- Botón para regresar -->
-                <v-btn icon @click="regresar" class="mb-4">
-                    <v-icon>mdi-arrow-left</v-icon>
-                </v-btn>
-                <!-- Formulario para agregar productos -->
-                <div class="formulario-producto">
-                    <v-card>
-                        <v-card-title>
-                            <span class="headline">Agregar Producto</span>
-                        </v-card-title>
-                        <v-card-text>
-                            <v-container>
-                                <v-row>
-                                    <v-col cols="12">
-                                        <v-text-field v-model="form.id_producto" label="ID Producto" required></v-text-field>
-                                    </v-col>
-                                    <v-col cols="12">
-                                        <v-text-field v-model="form.nombre" label="Nombre" required></v-text-field>
-                                    </v-col>
-                                    <v-col cols="12">
-                                        <v-text-field v-model="form.descripcion" label="Descripción" required></v-text-field>
-                                    </v-col>
-                                    <v-col cols="12">
-                                        <v-text-field v-model="form.precio" label="Precio" required></v-text-field>
-                                    </v-col>
-                                    <v-col cols="12">
-                                        <v-text-field v-model="form.stock" label="Stock"></v-text-field>
-                                    </v-col>
-                                    <v-col cols="12">
-                                        <div class="category-selection">
-                                            <span>Seleccione la categoría:</span>
-                                            <div class="button-group">
-                                                <v-btn 
-                                                    v-for="categoria in categorias" 
-                                                    :key="categoria.ID_CATEGORIA"
-                                                    :color="form.id_categoria === categoria.ID_CATEGORIA ? 'primary' : ''"
-                                                    @click="form.id_categoria = categoria.ID_CATEGORIA"
-                                                    outlined
-                                                >
-                                                    {{ categoria.NOMBRE }}
-                                                </v-btn>
-                                            </div>
-                                        </div>
-                                    </v-col>
-                                </v-row>
-                            </v-container>
-                        </v-card-text>
-                        <v-card-actions>
-                            <v-spacer></v-spacer>
-                            <v-btn color="blue darken-1" text @click="submitForm">Guardar</v-btn>
-                        </v-card-actions>
-                    </v-card>
-                </div>
-            </div>
+    <div id="admin-registro">
+      <BarraAdminNew></BarraAdminNew>
+      <div class="contenedor">
+        <BarralateralAdmin></BarralateralAdmin>
+        <div class="main-content">
+          <h1>Registrar Producto</h1>
+          <v-form @submit.prevent="submitForm">
+            <v-text-field v-model="nombre" label="Nombre" required></v-text-field>
+            <v-textarea v-model="descripcion" label="Descripción" required></v-textarea>
+            <v-text-field v-model="precio" label="Precio" type="number" required></v-text-field>
+            <v-text-field v-model="stock" label="Stock" type="number" required></v-text-field>
+            <v-text-field v-model="categoria" label="Categoría" required></v-text-field>
+  
+            <!-- Campo para subir imagen -->
+            <v-file-input
+              v-model="imagen"
+              label="Subir imagen"
+              accept="image/*"
+              required
+            ></v-file-input>
+  
+            <v-btn type="submit" color="primary">Agregar Producto</v-btn>
+          </v-form>
         </div>
+      </div>
     </div>
-</template>
-
-<script setup>
-import BarralateralAdmin from '@/components/BarralateralAdmin.vue';
-import { ref, onMounted } from 'vue';
-
-const form = ref({
-    id_producto: '',
-    nombre: '',
-    descripcion: '',
-    precio: '',
-    stock: '',
-    id_categoria: ''
-});
-
-const categorias = ref([]);
-
-const fetchCategorias = () => {
-    fetch('http://mipagina.com/categorias')
-        .then(response => response.json())
-        .then(json => {
-            if (json.status === 200) {
-                categorias.value = json.data;
-            } else {
-                alert(json.message);
-            }
-        })
-        .catch(error => {
-            console.error('Error fetching categories:', error);
-        });
-};
-
-const submitForm = () => {
+  </template>
+  
+  <script setup>
+  import BarraAdminNew from '@/components/BarraAdminNew.vue';
+  import BarralateralAdmin from '@/components/BarralateralAdmin.vue';
+  import { ref } from 'vue';
+  
+  const nombre = ref('');
+  const descripcion = ref('');
+  const precio = ref('');
+  const stock = ref('');
+  const categoria = ref('');
+  const imagen = ref(null);
+  
+  const submitForm = () => {
+    const formData = new FormData();
+    formData.append('nombre', nombre.value);
+    formData.append('descripcion', descripcion.value);
+    formData.append('precio', precio.value);
+    formData.append('stock', stock.value);
+    formData.append('categoria', categoria.value);
+    formData.append('imagen', imagen.value);
+  
     fetch('http://mipagina.com/insertarproducto', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(form.value)
+      method: 'POST',
+      body: formData,
     })
-    .then(response => response.json())
-    .then(json => {
-        if (json.status === 200) {
-            alert('Producto agregado exitosamente');
-            form.value = {
-                id_producto: '',
-                nombre: '',
-                descripcion: '',
-                precio: '',
-                stock: '',
-                id_categoria: ''
-            };
+      .then(response => response.json())
+      .then(json => {
+        if (json.success) {
+          alert('Producto registrado exitosamente');
+          resetForm();
         } else {
-            alert(json.message);
+          alert('Error al registrar Producto: ' + json.message);
         }
-    });
-};
-
-const regresar = () => {
-    window.history.back();
-};
-
-onMounted(() => {
-    fetchCategorias();
-});
-</script>
-
-<style>
-#admin-inicio {
+      });
+  };
+  
+  const resetForm = () => {
+    nombre.value = '';
+    descripcion.value = '';
+    precio.value = '';
+    stock.value = '';
+    categoria.value = '';
+    imagen.value = null;
+  };
+  </script>
+  
+  <style>
+  #admin-registro {
     display: flex;
     flex-direction: column;
     height: 100vh;
-}
-
-.navbar {
-    background-color: #333;
-    padding: 1rem;
-}
-
-.logo {
-    max-height: 50px;
-}
-
-.contenedor {
+  }
+  
+  .contenedor {
     display: flex;
     flex: 1;
-}
-
-.main-content {
+    overflow: hidden;
+  }
+  
+  .main-content {
     display: flex;
     flex-direction: column;
     flex: 1;
     padding: 1rem;
-}
-
-.mb-4 {
+  }
+  
+  h1 {
     margin-bottom: 1rem;
-}
-
-.button-group {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    font-size: 17px;
-}
-
-.formulario-producto {
-    margin-top: 1rem;
-    flex: 1;
-}
-
-.category-selection {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 17px;
-}
-</style>
+  }
+  
+  .v-form {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  </style>
+  
