@@ -67,7 +67,6 @@
       </v-btn>
     </v-col>
 
-
     <v-menu
       v-model="menuVisible"
       offset-y
@@ -93,8 +92,10 @@
 </template>
 
 <script setup>
-import { computed } from 'vue';
+import { ref, computed } from 'vue';
 import { useCarritoStore } from '@/stores/carrito';
+
+const menuVisible = ref(false);
 
 const carritoStore = useCarritoStore();
 
