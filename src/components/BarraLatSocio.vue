@@ -68,6 +68,16 @@
       >
         Novedades
       </v-btn>
+
+      <v-btn
+      class="botones"
+      @mouseover="activarColorGris"
+      @mouseleave="restaurarColorboton"
+      :color="coloresBotones1"
+      @click="mostrarContenido('Novedades')"
+    >
+      Membresia
+    </v-btn>
   
 
 
