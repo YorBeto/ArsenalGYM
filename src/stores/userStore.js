@@ -1,3 +1,4 @@
+// userStore.js
 import { defineStore } from 'pinia';
 
 export const useUserStore = defineStore('user', {
@@ -12,6 +13,7 @@ export const useUserStore = defineStore('user', {
     clearUsuario() {
       this.usuario = null;
       localStorage.removeItem('usuario');
+      localStorage.removeItem('token'); // Eliminar el token también
     },
     loadUsuario() {
       const usuario = JSON.parse(localStorage.getItem('usuario'));

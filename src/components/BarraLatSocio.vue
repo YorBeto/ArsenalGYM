@@ -98,13 +98,14 @@
         Historial
       </v-btn>
       <v-btn
-        class="botonSalir"
-        @mouseover="activarRojo"
-        @mouseleave="restaurarRojo"
-        :color="colorSalir"
-      >
-        Cerrar Sesión
-      </v-btn>
+      class="botonSalir"
+      @mouseover="activarRojo"
+      @mouseleave="restaurarRojo"
+      :color="colorSalir"
+      @click="cerrarSesion"
+    >
+      Cerrar Sesión
+    </v-btn>
     </aside>
 
     <main>
@@ -122,6 +123,18 @@ import Hombro from '@/views/HombroView.vue';
 import Pecho from '@/views/PechoView.vue';
 import Pierna from '@/views/PiernaView.vue';
 import Novedades from '@/views/NovedadesView.vue';
+import { useUserStore } from '@/stores/userStore';
+import router from '@/router';
+
+const userStore = useUserStore();
+
+function cerrarSesion() {
+  userStore.clearUsuario();
+  // Redirige al usuario a la página de inicio o login si es necesario
+  // Por ejemplo, usando el router:
+  // router.push('/login');
+  router.push('/login');
+}
 
 // Estados
 const showRutinas = ref(false);
