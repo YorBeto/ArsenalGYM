@@ -68,6 +68,16 @@
       >
         Novedades
       </v-btn>
+
+      <v-btn
+      class="botones"
+      @mouseover="activarColorGris"
+      @mouseleave="restaurarColorboton"
+      :color="coloresBotones1"
+      @click="mostrarContenido('Novedades')"
+    >
+      Membresia
+    </v-btn>
   
 
 
@@ -110,7 +120,7 @@ import Tricep from '@/views/TricepView.vue';
 import Espalda from '@/views/EspaldaView.vue';
 import Hombro from '@/views/HombroView.vue';
 import Pecho from '@/views/PechoView.vue';
-import Pierna from '@/views/PernaView.vue';
+import Pierna from '@/views/PiernaView.vue';
 import Novedades from '@/views/NovedadesView.vue';
 
 // Estados

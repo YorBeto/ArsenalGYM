@@ -95,27 +95,29 @@ const ingresarFormulario1 = async () => {
     });
 
     if (!response.ok) {
-      throw new Error('Network response was not ok: ' + response.statusText);
+      throw new Error('Error en la respuesta de red');
     }
 
     const result = await response.json();
 
-    if (result.success) {
-      userStore.setUsuario(result.user);
+    if (result.status === 200 && result.msg === "success") {
+      localStorage.setItem('token', result.data._token);
+      userStore.setUsuario(result.data.usuario);
       router.push({ name: 'perfilusuario' });
     } else {
-      alert(result.message);
+      alert(result.data.msg || 'Credenciales inválidas.');
     }
   } catch (error) {
     console.error('Error en la solicitud:', error);
     alert('Hubo un error al intentar iniciar sesión. Por favor, inténtelo de nuevo.');
   }
 };
+
 const ingresarFormulario2 = async () => {
   if (usuario.value === 'Peniche1234' && contrasena2.value === '123456') {
     router.push({ name: 'AdminInicio' });
   } else {
-  
+    try {
       const response = await fetch('http://mipagina.com/loginSocios', {
         method: 'POST',
         headers: {
@@ -127,20 +129,31 @@ const ingresarFormulario2 = async () => {
         })
       });
 
+      if (!response.ok) {
+        throw new Error('Error en la respuesta de red');
+      }
+
       const result = await response.json();
 
-      if (result.success) {
-        userStore.setUsuario(result.user);
+      if (result.status === 200 && result.msg === 'success') {
+        localStorage.setItem('token', result.data._token);
+        userStore.setUsuario(result.data.usuario);
         router.push({ name: 'perfilsocio' });
       } else {
-        alert(result.message);
+        alert(result.msg || 'Credenciales inválidas.');
       }
-    } 
+    } catch (error) {
       console.error('Error en la solicitud:', error);
       alert('Hubo un error al intentar iniciar sesión. Por favor, inténtelo de nuevo.');
     }
-  
+  }
+};
 
+// Función para manejar la recuperación de contraseña
+const olvidarContrasena = () => {
+  // Implementar lógica para manejar la recuperación de contraseña
+  alert('Funcionalidad de recuperación de contraseña no implementada.');
+};
 </script>
 
 <style scoped>
@@ -158,6 +171,7 @@ const ingresarFormulario2 = async () => {
   font-size: 24px;
   font-weight: bold;
 }
+
 .titulo-formulario2 {
   text-align: center;
   margin-bottom: 20px;
