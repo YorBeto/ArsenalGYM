@@ -121,7 +121,8 @@ const router = createRouter({
       path: '/carrito',
       name: 'carrito',
       component: CarritoView
-    }
+    },
+    
   ]
 })
 

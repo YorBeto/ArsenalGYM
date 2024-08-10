@@ -8,7 +8,7 @@
           <v-divider></v-divider>
           <v-row v-if="carritoStore.productos.length === 0" class="text-center">
             <v-col cols="12">
-              <v-icon size="100" color="grey lighten-1">mdi-cart-outline</v-icon>
+              <v-icon size="100" color="blue">mdi-cart-outline</v-icon>
               <p class="text-h6">Tu carrito está vacío</p>
             </v-col>
           </v-row>
@@ -52,7 +52,7 @@
           </v-row>
           <v-row>
             <v-col cols="12" class="d-flex justify-end">
-              <v-btn color="primary" @click="proceedToPayment">Proceder al pago</v-btn>
+              <v-btn color="blue" @click="proceedToPayment">Proceder al pago</v-btn>
             </v-col>
           </v-row>
         </v-card>
