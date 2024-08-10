@@ -184,7 +184,8 @@ const items = ref([
 @media (max-width: 900px) {
   .imagen-inbody{
     width: 80%; /* Ajusta el tamaño de las imágenes a un 80% del contenedor */
-    height: 300px; /* Mantiene la proporción de la imagen */
+    height: 180px; /* Mantiene la proporción de la imagen */
+    margin: -1px;
   }
 
   }
