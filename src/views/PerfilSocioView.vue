@@ -1,49 +1,37 @@
 <template>
-    <v-app>
-      <BarraNavSocio></BarraNavSocio>
-      
-      <BarraLatSocio></BarraLatSocio>
-        <v-container class="d-flex flex-column justify-space-between fill-height">
-          <v-btn class="close-button" @click="cerrarSesion">Cerrar sesión</v-btn>
-      </v-container>
-    </v-app>
-  </template>
-  
-  <script setup>
-  
+  <v-app>
+    <BarraNavSocio></BarraNavSocio>
+    <BarraLatSocio @cerrarSesion="handleCerrarSesion"></BarraLatSocio>
+    <v-container class="d-flex flex-column justify-space-between fill-height">
+      <v-row class="d-flex justify-center">
+        <v-col cols="12" md="8">
+          <v-card class="pa-5">
+            <v-card-title>
+              Bienvenido, {{ userStore.usuario.nombre }} {{ userStore.usuario.apellido }}
+            </v-card-title>
+            <v-card-subtitle>
+              Correo: {{ userStore.usuario.correo }}
+            </v-card-subtitle>
+          </v-card>
+        </v-col>
+      </v-row>
+    </v-container>
+  </v-app>
+</template>
 
+<script setup>
+import { useUserStore } from '@/stores/userStore';
 import BarraLatSocio from '@/components/BarraLatSocio.vue';
 import BarraNavSocio from '@/components/BarraNavSocio.vue';
-  
-  const cerrarSesion = () => {
-    alert('Cerrar sesión');
-  };
-  
-  </script>
-  
-  <style scoped>
-  .close-button {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background-color: #ffffff; 
-    color: white; 
-  }
-  
-  .back-button {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-    background-color: #0931b4;
-    color: white;
-  }
-  
-  .fill-height {
-    height: 100vh; 
-  }
-  
-  .v-container {
-    padding: 0; 
-  }
-  </style>
-  
+import { useRouter } from 'vue-router';
+
+const userStore = useUserStore();
+const router = useRouter();
+
+const handleCerrarSesion = () => {
+  // Lógica para cerrar sesión
+  localStorage.removeItem('token');
+  userStore.setUsuario(null);
+  router.push('/login'); // Redirige a la página de login
+};
+</script>
