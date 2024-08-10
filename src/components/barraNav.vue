@@ -36,14 +36,14 @@
           <v-row no-gutters>
             <v-col cols="auto">
               <router-link to="/Login">
-                <v-btn icon class="boton-bar boton-iniciar-sesion">
+                <v-btn icon class="boton-bar">
                   <v-icon>mdi-account</v-icon>
                 </v-btn>
               </router-link>
             </v-col>
             <v-col cols="auto" class="cart-container d-flex align-center">
               <router-link to="/carrito">
-                <v-btn icon class="boton-bar boton-compras" :class="{ 'cart-updated': isCartUpdated }">
+                <v-btn icon class="boton-bar" :class="{ 'cart-updated': isCartUpdated }">
                   <v-icon>mdi-cart</v-icon>
                 </v-btn>
               </router-link>
@@ -60,14 +60,14 @@
       </v-row>
     </v-container>
 
-    <!-- Botón del menú móvil -->
+
     <v-col class="d-flex d-md-none" cols="auto">
       <v-btn icon @click="toggleMenu">
         <v-icon>mdi-menu</v-icon>
       </v-btn>
     </v-col>
 
-    <!-- Menú desplegable -->
+
     <v-menu
       v-model="menuVisible"
       offset-y
@@ -92,37 +92,27 @@
   </v-app-bar>
 </template>
 
-<script>
-export default {
-  props: {
-    carritoCount: {
-      type: Number,
-      default: 0
-    },
-    isCartUpdated: {
-      type: Boolean,
-      default: false
-    }
-  },
-  data() {
-    return {
-      menuVisible: false
-    };
-  },
-  methods: {
-    scrollToTop() {
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-      });
-    },
-    toggleMenu() {
-      this.menuVisible = !this.menuVisible;
-    }
-  }
+<script setup>
+import { computed } from 'vue';
+import { useCarritoStore } from '@/stores/carrito';
+
+const carritoStore = useCarritoStore();
+
+const carritoCount = computed(() => {
+  return carritoStore.productos.reduce((total, producto) => total + producto.cantidad, 0);
+});
+
+const scrollToTop = () => {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  });
+};
+
+const toggleMenu = () => {
+  menuVisible.value = !menuVisible.value;
 };
 </script>
-
 
 <style scoped>
 .but {
@@ -202,8 +192,8 @@ export default {
   justify-content: center;
   padding: 0;
   border-radius: 50%;
-  background-color: black;
-  color: black;
+  background-color: red;
+  color: white;
 }
 
 .cart-updated {

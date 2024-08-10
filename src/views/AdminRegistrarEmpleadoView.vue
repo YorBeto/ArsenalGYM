@@ -124,81 +124,80 @@
     numeroSeguro: value => /^[0-9]{11}$/.test(value) || 'Número de Seguro Social no válido',
   };
 
-  const limpiarFormulario = () => {
-    nombre.value = '';
-    apellidos.value = '';
-    fechaNacimiento.value = '';
-    sexo.value = '';
-    correo.value = '';
-    telefono.value = '';
-    contrasena.value = '';
-    direccion.value = '';
-    curp.value = '';
-    rfc.value = '';
-    numeroSeguro.value = '';
+const limpiarFormulario = () => {
+  nombre.value = '';
+  apellidos.value = '';
+  fechaNacimiento.value = '';
+  sexo.value = '';
+  correo.value = '';
+  telefono.value = '';
+  contrasena.value = '';
+  direccion.value = '';
+  curp.value = '';
+  rfc.value = '';
+  numeroSeguro.value = '';
+};
+
+const submitForm = () => {
+  const data = {
+    nombre: nombre.value,
+    apellidos: apellidos.value,
+    fechaNacimiento: fechaNacimiento.value,
+    sexo: sexo.value === 'Masculino' ? 'M' : 'F',
+    correo: correo.value,
+    telefono: telefono.value,
+    contrasena: contrasena.value,
+    direccion: direccion.value,
+    curp: curp.value,
+    rfc: rfc.value,
+    numeroSeguro: numeroSeguro.value
   };
-  
-  const submitForm = () => {
-    const data = {
-      nombre: nombre.value,
-      apellidos: apellidos.value,
-      fechaNacimiento: fechaNacimiento.value,
-      sexo: sexo.value === 'Masculino' ? 'M' : 'F',
-      correo: correo.value,
-      telefono: telefono.value,
-      contrasena: contrasena.value,
-      direccion: direccion.value,
-      curp: curp.value,
-      rfc: rfc.value,
-      numeroSeguro: numeroSeguro.value
-    };
-  
-    fetch('http://mipagina.com/registroEmpleados', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(data)
-    })
-      .then(response => response.json())
-      .then(json => {
-        if (json.success) {
-          alert('Empleado registrado exitosamente');
-          limpiarFormulario();
-        } else {
-          alert('Error al registrar empleado: ' + json.message);
-        }
-      });
-  };
-  </script>
-  
-  <style>
-  #admin-registro-empleados {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-  }
-  
-  .contenedor {
-    display: flex;
-    flex: 1;
-    overflow: hidden;
-  }
-  
-  .main-content {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    padding: 1rem;
-  }
-  
-  h1 {
-    margin-bottom: 1rem;
-  }
-  
-  .v-form {
-    max-width: 600px;
-    margin: 0 auto;
-  }
-  </style>
-  
+
+  fetch('http://mipagina.com/registroEmpleados', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+  })
+    .then(response => response.json())
+    .then(json => {
+      if (json.success) {
+        alert('Empleado registrado exitosamente');
+        limpiarFormulario();
+      } else {
+        alert('Error al registrar empleado: ' + json.message);
+      }
+    });
+};
+</script>
+
+<style>
+#admin-registro-empleados {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.contenedor {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+.main-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 1rem;
+}
+
+h1 {
+  margin-bottom: 1rem;
+}
+
+.v-form {
+  max-width: 600px;
+  margin: 0 auto;
+}
+</style>

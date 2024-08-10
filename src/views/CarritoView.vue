@@ -1,39 +1,61 @@
 <template>
   <barraNav></barraNav>
   <v-container>
-    <br>
-    <br>
-    <br>
-    <h1>Bienvenido a tu carrito</h1>
-    <div v-if="carritoStore.productos.length === 0">
-      <p>Tu carrito está vacío</p>
-    </div>
-    <v-row v-else>
-      <v-col v-for="producto in carritoStore.productos" :key="producto.ID_PRODUCTO" cols="12" md="6" lg="4">
-        <v-card class="mx-auto my-4" max-width="344">
-          <v-card-title>{{ producto.NOMBRE }}</v-card-title>
-          <v-card-subtitle>{{ producto.CATEGORIA }}</v-card-subtitle>
-          <v-card-text>
-            <p>{{ producto.DESCRIPCION }}</p>
-            <p>{{ producto.PRECIO }} MX</p>
-            <p>Cantidad: {{ producto.cantidad }}</p>
-            <p v-if="producto.STOCK !== null">Stock: {{ producto.STOCK }}</p>
-          </v-card-text>
-          <v-card-actions>
-            <v-btn color="error" @click="removeFromCart(producto.ID_PRODUCTO)">Eliminar</v-btn>
-          </v-card-actions>
+    <v-row class="py-10" justify="center">
+      <v-col cols="12" md="10">
+        <v-card class="pa-6" elevation="2">
+          <v-card-title class="text-h5 font-weight-bold">Tu carrito de compras</v-card-title>
+          <v-divider></v-divider>
+          <v-row v-if="carritoStore.productos.length === 0" class="text-center">
+            <v-col cols="12">
+              <v-icon size="100" color="grey lighten-1">mdi-cart-outline</v-icon>
+              <p class="text-h6">Tu carrito está vacío</p>
+            </v-col>
+          </v-row>
+          <v-row v-else>
+            <v-col v-for="(producto, index) in carritoStore.productos" :key="producto.ID_PRODUCTO" cols="12" md="4">
+              <v-card class="mb-4" outlined>
+                <v-img :src="producto.imagen || 'https://via.placeholder.com/150'" alt="Imagen del producto" aspect-ratio="1.1" class="rounded-top"></v-img>
+                <v-card-title class="text-h6">{{ producto.NOMBRE }}</v-card-title>
+                <v-card-subtitle class="text-subtitle-2">{{ producto.CATEGORIA }}</v-card-subtitle>
+                <v-card-text>
+                  <p>{{ producto.DESCRIPCION }}</p>
+                  <p class="text-h6 font-weight-bold">{{ producto.PRECIO }} MX</p>
+                  <v-row align="center" justify="space-between">
+                    <v-col class="d-flex align-center">
+                      <v-btn icon small @click="decreaseQuantity(producto.ID_PRODUCTO)">
+                        <v-icon small>mdi-minus-circle-outline</v-icon>
+                      </v-btn>
+                      <p class="mx-2">{{ producto.cantidad }}</p>
+                      <v-btn icon small @click="increaseQuantity(producto.ID_PRODUCTO)">
+                        <v-icon small>mdi-plus-circle-outline</v-icon>
+                      </v-btn>
+                    </v-col>
+                  </v-row>
+                  <v-chip v-if="producto.STOCK !== null" color="green lighten-4" text-color="green darken-2">
+                    Stock: {{ producto.STOCK }}
+                  </v-chip>
+                </v-card-text>
+                <v-card-actions class="justify-end">
+                  <v-btn text color="red darken-2" @click="removeFromCart(producto.ID_PRODUCTO)">Eliminar</v-btn>
+                </v-card-actions>
+              </v-card>
+            </v-col>
+          </v-row>
         </v-card>
       </v-col>
     </v-row>
-    <h2>Otros...</h2>
+
+    <h2 class="mt-10">Productos recomendados</h2>
     <v-row>
-      <v-col v-for="producto in recommendedProductos" :key="producto.ID_PRODUCTO" cols="12" md="6" lg="4">
-        <v-card class="mx-auto my-4" max-width="344">
+      <v-col v-for="producto in recommendedProductos" :key="producto.ID_PRODUCTO" cols="12" md="4">
+        <v-card class="mx-auto my-4" max-width="344" elevation="2">
+          <v-img :src="producto.imagen || 'https://via.placeholder.com/150'" alt="Imagen del producto" aspect-ratio="1.5" class="rounded-top"></v-img>
           <v-card-title>{{ producto.NOMBRE }}</v-card-title>
           <v-card-subtitle>{{ producto.CATEGORIA }}</v-card-subtitle>
           <v-card-text>
             <p>{{ producto.DESCRIPCION }}</p>
-            <p>{{ producto.PRECIO }} MX</p>
+            <p class="text-h6 font-weight-bold">{{ producto.PRECIO }} MX</p>
           </v-card-text>
           <v-card-actions>
             <v-btn color="primary" @click="addToCart(producto)">Agregar al carrito</v-btn>
@@ -61,11 +83,26 @@ const addToCart = (producto) => {
   carritoStore.addProducto(producto);
 };
 
+// Increment the quantity of a product in the cart
+const increaseQuantity = (ID_PRODUCTO) => {
+  carritoStore.addCantidad(ID_PRODUCTO);
+};
+
+// Decrement the quantity of a product in the cart
+const decreaseQuantity = (ID_PRODUCTO) => {
+  const producto = carritoStore.productos.find(p => p.ID_PRODUCTO === ID_PRODUCTO);
+  if (producto && producto.cantidad > 1) {
+    producto.cantidad -= 1;
+  } else {
+    carritoStore.removeProducto(ID_PRODUCTO);
+  }
+};
+
 // Computed property to get recommended products
 const recommendedProductos = computed(() => {
   const allProductos = productosStore.productos;
   const carritoIDs = carritoStore.productos.map(p => p.ID_PRODUCTO);
-  
+
   // Filter out products already in the cart
   const filteredProductos = allProductos.filter(producto => !carritoIDs.includes(producto.ID_PRODUCTO));
 
