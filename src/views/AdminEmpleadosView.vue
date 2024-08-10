@@ -16,7 +16,7 @@
         </div>
         <v-data-table
           :headers="headers"
-          :items="clientes"
+          :items="empleados"
           :search="search"
         ></v-data-table>
         <div class="acciones">
@@ -37,14 +37,14 @@ import BarralateralAdmin from '@/components/BarralateralAdmin.vue';
 import { ref, onMounted } from 'vue';
 
 const search = ref('');
-const clientes = ref([]);
+const empleados = ref([]);
 
 const mostrarempleados = () => {
   fetch('http://mipagina.com/empleados')
     .then(response => response.json())
     .then(json => {
       if (json.status == 200) {
-        clientes.value = json.data;
+        empleados.value = json.data;
       }
     });
 };

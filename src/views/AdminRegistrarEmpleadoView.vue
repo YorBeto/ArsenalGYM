@@ -119,7 +119,7 @@
     email: value => /.+@.+\..+/.test(value) || 'Correo electrónico no válido',
     telefono: value => /^[0-9]{10}$/.test(value) || 'Número de teléfono no válido',
     password: value => value.length >= 6 || 'La contraseña debe tener al menos 6 caracteres',
-    curp: value => /^([A-Z]{4}[0-9]{6}[H|M][A-Z]{5}[0-9]{2})$/.test(value) || 'CURP no válido',
+    curp: value => /^([A-Z]{4}[0-9]{6}[H|M][A-Z]{6}[0-9]{1})$/.test(value) || 'CURP no válido',
     rfc: value => /^([A-ZÑ&]{3,4})(\d{6})((\D|\d){3})?$/.test(value) || 'RFC no válido',
     numeroSeguro: value => /^[0-9]{11}$/.test(value) || 'Número de Seguro Social no válido',
   };
