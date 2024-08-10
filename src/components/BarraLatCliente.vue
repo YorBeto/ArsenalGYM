@@ -1,97 +1,135 @@
 <template>
-    <div>
+  <div>
+    <div class="container">
       <aside class="sidebar">
         <v-btn
           class="botones"
-          @mouseover="activarColorGris()"
-          @mouseleave="restaurarColorboton()"
-          :color="coloresBotonesCW"
-          >Mi informacion</v-btn
-        >
+          @mouseover="activarColorGris('info')"
+          @mouseleave="restaurarColorboton('info')"
+          :color="coloresBotones.info"
+        >Mi información</v-btn>
         <v-btn
           class="botones"
-          @mouseover="activarColorGris()"
-          @mouseleave="restaurarColorboton()"
-          :color="coloresBotonesCE"
-          >Mis compras</v-btn
-        >
+          @mouseover="activarColorGris('compras')"
+          @mouseleave="restaurarColorboton('compras')"
+          :color="coloresBotones.compras"
+          @click="compras"
+        >Mis Compras</v-btn>
         <v-btn
           class="botones"
-          @mouseover="activarColorGris()"
-          @mouseleave="restaurarColorboton()"
-          :color="coloresBotonesCE"
-          >Inbody</v-btn
-        >
+          @mouseover="activarColorGris('inbody')"
+          @mouseleave="restaurarColorboton('inbody')"
+          :color="coloresBotones.inbody"
+          @click="mostrarContenido('InBody')"
+        >InBody</v-btn>
         <v-btn
-          class="botonSalirC"
-          @mouseover="activarColorR()"
-          @mouseleave="restaurarColorR()"
-          :color="colorR"
-          >Cerrar Sesión</v-btn
-        >
-      </aside>
+          class="botones"
+          @mouseover="activarColorGris('historial')"
+          @mouseleave="restaurarColorboton('historial')"
+          :color="coloresBotones.historial"
+        >Historial</v-btn>
+        <v-btn
+          class="botonSalir"
+          @mouseover="activarRojo"
+          @mouseleave="restaurarRojo"
+          :color="colorSalir"
+        >Cerrar Sesión</v-btn>
+      </aside>     
     </div>
-  </template>
-  
+  </div>
+</template>
+
 <script setup>
-import { ref } from 'vue'
+import { ref } from 'vue';
 
-const coloresBotonesCE = {
-  info: 'grey',
-  compras: 'grey',
-  inbody: 'grey'
-};
-  
-function activarColorGris() {
-  coloresBotonesCE.value = 'grey'
+const coloresBotones = ref({
+  info: 'white',
+  compras: 'white',
+  inbody: 'white',
+  historial: 'white'
+});
+
+function activarColorGris(boton) {
+  coloresBotones.value[boton] = 'grey';
 }
 
-function restaurarColorboton() {
-  coloresBotonesCE.value = 'white'
+function restaurarColorboton(boton) {
+  coloresBotones.value[boton] = 'white';
 }
 
-const colorR = ref('white')
+const colorSalir = ref('white');
 
-function activarColorR() {
-  colorR.value = 'red'
+function activarRojo() {
+  colorSalir.value = 'red';
 }
 
-function restaurarColorR() {
-  colorR.value = 'white'
+function restaurarRojo() {
+  colorSalir.value = 'white';
 }
 </script>
-  
-  <style scoped>
-  .botones, .botonSalirC {
-    height: 40px;
-    width: 180px;
-    font-size: 21px;
-    font-family: Arial, Helvetica, sans-serif;
-    color: black;
-    margin-bottom: 5px;
-    text-transform: capitalize;
-    background-color: white;
-    border: 1px solid white; /* Adjust border if needed */
-    display: flex; /* Use Flexbox for alignment */
-    align-items: center; /* Center text vertically */
-    justify-content: center; /* Align text to the left */
-    padding-left: 10px;
-    border-radius: 5px;
-    letter-spacing: 1px;
-    text-decoration: none; 
-  }
-  
-  .botones:hover {
-    background-color: grey !important;
-    border-color: grey;
-    color: white !important;
-  }
-  
-  .botonSalirC:hover {
-    background-color: red !important;
-    border-color: red;
-    color: white !important;
-    text-decoration: none;
-  }
-  </style>
-  
+
+<style scoped>
+.container {
+  display: flex;
+  flex-direction: row;
+  height: calc(100vh - 64px); 
+}
+
+.sidebar {
+  width: 200px;
+  height: 100%;
+  padding: 20px;
+  background: linear-gradient(to bottom, black, red);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: fixed;
+  top: 64px;
+  left: 0;
+}
+
+.botones {
+  height: 40px;
+  width: 200%;
+  font-size: 22px;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: left;
+  padding-left: 10px;
+  text-transform: capitalize;
+  background-color: var(--color-boton, white);
+  border-color: var(--color-boton, white);
+  letter-spacing: 1px;
+  transition: background-color 0.3s, color 0.3s;
+  margin-top: 3px;
+}
+
+.botonSalir {
+  font-size: 19px;
+  font-family: Arial, Helvetica, sans-serif;
+  position: absolute;
+  letter-spacing: 1px;
+  bottom: 80px; 
+  left: 10px;   
+  background-color: var(--color-boton, white); 
+  border-color: var(--color-boton, white); 
+  color: grey;
+}
+
+.botones:hover {
+  --color-boton: grey;
+  color: white;
+}
+
+.botonSalir:hover {
+  --color-boton: grey;
+  color: white;
+}
+
+main {
+  flex: 1;
+  margin-left: 200px;
+  padding: 20px;
+  height: calc(100vh - 64px); 
+  overflow-y: auto;
+}
+</style>

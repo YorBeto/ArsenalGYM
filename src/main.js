@@ -5,23 +5,27 @@ import { createVuetify } from 'vuetify'
 
 import App from './App.vue'
 import router from './router'
+import { useUserStore } from './stores/userStore';  // Importación corregida
 import 'vuetify/styles'
 import * as components from 'vuetify/components'
 import * as directives from 'vuetify/directives'
 import '@mdi/font/css/materialdesignicons.css'
+import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
+
+const pinia = createPinia()
+pinia.use(piniaPluginPersistedstate)
 
 const app = createApp(App)
-const pinia = createPinia();
+
 const vuetify = createVuetify({
     components,
     directives,
     icons: {
       iconfont: 'mdi', 
     },
-  })
-app.use(createPinia());
+})
+
+app.use(pinia);
 app.use(vuetify)
 app.use(router)
-app.use(pinia);
 app.mount('#app')
-
