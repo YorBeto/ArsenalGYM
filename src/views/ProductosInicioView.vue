@@ -9,14 +9,13 @@
           </v-tab>
           <v-tab value="">Todas</v-tab>
         </v-tabs>
-
         <v-row>
           <v-col v-for="producto in filteredProductos" :key="producto.ID_PRODUCTO" cols="12" md="6" lg="4">
             <v-card class="producto-card mx-auto my-4" max-width="344">
               <v-img :src="producto.IMAGEN" aspect-ratio="16/9" contain @error="handleImageError"></v-img>
               <v-card-title>{{ producto.NOMBRE }}</v-card-title>
               <v-card-subtitle>{{ producto.CATEGORIA }}</v-card-subtitle>
-              <v-card-text>
+              <v-card-text> 
                 <p>{{ producto.DESCRIPCION }}</p>
                 <p>{{ producto.PRECIO }} MX</p>
                 <p v-if="producto.STOCK !== null">Stock: {{ producto.STOCK }}</p>
@@ -25,6 +24,7 @@
                 <v-btn color="primary" @click="addToCart(producto)">Agregar al carrito</v-btn>
               </v-card-actions>
             </v-card>
+            <div v-if="true">{{ console.log(producto.IMAGEN) }}</div>
           </v-col>
         </v-row>
       </v-container>
@@ -68,7 +68,7 @@ const addToCart = (producto) => {
 };
 
 const handleImageError = (event) => {
-  event.target.src = '@/assets/imagen-local.jpg'; // Imagen por defecto si falla la carga
+  event.target.src = '/public/arsenal.png'; // Ajusta esta ruta según la ubicación real
 };
 
 console.log('Productos:', store.productos);
@@ -82,7 +82,5 @@ console.log('Productos:', store.productos);
   margin-bottom: 16px;
   border-radius: 8px;
 }
-.v-img {
-  border: 1px solid red; /* Para ayudar a depurar la visibilidad de las imágenes */
-}
+
 </style>
