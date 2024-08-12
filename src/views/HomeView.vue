@@ -23,30 +23,36 @@ const items = ref([
         </v-carousel-item>
       </v-carousel>
 
-      <!-- InBody Section -->
+
+      <!-- Productos-->
       <v-container>
         <v-row class="mb-5" align="center">
           <v-col cols="12" md="6">
             <v-card>
-              <v-card-title>EN ARSENAL NOS INTERESA TU SALUD</v-card-title>
-              <v-card-subtitle>
-                InBody es líder mundial en tecnología de análisis de composición corporal. A través de nuestros innovadores dispositivos, proporcionamos una evaluación precisa y detallada de los componentes del cuerpo humano, incluyendo masa muscular, grasa corporal, agua corporal total y mucho más. Nuestros equipos son utilizados por profesionales de la salud, entrenadores personales y centros de fitness para ayudar a individuos a comprender mejor su cuerpo y mejorar su bienestar.
-              </v-card-subtitle>
-              <v-card-subtitle>
-                Conoce tu cuerpo con nuestro InBody, una máquina capaz de medir las características de tu cuerpo. Agenda tu cita para descubrir tus límites.
-              </v-card-subtitle>
-              <v-card-actions>
+              <v-row no-gutters>
                 <v-col cols="12" md="6">
-            <v-img src="/INB270.png" alt="InBody Image" class="imagen-inbody"></v-img>
-          </v-col>
-                <router-link to="Inbody">
-                  <v-btn class="boton-agendar">AGENDAR</v-btn>
-                </router-link>
-              </v-card-actions>
+                  <v-img src="/public/creatinas/creatina1.jpg" alt="Creatina Image" class="imagen-creatina"></v-img>
+                </v-col>
+                <v-col cols="12" md="6" class="d-flex flex-column justify-center">
+                  <v-card-title>
+                    PRODUCTOS
+                  </v-card-title>
+                  <p>
+                    En Arsenal, tenemos todo para que continúes con tu rutina. Contamos con Creatinas, Proteínas, Multi-vitamínicos y muchos más, no te quedes sin los tuyos.
+                  </p>
+                  <router-link to="Producto">
+                    <v-btn class="boton-comprar mt-4">COMPRAR</v-btn>
+                  </router-link>
+                </v-col>
+              </v-row>
             </v-card>
+          </v-col>
+          <v-col cols="12" md="6">
           </v-col>
         </v-row>
       </v-container>
+      
+      
 
       <!-- Gym Section -->
       <v-container>
@@ -59,9 +65,9 @@ const items = ref([
               <v-card-title>
                 En Arsenal somos un gimnasio que busca el bienestar de nuestros socios como también superar sus límites.
               </v-card-title>
-              <v-card-subtitle>
+              <p>
                 Ofrecemos variedad de equipo, instructores y también contamos con clases de crossfit. Arsenal es un lugar especialmente diseñado y equipado para que acudas a realizar una actividad física en diversas intensidades. Nuestro propósito es que logres obtener los cambios que desees en tu cuerpo, que te sientas más seguro y así poder seguir buscando mejorar cada día más.
-              </v-card-subtitle>
+              </p>
             </v-card>
           </v-col>
         </v-row>
@@ -126,12 +132,19 @@ const items = ref([
   height: 100%;
 }
 
-.imagen-inbody, .imagen-arsenal {
-  width: 100%;
-  height: auto;
+.imagen-arsenal {
+  width: 50%;
+  height: 40%;
 }
 
-.boton-agendar {
+.imagen-creatina {
+  width: 90%; 
+  object-fit: cover;
+  padding: 0%;
+  margin: 0%;
+}
+
+.boton-comprar {
   margin-top: 10px;
   background-color: #d32f2f;
   color: white;

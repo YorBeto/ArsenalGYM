@@ -15,13 +15,7 @@
           :color="coloresBotones.compras"
           @click="compras"
         >Mis Compras</v-btn>
-        <v-btn
-          class="botones"
-          @mouseover="activarColorGris('inbody')"
-          @mouseleave="restaurarColorboton('inbody')"
-          :color="coloresBotones.inbody"
-          @click="mostrarContenido('InBody')"
-        >InBody</v-btn>
+       
         <v-btn
           class="botones"
           @mouseover="activarColorGris('historial')"
@@ -58,7 +52,6 @@ function cerrarSesion() {
 const coloresBotones = ref({
   info: 'white',
   compras: 'white',
-  inbody: 'white',
   historial: 'white'
 });
 
