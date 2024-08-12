@@ -69,12 +69,13 @@
         Novedades
       </v-btn>
 
-      <v-btn
+      <v-btn router-link to="mimembresia"
       class="botones"
       @mouseover="activarColorGris"
       @mouseleave="restaurarColorboton"
       :color="coloresBotones1"
-      @click="mostrarContenido('Novedades')"
+      @click="mostrarContenido('Membresia')"
+
     >
       Membresia
     </v-btn>

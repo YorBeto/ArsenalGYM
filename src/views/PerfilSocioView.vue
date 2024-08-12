@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <BarraNavSocio></BarraNavSocio>
+    <barraNav></barraNav>
     <BarraLatSocio @cerrarSesion="handleCerrarSesion"></BarraLatSocio>
     <v-container class="d-flex flex-column justify-space-between fill-height">
       <v-row class="d-flex justify-center">
@@ -22,7 +22,7 @@
 <script setup>
 import { useUserStore } from '@/stores/userStore';
 import BarraLatSocio from '@/components/BarraLatSocio.vue';
-import BarraNavSocio from '@/components/BarraNavSocio.vue';
+import barraNav from '@/components/barraNav.vue';
 import { useRouter } from 'vue-router';
 
 const userStore = useUserStore();

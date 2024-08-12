@@ -105,7 +105,8 @@ const router = createRouter({
     {
       path: '/perfil',
       name: 'perfilusuario',
-      component: PerfilUsuarioView
+      component: PerfilUsuarioView,
+      meta: { requiresAuth: true }
     },
     {
       path: '/perfilsocio',
@@ -121,8 +122,29 @@ const router = createRouter({
       path: '/carrito',
       name: 'carrito',
       component: CarritoView
+    },
+    {
+      path: '/Mimembresia',
+      name: 'mimembresia',
+      component: SociosMembresiaView
     }
   ]
 })
+
+
+router.beforeEach((to, from, next) => {
+  const userStore = useUserStore();
+
+  if (to.meta.requiresAuth && !userStore.usuario) {
+    next('/login');
+  } else if (to.path === '/login' && userStore.usuario) {
+    next('/perfil');
+  } else {
+    next();
+  }
+});
+
+import { useUserStore } from '@/stores/userStore';
+import SociosMembresiaView from '@/views/SociosMembresiaView.vue'
 
 export default router
