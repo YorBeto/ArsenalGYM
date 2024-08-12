@@ -25,8 +25,8 @@
               </router-link>
             </v-col>
             <v-col cols="auto">
-              <router-link to="/Inbody">
-                <v-btn class="boton-bar">INBODY</v-btn>
+              <router-link to="/Conocenos">
+                <v-btn class="boton-bar">CONOCENOS</v-btn>
               </router-link>
             </v-col>
           </v-row>
@@ -85,8 +85,8 @@
         <v-list-item link :to="{ path: '/Producto' }">
           <v-list-item-title>PRODUCTOS</v-list-item-title>
         </v-list-item>
-        <v-list-item link :to="{ path: '/Inbody' }">
-          <v-list-item-title>INBODY</v-list-item-title>
+        <v-list-item link :to="{ path: '/Conocenos' }">
+          <v-list-item-title>CONOCENOS</v-list-item-title>
         </v-list-item>
       </v-list>
     </v-menu>
@@ -94,7 +94,7 @@
 </template>
 
 <script setup>
-import { ref,computed } from 'vue';
+import { computed } from 'vue';
 import { useCarritoStore } from '@/stores/carrito';
 import { useUserStore } from '@/stores/userStore';
 import { useRouter } from 'vue-router';

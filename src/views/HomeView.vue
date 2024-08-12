@@ -45,18 +45,22 @@ const items = ref([
               </v-card-actions>
             </v-card>
           </v-col>
+          <v-col cols="12" md="6">
+          </v-col>
         </v-row>
       </v-container>
+      
+      
 
       <!-- Gym Section -->
-      <v-container>
-        <v-row class="mb-5" align="center">
-          <v-col cols="12" md="6">
-            <v-img src="/Avina.jpg" alt="Arsenal Image" class="imagen-arsenal"></v-img>
+      <v-container fluid>
+        <v-row class="mb-5" align="center" justify="center">
+          <v-col cols="12" md="6" class="d-flex align-center justify-center">
+            <!-- Puedes agregar contenido aquí si es necesario -->
           </v-col>
           <v-col cols="12" md="6">
-            <v-card>
-              <v-card-title>
+            <v-card class="arsenal">
+              <v-card-title class="card-title">
                 En Arsenal somos un gimnasio que busca el bienestar de nuestros socios como también superar sus límites.
               </v-card-title>
               <v-card-subtitle>
@@ -120,18 +124,34 @@ const items = ref([
 </template>
 
 <style scoped>
+
 .carousel-image {
   object-fit: cover;
   width: 100%;
   height: 100%;
 }
 
-.imagen-inbody, .imagen-arsenal {
+.arsenal{
   width: 100%;
-  height: auto;
+  max-width: 800px; /* Puedes ajustar este valor según tus necesidades */
+  margin: 0 auto; /* Centra el v-card horizontalmente */
+  padding: 16px;
+  box-sizing: border-box; /* Incluye padding y borde en el tamaño total */
 }
 
-.boton-agendar {
+.imagen-arsenal {
+  width: 50%;
+  height: 40%;
+}
+
+.imagen-creatina {
+  width: 90%; 
+  object-fit: cover;
+  padding: 0%;
+  margin: 0%;
+}
+
+.boton-comprar {
   margin-top: 10px;
   background-color: #d32f2f;
   color: white;
@@ -181,11 +201,62 @@ const items = ref([
   height: auto;
 }
 
+.In{
+  margin-left: -15px;
+}
+
+.titulo-in {
+  white-space: normal; /* Permite que el texto haga saltos de línea */
+  word-wrap: break-word; /* Rompe las palabras largas si es necesario */
+  overflow-wrap: break-word; /* Similar a word-wrap, asegura que el texto se ajuste */
+  margin: 0; /* Elimina márgenes innecesarios */
+  padding: 16px; /* Ajusta el padding si es necesario */
+  box-sizing: border-box; /* Incluye padding y borde en el tamaño total */
+  font-size: 1rem; /* Ajusta el tamaño del texto según sea necesario */
+}
+
+/* Ajuste adicional para tarjetas grandes y pequeñas */
+.inbody {
+  min-width: 100px;
+  width: 1000px;
+  margin: 0; /* Centra la tarjeta horizontalmente */
+  padding: 16px; /* Ajusta el padding según sea necesario */
+}
+
+.imagen-inbody {
+    width: 60%; /* Ajusta la imagen para ocupar el ancho completo */
+    height: 460px; /* Mantiene la proporción de la imagen */
+}
+
+
 @media (max-width: 900px) {
-  .imagen-inbody{
-    width: 80%; /* Ajusta el tamaño de las imágenes a un 80% del contenedor */
-    height: 180px; /* Mantiene la proporción de la imagen */
+  .inbody {
+    width: 300px;
+  }
+
+  .imagen-inbody {
+    width: 80%; /* Ajusta la imagen para ocupar el ancho completo */
+    height: 160px; /* Mantiene la proporción de la imagen */
     margin: -1px;
+  }
+
+  .imagen-arsenal {
+    width: 80%; /* Ajusta la imagen para ocupar el ancho completo */
+    height: 160px; /* Mantiene la proporción de la imagen */
+    margin: -1px;
+    margin-left: 35px;
+  }
+
+  .titulo-sad {
+    font-size: 1.5rem; /* Ajusta el tamaño del título según sea necesario */
+  }
+
+  .tutilo-in {
+    font-size: 1rem; /* Ajusta el tamaño del subtítulo según sea necesario */
+  }
+
+  .In{
+  margin-left: 8px;
   }
 
   }

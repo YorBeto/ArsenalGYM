@@ -98,7 +98,6 @@
 import BarraAdminNew from '@/components/BarraAdminNew.vue';
 import BarralateralAdmin from '@/components/BarralateralAdmin.vue';
 import { ref } from 'vue';
-import { useRouter } from 'vue-router';
 
 const nombre = ref('');
 const apellidos = ref('');
@@ -112,7 +111,6 @@ const curp = ref('');
 const rfc = ref('');
 const numeroSeguro = ref('');
 const valid = ref(false);
-const router = useRouter();
 
 const sexos = ['Masculino', 'Femenino'];
 
@@ -121,90 +119,85 @@ const rules = {
   email: value => /.+@.+\..+/.test(value) || 'Correo electrónico no válido',
   telefono: value => /^[0-9]{10}$/.test(value) || 'Número de teléfono no válido',
   password: value => value.length >= 6 || 'La contraseña debe tener al menos 6 caracteres',
-  curp: value => /^[A-Z0-9]{18}$/.test(value) || 'CURP no válido',
+  curp: value => /^([A-Z]{4}[0-9]{6}[H|M][A-Z]{5}[0-9]{2})$/.test(value) || 'CURP no válido',
   rfc: value => /^([A-ZÑ&]{3,4})(\d{6})((\D|\d){3})?$/.test(value) || 'RFC no válido',
   numeroSeguro: value => /^[0-9]{11}$/.test(value) || 'Número de Seguro Social no válido',
 };
 
 const limpiarFormulario = () => {
-  nombre.value = '';
-  apellidos.value = '';
-  fechaNacimiento.value = '';
-  sexo.value = '';
-  correo.value = '';
-  telefono.value = '';
-  contrasena.value = '';
-  direccion.value = '';
-  curp.value = '';
-  rfc.value = '';
-  numeroSeguro.value = '';
+nombre.value = '';
+apellidos.value = '';
+fechaNacimiento.value = '';
+sexo.value = '';
+correo.value = '';
+telefono.value = '';
+contrasena.value = '';
+direccion.value = '';
+curp.value = '';
+rfc.value = '';
+numeroSeguro.value = '';
 };
 
 const submitForm = () => {
-  const data = {
-    nombre: nombre.value,
-    apellidos: apellidos.value,
-    fechaNacimiento: fechaNacimiento.value,
-    sexo: sexo.value === 'Masculino' ? 'M' : 'F',
-    correo: correo.value,
-    telefono: telefono.value,
-    contrasena: contrasena.value,
-    direccion: direccion.value,
-    curp: curp.value,
-    rfc: rfc.value,
-    numeroSeguro: numeroSeguro.value
-  };
-
-  fetch('http://mipagina.com/registroEmpleados', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(data)
-  })
-    .then(response => response.json())
-    .then(json => {
-      if (response.ok && json.success) {
-        alert('Empleado registrado exitosamente');
-        limpiarFormulario();
-        router.push('/empleados'); // Redirige al apartado de empleados
-      } else {
-        alert('Error al registrar empleado: ' + (json.message || 'Error desconocido'));
-      }
-    })
-    .catch(error => {
-      alert('Error en la solicitud: ' + error.message);
-    });
+const data = {
+  nombre: nombre.value,
+  apellidos: apellidos.value,
+  fechaNacimiento: fechaNacimiento.value,
+  sexo: sexo.value === 'Masculino' ? 'M' : 'F',
+  correo: correo.value,
+  telefono: telefono.value,
+  contrasena: contrasena.value,
+  direccion: direccion.value,
+  curp: curp.value,
+  rfc: rfc.value,
+  numeroSeguro: numeroSeguro.value
 };
 
+fetch('http://mipagina.com/registroEmpleados', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify(data)
+})
+  .then(response => response.json())
+  .then(json => {
+    if (json.success) {
+      alert('Empleado registrado exitosamente');
+      limpiarFormulario();
+    } else {
+      alert('Error al registrar empleado: ' + json.message);
+    }
+  });
+};
 </script>
 
 <style>
 #admin-registro-empleados {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
+display: flex;
+flex-direction: column;
+height: 100vh;
 }
 
 .contenedor {
-  display: flex;
-  flex: 1;
-  overflow: hidden;
+display: flex;
+flex: 1;
+overflow: hidden;
 }
 
 .main-content {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  padding: 1rem;
+display: flex;
+flex-direction: column;
+flex: 1;
+padding: 1rem;
 }
 
 h1 {
-  margin-bottom: 1rem;
+margin-bottom: 1rem;
 }
 
 .v-form {
-  max-width: 600px;
-  margin: 0 auto;
+max-width: 600px;
+margin: 0 auto;
 }
 </style>

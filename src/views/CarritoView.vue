@@ -13,7 +13,7 @@
             </v-col>
           </v-row>
           <v-row v-else>
-            <v-col v-for="(producto, index) in carritoStore.productos" :key="producto.ID_PRODUCTO" cols="12" md="4">
+            <v-col v-for="(producto) in carritoStore.productos" :key="producto.ID_PRODUCTO" cols="12" md="4">
               <v-card class="mb-4" outlined>
                 <v-img :src="producto.imagen || 'https://via.placeholder.com/150'" alt="Imagen del producto" aspect-ratio="1.1" class="rounded-top"></v-img>
                 <v-card-title class="text-h6">{{ producto.NOMBRE }}</v-card-title>
@@ -53,6 +53,7 @@
           <v-row>
             <v-col cols="12" class="d-flex justify-end">
               <v-btn color="blue" @click="proceedToPayment">Proceder al pago</v-btn>
+              <v-btn color="blue" :href="paymentLink" target="_blank" rel="noopener noreferrer">Pagar</v-btn>
             </v-col>
           </v-row>
         </v-card>
