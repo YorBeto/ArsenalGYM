@@ -94,8 +94,10 @@
 </template>
 
 <script setup>
-import { computed } from 'vue';
+import { ref, computed } from 'vue';
 import { useCarritoStore } from '@/stores/carrito';
+import { useUserStore } from '@/stores/userStore';
+import { useRouter } from 'vue-router';
 
 const userStore = useUserStore();
 const carritoStore = useCarritoStore();

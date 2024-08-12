@@ -24,24 +24,28 @@ const items = ref([
       </v-carousel>
 
       <!-- InBody Section -->
-      <v-container>
-        <v-row class="mb-5" align="center">
-          <v-col cols="12" md="6">
-            <v-card>
-              <v-card-title>EN ARSENAL NOS INTERESA TU SALUD</v-card-title>
-              <v-card-subtitle>
+      <v-container class="In">
+        <v-row class="mb-5" align="center" justify="center">
+          <v-col cols="12" md="10" lg="8">
+            <v-card class="inbody">
+              <v-card-title class="titulo-sad">EN ARSENAL NOS INTERESA TU SALUD</v-card-title>
+              <v-card-subtitle class="titulo-in">
                 InBody es líder mundial en tecnología de análisis de composición corporal. A través de nuestros innovadores dispositivos, proporcionamos una evaluación precisa y detallada de los componentes del cuerpo humano, incluyendo masa muscular, grasa corporal, agua corporal total y mucho más. Nuestros equipos son utilizados por profesionales de la salud, entrenadores personales y centros de fitness para ayudar a individuos a comprender mejor su cuerpo y mejorar su bienestar.
               </v-card-subtitle>
               <v-card-subtitle>
                 Conoce tu cuerpo con nuestro InBody, una máquina capaz de medir las características de tu cuerpo. Agenda tu cita para descubrir tus límites.
               </v-card-subtitle>
               <v-card-actions>
-                <v-col cols="12" md="6">
-            <v-img src="/INB270.png" alt="InBody Image" class="imagen-inbody"></v-img>
-          </v-col>
-                <router-link to="Inbody">
-                  <v-btn class="boton-agendar">AGENDAR</v-btn>
-                </router-link>
+                <v-row class="align-center" justify="space-between">
+                  <v-col cols="12" md="6" class="d-flex align-center">
+                    <v-img src="/INB270.png" alt="InBody Image" class="imagen-inbody"></v-img>
+                  </v-col>
+                  <v-col cols="12" md="6" class="d-flex align-center justify-center">
+                    <router-link to="Inbody">
+                      <v-btn class="boton-agendar">AGENDAR</v-btn>
+                    </router-link>
+                  </v-col>
+                </v-row>
               </v-card-actions>
             </v-card>
           </v-col>
@@ -49,19 +53,20 @@ const items = ref([
       </v-container>
 
       <!-- Gym Section -->
-      <v-container>
-        <v-row class="mb-5" align="center">
-          <v-col cols="12" md="6">
-            <v-img src="/Avina.jpg" alt="Arsenal Image" class="imagen-arsenal"></v-img>
+      <v-container fluid>
+        <v-row class="mb-5" align="center" justify="center">
+          <v-col cols="12" md="6" class="d-flex align-center justify-center">
+            <!-- Puedes agregar contenido aquí si es necesario -->
           </v-col>
           <v-col cols="12" md="6">
-            <v-card>
-              <v-card-title>
+            <v-card class="arsenal">
+              <v-card-title class="card-title">
                 En Arsenal somos un gimnasio que busca el bienestar de nuestros socios como también superar sus límites.
               </v-card-title>
-              <v-card-subtitle>
+              <v-card-subtitle class="card-subtitle">
                 Ofrecemos variedad de equipo, instructores y también contamos con clases de crossfit. Arsenal es un lugar especialmente diseñado y equipado para que acudas a realizar una actividad física en diversas intensidades. Nuestro propósito es que logres obtener los cambios que desees en tu cuerpo, que te sientas más seguro y así poder seguir buscando mejorar cada día más.
               </v-card-subtitle>
+              <v-img src="/Avina.jpg" alt="Arsenal Image" class="imagen-arsenal"></v-img>
             </v-card>
           </v-col>
         </v-row>
@@ -120,10 +125,19 @@ const items = ref([
 </template>
 
 <style scoped>
+
 .carousel-image {
   object-fit: cover;
   width: 100%;
   height: 100%;
+}
+
+.arsenal{
+  width: 100%;
+  max-width: 800px; /* Puedes ajustar este valor según tus necesidades */
+  margin: 0 auto; /* Centra el v-card horizontalmente */
+  padding: 16px;
+  box-sizing: border-box; /* Incluye padding y borde en el tamaño total */
 }
 
 .imagen-inbody, .imagen-arsenal {
@@ -181,11 +195,62 @@ const items = ref([
   height: auto;
 }
 
+.In{
+  margin-left: -15px;
+}
+
+.titulo-in {
+  white-space: normal; /* Permite que el texto haga saltos de línea */
+  word-wrap: break-word; /* Rompe las palabras largas si es necesario */
+  overflow-wrap: break-word; /* Similar a word-wrap, asegura que el texto se ajuste */
+  margin: 0; /* Elimina márgenes innecesarios */
+  padding: 16px; /* Ajusta el padding si es necesario */
+  box-sizing: border-box; /* Incluye padding y borde en el tamaño total */
+  font-size: 1rem; /* Ajusta el tamaño del texto según sea necesario */
+}
+
+/* Ajuste adicional para tarjetas grandes y pequeñas */
+.inbody {
+  min-width: 100px;
+  width: 1000px;
+  margin: 0; /* Centra la tarjeta horizontalmente */
+  padding: 16px; /* Ajusta el padding según sea necesario */
+}
+
+.imagen-inbody {
+    width: 60%; /* Ajusta la imagen para ocupar el ancho completo */
+    height: 460px; /* Mantiene la proporción de la imagen */
+}
+
+
 @media (max-width: 900px) {
-  .imagen-inbody{
-    width: 80%; /* Ajusta el tamaño de las imágenes a un 80% del contenedor */
-    height: 180px; /* Mantiene la proporción de la imagen */
+  .inbody {
+    width: 300px;
+  }
+
+  .imagen-inbody {
+    width: 80%; /* Ajusta la imagen para ocupar el ancho completo */
+    height: 160px; /* Mantiene la proporción de la imagen */
     margin: -1px;
+  }
+
+  .imagen-arsenal {
+    width: 80%; /* Ajusta la imagen para ocupar el ancho completo */
+    height: 160px; /* Mantiene la proporción de la imagen */
+    margin: -1px;
+    margin-left: 35px;
+  }
+
+  .titulo-sad {
+    font-size: 1.5rem; /* Ajusta el tamaño del título según sea necesario */
+  }
+
+  .tutilo-in {
+    font-size: 1rem; /* Ajusta el tamaño del subtítulo según sea necesario */
+  }
+
+  .In{
+  margin-left: 8px;
   }
 
   }
