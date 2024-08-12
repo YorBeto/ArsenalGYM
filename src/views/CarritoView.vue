@@ -8,7 +8,7 @@
           <v-divider></v-divider>
           <v-row v-if="carritoStore.productos.length === 0" class="text-center">
             <v-col cols="12">
-              <v-icon size="100" color="grey lighten-1">mdi-cart-outline</v-icon>
+              <v-icon size="100" color="blue">mdi-cart-outline</v-icon>
               <p class="text-h6">Tu carrito está vacío</p>
             </v-col>
           </v-row>
@@ -40,6 +40,19 @@
                   <v-btn text color="red darken-2" @click="removeFromCart(producto.ID_PRODUCTO)">Eliminar</v-btn>
                 </v-card-actions>
               </v-card>
+            </v-col>
+          </v-row>
+
+          <!-- Total y Botón de Pago -->
+          <v-divider class="my-4"></v-divider>
+          <v-row>
+            <v-col cols="12" class="d-flex justify-end">
+              <v-card-subtitle class="text-h6 font-weight-bold">Total: {{ totalCarrito }} MX</v-card-subtitle>
+            </v-col>
+          </v-row>
+          <v-row>
+            <v-col cols="12" class="d-flex justify-end">
+              <v-btn color="blue" @click="proceedToPayment">Proceder al pago</v-btn>
             </v-col>
           </v-row>
         </v-card>
@@ -109,4 +122,15 @@ const recommendedProductos = computed(() => {
   // Get a random selection of up to 3 products
   return filteredProductos.sort(() => 0.5 - Math.random()).slice(0, 3);
 });
+
+// Computed property to calculate the total amount of the cart
+const totalCarrito = computed(() => {
+  return carritoStore.productos.reduce((total, producto) => total + (producto.PRECIO * producto.cantidad), 0).toFixed(2);
+});
+
+// Function to handle the payment process
+const proceedToPayment = () => {
+  // Implement your payment process here
+  alert('Procediendo al pago');
+};
 </script>

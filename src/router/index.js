@@ -122,11 +122,6 @@ const router = createRouter({
       path: '/carrito',
       name: 'carrito',
       component: CarritoView
-    },
-    {
-      path: '/Mimembresia',
-      name: 'mimembresia',
-      component: SociosMembresiaView
     }
   ]
 })
