@@ -83,10 +83,12 @@
 import { computed } from 'vue';
 import { useCarritoStore } from '@/stores/carrito';
 import { useProductosStore } from '@/stores/productos';
+import { useUserStore } from '@/stores/userStore';
 import barraNav from '@/components/barraNav.vue';
 
 const carritoStore = useCarritoStore();
 const productosStore = useProductosStore();
+const userStore = useUserStore();
 
 const removeFromCart = (ID_PRODUCTO) => {
   carritoStore.removeProducto(ID_PRODUCTO);
@@ -129,8 +131,49 @@ const totalCarrito = computed(() => {
 });
 
 // Function to handle the payment process
-const proceedToPayment = () => {
-  // Implement your payment process here
-  alert('Procediendo al pago');
+const proceedToPayment = async () => {
+  if (!userStore.usuario) {
+    alert('Debe iniciar sesión para realizar el pago.');
+    return;
+  }
+
+  const paymentData = {
+    productos: carritoStore.productos,
+    total: totalCarrito.value,
+    metodoPago: 'Tarjeta',  // Ajusta según el método de pago
+    clienteId: userStore.usuario.id_cliente  // Asegúrate de que 'id_cliente' exista
+  };
+
+  // Verificación de los datos antes de enviarlos
+  console.log('Datos de pago a enviar:', paymentData);
+
+  if (!paymentData.productos || !paymentData.total || !paymentData.clienteId) {
+    alert('Datos incompletos: Faltan productos, total o ID de cliente.');
+    return;
+  }
+
+  try {
+    const response = await fetch('/http://mipagina.com/Pago', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(paymentData),
+    });
+
+    const data = await response.json();
+
+    if (data.status === 'success') {
+      alert('Pago realizado con éxito');
+      // Limpiar el carrito después del pago exitoso
+      carritoStore.limpiarCarrito();
+    } else {
+      alert('Error en el pago: ' + data.message);
+    }
+  } catch (error) {
+    alert('Error en el proceso de pago: ' + error.message);
+  }
 };
+
 </script>
+

@@ -17,7 +17,7 @@ import PerfilSocioMembresiaView from '@/views/PerfilSocioMembresiaView.vue'
 import CarritoView from '@/views/CarritoView.vue' 
 import AdminEmpleadosView from '@/views/AdminEmpleadosView.vue'
 import AdminRegistrarEmpleadoView from '@/views/AdminRegistrarEmpleadoView.vue'
-
+import AdminAsistenciasView from '@/views/AdminAsistenciasView.vue'
 
 
 const router = createRouter({
@@ -122,6 +122,11 @@ const router = createRouter({
       path: '/carrito',
       name: 'carrito',
       component: CarritoView
+    },
+    {
+      path: '/AdminAsistencia',
+      name: 'AdminAsistencia',
+      component: AdminAsistenciasView
     }
   ]
 })
@@ -141,5 +146,6 @@ router.beforeEach((to, from, next) => {
 
 import { useUserStore } from '@/stores/userStore';
 import SociosMembresiaView from '@/views/SociosMembresiaView.vue'
+import AdminAsistenciasView from '@/views/AdminAsistenciasView.vue'
 
 export default router
