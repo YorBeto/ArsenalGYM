@@ -7,7 +7,6 @@ import AdminInicioView from '@/views/AdminInicioView.vue'
 import RegistroView from '@/views/RegistroView.vue'
 import AdminsociosView from '@/views/AdminsociosView.vue'
 import AdminCitasView from '@/views/AdminCitasView.vue'
-import AdminProductosView from '@/views/AdminProductosView.vue'
 import PostcompraView from '@/views/PostcompraView.vue'
 import PerfilUsuarioView from '@/views/PerfilUsuarioView.vue'
 import AdminAgregarProductoView from '@/views/AdminAgregarProductoView.vue'
@@ -18,6 +17,7 @@ import CarritoView from '@/views/CarritoView.vue'
 import AdminEmpleadosView from '@/views/AdminEmpleadosView.vue'
 import AdminRegistrarEmpleadoView from '@/views/AdminRegistrarEmpleadoView.vue'
 import PagosView from '@/views/PagosView.vue'
+import AdminProductosView from '@/views/AdminProductosView.vue'
 
 
 
@@ -34,13 +34,11 @@ const router = createRouter({
       name: 'about',
       component: () => import('../views/AboutView.vue')
     },
-   
     {
       path: '/Login',
       name: 'Login',
       component: Loginview
     },
-
     {
       path: '/Producto',
       name: 'Producto',
@@ -87,13 +85,11 @@ const router = createRouter({
       component: AdminEditarProductoView
     },
     {
-
       path: '/empleados',
       name: 'empleados',
       component: AdminEmpleadosView
     },
     {
-
       path: '/registrarempleados',
       name: 'registrarempleados',
       component: AdminRegistrarEmpleadoView
@@ -148,6 +144,5 @@ router.beforeEach((to, from, next) => {
 import { useUserStore } from '@/stores/userStore';
 // eslint-disable-next-line no-unused-vars
 import SociosMembresiaView from '@/views/SociosMembresiaView.vue'
-
 
 export default router
