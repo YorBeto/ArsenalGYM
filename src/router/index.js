@@ -19,7 +19,6 @@ import AdminEmpleadosView from '@/views/AdminEmpleadosView.vue'
 import AdminRegistrarEmpleadoView from '@/views/AdminRegistrarEmpleadoView.vue'
 
 
-
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -33,13 +32,11 @@ const router = createRouter({
       name: 'about',
       component: () => import('../views/AboutView.vue')
     },
-   
     {
       path: '/Login',
       name: 'Login',
       component: Loginview
     },
-
     {
       path: '/Producto',
       name: 'Producto',
@@ -86,13 +83,11 @@ const router = createRouter({
       component: AdminEditarProductoView
     },
     {
-
       path: '/empleados',
       name: 'empleados',
       component: AdminEmpleadosView
     },
     {
-
       path: '/registrarempleados',
       name: 'registrarempleados',
       component: AdminRegistrarEmpleadoView
@@ -121,8 +116,7 @@ const router = createRouter({
       path: '/carrito',
       name: 'carrito',
       component: CarritoView
-    },
-    
+    }
   ]
 })
 

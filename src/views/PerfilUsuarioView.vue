@@ -1,14 +1,12 @@
-PERFIL USUARIO
-
 <template>
   <v-app>
     <barraNav></barraNav>
     <div class="main-container">
       <BarraLatCliente class="sidebar"></BarraLatCliente>
-      <div class="container">
-        <v-card>
-          <v-card-title>Perfil de Usuario</v-card-title>
-          <v-card-text>
+      <div class="content-container">
+        <v-card class="profile-card">
+          <v-card-title class="title">Perfil de Usuario</v-card-title>
+          <v-card-text class="info">
             <p><strong>Nombre:</strong> {{ usuario?.nombre }}</p>
             <p><strong>Correo:</strong> {{ usuario?.correo }}</p>
             <p><strong>Fecha de Registro:</strong> {{ usuario?.fecha_registro }}</p>
@@ -32,21 +30,47 @@ const usuario = computed(() => userStore.usuario);
 <style scoped>
 .main-container {
   display: flex;
-  height: 100vh; /* Asegura que la altura ocupe toda la pantalla */
+  height: 100vh;
+  background-color:gray; 
 }
 
-.sidebar {
-  width: 200px; /* Ajusta el ancho según sea necesario */
+.content-container {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
 }
 
-.container {
-  flex-grow: 1; /* Permite que el contenedor ocupe el espacio restante */
-  padding-left: 200px;
-  padding-top: 80px;
+.profile-card {
+  width: 450px;
+  padding: 20px;
+  border-radius: 15px;
+  background: linear-gradient(to bottom, black, red);;
+  position: relative;
+  transition: transform 0.3s ease-in; /* Animación al pasar el mouse */
 }
 
-v-card {
-  width: 100px; /* Ajusta el tamaño del card según sea necesario */
-
+.profile-card:hover {
+  transform: scale(1.15); /* Efecto de zoom al pasar el mouse */
 }
+
+.title {
+  font-size: 26px;
+  font-weight: bold;
+  margin: 20px 0;
+  color: white;
+  text-align: center;
+  position: center;
+}
+
+.info {
+  font-size: 18px;
+  color: white;
+}
+
+.info p {
+  margin: 10px;
+}
+
 </style>
