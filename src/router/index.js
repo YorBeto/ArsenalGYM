@@ -17,6 +17,7 @@ import PerfilSocioMembresiaView from '@/views/PerfilSocioMembresiaView.vue'
 import CarritoView from '@/views/CarritoView.vue' 
 import AdminEmpleadosView from '@/views/AdminEmpleadosView.vue'
 import AdminRegistrarEmpleadoView from '@/views/AdminRegistrarEmpleadoView.vue'
+import PagosView from '@/views/PagosView.vue'
 
 
 
@@ -122,6 +123,11 @@ const router = createRouter({
       path: '/carrito',
       name: 'carrito',
       component: CarritoView
+    },
+    {
+      path: '/pago',
+      name: 'pago',
+      component: PagosView
     }
   ]
 })
@@ -140,6 +146,8 @@ router.beforeEach((to, from, next) => {
 });
 
 import { useUserStore } from '@/stores/userStore';
+// eslint-disable-next-line no-unused-vars
 import SociosMembresiaView from '@/views/SociosMembresiaView.vue'
+
 
 export default router

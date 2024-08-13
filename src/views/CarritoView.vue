@@ -52,8 +52,7 @@
           </v-row>
           <v-row>
             <v-col cols="12" class="d-flex justify-end">
-              <v-btn color="blue" @click="proceedToPayment">Proceder al pago</v-btn>
-              <v-btn color="blue" :href="paymentLink" target="_blank" rel="noopener noreferrer">Pagar</v-btn>
+              <router-link to="/pago"><v-btn color="blue" target="_blank" rel="noopener noreferrer">Pagar</v-btn></router-link>
             </v-col>
           </v-row>
         </v-card>
@@ -129,12 +128,5 @@ const totalCarrito = computed(() => {
   return carritoStore.productos.reduce((total, producto) => total + (producto.PRECIO * producto.cantidad), 0).toFixed(2);
 });
 
-// Function to handle the payment process
-const proceedToPayment = () => {
-  // Implement your payment process here
-  alert('Procediendo al pago');
-};
-  
-const paymentLink = 'https://buy.stripe.com/00gdQTa2v0FR9eE4gg';
 
 </script>
