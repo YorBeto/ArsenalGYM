@@ -25,8 +25,8 @@
               </router-link>
             </v-col>
             <v-col cols="auto">
-              <router-link to="/Inbody">
-                <v-btn class="boton-bar">INBODY</v-btn>
+              <router-link to="/Conocenos">
+                <v-btn class="boton-bar">CONOCENOS</v-btn>
               </router-link>
             </v-col>
           </v-row>
@@ -35,31 +35,33 @@
         <v-col cols="auto" class="d-flex justify-end align-center">
           <v-row no-gutters>
             <v-col cols="auto">
-              <router-link to="/Login">
+              <router-link v-if="userStore.usuario" :to="userStore.isSocio() ? '/perfilSocio' : '/perfil'">
+                <v-btn icon class="boton-bar">
+                  <v-icon>mdi-account</v-icon>
+                </v-btn>
+              </router-link>
+              <router-link v-else :to="{ path: '/login' }">
                 <v-btn icon class="boton-bar">
                   <v-icon>mdi-account</v-icon>
                 </v-btn>
               </router-link>
             </v-col>
             <v-col cols="auto" class="cart-container d-flex align-center">
-              <router-link to="/carrito">
-                <v-btn icon class="boton-bar" :class="{ 'cart-updated': isCartUpdated }">
-                  <v-icon>mdi-cart</v-icon>
-                </v-btn>
-              </router-link>
-              <v-badge
-                v-if="carritoCount > 0"
-                color="red"
-                :content="carritoCount"
-                overlap
-                class="cart-badge"
-              ></v-badge>
+              <v-btn icon class="boton-bar" :class="{ 'cart-updated': isCartUpdated }" @click="handleCarritoClick">
+                <v-icon>mdi-cart</v-icon>
+                <v-badge
+                  v-if="carritoCount > 0"
+                  color="red"
+                  :content="carritoCount"
+                  overlap
+                  class="cart-badge"
+                ></v-badge>
+              </v-btn>
             </v-col>
           </v-row>
         </v-col>
       </v-row>
     </v-container>
-
 
     <v-col class="d-flex d-md-none" cols="auto">
       <v-btn icon @click="toggleMenu">
@@ -83,8 +85,8 @@
         <v-list-item link :to="{ path: '/Producto' }">
           <v-list-item-title>PRODUCTOS</v-list-item-title>
         </v-list-item>
-        <v-list-item link :to="{ path: '/Inbody' }">
-          <v-list-item-title>INBODY</v-list-item-title>
+        <v-list-item link :to="{ path: '/Conocenos' }">
+          <v-list-item-title>CONOCENOS</v-list-item-title>
         </v-list-item>
       </v-list>
     </v-menu>
@@ -92,12 +94,16 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue';
+import { computed } from 'vue';
 import { useCarritoStore } from '@/stores/carrito';
+import { useUserStore } from '@/stores/userStore';
+import { useRouter } from 'vue-router';
+
+const userStore = useUserStore();
+const carritoStore = useCarritoStore();
+const router = useRouter();
 
 const menuVisible = ref(false);
-
-const carritoStore = useCarritoStore();
 
 const carritoCount = computed(() => {
   return carritoStore.productos.reduce((total, producto) => total + producto.cantidad, 0);
@@ -113,6 +119,13 @@ const scrollToTop = () => {
 const toggleMenu = () => {
   menuVisible.value = !menuVisible.value;
 };
+
+const handleCarritoClick = () => {
+  router.push({ path: '/carrito' });
+};
+
+// Cargar el usuario al iniciar la app
+userStore.loadUsuario();
 </script>
 
 <style scoped>
@@ -136,19 +149,14 @@ const toggleMenu = () => {
   text-align: center;
 }
 
-.boton-iniciar-sesion,
-.boton-compras {
-  margin-left: 5px;
-}
-
 .v-menu__content {
   min-width: 200px;
 }
 
 .menu-desplegable {
   position: fixed;
-  right: 0; /* Ajusta la posición del menú a la derecha de la pantalla */
-  top: 70px; /* Ajusta según la posición de tu barra de navegación */
+  right: 0;
+  top: 70px;
 }
 
 .d-md-flex {
@@ -207,4 +215,3 @@ const toggleMenu = () => {
   75% { transform: translateX(5px); }
 }
 </style>
-

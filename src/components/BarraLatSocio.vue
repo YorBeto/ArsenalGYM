@@ -6,7 +6,7 @@
         @mouseover="activarColorGris"
         @mouseleave="restaurarColorboton"
         :color="coloresBotones1"
-      >InBody</v-btn>
+      >Mi Perfil</v-btn>
       <v-btn
         class="botones"
         @mouseover="activarColorGris"
@@ -65,19 +65,15 @@
         @mouseleave="restaurarColorboton"
         :color="coloresBotones1"
         @click="mostrarContenido('Novedades')"
-      >
-        Novedades
-      </v-btn>
+      >Novedades</v-btn>
 
-      <v-btn
+      <v-btn router-link to="mimembresia"
       class="botones"
       @mouseover="activarColorGris"
       @mouseleave="restaurarColorboton"
       :color="coloresBotones1"
-      @click="mostrarContenido('Novedades')"
-    >
-      Membresia
-    </v-btn>
+      @click="mostrarContenido('Membresia')"
+      >Membresia</v-btn>
   
 
 
@@ -86,26 +82,20 @@
         @mouseover="activarColorGris"
         @mouseleave="restaurarColorboton"
         :color="coloresBotones1"
-      >
-        Clases
-      </v-btn>
+      >Clases</v-btn>
       <v-btn
         class="botones"
         @mouseover="activarColorGris"
         @mouseleave="restaurarColorboton"
         :color="coloresBotones1"
-      >
-        Historial
-      </v-btn>
+      >Historial</v-btn>
       <v-btn
       class="botonSalir"
       @mouseover="activarRojo"
       @mouseleave="restaurarRojo"
       :color="colorSalir"
       @click="cerrarSesion"
-    >
-      Cerrar Sesión
-    </v-btn>
+    >Cerrar Sesión</v-btn>
     </aside>
 
     <main>
@@ -146,7 +136,7 @@ function toggleRutinas() {
 }
 
 const coloresBotones1 = {
-  inbody: 'white',
+  perfil: 'white',
   rutinas: 'white',
   membresia: 'white',
   clases: 'white',
