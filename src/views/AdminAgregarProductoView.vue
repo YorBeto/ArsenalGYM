@@ -5,26 +5,59 @@
       <BarralateralAdmin></BarralateralAdmin>
       <div class="main-content">
         <h1>Registrar Producto</h1>
-        <v-form @submit.prevent="submitForm">
-          <v-text-field v-model="nombre" label="Nombre" required></v-text-field>
-          <v-textarea v-model="descripcion" label="Descripción" required></v-textarea>
-          <v-text-field v-model="precio" label="Precio" type="number" required></v-text-field>
-          <v-text-field v-model="stock" label="Stock" type="number" required></v-text-field>
-          <v-select
-            v-model="id_categoria"
-            :items="categorias"
-            item-value="ID_CATEGORIA"
-            item-text="NOMBRE"
-            label="Categoría"
+        <v-form v-model="valid" @submit.prevent="submitForm">
+          <v-text-field
+            v-model="nombre"
+            label="Nombre"
+            :rules="[rules.required]"
             required
-          ></v-select>
+          ></v-text-field>
+
+          <v-textarea
+            v-model="descripcion"
+            label="Descripción"
+            :rules="[rules.required]"
+            required
+          ></v-textarea>
+
+          <v-text-field
+            v-model="precio"
+            label="Precio"
+            type="number"
+            :rules="[rules.required]"
+            required
+          ></v-text-field>
+
+          <v-text-field
+            v-model="stock"
+            label="Stock"
+            type="number"
+            :rules="[rules.required]"
+            required
+          ></v-text-field>
+
           <v-file-input
             v-model="imagen"
-            label="Subir imagen"
+            label="Imagen"
             accept="image/*"
             required
           ></v-file-input>
-          <v-btn type="submit" color="primary">Agregar Producto</v-btn>
+
+          <div class="categoria-container">
+            <label>Categoría</label>
+            <div class="categoria-buttons">
+              <v-btn
+                v-for="cat in categorias"
+                :key="cat.value"
+                :color="categoria === cat.value ? 'primary' : 'default'"
+                @click="categoria = cat.value"
+              >
+                {{ cat.text }}
+              </v-btn>
+            </div>
+          </div>
+
+          <v-btn type="submit" color="primary" :disabled="!valid">Agregar Producto</v-btn>
         </v-form>
       </div>
     </div>
@@ -34,43 +67,110 @@
 <script setup>
 import BarraAdminNew from '@/components/BarraAdminNew.vue';
 import BarralateralAdmin from '@/components/BarralateralAdmin.vue';
-import { ref, onMounted } from 'vue';
+import { ref } from 'vue';
 
 const nombre = ref('');
 const descripcion = ref('');
 const precio = ref('');
 const stock = ref('');
-const id_categoria = ref(null); // Inicializa con null o un valor válido
-const imagen = ref(null);
-const categorias = ref([]);
+const categoria = ref('');
+const imagen = ref(null); // Para almacenar la imagen seleccionada
+const valid = ref(false);
 
-// Función para cargar categorías usando fetch
-const loadCategorias = async () => {
-  try {
-    const response = await fetch('http://mipagina.com/categorias');
-    const result = await response.json();
-    console.log('Categorías:', result); // Verifica la respuesta aquí
-    
-    if (result.status === 200) {
-      categorias.value = result.data; // Ajusta según la estructura de tu respuesta
-    } else {
-      console.error('Error al obtener categorías:', result.msg);
-    }
-  } catch (error) {
-    console.error('Error al cargar categorías:', error);
-  }
+const categorias = [
+  { text: 'Proteína', value: 'CAT01' },
+  { text: 'Creatinas', value: 'CAT02' },
+  { text: 'Multi-vitaminicos', value: 'CAT03' },
+  { text: 'Pre-entrenos', value: 'CAT04' },
+  { text: 'Membresias', value: 'CAT05' },
+];
+
+const rules = {
+  required: value => !!value || 'Campo requerido',
 };
 
-// Cargar categorías al montar el componente
-onMounted(() => {
-  loadCategorias();
-});
+const resetForm = () => {
+  nombre.value = '';
+  descripcion.value = '';
+  precio.value = '';
+  stock.value = '';
+  categoria.value = '';
+  imagen.value = null;
+};
 
-const submitForm = () => {
-  // Lógica para enviar el formulario
+const submitForm = async () => {
+  if (!nombre.value || !descripcion.value || !precio.value || !stock.value || !categoria.value || !imagen.value) {
+    alert('Por favor, complete todos los campos.');
+    return;
+  }
+
+  const formData = new FormData();
+  formData.append('nombre', nombre.value);
+  formData.append('descripcion', descripcion.value);
+  formData.append('precio', parseFloat(precio.value));
+  formData.append('stock', parseInt(stock.value));
+  formData.append('categoria', categoria.value);
+  formData.append('imagen', imagen.value); // Añadir la imagen al FormData
+
+  try {
+    const response = await fetch('http://mipagina.com/insertarproducto', {
+      method: 'POST',
+      body: formData,
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const json = await response.json();
+    if (json.success) {
+      alert('Producto registrado exitosamente');
+      resetForm();
+    } else {
+      alert('Error al registrar Producto: ' + json.message);
+    }
+  } catch (error) {
+    console.error('Error durante el registro del producto:', error);
+    alert('Error al registrar Producto. Por favor, inténtelo de nuevo más tarde.');
+  }
 };
 </script>
 
 <style>
-/* Estilos */
+#admin-registro {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.contenedor {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+.main-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 1rem;
+}
+
+h1 {
+  margin-bottom: 1rem;
+}
+
+.v-form {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.categoria-container {
+  margin-top: 1rem;
+}
+
+.categoria-buttons {
+  display: flex;
+  gap: 10px;
+}
 </style>

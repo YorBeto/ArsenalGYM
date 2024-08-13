@@ -84,12 +84,49 @@
 import { computed } from 'vue';
 import { useCarritoStore } from '@/stores/carrito';
 import { useProductosStore } from '@/stores/productos';
-import { useUserStore } from '@/stores/userStore';
 import barraNav from '@/components/barraNav.vue';
+import { loadStripe } from '@stripe/stripe-js';
+
+const stripePromise = loadStripe('pk_live_51PmMIhC8RB5JM6EJHOootuUuCTwNCgif5cfANSBEX6N5Ntt55dkSBcgC5CxcECRGMWtVJhdch5eRuy3RiPqvDLDU004k1T5VUs'); // Reemplaza con tu clave pública
 
 const carritoStore = useCarritoStore();
 const productosStore = useProductosStore();
-const userStore = useUserStore();
+
+const proceedToPayment = async () => {
+  const stripe = await stripePromise;
+
+  try {
+    // Envía la solicitud a tu backend para crear una sesión de pago
+    const response = await fetch('http://mipagina.com/pago', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        items: carritoStore.productos.map(producto => ({
+          name: producto.NOMBRE,
+          price: producto.PRECIO,
+          quantity: producto.cantidad,
+        })),
+      }),
+    });
+
+    if (!response.ok) {
+      throw new Error('Error al crear la sesión de pago');
+    }
+
+    const { id } = await response.json();
+
+    // Redirige a Stripe Checkout
+    const { error } = await stripe.redirectToCheckout({ sessionId: id });
+
+    if (error) {
+      console.error('Error durante la redirección a Stripe Checkout:', error);
+    }
+  } catch (error) {
+    console.error('Error:', error);
+  }
+};
 
 const removeFromCart = (ID_PRODUCTO) => {
   carritoStore.removeProducto(ID_PRODUCTO);
@@ -131,50 +168,7 @@ const totalCarrito = computed(() => {
   return carritoStore.productos.reduce((total, producto) => total + (producto.PRECIO * producto.cantidad), 0).toFixed(2);
 });
 
-// Function to handle the payment process
-const proceedToPayment = async () => {
-  if (!userStore.usuario) {
-    alert('Debe iniciar sesión para realizar el pago.');
-    return;
-  }
 
-  const paymentData = {
-    productos: carritoStore.productos,
-    total: totalCarrito.value,
-    metodoPago: 'Tarjeta',  // Ajusta según el método de pago
-    clienteId: userStore.usuario.id_cliente  // Asegúrate de que 'id_cliente' exista
-  };
-
-  // Verificación de los datos antes de enviarlos
-  console.log('Datos de pago a enviar:', paymentData);
-
-  if (!paymentData.productos || !paymentData.total || !paymentData.clienteId) {
-    alert('Datos incompletos: Faltan productos, total o ID de cliente.');
-    return;
-  }
-
-  try {
-    const response = await fetch('/http://mipagina.com/Pago', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(paymentData),
-    });
-
-    const data = await response.json();
-
-    if (data.status === 'success') {
-      alert('Pago realizado con éxito');
-      // Limpiar el carrito después del pago exitoso
-      carritoStore.limpiarCarrito();
-    } else {
-      alert('Error en el pago: ' + data.message);
-    }
-  } catch (error) {
-    alert('Error en el proceso de pago: ' + error.message);
-  }
-};
+  
 
 </script>
-

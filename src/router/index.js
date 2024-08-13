@@ -17,7 +17,7 @@ import PerfilSocioMembresiaView from '@/views/PerfilSocioMembresiaView.vue'
 import CarritoView from '@/views/CarritoView.vue' 
 import AdminEmpleadosView from '@/views/AdminEmpleadosView.vue'
 import AdminRegistrarEmpleadoView from '@/views/AdminRegistrarEmpleadoView.vue'
-import AdminAsistenciasView from '@/views/AdminAsistenciasView.vue'
+
 
 
 const router = createRouter({
