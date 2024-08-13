@@ -4,15 +4,15 @@
     <v-main>
       <v-container>
         <v-tabs v-model="selectedCategory" background-color="primary" dark>
+          <v-tab value="">Todas</v-tab>
           <v-tab v-for="category in categories" :key="category" :value="category">
             {{ category }}
           </v-tab>
-          <v-tab value="">Todas</v-tab>
         </v-tabs>
         <v-row>
           <v-col v-for="producto in filteredProductos" :key="producto.ID_PRODUCTO" cols="12" md="6" lg="4">
-            <v-card class="producto-card mx-auto my-4" max-width="344">
-              <v-img :src="producto.IMAGEN" aspect-ratio="16/9" contain @error="handleImageError"></v-img>
+            <v-card class="producto-card mx-auto my-4" max-width="344" >
+              <v-img :src="`../../img/productos/${producto.IMAGEN}`" aspect-ratio="16/9" contain @error="handleImageError"></v-img>
               <v-card-title>{{ producto.NOMBRE }}</v-card-title>
               <v-card-subtitle>{{ producto.CATEGORIA }}</v-card-subtitle>
               <v-card-text> 
@@ -68,7 +68,7 @@ const addToCart = (producto) => {
 };
 
 const handleImageError = (event) => {
-  event.target.src = '/public/arsenal.png'; // Ajusta esta ruta según la ubicación real
+  event.target.src = '/arsenal.png'; // Ajusta esta ruta según la ubicación real
 };
 
 console.log('Productos:', store.productos);
@@ -82,5 +82,4 @@ console.log('Productos:', store.productos);
   margin-bottom: 16px;
   border-radius: 8px;
 }
-
 </style>
