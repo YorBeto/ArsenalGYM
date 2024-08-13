@@ -30,7 +30,7 @@
               </v-card-text>
               <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn text class="link" @click="RecuperarContrasena">¿Has olvidado tu contraseña?</v-btn>
+                <v-btn text class="link" @click="olvidarContrasena">¿Has olvidado tu contraseña?</v-btn>
                 <router-link to="/Registro" class="link">¿No estás registrado?</router-link>
               </v-card-actions>
             </v-card>
@@ -150,8 +150,9 @@ const ingresarFormulario2 = async () => {
 };
 
 // Función para manejar la recuperación de contraseña
-const RecuperarContrasena = () => {
-  router.push({ name: 'restablecer-contraseña' });
+const olvidarContrasena = () => {
+  // Implementar lógica para manejar la recuperación de contraseña
+  alert('Funcionalidad de recuperación de contraseña no implementada.');
 };
 </script>
 

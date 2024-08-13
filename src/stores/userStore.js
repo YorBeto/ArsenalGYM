@@ -3,9 +3,6 @@ import { defineStore } from 'pinia';
 export const useUserStore = defineStore('user', {
   state: () => ({
     usuario: JSON.parse(localStorage.getItem('usuario')) || null,
-    // Agregar nuevo estado si es necesario
-    resetToken: null,
-    resetTokenExpire: null,
   }),
   actions: {
     setUsuario(usuario) {
@@ -22,6 +19,9 @@ export const useUserStore = defineStore('user', {
       if (usuario) {
         this.setUsuario(usuario);
       }
+    },
+    isSocio() {
+      return this.usuario && this.usuario.tipoUsuario === 'socio';
     }
   }
 });
