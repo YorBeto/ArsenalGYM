@@ -9,121 +9,284 @@ const items = ref([
   { src: '/p4.jpg', alt: 'Image 4' },
   { src: '/p5.jpg', alt: 'Image 5' },
 ]);
+
+const productos = ref([
+  { src: '/public/creatinas/creatina1.jpg', alt: 'Creatina 1' },
+  { src: '/public/multivitaminicos/m3.jpg', alt: 'Multi 2' },
+  { src: '/public/proteina/proteina7.jpg', alt: 'Prote 3' },
+  { src: '/public/creatinas/creatina2.jpg', alt: 'Creatina 1' },
+  { src: '/public/multivitaminicos/m7.jpg', alt: 'Multi 2' },
+  { src: '/public/proteina/proteina17.jpg', alt: 'Prote 3' },
+])
 </script>
 
 <template>
   <v-layout class="rounded rounded-md" style="background-color: #f4f4f4; min-height: 100vh;">
     <barraNav></barraNav>
 
+    <!-- Carrusel -->
     <v-main style="background: linear-gradient(to right, black, red); padding: 20px;">
-      <!-- Carousel -->
-      <v-carousel class="mb-5" cycle interval="5000" hide-delimiter-background height="500px">
+
+       <!-- Nuevo v-card encima del carrusel -->
+       <v-container class="bienvenida">
+        <!-- v-card con z-index y margen superior -->
+        <v-card class="welcome-card mb-6 bienve">
+            <v-container class="col">
+              <v-card-title class="end1">
+            <h1>Bienvenido a Arsenal</h1>
+          </v-card-title>
+          <v-card-subtitle class="end">
+            En Arsenal, nos dedicamos a ayudarte a alcanzar tus objetivos de fitness con un ambiente motivador y recursos de primera clase. Prepárate para transformar tu bienestar y superar tus límites...
+          </v-card-subtitle>
+              <v-btn router-link to="/conocenos" class="conocer">Conocer más</v-btn>
+            </v-container>
+        </v-card>
+      </v-container>
+
+      <v-carousel class="mb-5" cycle interval="5000" hide-delimiter-background height="500px" style="width: 100%;">
         <v-carousel-item v-for="(item, i) in items" :key="i">
           <v-img :src="item.src" :alt="item.alt" class="carousel-image"></v-img>
         </v-carousel-item>
       </v-carousel>
+    
+      <!-- GYM -->
+      <v-container class="bienvenida" style="margin-bottom: 50px;">
+        <v-row align="center" justify="start">
+          <v-col cols="12" md="10">
+            <v-card class="welcome-card mb-6 bienve">
+              <v-container class="col">
+                <v-card-title class="end1">
+                  <h1>Nuestro Objetivo...</h1>
+                </v-card-title>
+                <v-card-subtitle class="end">
+                  En Arsenal, ofrecemos una amplia gama de equipos y servicios, incluyendo clases especializadas de Crossfit, para atender todas tus necesidades de fitness. Nuestro gimnasio está diseñado para adaptarse a diferentes niveles de intensidad y objetivos, desde principiantes hasta atletas avanzados. Nos comprometemos a ayudarte a lograr tus metas de acondicionamiento físico, mejorar tu confianza y promover un estilo de vida saludable y en constante crecimiento.                </v-card-subtitle>
+              </v-container>
+            </v-card>
+          </v-col>
+        </v-row>
+      </v-container>
 
-      <!-- InBody Section -->
-      <v-container>
+      <!-- Productos -->
+      <v-container fluid class="section-container">
         <v-row class="mb-5" align="center">
-          <v-col cols="12" md="6">
-            <v-card>
-              <v-card-title>EN ARSENAL NOS INTERESA TU SALUD</v-card-title>
-              <v-card-subtitle>
-                InBody es líder mundial en tecnología de análisis de composición corporal. A través de nuestros innovadores dispositivos, proporcionamos una evaluación precisa y detallada de los componentes del cuerpo humano, incluyendo masa muscular, grasa corporal, agua corporal total y mucho más. Nuestros equipos son utilizados por profesionales de la salud, entrenadores personales y centros de fitness para ayudar a individuos a comprender mejor su cuerpo y mejorar su bienestar.
-              </v-card-subtitle>
-              <v-card-subtitle>
-                Conoce tu cuerpo con nuestro InBody, una máquina capaz de medir las características de tu cuerpo. Agenda tu cita para descubrir tus límites.
-              </v-card-subtitle>
-              <v-card-actions>
+          <!-- Productos -->
+          <v-col cols="12" md="6" class="d-flex">
+            <v-card class="w-100 pros">
+              <v-row no-gutters>
                 <v-col cols="12" md="6">
-            <v-img src="/INB270.png" alt="InBody Image" class="imagen-inbody"></v-img>
-          </v-col>
-                <router-link to="Inbody">
-                  <v-btn class="boton-agendar">AGENDAR</v-btn>
-                </router-link>
-              </v-card-actions>
+                  <v-carousel cycle interval="5000" hide-delimiter-background height="300px">
+                    <v-carousel-item v-for="(product, index) in productos" :key="index">
+                      <v-img :src="product.src" :alt="product.alt" class="imagen-creatina"></v-img>
+                    </v-carousel-item>
+                  </v-carousel>
+                </v-col>
+                <v-col cols="12" md="6" class="d-flex flex-column justify-center">
+                  <v-card-title>
+                    PRODUCTOS
+                  </v-card-title>
+                  <v-card-subtitle class="produc">
+                    En Arsenal, tenemos todo para que continúes con tu rutina. Contamos con Creatinas, Proteínas, Multi-vitamínicos y muchos más, no te quedes sin los tuyos.
+                  </v-card-subtitle>
+                  <router-link to="Producto">
+                    <v-btn class="boton-comprar mt-4">COMPRAR</v-btn>
+                  </router-link>
+                </v-col>
+              </v-row>
             </v-card>
           </v-col>
-          <v-col cols="12" md="6">
-          </v-col>
-        </v-row>
-      </v-container>
       
-      
-
-      <!-- Gym Section -->
-      <v-container fluid>
-        <v-row class="mb-5" align="center" justify="center">
-          <v-col cols="12" md="6" class="d-flex align-center justify-center">
-            <!-- Puedes agregar contenido aquí si es necesario -->
-          </v-col>
-          <v-col cols="12" md="6">
-            <v-card class="arsenal">
-              <v-card-title class="card-title">
-                En Arsenal somos un gimnasio que busca el bienestar de nuestros socios como también superar sus límites.
-              </v-card-title>
-              <v-card-subtitle>
-                Ofrecemos variedad de equipo, instructores y también contamos con clases de crossfit. Arsenal es un lugar especialmente diseñado y equipado para que acudas a realizar una actividad física en diversas intensidades. Nuestro propósito es que logres obtener los cambios que desees en tu cuerpo, que te sientas más seguro y así poder seguir buscando mejorar cada día más.
-              </v-card-subtitle>
-            </v-card>
-          </v-col>
-        </v-row>
-      </v-container>
-
-      <!-- Memberships Section -->
-      <v-container>
-        <v-row class="mb-5">
-          <v-col cols="12">
-            <v-card>
-              <v-card-title>Membresías</v-card-title>
-              <v-card-subtitle>
-                <v-simple-table>
+          <!-- Membresías -->
+          <v-col cols="12" md="6" class="d-flex">
+            <v-container fluid>
+              <v-card class="card-membresia-large">
+                <v-card-title class="card-title-large">Membresías</v-card-title>
+                <v-simple-table class="membresias-table-large">
                   <thead>
                     <tr>
-                      <th></th>
-                      <th>MENSUAL</th>
-                      <th>SEMESTRAL</th>
-                      <th>ANUAL</th>
+                      <th class="header-cell-large"></th>
+                      <th class="header-cell-large">MENSUAL</th>
+                      <th class="header-cell-large">SEMESTRAL</th>
+                      <th class="header-cell-large">ANUAL</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
-                      <td>GYM</td>
-                      <td>$700</td>
-                      <td>$1,800</td>
-                      <td>$7,460</td>
+                      <td class="body-cell-large">GYM</td>
+                      <td class="body-cell-large">$700</td>
+                      <td class="body-cell-large">$1,800</td>
+                      <td class="body-cell-large">$7,460</td>
                     </tr>
                     <tr>
-                      <td>CROSSFIT</td>
-                      <td>$720</td>
-                      <td>$1,920</td>
-                      <td>$7,550</td>
+                      <td class="body-cell-large">CROSSFIT</td>
+                      <td class="body-cell-large">$720</td>
+                      <td class="body-cell-large">$1,920</td>
+                      <td class="body-cell-large">$7,550</td>
                     </tr>
                   </tbody>
                 </v-simple-table>
-              </v-card-subtitle>
-            </v-card>
-          </v-col>
+              </v-card>
+            </v-container>
+          </v-col>  
         </v-row>
       </v-container>
+      
 
-      <!-- Visit Us Section -->
-      <v-container>
+      <!-- Visitanos -->
+    <v-card class="visitanoscard">
+      <v-container class="visitanos">
+        <h1>VISITANOS</h1>
         <v-row class="mb-5" align="center">
           <v-col cols="12" md="6">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3599.8266233107443!2d-103.43089429999999!3d25.5441515!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x868fdb933efabea1%3A0x4ff88cb25a0f6b13!2sGimnasio%20Arsenal%20Bosque!5e0!3m2!1ses!2smx!4v1721764484976!5m2!1ses!2smx" class="mapa-arsenal-gym"></iframe>
+            <div class="mapdiv">
+              <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3599.8266233107443!2d-103.43089429999999!3d25.5441515!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x868fdb933efabea1%3A0x4ff88cb25a0f6b13!2sGimnasio%20Arsenal%20Bosque!5e0!3m2!1ses!2smx!4v1721764484976!5m2!1ses!2smx" 
+                class="mapa-arsenal-gym"
+              ></iframe>
+            </div>
           </v-col>
           <v-col cols="12" md="6">
             <v-img src="/gymfuera.png" alt="Arsenal Gym" class="imagen-arsenal-gym"></v-img>
           </v-col>
         </v-row>
       </v-container>
+    </v-card>
+      
     </v-main>
   </v-layout>
+
+  <v-card>
+    <v-col cols="12" class="footer-content">
+      <v-row justify="space-between" align="center" no-gutters>
+        <v-col cols="12" sm="auto">
+          <v-row justify="center" align="center">
+            <v-btn 
+              icon 
+              href="https://www.facebook.com/Arsenalclubbosque/?locale=es_LA" 
+              target="_blank"
+              class="mr-4 v-icon-social"
+              size="24px"
+            >
+              <v-icon>mdi-facebook</v-icon>
+            </v-btn>
+
+            <v-btn 
+              icon 
+              href="https://www.instagram.com/arsenaltrc/?hl=es-la" 
+              target="_blank"
+              class="v-icon-social"
+              size="24px"
+            >
+              <v-icon>mdi-instagram</v-icon>
+            </v-btn>
+          </v-row>
+        </v-col>
+
+        <v-col cols="12" sm="auto" class="text-center">
+          <div>
+            Calle C. Juan Pablos 330, Tercero de Cobián Centro, 27000 Torreón, Coah.
+          </div>
+        </v-col>
+        <v-col cols="12" sm="auto" class="text-center">
+          <div style="font-weight: 500;">
+            © 2024 Arsenal Gym - Todos los derechos reservados
+          </div>
+        </v-col>
+      </v-row>
+    </v-col>
+  </v-card>
 </template>
 
 <style scoped>
+
+.pros{
+  height: 285px;
+}
+
+.produc{
+  white-space: pre-wrap; /* Permitir saltos de línea y manejar el contenido */
+  word-wrap: break-word; /* Evitar desbordamientos de contenido */
+}
+
+.card-membresia{
+  height: 300px;
+}
+
+.somos{
+  display: flex;
+  justify-content: flex-start;
+}
+
+.iniarse{
+  display: flex;
+  flex-direction: column;
+  
+}
+
+.iniarse-titulo{
+  display: flex;
+  justify-content: flex-start;
+}
+
+.conocer{
+  width: 150px;
+  margin: 25px;
+  }
+
+.col{
+  display: flex;
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
+  white-space: pre-wrap; /* Permitir saltos de línea y manejar el contenido */
+  word-wrap: break-word; /* Evitar desbordamientos de contenido */
+}
+
+.polea{
+  width: 300px;
+}
+
+.end{
+  font-size: 18px;
+  font-family: Arial, Helvetica, sans-serif;
+  color: rgb(251, 248, 248);
+  white-space: pre-wrap; /* Permitir saltos de línea y manejar el contenido */
+  word-wrap: break-word; /* Evitar desbordamientos de contenido */
+  text-align: left;
+  font-weight: bold;
+}
+
+.end1{
+  font-family: Arial, Helvetica, sans-serif;
+  color: white;
+  white-space: pre-wrap; /* Permitir saltos de línea y manejar el contenido */
+  word-wrap: break-word; /* Evitar desbordamientos de contenido */
+}
+
+.bienvenida{
+  margin-top: 50px;
+  margin-left: 110px;
+  text-align: start;
+}
+
+.bienve{
+    height: 450px;
+    width: 1200px;
+    display: flex;
+    flex-direction: row; 
+    background-color: transparent;
+}
+
+.div{
+  height: 300px;
+}
+
+.gym{
+  width: 1200px;
+}
+.cardtext{
+  padding: 20px;
+  width: -1200px;
+}
 
 .carousel-image {
   object-fit: cover;
@@ -131,33 +294,24 @@ const items = ref([
   height: 100%;
 }
 
-.arsenal{
-  width: 100%;
-  max-width: 800px; /* Puedes ajustar este valor según tus necesidades */
-  margin: 0 auto; /* Centra el v-card horizontalmente */
-  padding: 16px;
-  box-sizing: border-box; /* Incluye padding y borde en el tamaño total */
-}
-
-.imagen-arsenal {
-  width: 50%;
-  height: 40%;
-}
-
 .imagen-creatina {
-  width: 90%; 
+  width: 100%; 
   object-fit: cover;
-  padding: 0%;
-  margin: 0%;
+  height: 220px;
+  margin-top: 30px;
+}
+
+.visitanoscard{
+  background-color: rgba(226, 52, 52, 0.596);
 }
 
 .boton-comprar {
   margin-top: 10px;
-  background-color: #d32f2f;
+  background-color: #c51c1c;
   color: white;
 }
 
-.membresias-section, .visitanos-section {
+.visitanos-section {
   background-color: white;
   padding: 20px;
   margin-bottom: 20px;
@@ -165,28 +319,12 @@ const items = ref([
   border-radius: 10px;
 }
 
-.membresias-table {
-  width: 100%;
-}
-
-.membresias-table table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.membresias-table th, .membresias-table td {
-  border: 1px solid black;
-  padding: 10px;
-}
-
-.membresias-table th {
-  background: black;
+.card-title {
+  background-color: #ffffff; /* Color de fondo del título del card */
   color: white;
-}
-
-.membresias-table td {
-  background-color: white;
-  color: black;
+  font-weight: bold;
+  padding: 16px;
+  text-align: center;
 }
 
 .visitanos-content {
@@ -201,63 +339,115 @@ const items = ref([
   height: auto;
 }
 
-.In{
-  margin-left: -15px;
+.card-membresia-large {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0px;
 }
 
-.titulo-in {
-  white-space: normal; /* Permite que el texto haga saltos de línea */
-  word-wrap: break-word; /* Rompe las palabras largas si es necesario */
-  overflow-wrap: break-word; /* Similar a word-wrap, asegura que el texto se ajuste */
-  margin: 0; /* Elimina márgenes innecesarios */
-  padding: 16px; /* Ajusta el padding si es necesario */
-  box-sizing: border-box; /* Incluye padding y borde en el tamaño total */
-  font-size: 1rem; /* Ajusta el tamaño del texto según sea necesario */
+.card-title-large {
+  font-size: 2rem;
+  background-color: #120e0e;
+  color: white;
+  padding: 16px;
+  text-align: center;
 }
 
-/* Ajuste adicional para tarjetas grandes y pequeñas */
-.inbody {
-  min-width: 100px;
-  width: 1000px;
-  margin: 0; /* Centra la tarjeta horizontalmente */
-  padding: 16px; /* Ajusta el padding según sea necesario */
+.membresias-table-large {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  height: 500px;
+  overflow-y: auto;
 }
 
-.imagen-inbody {
-    width: 60%; /* Ajusta la imagen para ocupar el ancho completo */
-    height: 460px; /* Mantiene la proporción de la imagen */
+.header-cell-large {
+  background-color: #120e0e;
+  color: white;
+  font-size: 1.2rem;
+  padding: 20px;
+  text-align: center;
+  border-bottom: 2px solid #a12b2b;
+  width: 300px;
+}
+
+.body-cell-large {
+  font-size: 1.1rem;
+  padding: 20px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+  color: #333;
+}
+
+tbody tr:hover {
+  background-color: #f5f5f5;
+}
+
+tbody tr:last-child td {
+  border-bottom: none;
 }
 
 
 @media (max-width: 900px) {
-  .inbody {
-    width: 300px;
-  }
-
-  .imagen-inbody {
-    width: 80%; /* Ajusta la imagen para ocupar el ancho completo */
-    height: 160px; /* Mantiene la proporción de la imagen */
+  .imagen-creatina{
+    width: 80%; /* Ajusta el tamaño de las imágenes a un 80% del contenedor */
+    height: 180px; /* Mantiene la proporción de la imagen */
     margin: -1px;
   }
-
-  .imagen-arsenal {
-    width: 80%; /* Ajusta la imagen para ocupar el ancho completo */
-    height: 160px; /* Mantiene la proporción de la imagen */
-    margin: -1px;
-    margin-left: 35px;
   }
 
-  .titulo-sad {
-    font-size: 1.5rem; /* Ajusta el tamaño del título según sea necesario */
+  .mapdiv {
+    height: 346px; 
+    width: 100%;
+  }
+  
+  .mapa-arsenal-gym {
+    width: 100%;
+    height: 100%;
+    border: 0; /* Remueve bordes si hay */
+  }
+  
+  .imagen-arsenal-gym {
+    width: 100%;
+    height: auto;
+  }
+  
+  @media (max-width: 900px) {
+    .mapdiv {
+      height: 300px; /* Ajusta la altura para pantallas más pequeñas */
+    }
+    
+    .membresias-table {
+      width: 100%;
+      min-width: 600px;
+    }
   }
 
-  .tutilo-in {
-    font-size: 1rem; /* Ajusta el tamaño del subtítulo según sea necesario */
+  .footer-content {
+    background: linear-gradient(to right, #111, #333);
+    color: #fff;
+    padding: 20px;
+    border-top: 1px solid #444;
+    margin: 0;
+    width: 100%;
   }
 
-  .In{
-  margin-left: 8px;
+  .table-responsive {
+    overflow-x: auto;
   }
-
+  
+  .membresias-table th, .membresias-table td {
+    padding: 10px;
+    text-align: center;
+    white-space: nowrap; /* Evita que el texto se divida en varias líneas */
   }
+  
+  @media (max-width: 600px) {
+    .membresias-table th, .membresias-table td {
+      padding: 8px;
+      font-size: 14px; /* Reduce el tamaño del texto en pantallas pequeñas */
+    }
+  }
+  
 </style>

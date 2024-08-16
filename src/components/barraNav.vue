@@ -25,7 +25,7 @@
               </router-link>
             </v-col>
             <v-col cols="auto">
-              <router-link to="/Conocenos">
+              <router-link to="/conocenos">
                 <v-btn class="boton-bar">CONOCENOS</v-btn>
               </router-link>
             </v-col>

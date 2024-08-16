@@ -23,11 +23,11 @@
         <v-row class="text-center mt-4">
           <v-col cols="12">
             <p>
-              Para más dudas puede consultar en
-              <a href="https://www.instagram.com/arsenaltrc?igshid=MWhmamJyM2p2eXl4OQ==" target="_blank">ARSENAL INSTAGRAM</a>
-              sobre los ejercicios
+              Para más dudas puedes consultar el
+              <a href="https://www.instagram.com/arsenaltrc?igshid=MWhmamJyM2p2eXl4OQ==" target="_blank">Instagram </a>
+              de Arsenal. <v-icon>mdi-instagram</v-icon>
             </p>
-            <v-btn color="red darken-4" class="white--text">REGRESAR</v-btn>
+            <v-btn router-link to="/miinfo" color="red darken-4" class="regre">REGRESAR</v-btn>
           </v-col>
         </v-row>
       </v-container>
@@ -42,11 +42,15 @@ const exercises = ref([
   { title: 'Press Militar con Barra', video: 'https://www.youtube.com/embed/BShy9IEmrPg', description: 'Ejercicio para trabajar los músculos del hombro.' },
   { title: 'Face Pull', video: 'https://www.youtube.com/embed/rep-qVOkqgk', description: 'Ejercicio para trabajar los deltoides posteriores y los músculos de la parte superior de la espalda.' },
   { title: 'Elevación Lateral con Mancuernas', video: 'https://www.youtube.com/embed/3VcKaXpzqRo', description: 'Ejercicio para trabajar los deltoides laterales.' },
-  { title: 'Press Arnold', video: 'https://www.youtube.com/embed/JB2oyawG9KI', description: 'Ejercicio para trabajar los deltoides y el trapecio.' }
+  { title: 'Press Arnold', video: 'https://www.youtube.com/embed/6zUrUsCa3KQ', description: 'Ejercicio para trabajar los deltoides y el trapecio.' }
 ])
 </script>
 
 <style scoped>
+.regre{
+  margin: 3px;
+}
+
 .background-color {
   background-color:white ;
   min-height: 100vh;

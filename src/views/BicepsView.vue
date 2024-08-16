@@ -23,11 +23,11 @@
         <v-row class="text-center mt-4">
           <v-col cols="12">
             <p>
-              Para más dudas puede consultar en
-              <a href="https://www.instagram.com/arsenaltrc?igshid=MWhmamJyM2p2eXl4OQ==" target="_blank">ARSENAL INSTAGRAM</a>
-              sobre los ejercicios
+              Para más dudas puedes consultar el
+              <a href="https://www.instagram.com/arsenaltrc?igshid=MWhmamJyM2p2eXl4OQ==" target="_blank">Instagram </a>
+              de Arsenal. <v-icon>mdi-instagram</v-icon>
             </p>
-            <v-btn color="red darken-4" class="white--text">REGRESAR</v-btn>
+            <v-btn router-link to="/miinfo" color="red darken-4" class="regre">REGRESAR</v-btn>
           </v-col>
         </v-row>
       </v-container>
@@ -39,14 +39,18 @@
 import { ref } from 'vue'
 
 const exercises = ref([
-{ title: 'Curl de Bíceps con Barra', video: 'https://www.youtube.com/embed/kwG2ip8W1Jk', description: 'Ejercicio fundamental para trabajar los bíceps.' },
-  { title: 'Curl de Bíceps con Mancuerna', video: 'https://www.youtube.com/embed/kwG2ip8W1Jk', description: 'Variante del curl con barra, enfocada en el trabajo individual de los bíceps.' },
-  { title: 'Curl Martillo', video: 'https://www.youtube.com/embed/8SOQd5p7n1w', description: 'Ejercicio para trabajar la parte externa de los bíceps y el antebrazo.' },
-  { title: 'Curl Concentrado', video: 'https://www.youtube.com/embed/b1a4JmP6h70', description: 'Ejercicio de aislamiento para los bíceps.' }
-])
+  { title: 'Curl de Bíceps con Barra', video: 'https://www.youtube.com/embed/b8nB33AAYJE', description: 'Ejercicio fundamental para trabajar los bíceps.' },
+  { title: 'Curl de Bíceps con Mancuerna Sentado', video: 'https://www.youtube.com/embed/96O5mvyblQM', description: 'Variante del curl con barra, enfocada en el trabajo individual de los bíceps.' },
+  { title: 'Curl Martillo', video: 'https://www.youtube.com/embed/j99intoPKGE', description: 'Ejercicio para trabajar la parte externa de los bíceps y el antebrazo.' },
+  { title: 'Curl Concentrado', video: 'https://www.youtube.com/embed/4_MQA8N1wzI', description: 'Ejercicio de aislamiento para los bíceps.' }
+]);
 </script>
 
 <style scoped>
+.regre{
+  margin: 3px;
+}
+
 .background-color {
   background-color:white ;
   min-height: 100vh;

@@ -18,6 +18,7 @@
           :headers="headers"
           :items="productos"
           :search="search"
+          @click:row="selectProducto"
         ></v-data-table>
         <div class="acciones">
           <v-btn color="primary" class="agregar-btn">
@@ -45,18 +46,37 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
+
+    <!-- Snackbar para mensajes de éxito -->
+    <v-snackbar
+      v-model="snackbar.show"
+      :timeout="3000"
+      :color="snackbar.color"
+      top
+      multi-line
+    >
+      {{ snackbar.message }}
+    </v-snackbar>
   </div>
 </template>
 
 <script setup>
 import BarraAdminNew from '@/components/BarraAdminNew.vue';
 import BarralateralAdmin from '@/components/BarralateralAdmin.vue';
+import { useRouter } from 'vue-router';
 import { ref, onMounted } from 'vue';
 
+// eslint-disable-next-line no-unused-vars
+const router = useRouter();
 const search = ref('');
 const productos = ref([]);
 const deleteDialog = ref(false);
 const deleteId = ref('');
+const snackbar = ref({
+  show: false,
+  message: '',
+  color: 'success'
+});
 
 const mostrarproductos = () => {
   fetch('http://mipagina.com/productos')
@@ -64,6 +84,12 @@ const mostrarproductos = () => {
     .then(json => {
       if (json.status === 200) {
         productos.value = json.data;
+      } else {
+        snackbar.value = {
+          show: true,
+          message: 'Error al cargar productos: ' + json.message,
+          color: 'error'
+        };
       }
     });
 };
@@ -72,29 +98,50 @@ const openDeleteModal = () => {
   deleteDialog.value = true;
 };
 
+const selectProducto = (item) => {
+  deleteId.value = item.id;
+};
+
 const deleteProducto = () => {
   if (!deleteId.value) {
-    alert('Por favor, ingresa un ID del producto.');
+    snackbar.value = {
+      show: true,
+      message: 'Por favor, ingresa un ID del producto.',
+      color: 'error'
+    };
     return;
   }
 
-  fetch(`http://mipagina.com/producto/eliminar?id=${deleteId.value}`, {
+  fetch('http://mipagina.com/producto/eliminar?id=${deleteId.value}', {
     method: 'DELETE',
   })
-    .then(response => {
-      return response.json(); // Asegúrate de que la respuesta sea JSON
-    })
+    .then(response => response.json())
     .then(json => {
-      if (json.success) {
-        alert('Producto eliminado con éxito');
+      if (json.status === 200 || json.success) {
+        snackbar.value = {
+          show: true,
+          message: 'Producto eliminado con éxito',
+          color: 'success'
+        };
         deleteDialog.value = false;
-        mostrarproductos(); // Refrescar la lista de productos
+
+        setTimeout(() => {
+          mostrarproductos();
+        }, 2000);
       } else {
-        alert('Error al eliminar el producto: ' + json.message);
+        snackbar.value = {
+          show: true,
+          message: 'Error al eliminar el producto: ' + (json.message || 'Respuesta inesperada del servidor'),
+          color: 'error'
+        };
       }
     })
     .catch(error => {
-      alert('Error al eliminar el producto: ' + error.message);
+      snackbar.value = {
+        show: true,
+        message: 'Error al eliminar el producto: ' + error.message,
+        color: 'error'
+      };
     });
 };
 

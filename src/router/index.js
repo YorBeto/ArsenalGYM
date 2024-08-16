@@ -124,7 +124,62 @@ const router = createRouter({
       path: '/pago',
       name: 'pago',
       component: PagosView
-    }
+    },
+    {
+      path: '/clases',
+      name: 'clases',
+      component: ClasesView
+    },
+    {
+      path: '/membresia',
+      name: 'membresia',
+      component: SociosMembresiaView
+    },
+    {
+      path: '/miinfo',
+      name: 'info',
+      component: InfosocioView
+    },
+    {
+      path: '/bicep',
+      name: 'bicep',
+      component: BicepsView
+    },
+    {
+      path: '/tricep',
+      name: 'tricep',
+      component: TricepView
+    },
+    {
+      path: '/pierna',
+      name: 'pierna',
+      component: PiernaView
+    },
+    {
+      path: '/pecho',
+      name: 'pecho',
+      component: PechoView
+    },
+    {
+      path: '/hombro',
+      name: 'hombro',
+      component: HombroView
+    },
+    {
+      path: '/espalda',
+      name: 'espalda',
+      component: EspaldaView
+    },
+    {
+      path: '/novedades',
+      name: 'novedades',
+      component: NovedadesView
+    },
+    {
+      path: '/conocenos',
+      name: 'conocenos',
+      component: ConocenosView
+    } 
   ]
 })
 
@@ -144,5 +199,16 @@ router.beforeEach((to, from, next) => {
 import { useUserStore } from '@/stores/userStore';
 // eslint-disable-next-line no-unused-vars
 import SociosMembresiaView from '@/views/SociosMembresiaView.vue'
+import ClasesView from '@/views/ClasesView.vue'
+import InfosocioView from '@/views/InfosocioView.vue'
+import BicepsView from '@/views/BicepsView.vue'
+import TricepView from '@/views/TricepView.vue'
+import PiernaView from '@/views/PiernaView.vue'
+import PechoView from '@/views/PechoView.vue'
+import HombroView from '@/views/HombroView.vue'
+import EspaldaView from '@/views/EspaldaView.vue'
+import NovedadesView from '@/views/NovedadesView.vue'
+import ConocenosView from '@/views/ConocenosView.vue'
+
 
 export default router

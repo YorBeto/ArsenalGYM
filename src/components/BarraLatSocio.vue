@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <aside class="sidebar">
-      <v-btn
+      <v-btn router-link to="/miinfo"
         class="botones"
         @mouseover="activarColorGris"
         @mouseleave="restaurarColorboton"
@@ -17,41 +17,41 @@
 
       <!-- botones de rutina -->
       <div v-if="showRutinas" class="rutinas">
-        <v-btn
+        <v-btn router-link to="/bicep"
           class="botonesR"
           @mouseover="activarColorR"
           @mouseleave="restaurarColorR"
           @click="mostrarContenido('Bicep')"
         >Bicep</v-btn>
-        <v-btn
+        <v-btn router-link to="/tricep"
           class="botonesR"
           @mouseover="activarColorR"
           @mouseleave="restaurarColorR"
           @click="mostrarContenido('Tricep')"
           :color="coloresBotonesR"
         >Tricep</v-btn>
-        <v-btn
+        <v-btn router-link to="/espalda"
           class="botonesR"
           @mouseover="activarColorR"
           @mouseleave="restaurarColorR"
           @click="mostrarContenido('Espalda')"
           :color="coloresBotonesR"
         >Espalda</v-btn>
-        <v-btn
+        <v-btn router-link to="/hombro"
           class="botonesR"
           @mouseover="activarColorR"
           @mouseleave="restaurarColorR"
           @click="mostrarContenido('Hombro')"
           :color="coloresBotonesR"
         >Hombro</v-btn>
-        <v-btn
+        <v-btn router-link to="/pecho"
           class="botonesR"
           @mouseover="activarColorR"
           @mouseleave="restaurarColorR"
           @click="mostrarContenido('Pecho')"
           :color="coloresBotonesR"
         >Pecho</v-btn>
-        <v-btn
+        <v-btn router-link to="/pierna"
           class="botonesR"
           @mouseover="activarColorR"
           @mouseleave="restaurarColorR"
@@ -59,7 +59,7 @@
           :color="coloresBotonesR"
         >Pierna</v-btn>
       </div>
-      <v-btn
+      <v-btn router-link to="/novedades"
         class="botones"
         @mouseover="activarColorGris"
         @mouseleave="restaurarColorboton"
@@ -67,7 +67,7 @@
         @click="mostrarContenido('Novedades')"
       >Novedades</v-btn>
 
-      <v-btn router-link to="mimembresia"
+      <v-btn router-link to="/membresia"
       class="botones"
       @mouseover="activarColorGris"
       @mouseleave="restaurarColorboton"
@@ -75,9 +75,7 @@
       @click="mostrarContenido('Membresia')"
       >Membresia</v-btn>
   
-
-
-      <v-btn
+      <v-btn router-link to="/clases"
         class="botones"
         @mouseover="activarColorGris"
         @mouseleave="restaurarColorboton"
@@ -97,10 +95,6 @@
       @click="cerrarSesion"
     >Cerrar Sesión</v-btn>
     </aside>
-
-    <main>
-      <component :is="currentComponent"></component>
-    </main>
   </div>
 </template>
 
@@ -241,7 +235,7 @@ function restaurarRojo() {
   letter-spacing: 1px;
   font-weight: normal;
   transition: background-color 0.3s, color 0.3s;
-  margin-top: 500px; /* Ajustar esta propiedad */
+  margin-top: 540px; /* Ajustar esta propiedad */
   position: fixed;
 }
 

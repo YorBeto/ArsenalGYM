@@ -23,11 +23,11 @@
         <v-row class="text-center mt-4">
           <v-col cols="12">
             <p>
-              Para más dudas puede consultar en
-              <a href="https://www.instagram.com/arsenaltrc?igshid=MWhmamJyM2p2eXl4OQ==" target="_blank">ARSENAL INSTAGRAM</a>
-              sobre los ejercicios
+              Para más dudas puedes consultar el
+              <a href="https://www.instagram.com/arsenaltrc?igshid=MWhmamJyM2p2eXl4OQ==" target="_blank">Instagram </a>
+              de Arsenal. <v-icon>mdi-instagram</v-icon>
             </p>
-            <v-btn color="red darken-4" class="white--text">REGRESAR</v-btn>
+            <v-btn router-link to="/miinfo" color="red darken-4" class="regre">REGRESAR</v-btn>
           </v-col>
         </v-row>
       </v-container>
@@ -39,14 +39,18 @@
 import { ref } from 'vue'
 
 const exercises = ref([
-  { title: 'Dominadas', video: 'https://www.youtube.com/embed/5VZpP7Hmhx4', description: 'Ejercicio para trabajar toda la espalda y bíceps.' },
-  { title: 'Remo con Barra', video: 'https://www.youtube.com/embed/0ptStivdEjs', description: 'Ejercicio para el desarrollo de la parte superior de la espalda.' },
-  { title: 'Peso Muerto', video: 'https://www.youtube.com/embed/ytN2xqOqB14', description: 'Ejercicio fundamental para trabajar la espalda baja y glúteos.' },
-  { title: 'Jalón al Pecho', video: 'https://www.youtube.com/embed/CFW-YtW6BrY', description: 'Ejercicio para trabajar la parte superior de la espalda.' }
-])
+  { title: 'Dominadas', video: 'https://www.youtube.com/embed/xgDezCv-0jA', description: 'Ejercicio para trabajar toda la espalda y bíceps.' },
+  { title: 'Remo con Barra', video: 'https://www.youtube.com/embed/3uiWjik2yEQ', description: 'Ejercicio para el desarrollo de la parte superior de la espalda.' },
+  { title: 'Peso Muerto', video: 'https://www.youtube.com/embed/hVySiRANg-g', description: 'Ejercicio fundamental para trabajar la espalda baja y glúteos.' },
+  { title: 'Jalón al Pecho', video: 'https://www.youtube.com/embed/x2Y6Mb41zjY', description: 'Ejercicio para trabajar la parte superior de la espalda.' }
+]);
 </script>
 
 <style scoped>
+.regre{
+  margin: 3px;
+}
+
 .background-color {
   background-color:white ;
   min-height: 100vh;

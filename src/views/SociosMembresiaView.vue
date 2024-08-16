@@ -2,10 +2,10 @@
     <v-app>
 <barraNav></barraNav>
       <BarraLatSocio @cerrarSesion="handleCerrarSesion"></BarraLatSocio>
-      <v-container class="d-flex flex-column justify-space-between fill-height">
+      <v-container class="d-flex flex-column justify-space-between fill-height mem">
         <v-row class="d-flex justify-center">
           <v-col cols="12" md="8">
-            <v-card class="pa-5">
+            <v-card class="pa-5 mem-car" >
               <v-card-title>Membresía del Socio</v-card-title>
               <v-card-subtitle>
                 <div v-if="membresia">
@@ -62,5 +62,10 @@ import barraNav from '@/components/barraNav.vue';
   
   <style scoped>
   
+  .mem-car{
+    width: 550px;
+    margin-top: -600px
+  }
+
   </style>
   

@@ -23,6 +23,19 @@
           <v-img :src="novedad.image" class="image"></v-img>
         </v-card>
       </v-col>
+      <v-container class="datos">
+          <v-col cols="12" md="6" lg="4">
+            <a href="https://www.instagram.com/arsenaltrc/" target="_blank" rel="noopener noreferrer">
+            <v-img src="/insta.png" class="insta"></v-img>
+            </a>
+          </v-col>
+          <v-row class="texto">
+            <v-col cols="12">
+              Puedes encontrar más novedades en nuestro Instagram...
+            </v-col>
+          </v-row>
+      </v-container>
+      <v-btn router-link to="/miinfo" color="red darken-4" class="btn">REGRESAR</v-btn>
     </v-row>
   </v-container>
 </template>
@@ -57,12 +70,35 @@ export default {
     };
   }
 };
+
 </script>
 
 <style scoped>
-.text-center {
-  text-align: center;
+.texto{
+  display: flex;
+  justify-content: start;
 }
+
+.datos{
+  display: flex;
+  flex-direction: column;
+}
+
+.btn{
+  margin-top: 200px;
+  margin-left: -950px
+}
+
+.insta{
+  height: 100px;
+  margin-top: 20px;
+}
+
+.texto{
+  justify-content: start;
+  align-items: center;
+}
+
 .mb-5 {
   margin-bottom: 3rem;
 }

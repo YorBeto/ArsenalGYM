@@ -23,11 +23,11 @@
         <v-row class="text-center mt-4">
           <v-col cols="12">
             <p>
-              Para más dudas puede consultar en
-              <a href="https://www.instagram.com/arsenaltrc?igshid=MWhmamJyM2p2eXl4OQ==" target="_blank">ARSENAL INSTAGRAM</a>
-              sobre los ejercicios
+              Para más dudas puedes consultar el
+              <a href="https://www.instagram.com/arsenaltrc?igshid=MWhmamJyM2p2eXl4OQ==" target="_blank">Instagram </a>
+              de Arsenal. <v-icon>mdi-instagram</v-icon>
             </p>
-            <v-btn color="red darken-4" class="white--text">REGRESAR</v-btn>
+            <v-btn router-link to="/miinfo" color="red darken-4" class="regre">REGRESAR</v-btn>
           </v-col>
         </v-row>
       </v-container>
@@ -39,14 +39,18 @@
 import { ref } from 'vue'
 
 const exercises = ref([
-{ title: 'Sentadillas con Barra', video: 'https://www.youtube.com/embed/3d6xJuh6RdE', description: 'Ejercicio básico para trabajar los músculos de las piernas.' },
-  { title: 'Prensa de Piernas', video: 'https://www.youtube.com/embed/jMEGFknfUrQ', description: 'Ejercicio para enfocarse en los cuádriceps y glúteos.' },
-  { title: 'Zancadas con Mancuernas', video: 'https://www.youtube.com/embed/aO-YcDICNN0', description: 'Ejercicio para trabajar cuádriceps, glúteos y músculos estabilizadores.' },
-  { title: 'Elevaciones de Talones', video: 'https://www.youtube.com/embed/z6pjIXX3v1s', description: 'Ejercicio para trabajar los músculos de la pantorrilla.' }
+{ title: 'Sentadillas con Barra', video: 'https://www.youtube.com/embed/dsCuiccYNGs', description: 'Ejercicio básico para trabajar los músculos de las piernas.' },
+  { title: 'Prensa para Pierna', video: 'https://www.youtube.com/embed/xvCynwyNoP4', description: 'Ejercicio para enfocarse en los cuádriceps y glúteos.' },
+  { title: 'Desplantes con Mancuernas', video: 'https://www.youtube.com/embed/FtNBlVNKrs0', description: 'Ejercicio para trabajar cuádriceps, glúteos y músculos estabilizadores.' },
+  { title: 'Elevaciones de Talones', video: 'https://www.youtube.com/embed/U_Bw3t2ARdM', description: 'Ejercicio para trabajar los músculos de la pantorrilla.' }
 ])
 </script>
 
 <style scoped>
+.regre{
+  margin: 3px;
+}
+
 .background-color {
   background-color:white ;
   min-height: 100vh;

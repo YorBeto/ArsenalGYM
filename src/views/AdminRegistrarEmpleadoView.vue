@@ -1,8 +1,8 @@
 <template>
   <div id="admin-registro-empleados">
-    <BarraAdminNew></BarraAdminNew>
+    <BarraAdminNew />
     <div class="contenedor">
-      <BarralateralAdmin></BarralateralAdmin>
+      <BarralateralAdmin />
       <div class="main-content">
         <h1>Registrar Empleado</h1>
         <v-form v-model="valid" @submit.prevent="submitForm">
@@ -91,6 +91,17 @@
         </v-form>
       </div>
     </div>
+
+    <!-- Snackbar para mensajes de éxito o error -->
+    <v-snackbar
+      v-model="snackbar.show"
+      :timeout="3000"
+      :color="snackbar.color"
+      top
+      multi-line
+    >
+      {{ snackbar.message }}
+    </v-snackbar>
   </div>
 </template>
 
@@ -98,6 +109,9 @@
 import BarraAdminNew from '@/components/BarraAdminNew.vue';
 import BarralateralAdmin from '@/components/BarralateralAdmin.vue';
 import { ref } from 'vue';
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
 
 const nombre = ref('');
 const apellidos = ref('');
@@ -112,92 +126,114 @@ const rfc = ref('');
 const numeroSeguro = ref('');
 const valid = ref(false);
 
-const sexos = ['Masculino', 'Femenino'];
+const snackbar = ref({
+  show: false,
+  message: '',
+  color: 'success'
+});
+
+// Lista de opciones para el campo "Sexo"
+const sexos = ref(['Masculino', 'Femenino']);
 
 const rules = {
   required: value => !!value || 'Campo requerido',
-  email: value => /.+@.+\..+/.test(value) || 'Correo electrónico no válido',
-  telefono: value => /^[0-9]{10}$/.test(value) || 'Número de teléfono no válido',
+  email: value => /.+@.+\..+/.test(value) || 'Correo no válido',
+  telefono: value => /^\d{10}$/.test(value) || 'Teléfono no válido',
   password: value => value.length >= 6 || 'La contraseña debe tener al menos 6 caracteres',
-  curp: value => /^([A-Z]{4}[0-9]{6}[H|M][A-Z]{5}[0-9]{2})$/.test(value) || 'CURP no válido',
-  rfc: value => /^([A-ZÑ&]{3,4})(\d{6})((\D|\d){3})?$/.test(value) || 'RFC no válido',
-  numeroSeguro: value => /^[0-9]{11}$/.test(value) || 'Número de Seguro Social no válido',
+  curp: value => value.length === 18 || 'CURP debe tener 18 caracteres',
+  rfc: value => value.length === 13 || 'RFC debe tener 13 caracteres',
+  numeroSeguro: value => value.length === 11 || 'Número de Seguro Social debe tener 11 caracteres',
 };
 
 const limpiarFormulario = () => {
-nombre.value = '';
-apellidos.value = '';
-fechaNacimiento.value = '';
-sexo.value = '';
-correo.value = '';
-telefono.value = '';
-contrasena.value = '';
-direccion.value = '';
-curp.value = '';
-rfc.value = '';
-numeroSeguro.value = '';
+  nombre.value = '';
+  apellidos.value = '';
+  fechaNacimiento.value = '';
+  sexo.value = '';
+  correo.value = '';
+  telefono.value = '';
+  contrasena.value = '';
+  direccion.value = '';
+  curp.value = '';
+  rfc.value = '';
+  numeroSeguro.value = '';
 };
 
-const submitForm = () => {
-const data = {
-  nombre: nombre.value,
-  apellidos: apellidos.value,
-  fechaNacimiento: fechaNacimiento.value,
-  sexo: sexo.value === 'Masculino' ? 'M' : 'F',
-  correo: correo.value,
-  telefono: telefono.value,
-  contrasena: contrasena.value,
-  direccion: direccion.value,
-  curp: curp.value,
-  rfc: rfc.value,
-  numeroSeguro: numeroSeguro.value
-};
+const submitForm = async () => {
+  const data = {
+    nombre: nombre.value,
+    apellidos: apellidos.value,
+    fechaNacimiento: fechaNacimiento.value,
+    sexo: sexo.value === 'Masculino' ? 'M' : 'F',
+    correo: correo.value,
+    telefono: telefono.value,
+    contrasena: contrasena.value,
+    direccion: direccion.value,
+    curp: curp.value,
+    rfc: rfc.value,
+    numeroSeguro: numeroSeguro.value
+  };
 
-fetch('http://mipagina.com/registroEmpleados', {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json'
-  },
-  body: JSON.stringify(data)
-})
-  .then(response => response.json())
-  .then(json => {
-    if (json.success) {
-      alert('Empleado registrado exitosamente');
-      limpiarFormulario();
-    } else {
-      alert('Error al registrar empleado: ' + json.message);
-    }
-  });
+  try {
+    const response = await fetch('http://mipagina.com/registroEmpleados', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    });
+
+    // eslint-disable-next-line no-unused-vars
+    const json = await response.json();
+
+    snackbar.value = {
+      show: true,
+      message: 'Empleado registrado exitosamente',
+      color: 'success'
+    };
+
+    setTimeout(() => {
+      router.push('empleados');
+    }, 1500); // Redirige después de 1.5 segundos
+
+    limpiarFormulario();
+  } catch (error) {
+    console.error('Error durante el registro del empleado:', error);
+    snackbar.value = {
+      show: true,
+      message: 'Error al registrar el empleado',
+      color: 'error'
+    };
+  }
 };
 </script>
 
 <style>
 #admin-registro-empleados {
-display: flex;
-flex-direction: column;
-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
 }
 
 .contenedor {
-display: flex;
-flex: 1;
-overflow: hidden;
+  display: flex;
+  flex: 1;
+  overflow: hidden;
 }
 
 .main-content {
-display: flex;
-flex-direction: column;
-flex: 1;
-padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 1rem;
 }
 
 h1 {
-margin-bottom: 1rem;
+  margin-bottom: 1rem;
 }
 
 .v-form {
-max-width: 600px;
-margin: 0 auto;
+  max-width: 600px;
+  margin: 0 auto;
 }
 </style>

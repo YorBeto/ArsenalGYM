@@ -23,11 +23,11 @@
         <v-row class="text-center mt-4">
           <v-col cols="12">
             <p>
-              Para más dudas puede consultar en
-              <a href="https://www.instagram.com/arsenaltrc?igshid=MWhmamJyM2p2eXl4OQ==" target="_blank">ARSENAL INSTAGRAM</a>
-              sobre los ejercicios
+              Para más dudas puedes consultar el
+              <a href="https://www.instagram.com/arsenaltrc?igshid=MWhmamJyM2p2eXl4OQ==" target="_blank">Instagram </a>
+              de Arsenal. <v-icon>mdi-instagram</v-icon>
             </p>
-            <v-btn color="red darken-4" class="white--text">REGRESAR</v-btn>
+            <v-btn router-link to="/miinfo" color="red darken-4" class="regre">REGRESAR</v-btn>
           </v-col>
         </v-row>
       </v-container>
@@ -39,14 +39,18 @@
 import { ref } from 'vue'
 
 const exercises = ref([
-{ title: 'Extensiones de Tríceps en Polea', video: 'https://www.youtube.com/watch?v=fVDo1Y1vIhs', description: 'Ejercicio para trabajar los tríceps con polea.' },
+{ title: 'Extensiones de Tríceps en Polea', video: 'https://www.youtube.com/embed/N7CewfnQPl0', description: 'Ejercicio para trabajar los tríceps con polea.' },
   { title: 'Fondos en Paralelas', video: 'https://www.youtube.com/embed/2z8JmcrW-As', description: 'Ejercicio que involucra el tríceps y el pecho.' },
-  { title: 'Extensiones de Tríceps con Mancuerna', video: 'https://www.youtube.com/embed/ejf2kF7w2J8', description: 'Ejercicio con mancuerna para los tríceps.' },
-  { title: 'Patada de Tríceps', video: 'https://www.youtube.com/embed/7_LgfD2b66M', description: 'Ejercicio para trabajar la cabeza larga del tríceps.' }
+  { title: 'Extensiones de Tríceps con Mancuerna', video: 'https://www.youtube.com/embed/-paLAzl68WU', description: 'Ejercicio con mancuerna para los tríceps.' },
+  { title: 'Patada de Tríceps', video: 'https://www.youtube.com/embed/iyZtvgyc_sQ', description: 'Ejercicio para trabajar la cabeza larga del tríceps.' }
 ])
 </script>
 
 <style scoped>
+.regre{
+  margin: 3px;
+}
+
 .background-color {
   background-color:white ;
   min-height: 100vh;

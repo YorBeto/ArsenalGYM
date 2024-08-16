@@ -1,71 +1,73 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <template>
-  <v-layout class="rounded rounded-md" style="background-color: #f0f0f0; min-height: 100vh;">
-    <barraNav></barraNav>
+  <v-app>
+    <v-layout class="rounded rounded-md" style="min-height: 100vh; background-color: #f5f5f5;">
+      <barraNav></barraNav>
 
-    <v-main style="background-color: #f0f0f0; display: flex; justify-content: center; align-items: center;">
-      <v-container>
-        <v-row>
-          <!-- Formulario para clientes -->
-          <v-col cols="12" md="6">
-            <v-card class="pa-5" max-width="500">
-              <v-card-title class="titulo-formulario">
-                Iniciar Sesión
-              </v-card-title>
-              <v-card-text>
-                <v-form ref="form1">
-                  <v-text-field
-                    v-model="correo"
-                    label="Correo electrónico"
-                    type="email"
-                    :rules="[v => !!v || 'Correo es requerido', v => /.+@.+/.test(v) || 'Correo debe ser válido']"
-                  ></v-text-field>
-                  <v-text-field
-                    v-model="contrasena1"
-                    label="Contraseña"
-                    type="password"
-                    :rules="[v => !!v || 'Contraseña es requerida']"
-                  ></v-text-field>
-                  <v-btn class="boton-ingresar" @click="ingresarFormulario1">Ingresar</v-btn>
-                </v-form>
-              </v-card-text>
-              <v-card-actions>
-                <v-spacer></v-spacer>
-                <v-btn text class="link" @click="olvidarContrasena">¿Has olvidado tu contraseña?</v-btn>
-                <router-link to="/Registro" class="link">¿No estás registrado?</router-link>
-              </v-card-actions>
-            </v-card>
-          </v-col>
+      <v-main>
+        <v-container>
+          <v-row>
+            <!-- Formulario para clientes -->
+            <v-col cols="12" md="6">
+              <v-card class="pa-5 card-form card-color" max-width="500">
+                <v-card-title class="titulo-formulario">
+                  Iniciar Sesión
+                </v-card-title>
+                <v-card-text>
+                  <v-form ref="form1">
+                    <v-text-field
+                      v-model="correo"
+                      label="Correo electrónico"
+                      type="email"
+                      :rules="[v => !!v || 'Correo es requerido', v => /.+@.+/.test(v) || 'Correo debe ser válido']"
+                    ></v-text-field>
+                    <v-text-field
+                      v-model="contrasena1"
+                      label="Contraseña"
+                      type="password"
+                      :rules="[v => !!v || 'Contraseña es requerida']"
+                    ></v-text-field>
+                    <v-btn class="boton-ingresar" @click="ingresarFormulario1">Ingresar</v-btn>
+                  </v-form>
+                </v-card-text>
+                <v-card-actions>
+                  <v-spacer></v-spacer>
+                  <router-link to="/Registro" class="link">¿No estás registrado?</router-link>
+                </v-card-actions>
+              </v-card>
+            </v-col>
 
-          <!-- Formulario para socios -->
-          <v-col cols="12" md="6">
-            <v-card class="pa-5 card-gradiente" max-width="500">
-              <v-card-title class="titulo-formulario2">
-                Team Arsenal
-              </v-card-title>
-              <v-card-text>
-                <v-form ref="form2">
-                  <v-text-field
-                    v-model="usuario"
-                    label="Usuario"
-                    :rules="[v => !!v || 'Usuario es requerido']"
-                    class="campo-input-derecha"
-                  ></v-text-field>
-                  <v-text-field
-                    v-model="contrasena2"
-                    label="Contraseña"
-                    type="password"
-                    :rules="[v => !!v || 'Contraseña es requerida']"
-                    class="campo-input-derecha"
-                  ></v-text-field>
-                  <v-btn class="boton-ingresar" @click="ingresarFormulario2">Ingresar</v-btn>
-                </v-form>
-              </v-card-text>
-            </v-card>
-          </v-col>
-        </v-row>
-      </v-container>
-    </v-main>
-  </v-layout>
+            <!-- Formulario para socios -->
+            <v-col cols="12" md="6">
+              <v-card class="pa-5 card-form card-color" max-width="500">
+                <v-card-title class="titulo-formulario2">
+                  Team Arsenal
+                </v-card-title>
+                <v-card-text>
+                  <v-form ref="form2">
+                    <v-text-field
+                      v-model="usuario"
+                      label="Usuario"
+                      :rules="[v => !!v || 'Usuario es requerido']"
+                      class="campo-input-derecha"
+                    ></v-text-field>
+                    <v-text-field
+                      v-model="contrasena2"
+                      label="Contraseña"
+                      type="password"
+                      :rules="[v => !!v || 'Contraseña es requerida']"
+                      class="campo-input-derecha"
+                    ></v-text-field>
+                    <v-btn class="boton-ingresar" @click="ingresarFormulario2">Ingresar</v-btn>
+                  </v-form>
+                </v-card-text>
+              </v-card>
+            </v-col>
+          </v-row>
+        </v-container>
+      </v-main>
+    </v-layout>
+  </v-app>
 </template>
 
 <script setup>
@@ -149,59 +151,59 @@ const ingresarFormulario2 = async () => {
   }
 };
 
-// Función para manejar la recuperación de contraseña
-const olvidarContrasena = () => {
-  // Implementar lógica para manejar la recuperación de contraseña
-  alert('Funcionalidad de recuperación de contraseña no implementada.');
-};
 </script>
 
 <style scoped>
 .v-main {
-  background-color: #f0f0f0;
+  background:linear-gradient(black,red); /* Color de fondo sólido */
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.titulo-formulario {
+.titulo-formulario, .titulo-formulario2 {
   text-align: center;
   margin-bottom: 20px;
-  color: black;
   font-size: 24px;
   font-weight: bold;
+}
+
+.titulo-formulario {
+  color: #333;
 }
 
 .titulo-formulario2 {
-  text-align: center;
-  margin-bottom: 20px;
-  color: white;
-  font-size: 24px;
-  font-weight: bold;
+  color: #333;
 }
 
-.card-gradiente {
-  background: linear-gradient(to right, black, red);
-  color: white;
+.card-form {
+  min-height: 300px;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.card-color {
+  background-color: #fff; /* Fondo blanco para ambos formularios */
 }
 
 .boton-ingresar {
-  background: linear-gradient(to right, black, red);
-  color: white;
+  background: linear-gradient(to right, #333, #e63946);
+  color: #fff;
   margin-top: 20px;
   width: 100%;
+  border-radius: 5px;
 }
 
 .link {
   display: block;
   margin-top: 10px;
-  color: black;
+  color: #333;
   text-align: center;
   text-decoration: underline;
   cursor: pointer;
 }
 
 .link:hover {
-  color: red;
+  color: #e63946;
 }
 </style>

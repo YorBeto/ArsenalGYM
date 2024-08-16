@@ -1,90 +1,93 @@
 <template>
-  <v-layout class="rounded rounded-md" style="background-color: #f0f0f0; min-height: 100vh;">
-    <barraNav></barraNav>
-    <v-main style="background-color: #f0f0f0; display: flex; justify-content: center; align-items: center;">
-      <v-card class="pa-5 card-gradiente" max-width="1000">  
-        <v-img src="/public/Arsenal.png" alt="Arsenal Logo" class="imagen-arsenal"></v-img>
-        <v-card-title class="titulo-formulario">
-          Registro
-        </v-card-title>
-        <v-card-text>
-          <v-form ref="form">
-            <v-row>
-              <v-col cols="12" md="6">
-                <v-text-field
-                  v-model="nombre"
-                  label="Nombre"
-                  :rules="[v => !!v || 'Nombre es requerido']"
-                ></v-text-field>
-              </v-col>
-              <v-col cols="12" md="6">
-                <v-text-field
-                  v-model="apellidos"
-                  label="Apellidos"
-                  :rules="[v => !!v || 'Apellidos son requeridos']"
-                ></v-text-field>
-              </v-col>
-              <v-col cols="12" md="6">
-                <v-text-field
-                  v-model="fechaNacimiento"
-                  label="Fecha de Nacimiento"
-                  type="date"
-                  :rules="[v => !!v || 'Fecha de nacimiento es requerida']"
-                ></v-text-field>
-              </v-col>
-              <v-col cols="12" md="6">
-                <v-select
-                  v-model="sexo"
-                  :items="['Masculino', 'Femenino']"
-                  label="Sexo"
-                  :rules="[v => !!v || 'Sexo es requerido']"
-                ></v-select>
-              </v-col>
-              <v-col cols="12" md="6">
-                <v-text-field
-                  v-model="correo"
-                  label="Correo"
-                  type="email"
-                  :rules="[v => !!v || 'Correo es requerido', v => /.+@.+/.test(v) || 'Correo debe ser válido']"
-                ></v-text-field>
-              </v-col>
-              <v-col cols="12" md="6">
-                <v-text-field
-                  v-model="telefono"
-                  label="Teléfono"
-                  type="tel"
-                  :rules="[v => !!v || 'Teléfono es requerido', v => /^[0-9]{10}$/.test(v) || 'Teléfono debe ser válido']"
-                ></v-text-field>
-              </v-col>
-              <v-col cols="12" v-if="datosBasicosCompletos">
-                <v-text-field
-                  v-model="contrasena"
-                  label="Contraseña"
-                  type="password"
-                  :rules="[v => !!v || 'Contraseña es requerida']"
-                ></v-text-field>
-              </v-col>
-              <v-col cols="12" v-if="datosBasicosCompletos">
-                <v-text-field
-                  v-model="confirmarContrasena"
-                  label="Confirmar Contraseña"
-                  type="password"
-                  :rules="[v => !!v || 'Confirmar contraseña es requerida', v => v === contrasena || 'Las contraseñas deben coincidir']"
-                ></v-text-field>
-              </v-col>
-            </v-row>
-          </v-form>
-        </v-card-text>
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <router-link to="Login"><v-btn color="primary" :disabled="!formCompleto" @click="registrar"></v-btn>
-          <v-btn color="primary" :disabled="!formCompleto" @click="registrar">
-            Registrarse
-          </v-btn> </router-link>
-        </v-card-actions>
-      </v-card>
-    </v-main>
-  </v-layout>
+  <v-app>
+    <v-layout class="rounded rounded-md" style="background-color: #f0f0f0; min-height: 100vh;">
+      <barraNav></barraNav>
+      <v-main style="background-color: #f0f0f0; display: flex; justify-content: center; align-items: center;">
+        <v-card class="pa-5 card-form" max-width="1000">
+          <v-img src="/public/arsenalblanco.png" alt="Arsenal Logo" class="imagen-arsenal"></v-img>
+          <v-card-title class="titulo-formulario">
+            Registro
+          </v-card-title>
+          <v-card-text>
+            <v-form ref="form">
+              <v-row>
+                <v-col cols="12" md="6">
+                  <v-text-field
+                    v-model="nombre"
+                    label="Nombre"
+                    :rules="[v => !!v || 'Nombre es requerido']"
+                  ></v-text-field>
+                </v-col>
+                <v-col cols="12" md="6">
+                  <v-text-field
+                    v-model="apellidos"
+                    label="Apellidos"
+                    :rules="[v => !!v || 'Apellidos son requeridos']"
+                  ></v-text-field>
+                </v-col>
+                <v-col cols="12" md="6">
+                  <v-text-field
+                    v-model="fechaNacimiento"
+                    label="Fecha de Nacimiento"
+                    type="date"
+                    :rules="[v => !!v || 'Fecha de nacimiento es requerida']"
+                  ></v-text-field>
+                </v-col>
+                <v-col cols="12" md="6">
+                  <v-select
+                    v-model="sexo"
+                    :items="['Masculino', 'Femenino']"
+                    label="Sexo"
+                    :rules="[v => !!v || 'Sexo es requerido']"
+                  ></v-select>
+                </v-col>
+                <v-col cols="12" md="6">
+                  <v-text-field
+                    v-model="correo"
+                    label="Correo"
+                    type="email"
+                    :rules="[v => !!v || 'Correo es requerido', v => /.+@.+/.test(v) || 'Correo debe ser válido']"
+                  ></v-text-field>
+                </v-col>
+                <v-col cols="12" md="6">
+                  <v-text-field
+                    v-model="telefono"
+                    label="Teléfono"
+                    type="tel"
+                    :rules="[v => !!v || 'Teléfono es requerido', v => /^[0-9]{10}$/.test(v) || 'Teléfono debe ser válido']"
+                  ></v-text-field>
+                </v-col>
+                <v-col cols="12" v-if="datosBasicosCompletos">
+                  <v-text-field
+                    v-model="contrasena"
+                    label="Contraseña"
+                    type="password"
+                    :rules="[v => !!v || 'Contraseña es requerida']"
+                  ></v-text-field>
+                </v-col>
+                <v-col cols="12" v-if="datosBasicosCompletos">
+                  <v-text-field 
+                    v-model="confirmarContrasena"
+                    label="Confirmar Contraseña"
+                    type="password"
+                    :rules="[v => !!v || 'Confirmar contraseña es requerida', v => v === contrasena || 'Las contraseñas deben coincidir']"
+                  ></v-text-field>
+                </v-col>
+              </v-row>
+            </v-form>
+          </v-card-text>
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <router-link to="Login">
+              <v-btn color="blue" :disabled="!formCompleto" @click="registrar">
+                Registrarse
+              </v-btn>
+            </router-link>
+          </v-card-actions>
+        </v-card>
+      </v-main>
+    </v-layout>
+  </v-app>
 </template>
 
 <script setup>
@@ -93,7 +96,7 @@ import { useRouter } from 'vue-router';
 import { useUserStore } from '@/stores/userStore';
 import barraNav from '@/components/barraNav.vue';
 
-const nombre = ref('');
+const nombre = ref( '');
 const apellidos = ref('');
 const fechaNacimiento = ref('');
 const sexo = ref('');
@@ -171,24 +174,18 @@ const registrar = async () => {
 </script>
 
 <style scoped>
-.v-card {
-  width: 100%;
-  max-width: 600px;
-  margin-top: 15px;
-  margin-bottom: 25px;
-  background: linear-gradient(to bottom, black, red);
-  color: white; 
-}
-
 .v-main {
-  background-color: #f0f0f0;
+  background: linear-gradient(black,red); /* Color de fondo gris claro */
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.v-btn {
-  margin-top: 20px;
+.v-card {
+  background-color: white; /* Fondo blanco para el formulario */
+  color: black; /* Color de texto oscuro para contraste */
+  border-radius: 50px; /* Bordes redondeados para el formulario */
+  padding: 20px;
 }
 
 .imagen-arsenal {
@@ -199,7 +196,8 @@ const registrar = async () => {
 }
 
 .titulo-formulario {
-  color: white;
+  text-align: center;
+  color: black; /* Color de título oscuro */
   font-size: 24px;
   font-weight: bold;
   margin-bottom: 20px;
