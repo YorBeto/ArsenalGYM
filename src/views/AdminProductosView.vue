@@ -112,7 +112,7 @@ const deleteProducto = () => {
     return;
   }
 
-  fetch('http://mipagina.com/producto/eliminar?id=${deleteId.value}', {
+  fetch(`http://mipagina.com/producto/eliminar?id=${deleteId.value}`, {
     method: 'DELETE',
   })
     .then(response => response.json())
