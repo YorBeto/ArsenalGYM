@@ -18,5 +18,8 @@ export const useProductosStore = defineStore('productos', {
         console.error('Error fetching productos:', error);
       }
     },
+    getProductoById(id) {
+      return this.productos.find(producto => producto.ID_PRODUCTO === id);
+    }
   },
 });

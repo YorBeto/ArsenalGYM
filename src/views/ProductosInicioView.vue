@@ -4,18 +4,19 @@
     <v-main>
       <v-container>
         <v-tabs v-model="selectedCategory" background-color="primary" dark>
-          <v-tab value="">Todas</v-tab>
           <v-tab v-for="category in categories" :key="category" :value="category">
             {{ category }}
           </v-tab>
+          <v-tab value="">Todas</v-tab>
         </v-tabs>
+
         <v-row>
           <v-col v-for="producto in filteredProductos" :key="producto.ID_PRODUCTO" cols="12" md="6" lg="4">
-            <v-card class="producto-card mx-auto my-4" max-width="344" >
-              <v-img :src="`../../img/productos/${producto.IMAGEN}`" aspect-ratio="16/9" contain @error="handleImageError"></v-img>
+            <v-card class="producto-card mx-auto my-4">
+              <v-img :src="`http://mipagina.com/${producto.IMAGEN}`" class="producto-img" aspect-ratio="16/9" contain @error="handleImageError"></v-img>
               <v-card-title>{{ producto.NOMBRE }}</v-card-title>
               <v-card-subtitle>{{ producto.CATEGORIA }}</v-card-subtitle>
-              <v-card-text> 
+              <v-card-text>
                 <p>{{ producto.DESCRIPCION }}</p>
                 <p>{{ producto.PRECIO }} MX</p>
                 <p v-if="producto.STOCK !== null">Stock: {{ producto.STOCK }}</p>
@@ -24,7 +25,6 @@
                 <v-btn color="primary" @click="addToCart(producto)">Agregar al carrito</v-btn>
               </v-card-actions>
             </v-card>
-            <div v-if="true">{{ console.log(producto.IMAGEN) }}</div>
           </v-col>
         </v-row>
       </v-container>
@@ -41,9 +41,7 @@ import { useCarritoStore } from '@/stores/carrito';
 const store = useProductosStore();
 const carritoStore = useCarritoStore();
 const selectedCategory = ref('');
-const carritoCount = computed(() => {
-  return carritoStore.productos.reduce((total, producto) => total + producto.cantidad, 0);
-});
+const carritoCount = computed(() => carritoStore.productos.reduce((total, producto) => total + producto.cantidad, 0));
 const isCartUpdated = ref(false);
 
 onMounted(() => {
@@ -60,26 +58,55 @@ const filteredProductos = computed(() => {
 });
 
 const addToCart = (producto) => {
-  carritoStore.addProducto(producto);
-  isCartUpdated.value = true;
-  setTimeout(() => {
-    isCartUpdated.value = false;
-  }, 1000);
+  carritoStore.addProducto({
+    ...producto,
+    cantidad: 1, // Cantidad predeterminada de 1
+  });
 };
 
 const handleImageError = (event) => {
-  event.target.src = '/arsenal.png'; // Ajusta esta ruta según la ubicación real
+  event.target.src = '/public/arsenal.png';
 };
-
-console.log('Productos:', store.productos);
 </script>
 
 <style scoped>
 .producto-card {
-  background-color: white;
-  border: 1px solid white;
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
   padding: 16px;
   margin-bottom: 16px;
   border-radius: 8px;
+  height: 450px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.producto-img {
+  height: 200px;
+  object-fit: contain;
+}
+
+.producto-card .v-card-title,
+.producto-card .v-card-subtitle {
+  text-align: center;
+}
+
+.producto-card .v-card-text {
+  flex-grow: 1;
+}
+
+.producto-card .v-card-actions {
+  justify-content: center;
+}
+
+.v-tabs {
+  margin-bottom: 20px;
+}
+
+.v-container {
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  padding: 20px;
 }
 </style>
