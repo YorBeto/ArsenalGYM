@@ -147,7 +147,6 @@ const registrar = async () => {
     try {
       const response = await fetch('http://3.149.253.171/registro', {
         method: 'POST',
-        mode:'no-cors',
         headers: {
           'Content-Type': 'application/json'
         },
