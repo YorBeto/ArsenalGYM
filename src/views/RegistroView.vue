@@ -78,11 +78,11 @@
           </v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
-            <router-link to="Login">
+            
               <v-btn color="blue" :disabled="!formCompleto" @click="registrar">
                 Registrarse
               </v-btn>
-            </router-link>
+         
           </v-card-actions>
         </v-card>
       </v-main>
