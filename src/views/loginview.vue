@@ -87,6 +87,7 @@ const ingresarFormulario1 = async () => {
   try {
     const response = await fetch('http://3.149.253.171/loginClientes', {
       method: 'POST',
+      mode: 'no-cors',
       headers: {
         'Content-Type': 'application/json'
       },
@@ -122,6 +123,7 @@ const ingresarFormulario2 = async () => {
     try {
       const response = await fetch('http://3.149.253.171/loginSocios', {
         method: 'POST',
+        mode:'no-cors',
         headers: {
           'Content-Type': 'application/json'
         },
