@@ -40,7 +40,7 @@ import barraNav from '@/components/barraNav.vue';
     try {
       // Llama a un API o método en el store para obtener los datos de la membresía
       // Aquí podrías usar axios u otra librería para hacer la solicitud
-      const response = await fetch(`http://mipagina.com/mimembresia${userStore.usuario.id}`);
+      const response = await fetch(`http://18.217.230.222/mimembresia${userStore.usuario.id}`);
       const data = await response.json();
       membresia.value = data;
     } catch (error) {

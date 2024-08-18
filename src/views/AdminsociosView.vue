@@ -35,7 +35,7 @@ const search = ref('')
 const socios= ref([]);
 
   const mostrarsocios = () =>{
-      fetch('http://mipagina.com/socios')
+      fetch('http://18.217.230.222/socios')
       .then(response=> response.json())
       .then(json => {
         if(json.status==200){

@@ -27,19 +27,20 @@ const productos = ref([
     <!-- Carrusel -->
     <v-main style="background: linear-gradient(to right, black, red); padding: 20px;">
 
+      
        <!-- Nuevo v-card encima del carrusel -->
        <v-container class="bienvenida">
         <!-- v-card con z-index y margen superior -->
-        <v-card class="welcome-card mb-6 bienve">
-            <v-container class="col">
-              <v-card-title class="end1">
-            <h1>Bienvenido a Arsenal</h1>
-          </v-card-title>
-          <v-card-subtitle class="end">
-            En Arsenal, nos dedicamos a ayudarte a alcanzar tus objetivos de fitness con un ambiente motivador y recursos de primera clase. Prepárate para transformar tu bienestar y superar tus límites...
-          </v-card-subtitle>
-              <v-btn router-link to="/conocenos" class="conocer">Conocer más</v-btn>
-            </v-container>
+        <v-card class="welcome-card mb-6 bienve1">
+          <v-container class="col">
+            <v-card-title class="end1">
+              <h1>Bienvenido a Arsenal</h1>
+            </v-card-title>
+            <v-card-subtitle class="end">
+              En Arsenal, nos dedicamos a ayudarte a alcanzar tus objetivos de fitness con un ambiente motivador y recursos de primera clase. Prepárate para transformar tu bienestar y superar tus límites...
+            </v-card-subtitle>
+            <v-btn router-link to="/conocenos" class="conocer">Conocer más</v-btn>
+          </v-container>
         </v-card>
       </v-container>
 
@@ -53,7 +54,7 @@ const productos = ref([
       <v-container class="bienvenida" style="margin-bottom: 50px;">
         <v-row align="center" justify="start">
           <v-col cols="12" md="10">
-            <v-card class="welcome-card mb-6 bienve">
+            <v-card class="welcome-card mb-6 bienve1">
               <v-container class="col">
                 <v-card-title class="end1">
                   <h1>Nuestro Objetivo...</h1>
@@ -81,7 +82,7 @@ const productos = ref([
                   </v-carousel>
                 </v-col>
                 <v-col cols="12" md="6" class="d-flex flex-column justify-center">
-                  <v-card-title>
+                  <v-card-title class="titulo-productos">
                     PRODUCTOS
                   </v-card-title>
                   <v-card-subtitle class="produc">
@@ -134,7 +135,7 @@ const productos = ref([
       <!-- Visitanos -->
     <v-card class="visitanoscard">
       <v-container class="visitanos">
-        <h1>VISITANOS</h1>
+        <h1>Visítanos...</h1>
         <v-row class="mb-5" align="center">
           <v-col cols="12" md="6">
             <div class="mapdiv">
@@ -154,8 +155,8 @@ const productos = ref([
     </v-main>
   </v-layout>
 
-  <v-card>
-    <v-col cols="12" class="footer-content">
+  <v-card class="info" color="grey">
+    <v-col cols="12">
       <v-row justify="space-between" align="center" no-gutters>
         <v-col cols="12" sm="auto">
           <v-row justify="center" align="center">
@@ -163,7 +164,7 @@ const productos = ref([
               icon 
               href="https://www.facebook.com/Arsenalclubbosque/?locale=es_LA" 
               target="_blank"
-              class="mr-4 v-icon-social"
+              class="mr-4 v-icon-social face"
               size="24px"
             >
               <v-icon>mdi-facebook</v-icon>
@@ -173,7 +174,7 @@ const productos = ref([
               icon 
               href="https://www.instagram.com/arsenaltrc/?hl=es-la" 
               target="_blank"
-              class="v-icon-social"
+              class="v-icon-social face"
               size="24px"
             >
               <v-icon>mdi-instagram</v-icon>
@@ -181,12 +182,12 @@ const productos = ref([
           </v-row>
         </v-col>
 
-        <v-col cols="12" sm="auto" class="text-center">
-          <div>
+        <v-col cols="12" sm="auto" class="text-center texto">
+          <div >
             Calle C. Juan Pablos 330, Tercero de Cobián Centro, 27000 Torreón, Coah.
           </div>
         </v-col>
-        <v-col cols="12" sm="auto" class="text-center">
+        <v-col cols="12" sm="auto" class="text-center texto1">
           <div style="font-weight: 500;">
             © 2024 Arsenal Gym - Todos los derechos reservados
           </div>
@@ -194,9 +195,17 @@ const productos = ref([
       </v-row>
     </v-col>
   </v-card>
+
 </template>
 
 <style scoped>
+.texto{
+    color: black;
+  }
+
+  .texto1{
+    color: black;
+  }
 
 .pros{
   height: 285px;
@@ -268,7 +277,7 @@ const productos = ref([
   text-align: start;
 }
 
-.bienve{
+.bienve1{
     height: 450px;
     width: 1200px;
     display: flex;
@@ -302,7 +311,7 @@ const productos = ref([
 }
 
 .visitanoscard{
-  background-color: rgba(226, 52, 52, 0.596);
+  background-color: transparent;
 }
 
 .boton-comprar {
@@ -332,6 +341,10 @@ const productos = ref([
   flex-direction: column;
   align-items: center;
   margin-top: 20px;
+}
+
+.visitanos{
+  color: white;
 }
 
 .mapa-arsenal-gym, .imagen-arsenal-gym {
@@ -388,13 +401,13 @@ tbody tr:last-child td {
   border-bottom: none;
 }
 
-
 @media (max-width: 900px) {
   .imagen-creatina{
     width: 80%; /* Ajusta el tamaño de las imágenes a un 80% del contenedor */
     height: 180px; /* Mantiene la proporción de la imagen */
     margin: -1px;
   }
+
   }
 
   .mapdiv {
@@ -411,17 +424,6 @@ tbody tr:last-child td {
   .imagen-arsenal-gym {
     width: 100%;
     height: auto;
-  }
-  
-  @media (max-width: 900px) {
-    .mapdiv {
-      height: 300px; /* Ajusta la altura para pantallas más pequeñas */
-    }
-    
-    .membresias-table {
-      width: 100%;
-      min-width: 600px;
-    }
   }
 
   .footer-content {
@@ -442,12 +444,127 @@ tbody tr:last-child td {
     text-align: center;
     white-space: nowrap; /* Evita que el texto se divida en varias líneas */
   }
-  
-  @media (max-width: 600px) {
-    .membresias-table th, .membresias-table td {
-      padding: 8px;
-      font-size: 14px; /* Reduce el tamaño del texto en pantallas pequeñas */
-    }
+
+  .titulo-productos{
+    font-size: 30px;
+    text-align: start;
+  }
+
+  .boton-comprar{
+    margin-left: 15px
+  }
+
+  .ultimo{
+    height: 150px;
   }
   
+  @media (max-width: 900px) {
+    .mapdiv {
+      height: 300px; /* Ajusta la altura para pantallas más pequeñas */
+    }
+    
+    .membresias-table {
+      width: 100%;
+      min-width: 600px;
+    }
+  
+    .bienve{
+    height: 450px;
+    width: 420px;
+    display: flex;
+    flex-direction: row; 
+    background-color: transparent;
+    }
+
+    .bienve1{
+    height: 590px;
+    width: 420px;
+    display: flex;
+    flex-direction: row; 
+    background-color: transparent;
+  }
+
+  .bienvenida{
+  margin-top: 70px;
+  margin-left: -45px;
+  text-align: start;
+  }
+
+  .end1{
+  font-family: Arial, Helvetica, sans-serif;
+  color: white;
+  white-space: pre-wrap; /* Permitir saltos de línea y manejar el contenido */
+  word-wrap: break-word; /* Evitar desbordamientos de contenido */
+  margin-top: 40px;
+  }
+
+  .pros{
+  height: 515px;
+  }
+
+  .titulo-productos{
+    font-size: 30px;
+    text-align: center;
+  }
+
+  .produc{
+    font-size: 15px;
+    text-align: center;
+  }
+
+  .boton-comprar{
+    margin-left: 95px
+  }
+
+  .imagen-creatina{
+    margin-top: 60px;
+    margin-left: 35px;
+  }
+
+  .card-membresia-large {
+    height: 170px;
+  }
+
+  .card-title-large {
+    font-size: 20px;
+  }
+
+  .header-cell-large {
+    font-size: 10px;
+    padding: 4px;
+  }
+
+  .body-cell-large {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .bienve{
+    height: 450px;
+    width: 1200px;
+    display: flex;
+    flex-direction: row; 
+    background-color: transparent;
+  }
+
+  .face{
+    margin-top: 6px;
+
+  }
+
+  .info{
+  height: 140px;
+  }
+
+  .texto{
+    margin-top: 20px;
+    color: black;
+  }
+
+  .texto1{
+    color: black;
+  }
+
+}
+ 
 </style>

@@ -87,7 +87,7 @@
         @mouseleave="restaurarColorboton"
         :color="coloresBotones1"
       >Historial</v-btn>
-      <v-btn
+      <v-btn router-link to="/login"
       class="botonSalir"
       @mouseover="activarRojo"
       @mouseleave="restaurarRojo"

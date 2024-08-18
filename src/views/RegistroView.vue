@@ -145,7 +145,7 @@ const registrar = async () => {
     console.log('Datos a enviar:', requestData);
 
     try {
-      const response = await fetch('http://mipagina.com/registro', {
+      const response = await fetch('http://18.217.230.222/registro', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

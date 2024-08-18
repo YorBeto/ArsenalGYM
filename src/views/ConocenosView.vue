@@ -152,4 +152,40 @@
 .v-footer .v-icon-social:hover {
   color: #ff0000;
 }
+
+@media (max-width: 900px) {
+
+  .conoce {
+    width: 370px;
+    height: 700px;
+    margin-left: -40px;
+    background-color: transparent;
+  }
+
+  .imagen-derecha {
+  width: 100%; /* Cambiado a 100% para ajustar al contenedor */
+  max-width: 520px; /* Tamaño máximo */
+  height: auto; /* Cambiado a auto para ajuste automático */
+  margin-left: 8px; /* Elimina margen negativo */
+  }
+
+  .gym1 {
+    margin-top: 20px;
+  }
+
+  .conoce2 {
+    width: 370px;
+    height: 700px;
+    margin-left: -40px;        
+    background-color: black;
+  }
+
+  .cross {
+    height: 480px;
+    width: 500px;
+    margin-left: -550px;
+}
+
+}
+
 </style>

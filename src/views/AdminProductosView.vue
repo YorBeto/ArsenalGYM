@@ -79,7 +79,7 @@ const snackbar = ref({
 });
 
 const mostrarproductos = () => {
-  fetch('http://mipagina.com/productos')
+  fetch('http://18.217.230.222/productos')
     .then(response => response.json())
     .then(json => {
       if (json.status === 200) {
@@ -112,7 +112,7 @@ const deleteProducto = () => {
     return;
   }
 
-  fetch(`http://mipagina.com/producto/eliminar?id=${deleteId.value}`, {
+  fetch(`http://18.217.230.222/producto/eliminar?id=${deleteId.value}`, {
     method: 'DELETE',
   })
     .then(response => response.json())
