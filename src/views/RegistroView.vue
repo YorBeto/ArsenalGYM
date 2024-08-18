@@ -171,6 +171,7 @@ const registrar = async () => {
     }
   }
 };
+
 </script>
 
 <style scoped>
