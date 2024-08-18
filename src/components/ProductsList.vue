@@ -6,7 +6,7 @@ const products = ref([]);
 
 const fetchProducts = async () => {
   try {
-    const response = await fetch('http://18.217.230.222/productos');
+    const response = await fetch('http://3.149.253.171/productos');
     const data = await response.json();
     products.value = data.filter(product => product.CATEGORIA === 'PRE-ENTRENOS');
   } catch (error) {

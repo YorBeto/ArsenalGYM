@@ -35,7 +35,7 @@ import BarralateralAdmin from '@/components/BarralateralAdmin.vue';
   const citas= ref([]);
   
     const mostrarcitas = () =>{
-        fetch('http://mipagina.com/citas')
+        fetch('http://3.149.253.171/citas')
         .then(response=> response.json())
         .then(json => {
           if(json.status==200){

@@ -7,7 +7,7 @@ export const useProductosStore = defineStore('productos', {
   actions: {
     async fetchProductos() {
       try {
-        const response = await fetch('http://18.217.230.222/productos');
+        const response = await fetch('http://3.149.253.171/productos');
         if (!response.ok) {
           throw new Error('Error fetching productos');
         }

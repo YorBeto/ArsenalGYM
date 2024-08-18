@@ -85,7 +85,7 @@ const userStore = useUserStore();
 
 const ingresarFormulario1 = async () => {
   try {
-    const response = await fetch('http://18.217.230.222/loginClientes', {
+    const response = await fetch('http://3.149.253.171/loginClientes', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -120,7 +120,7 @@ const ingresarFormulario2 = async () => {
     router.push({ name: 'AdminInicio' });
   } else {
     try {
-      const response = await fetch('http://18.217.230.222/loginSocios', {
+      const response = await fetch('http://3.149.253.171/loginSocios', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

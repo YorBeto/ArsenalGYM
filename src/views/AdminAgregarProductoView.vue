@@ -146,7 +146,7 @@ const submitForm = async () => {
   formData.append('imagen', imagen.value);
 
   try {
-    const response = await fetch('http://18.217.230.222/insertarproducto', {
+    const response = await fetch('http://3.149.253.171/insertarproducto', {
       method: 'POST',
       body: formData,
     });

@@ -63,7 +63,7 @@ const categorias = ref([]);
 
 // Fetch categories
 const fetchCategorias = () => {
-  fetch('http://18.217.230.222/categorias')
+  fetch('http://3.149.253.171/categorias')
     .then(response => response.json())
     .then(json => {
       if (json.status === 200) {
@@ -76,7 +76,7 @@ const fetchCategorias = () => {
 
 // Search for product
 const buscarProducto = () => {
-  fetch(`http://18.217.230.222/producto/buscar?id_producto=${form.value.id_producto}`)
+  fetch(`http://3.149.253.171/producto/buscar?id_producto=${form.value.id_producto}`)
     .then(response => response.json())
     .then(json => {
       if (json.status === 200) {
@@ -98,7 +98,7 @@ const buscarProducto = () => {
 
 // Update product
 const actualizarProducto = () => {
-  fetch('http://18.217.230.222/producto/actualizar', {
+  fetch('http://3.149.253.171/producto/actualizar', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -123,7 +123,7 @@ const actualizarProducto = () => {
 
 // Delete product
 const eliminarProducto = () => {
-  fetch('http://18.217.230.222/producto/eliminar', {
+  fetch('http://3.149.253.171/producto/eliminar', {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json'

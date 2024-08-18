@@ -76,7 +76,7 @@ const snackbar = ref({
 });
 
 const mostrarEmpleados = () => {
-  fetch('http://18.217.230.222/empleados')
+  fetch('http://3.149.253.171/empleados')
     .then(response => response.json())
     .then(json => {
       if (json.status === 200) {
@@ -105,7 +105,7 @@ const deleteEmpleado = () => {
     return;
   }
 
-  fetch('http://18.217.230.222/empleado/eliminar?id=${deleteId.value}',{
+  fetch('http://3.149.253.171/empleado/eliminar?id=${deleteId.value}',{
     method: 'DELETE',
   })
     .then(response => response.json())
