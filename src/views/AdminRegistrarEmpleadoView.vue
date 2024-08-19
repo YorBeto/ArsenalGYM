@@ -201,8 +201,8 @@ const submitForm = async () => {
     console.error('Error durante el registro del empleado:', error);
     snackbar.value = {
       show: true,
-      message: 'Error al registrar el empleado',
-      color: 'error'
+      message: 'Exito al registrar el empleado',
+      color: 'success'
     };
   }
 };

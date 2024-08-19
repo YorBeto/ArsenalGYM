@@ -89,19 +89,19 @@ const ingresarFormulario1 = async () => {
       method: 'POST',
       mode:'no-cors',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ correo: correo.value, contrasena: contrasena.value }) // Asegúrate de que los nombres coincidan
+      body: JSON.stringify({ correo: correo.value, contrasena: contrasena.value }) 
     });
 
     const result = await response.json();
     console.log('Resultado del servidor:', result);
 
-    if (result.token) {  // Asegúrate de que esto coincida con la estructura de la respuesta del backend
-      const usuarioData = result.usuario;  // Ajusta esto según cómo se llame el objeto usuario en tu backend
+    if (result.token) {  
+      const usuarioData = result.usuario;  
       const token = result.token;
       
-      userStore.setUsuario(usuarioData); // Almacena los datos del usuario en tu store
-      localStorage.setItem('token', token); // Almacena el token en localStorage
-      router.push({ name: 'perfilusuario' }); // Redirige al perfil del usuario
+      userStore.setUsuario(usuarioData); 
+      localStorage.setItem('token', token); 
+      router.push({ name: 'perfilusuario' });
     } else {
       alert(result.msg || 'Credenciales inválidas.');
     }
@@ -144,7 +144,7 @@ const ingresarFormulario2 = async () => {
 
 <style scoped>
 .v-main {
-  background:linear-gradient(black,red); /* Color de fondo sólido */
+  background:linear-gradient(black,red); 
   display: flex;
   justify-content: center;
   align-items: center;
