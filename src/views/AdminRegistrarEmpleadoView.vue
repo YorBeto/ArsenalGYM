@@ -175,7 +175,7 @@ const submitForm = async () => {
   };
 
   try {
-    const response = await fetch('http://mipagina.com/registroEmpleados', {
+    const response = await fetch('http://3.149.253.171/registroEmpleados', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
