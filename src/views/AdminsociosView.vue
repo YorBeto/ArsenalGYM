@@ -24,7 +24,6 @@
   </div>
 </template>
 
-
 <script setup>
 
 import BarraAdminNew from '@/components/BarraAdminNew.vue';

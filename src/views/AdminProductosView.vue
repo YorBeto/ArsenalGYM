@@ -18,15 +18,18 @@
           :headers="headers"
           :items="productos"
           :search="search"
-          @click:row="selectProducto"
         ></v-data-table>
         <div class="acciones">
-          <v-btn color="primary" class="agregar-btn">
-            <router-link to="/agregarproductos" class="router-link">
-              Agregar Producto
-            </router-link>
-          </v-btn>
-          <v-btn color="red" @click="openDeleteModal">Eliminar Producto</v-btn>
+          <div class="accion">
+            <v-btn color="primary" class="small-btn">
+              <router-link to="/agregarproductos" class="router-link">
+                Agregar Producto
+              </router-link>
+            </v-btn>
+          </div>
+          <div class="accion">
+            <v-btn color="red" @click="openDeleteModal" class="small-btn">Eliminar Producto</v-btn>
+          </div>
         </div>
       </div>
     </div>
@@ -46,50 +49,26 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
-
-    <!-- Snackbar para mensajes de éxito -->
-    <v-snackbar
-      v-model="snackbar.show"
-      :timeout="3000"
-      :color="snackbar.color"
-      top
-      multi-line
-    >
-      {{ snackbar.message }}
-    </v-snackbar>
   </div>
 </template>
+
 
 <script setup>
 import BarraAdminNew from '@/components/BarraAdminNew.vue';
 import BarralateralAdmin from '@/components/BarralateralAdmin.vue';
-import { useRouter } from 'vue-router';
 import { ref, onMounted } from 'vue';
 
-// eslint-disable-next-line no-unused-vars
-const router = useRouter();
 const search = ref('');
 const productos = ref([]);
 const deleteDialog = ref(false);
 const deleteId = ref('');
-const snackbar = ref({
-  show: false,
-  message: '',
-  color: 'success'
-});
 
 const mostrarproductos = () => {
-  fetch('http://3.149.253.171/productos')
+  fetch('http://3.149.253.171/adminproductos')
     .then(response => response.json())
     .then(json => {
       if (json.status === 200) {
         productos.value = json.data;
-      } else {
-        snackbar.value = {
-          show: true,
-          message: 'Error al cargar productos: ' + json.message,
-          color: 'error'
-        };
       }
     });
 };
@@ -98,50 +77,29 @@ const openDeleteModal = () => {
   deleteDialog.value = true;
 };
 
-const selectProducto = (item) => {
-  deleteId.value = item.id;
-};
-
 const deleteProducto = () => {
   if (!deleteId.value) {
-    snackbar.value = {
-      show: true,
-      message: 'Por favor, ingresa un ID del producto.',
-      color: 'error'
-    };
+    alert('Por favor, ingresa un ID del producto.');
     return;
   }
 
   fetch(`http://3.149.253.171/producto/eliminar?id=${deleteId.value}`, {
     method: 'DELETE',
   })
-    .then(response => response.json())
+    .then(response => {
+      return response.json(); // Asegúrate de que la respuesta sea JSON
+    })
     .then(json => {
-      if (json.status === 200 || json.success) {
-        snackbar.value = {
-          show: true,
-          message: 'Producto eliminado con éxito',
-          color: 'success'
-        };
+      if (json.success) {
+        alert('Producto eliminado con éxito');
         deleteDialog.value = false;
-
-        setTimeout(() => {
-          mostrarproductos();
-        }, 2000);
+        mostrarproductos(); // Refrescar la lista de productos
       } else {
-        snackbar.value = {
-          show: true,
-          message: 'Error al eliminar el producto: ' + (json.message || 'Respuesta inesperada del servidor'),
-          color: 'error'
-        };
+        alert('Error al eliminar el producto: ' + json.message);
       }
     })
     .catch(error => {
-      snackbar.value = {
-        show: true,
-        message: 'Error al eliminar el producto: ' + error.message,
-        color: 'error'
-      };
+      alert('Error al eliminar el producto: ' + error.message);
     });
 };
 
@@ -155,15 +113,6 @@ onMounted(() => {
   display: flex;
   flex-direction: column;
   height: 100vh;
-}
-
-.navbar {
-  background-color: #333;
-  padding: 1rem;
-}
-
-.logo {
-  max-height: 50px;
 }
 
 .contenedor {
@@ -189,12 +138,15 @@ onMounted(() => {
 
 .acciones {
   display: flex;
-  justify-content: flex-start;
   margin-top: 1rem;
+  gap: 10px; /* Espacio entre los botones */
 }
 
-.agregar-btn {
-  margin-right: 1rem;
+.small-btn {
+  font-size: 14px;
+  padding: 0.5rem 1rem;
+  min-width: auto;
+  width: auto;
 }
 
 .router-link {
@@ -202,3 +154,4 @@ onMounted(() => {
   color: inherit;
 }
 </style>
+

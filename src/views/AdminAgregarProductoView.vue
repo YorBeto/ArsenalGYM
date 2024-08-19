@@ -1,9 +1,17 @@
 <template>
   <div id="admin-registro">
-    <BarraAdminNew></BarraAdminNew>
+    <BarraAdminNew />
     <div class="contenedor">
-      <BarralateralAdmin></BarralateralAdmin>
+      <BarralateralAdmin />
       <div class="main-content">
+        <!-- Botón de retroceso -->
+        <v-btn
+          icon
+          @click="goBack"
+          class="back-button"
+        >
+          <v-icon>mdi-arrow-left</v-icon>
+        </v-btn>
         <h1>Registrar Producto</h1>
         <v-form v-model="valid" @submit.prevent="submitForm">
           <v-text-field
@@ -20,22 +28,27 @@
             required
           ></v-textarea>
 
-          <v-text-field
-            v-model="precio"
-            label="Precio"
-            type="number"
-            :rules="[rules.required]"
-            required
-          ></v-text-field>
-
-          <v-text-field
-            v-model="stock"
-            label="Stock"
-            type="number"
-            :rules="[rules.required]"
-            v-if="categoria !== 'CAT05'"  
-            required
-          ></v-text-field>
+          <v-row>
+            <v-col cols="6">
+              <v-text-field
+                v-model="precio"
+                label="Precio"
+                type="number"
+                :rules="[rules.required]"
+                required
+              ></v-text-field>
+            </v-col>
+            <v-col cols="6">
+              <v-text-field
+                v-model="stock"
+                label="Stock"
+                type="number"
+                :rules="[rules.required]"
+                v-if="categoria !== 'CAT05'"
+                required
+              ></v-text-field>
+            </v-col>
+          </v-row>
 
           <v-file-input
             v-model="imagen"
@@ -58,7 +71,10 @@
             </div>
           </div>
 
-          <v-btn type="submit" color="primary" :disabled="!valid">Agregar Producto</v-btn>
+          <!-- Botón de Agregar Producto separado -->
+          <div class="submit-container">
+            <v-btn type="submit" color="primary" :disabled="!valid">Agregar Producto</v-btn>
+          </div>
         </v-form>
       </div>
     </div>
@@ -72,7 +88,6 @@
       multi-line
     >
       {{ snackbar.message }}
-      
     </v-snackbar>
   </div>
 </template>
@@ -117,16 +132,6 @@ watch(categoria, (newValue) => {
   }
 });
 
-// eslint-disable-next-line no-unused-vars
-const resetForm = () => {
-  nombre.value = '';
-  descripcion.value = '';
-  precio.value = '';
-  stock.value = '';
-  categoria.value = '';
-  imagen.value = null;
-};
-
 const submitForm = async () => {
   if (!nombre.value || !descripcion.value || !precio.value || !categoria.value || !imagen.value) {
     snackbar.value = {
@@ -163,15 +168,20 @@ const submitForm = async () => {
     // Agregar un pequeño retraso antes de redirigir
     setTimeout(() => {
       router.push('adminproductos');
-    }, 1500); 
+    }, 1500);
+
   } catch (error) {
     console.error('Error durante el registro del producto:', error);
     snackbar.value = {
-      show: false,
+      show: true,
       message: 'Error al registrar el producto',
       color: 'error'
     };
   }
+};
+
+const goBack = () => {
+  router.back();
 };
 </script>
 
@@ -193,6 +203,7 @@ const submitForm = async () => {
   flex-direction: column;
   flex: 1;
   padding: 1rem;
+  position: relative;
 }
 
 h1 {
@@ -211,5 +222,15 @@ h1 {
 .categoria-buttons {
   display: flex;
   gap: 20px;
+}
+
+.submit-container {
+  margin-top: 1rem;
+}
+
+.back-button {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
 }
 </style>
