@@ -29,7 +29,6 @@
               </v-card-text>
               <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn text class="link" @click="olvidarContrasena">¿Has olvidado tu contraseña?</v-btn>
                 <router-link to="/Registro" class="link">¿No estás registrado?</router-link>
               </v-card-actions>
             </v-card>
@@ -81,7 +80,7 @@ const userStore = useUserStore();
 
 const ingresarFormulario1 = async () => {
   try {
-    const response = await fetch('http://3.149.253.171//loginClientes', {
+    const response = await fetch('http://3.149.253.171/loginClientes', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -116,7 +115,7 @@ const ingresarFormulario2 = async () => {
     router.push({ name: 'AdminInicio' });
   } else {
     try {
-      const response = await fetch('http://3.149.253.171//loginSocios', {
+      const response = await fetch('http://3.149.253.171/loginSocios', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
