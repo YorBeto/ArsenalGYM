@@ -87,6 +87,7 @@ const ingresarFormulario1 = async () => {
   try {
     const response = await fetch('http://3.149.253.171/loginClientes', {
       method: 'POST',
+      mode: 'no-cors',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ correo: correo.value, contrasena: contrasena1.value })
     });
@@ -114,6 +115,7 @@ const ingresarFormulario2 = async () => {
     try {
       const response = await fetch('http://3.149.253.171/loginSocios', {
         method: 'POST',
+        mode: 'no-cors',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ usuario: usuario.value, contrasena: contrasena2.value })
       });
