@@ -179,7 +179,22 @@ const router = createRouter({
       path: '/conocenos',
       name: 'conocenos',
       component: ConocenosView
-    } 
+    },
+    {
+      path: '/asistencia',
+      name: 'asistencia',
+      component: AdminAsistenciasView
+    },
+    {
+      path: '/clases',
+      name: 'clases',
+      component: ClasesView
+    },
+    {
+      path: '/adminclases',
+      name: 'adminclases',
+      component: AdminClasesView
+    },
   ]
 })
 
@@ -209,6 +224,9 @@ import HombroView from '@/views/HombroView.vue'
 import EspaldaView from '@/views/EspaldaView.vue'
 import NovedadesView from '@/views/NovedadesView.vue'
 import ConocenosView from '@/views/ConocenosView.vue'
+import AdminAsistenciasView from '@/views/AdminAsistenciasView.vue'
+import ClasesView from '@/views/ClasesView.vue'
+import AdminClasesView from '@/views/AdminClasesView.vue'
 
 
 export default router
