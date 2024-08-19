@@ -11,7 +11,7 @@ export const useClasesStore = defineStore('clases', {
     async fetchClases() {
       this.loading = true;
       try {
-        const response = await fetch('http://18.218.156.54/clases');
+        const response = await fetch('http://3.149.253.171/clases');
         const data = await response.json();
         this.clases = data.data;
       } catch (error) {
@@ -36,7 +36,7 @@ export const useClasesStore = defineStore('clases', {
     },
     async editarClase(clase) {
       try {
-        const response = await fetch('http://18.218.156.54/editarclase', {
+        const response = await fetch('http://3.149.253.171/editarclase', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -55,7 +55,7 @@ export const useClasesStore = defineStore('clases', {
     },
     async inscribirSocioEnClase(idSocio, idClase) {
       try {
-        const response = await fetch('http://18.218.156.54/inscribir', {
+        const response = await fetch('http://3.149.253.171/inscribir', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
