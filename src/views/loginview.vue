@@ -96,6 +96,7 @@ const ingresarFormulario1 = async () => {
     }
 
     const result = await response.json();
+    console.log(response);
 
     if (result.status === 200 && result.msg === "success") {
       localStorage.setItem('token', result.data._token);
