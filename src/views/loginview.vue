@@ -22,7 +22,7 @@
                       :rules="[v => !!v || 'Correo es requerido', v => /.+@.+/.test(v) || 'Correo debe ser válido']"
                     ></v-text-field>
                     <v-text-field
-                      v-model="contrasena1"
+                      v-model="contrasena"
                       label="Contraseña"
                       type="password"
                       :rules="[v => !!v || 'Contraseña es requerida']"
@@ -77,7 +77,7 @@ import { useUserStore } from '@/stores/userStore';
 import barraNav from '@/components/barraNav.vue';
 
 const correo = ref('');
-const contrasena1 = ref('');
+const contrasena = ref('');
 const usuario = ref('');
 const contrasena2 = ref('');
 const router = useRouter();
@@ -88,19 +88,19 @@ const ingresarFormulario1 = async () => {
     const response = await fetch('http://3.149.253.171/loginClientes', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ correo: correo.value, contrasena: contrasena1.value })
+      body: JSON.stringify({ correo: correo.value, contrasena: contrasena.value }) // Asegúrate de que los nombres coincidan
     });
 
     const result = await response.json();
-    console.log('Resultado del servidor:', result); // Agrega esto para ver el resultado del servidor
+    console.log('Resultado del servidor:', result);
 
-    if (result.status === 200 && result.msg === "success") {
-      const usuarioData = result.data.usuario;
-      const token = result.data._token;
+    if (result.token) {  // Asegúrate de que esto coincida con la estructura de la respuesta del backend
+      const usuarioData = result.usuario;  // Ajusta esto según cómo se llame el objeto usuario en tu backend
+      const token = result.token;
       
-      userStore.setUsuario(usuarioData);
-      localStorage.setItem('token', token);
-      router.push({ name: 'perfilusuario' });
+      userStore.setUsuario(usuarioData); // Almacena los datos del usuario en tu store
+      localStorage.setItem('token', token); // Almacena el token en localStorage
+      router.push({ name: 'perfilusuario' }); // Redirige al perfil del usuario
     } else {
       alert(result.msg || 'Credenciales inválidas.');
     }
@@ -109,6 +109,7 @@ const ingresarFormulario1 = async () => {
     alert('Hubo un error al intentar iniciar sesión. Por favor, inténtelo de nuevo.');
   }
 };
+
 
 const ingresarFormulario2 = async () => {
   if (usuario.value === 'Peniche1234' && contrasena2.value === '123456') {
