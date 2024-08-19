@@ -87,30 +87,16 @@ const ingresarFormulario1 = async () => {
   try {
     const response = await fetch('http://3.149.253.171/loginClientes', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        correo: correo.value,
-        contrasena: contrasena1.value
-      })
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ correo: correo.value, contrasena: contrasena1.value })
     });
-
-    if (!response.ok) {
-      throw new Error('Error en la respuesta de red');
-    }
 
     const result = await response.json();
 
-    if (result.status === 200 && result.msg === "success") {
-      const usuarioData = result.data.usuario;
-      const token = result.data._token;
-      
-      // Almacenar el token y el usuario en userStore
-      userStore.setUsuario(usuarioData);
-      localStorage.setItem('token', token);
-      
-      // Redirigir al perfil del usuario
+    if (response.ok && result.status === 200) {
+      const { usuario, _token } = result.data;
+      userStore.setUsuario(usuario);
+      localStorage.setItem('token', _token);
       router.push({ name: 'perfilusuario' });
     } else {
       alert(result.msg || 'Credenciales inválidas.');
@@ -121,9 +107,6 @@ const ingresarFormulario1 = async () => {
   }
 };
 
-
-
-
 const ingresarFormulario2 = async () => {
   if (usuario.value === 'Peniche1234' && contrasena2.value === '123456') {
     router.push({ name: 'AdminInicio' });
@@ -131,23 +114,13 @@ const ingresarFormulario2 = async () => {
     try {
       const response = await fetch('http://3.149.253.171/loginSocios', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          usuario: usuario.value,
-          contrasena: contrasena2.value
-        })
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ usuario: usuario.value, contrasena: contrasena2.value })
       });
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.msg || 'Error en la respuesta de red');
-      }
 
       const result = await response.json();
 
-      if (result.status === 200 && result.msg === 'success') {
+      if (response.ok && result.status === 200) {
         localStorage.setItem('token', result.data._token);
         userStore.setUsuario(result.data.usuario);
         router.push({ name: 'perfilsocio' });
