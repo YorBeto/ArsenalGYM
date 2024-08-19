@@ -87,17 +87,19 @@ const ingresarFormulario1 = async () => {
   try {
     const response = await fetch('http://3.149.253.171/loginClientes', {
       method: 'POST',
-      mode: 'no-cors',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ correo: correo.value, contrasena: contrasena1.value })
     });
 
     const result = await response.json();
+    console.log('Resultado del servidor:', result); // Agrega esto para ver el resultado del servidor
 
-    if (response.ok && result.status === 200) {
-      const { usuario, _token } = result.data;
-      userStore.setUsuario(usuario);
-      localStorage.setItem('token', _token);
+    if (result.status === 200 && result.msg === "success") {
+      const usuarioData = result.data.usuario;
+      const token = result.data._token;
+      
+      userStore.setUsuario(usuarioData);
+      localStorage.setItem('token', token);
       router.push({ name: 'perfilusuario' });
     } else {
       alert(result.msg || 'Credenciales inválidas.');
