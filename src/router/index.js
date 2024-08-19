@@ -214,7 +214,6 @@ router.beforeEach((to, from, next) => {
 import { useUserStore } from '@/stores/userStore';
 // eslint-disable-next-line no-unused-vars
 import SociosMembresiaView from '@/views/SociosMembresiaView.vue'
-import ClasesView from '@/views/ClasesView.vue'
 import InfosocioView from '@/views/InfosocioView.vue'
 import BicepsView from '@/views/BicepsView.vue'
 import TricepView from '@/views/TricepView.vue'
