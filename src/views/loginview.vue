@@ -87,6 +87,7 @@ const ingresarFormulario1 = async () => {
   try {
     const response = await fetch('http://3.149.253.171/loginClientes', {
       method: 'POST',
+      mode:'no-cors',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ correo: correo.value, contrasena: contrasena.value }) // Asegúrate de que los nombres coincidan
     });
