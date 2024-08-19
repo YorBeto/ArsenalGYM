@@ -164,9 +164,7 @@ const registrar = async () => {
         });
 
         router.push({ name: 'perfilusuario' });
-      } else {
-        console.error('Error al registrar:', result.message);
-      }
+      } 
     } catch (error) {
       console.error('Error en la solicitud:', error);
     }
