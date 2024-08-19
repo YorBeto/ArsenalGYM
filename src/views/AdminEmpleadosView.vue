@@ -36,7 +36,7 @@
         <v-card-title class="headline">Eliminar Empleado</v-card-title>
         <v-card-subtitle>Introduce el ID del Empleado para eliminar</v-card-subtitle>
         <v-card-text>
-          <v-text-field v-model="deleteId" label="ID del Producto" />
+          <v-text-field v-model="deleteId" label="ID del Empleado" />
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
@@ -90,7 +90,7 @@ fetch(`http://3.149.253.171/empleado/eliminar?id=${deleteId.value}`, {
       deleteDialog.value = false;
       mostrarproductos(); // Refrescar la lista de productos
     } else {
-      alert('Error al eliminar el Empleado: ' + json.message);
+      alert(' al eliminar el Empleado: ' + json.message);
     }
   })
   .catch(error => {
