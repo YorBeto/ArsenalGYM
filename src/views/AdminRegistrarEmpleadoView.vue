@@ -4,136 +4,91 @@
     <div class="contenedor">
       <BarralateralAdmin />
       <div class="main-content">
-        <!-- Botón de retroceso -->
-        <v-btn
-          icon
-          @click="goBack"
-          class="back-button"
-        >
-          <v-icon>mdi-arrow-left</v-icon>
-        </v-btn>
-        <div class="form-container">
-          <h1>Registrar Empleado</h1>
-          <v-form v-model="valid" @submit.prevent="submitForm">
-            <div class="form-row">
-              <v-text-field
-                v-model="nombre"
-                label="Nombre"
-                :rules="[rules.required]"
-                required
-                outlined
-                dense
-                class="input-field"
-              ></v-text-field>
+        <h1>Registrar Empleado</h1>
+        <v-form v-model="valid" @submit.prevent="submitForm">
+          <v-text-field
+            v-model="nombre"
+            label="Nombre"
+            :rules="[rules.required]"
+            required
+          ></v-text-field>
 
-              <v-text-field
-                v-model="apellidos"
-                label="Apellidos"
-                :rules="[rules.required]"
-                required
-                outlined
-                dense
-                class="input-field"
-              ></v-text-field>
-            </div>
+          <v-text-field
+            v-model="apellidos"
+            label="Apellidos"
+            :rules="[rules.required]"
+            required
+          ></v-text-field>
 
-            <div class="form-row">
-              <v-text-field
-                v-model="fechaNacimiento"
-                label="Fecha de Nacimiento"
-                type="date"
-                :rules="[rules.required]"
-                required
-                outlined
-                dense
-                class="input-field"
-              ></v-text-field>
+          <v-text-field
+            v-model="fechaNacimiento"
+            label="Fecha de Nacimiento"
+            type="date"
+            :rules="[rules.required]"
+            required
+          ></v-text-field>
 
-              <v-select
-                v-model="sexo"
-                :items="sexos"
-                label="Sexo"
-                :rules="[rules.required]"
-                required
-                outlined
-                dense
-                class="input-field"
-              ></v-select>
-            </div>
+          <v-select
+            v-model="sexo"
+            :items="sexos"
+            label="Sexo"
+            :rules="[rules.required]"
+            required
+          ></v-select>
 
-            <div class="form-row">
-              <v-text-field
-                v-model="correo"
-                label="Correo Electrónico"
-                type="email"
-                :rules="[rules.required, rules.email]"
-                required
-                outlined
-                dense
-                class="input-field"
-              ></v-text-field>
+          <v-text-field
+            v-model="correo"
+            label="Correo Electrónico"
+            type="email"
+            :rules="[rules.required, rules.email]"
+            required
+          ></v-text-field>
 
-              <v-text-field
-                v-model="telefono"
-                label="Teléfono"
-                :rules="[rules.required, rules.telefono]"
-                required
-                outlined
-                dense
-                class="input-field"
-              ></v-text-field>
-            </div>
+          <v-text-field
+            v-model="telefono"
+            label="Teléfono"
+            :rules="[rules.required, rules.telefono]"
+            required
+          ></v-text-field>
 
-            <div class="form-row">
-              <v-text-field
-                v-model="contrasena"
-                label="Contraseña"
-                type="password"
-                :rules="[rules.required, rules.password]"
-                required
-                outlined
-                dense
-                class="input-field"
-              ></v-text-field>
+          <v-text-field
+            v-model="contrasena"
+            label="Contraseña"
+            type="password"
+            :rules="[rules.required, rules.password]"
+            required
+          ></v-text-field>
 
-              <v-textarea
-                v-model="direccion"
-                label="Dirección"
-                :rules="[rules.required]"
-                required
-                outlined
-                dense
-                class="input-field"
-              ></v-textarea>
-            </div>
+          <v-textarea
+            v-model="direccion"
+            label="Dirección"
+            :rules="[rules.required]"
+            required
+          ></v-textarea>
 
-            <div class="form-row">
-              <v-text-field
-                v-model="curp"
-                label="CURP"
-                :rules="[rules.required, rules.curp]"
-                required
-                outlined
-                dense
-                class="input-field"
-              ></v-text-field>
+          <v-text-field
+            v-model="curp"
+            label="CURP"
+            :rules="[rules.required, rules.curp]"
+            required
+          ></v-text-field>
 
-              <v-text-field
-                v-model="rfc"
-                label="RFC"
-                :rules="[rules.required, rules.rfc]"
-                required
-                outlined
-                dense
-                class="input-field"
-              ></v-text-field>
-            </div>
+          <v-text-field
+            v-model="rfc"
+            label="RFC"
+            :rules="[rules.required, rules.rfc]"
+            required
+          ></v-text-field>
 
-            <div class="submit-container">
-              <v-btn type="submit" color="primary" :disabled="!valid">Registrar Empleado</v-btn>
-            </div>
-          </v-form>
-        </div>
+          <v-text-field
+            v-model="numeroSeguro"
+            label="Número de Seguro Social"
+            :rules="[rules.required, rules.numeroSeguro]"
+            required
+          ></v-text-field>
+
+          <v-btn type="submit" color="primary" :disabled="!valid">Registrar Empleado</v-btn>
+        </v-form>
       </div>
     </div>
 
@@ -168,22 +123,8 @@ const contrasena = ref('');
 const direccion = ref('');
 const curp = ref('');
 const rfc = ref('');
+const numeroSeguro = ref('');
 const valid = ref(false);
-
-const sexos = [
-  'Masculino',
-  'Femenino',
-  'Otro'
-];
-
-const rules = {
-  required: value => !!value || 'Campo requerido',
-  email: value => /.+@.+\..+/.test(value) || 'Correo electrónico inválido',
-  telefono: value => /^\d{10}$/.test(value) || 'Teléfono inválido',
-  password: value => value.length >= 6 || 'Contraseña debe tener al menos 6 caracteres',
-  curp: value => /^[A-Z]{4}\d{6}[A-Z]{6}[A-Z0-9]{1}$/.test(value) || 'CURP inválido',
-  rfc: value => /^[A-Z]{3}\d{6}[A-Z0-9]{3}$/.test(value) || 'RFC inválido',
-};
 
 const snackbar = ref({
   show: false,
@@ -191,40 +132,59 @@ const snackbar = ref({
   color: 'success'
 });
 
-const submitForm = async () => {
-  if (!nombre.value || !apellidos.value || !fechaNacimiento.value || !sexo.value || !correo.value || !telefono.value || !contrasena.value || !direccion.value || !curp.value || !rfc.value) {
-    snackbar.value = {
-      show: true,
-      message: 'Por favor, complete todos los campos.',
-      color: 'error'
-    };
-    return;
-  }
+// Lista de opciones para el campo "Sexo"
+const sexos = ref(['Masculino', 'Femenino']);
 
-  const empleadoData = {
+const rules = {
+  required: value => !!value || 'Campo requerido',
+  email: value => /.+@.+\..+/.test(value) || 'Correo no válido',
+  telefono: value => /^\d{10}$/.test(value) || 'Teléfono no válido',
+  password: value => value.length >= 6 || 'La contraseña debe tener al menos 6 caracteres',
+  curp: value => value.length === 18 || 'CURP debe tener 18 caracteres',
+  rfc: value => value.length === 13 || 'RFC debe tener 13 caracteres',
+  numeroSeguro: value => value.length === 11 || 'Número de Seguro Social debe tener 11 caracteres',
+};
+
+const limpiarFormulario = () => {
+  nombre.value = '';
+  apellidos.value = '';
+  fechaNacimiento.value = '';
+  sexo.value = '';
+  correo.value = '';
+  telefono.value = '';
+  contrasena.value = '';
+  direccion.value = '';
+  curp.value = '';
+  rfc.value = '';
+  numeroSeguro.value = '';
+};
+
+const submitForm = async () => {
+  const data = {
     nombre: nombre.value,
     apellidos: apellidos.value,
     fechaNacimiento: fechaNacimiento.value,
-    sexo: sexo.value,
+    sexo: sexo.value === 'Masculino' ? 'M' : 'F',
     correo: correo.value,
     telefono: telefono.value,
     contrasena: contrasena.value,
     direccion: direccion.value,
     curp: curp.value,
-    rfc: rfc.value
+    rfc: rfc.value,
+    numeroSeguro: numeroSeguro.value
   };
 
   try {
-    const response = await fetch('http://3.149.253.171/registrarempleado', {
+    const response = await fetch('http://mipagina.com/registroEmpleados', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(empleadoData),
+      body: JSON.stringify(data)
     });
 
+    // eslint-disable-next-line no-unused-vars
     const json = await response.json();
-    console.log('Respuesta del servidor:', json);
 
     snackbar.value = {
       show: true,
@@ -232,11 +192,11 @@ const submitForm = async () => {
       color: 'success'
     };
 
-    // Agregar un pequeño retraso antes de redirigir
     setTimeout(() => {
-      router.push('adminempleados');
-    }, 1500);
+      router.push('empleados');
+    }, 1500); // Redirige después de 1.5 segundos
 
+    limpiarFormulario();
   } catch (error) {
     console.error('Error durante el registro del empleado:', error);
     snackbar.value = {
@@ -245,10 +205,6 @@ const submitForm = async () => {
       color: 'error'
     };
   }
-};
-
-const goBack = () => {
-  router.back();
 };
 </script>
 
@@ -270,34 +226,14 @@ const goBack = () => {
   flex-direction: column;
   flex: 1;
   padding: 1rem;
-  position: relative;
-}
-
-.form-container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 1rem;
-  background: #f5f5f5;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 h1 {
-  text-align: center;
   margin-bottom: 1rem;
 }
 
-.input-field {
-  width: 100%;
-}
-
-.submit-container {
-  margin-top: 1rem;
-}
-
-.back-button {
-  position: absolute;
-  top: 1rem;
-  left: 1rem;
+.v-form {
+  max-width: 600px;
+  margin: 0 auto;
 }
 </style>
