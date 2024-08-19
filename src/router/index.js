@@ -195,6 +195,11 @@ const router = createRouter({
       name: 'adminclases',
       component: AdminClasesView
     },
+    {
+      path: '/clasesinscripcion',
+      name: 'clasesinscripcion',
+      component: ClasesInscripcionesView
+    },
   ]
 })
 
@@ -226,6 +231,6 @@ import ConocenosView from '@/views/ConocenosView.vue'
 import AdminAsistenciasView from '@/views/AdminAsistenciasView.vue'
 import ClasesView from '@/views/ClasesView.vue'
 import AdminClasesView from '@/views/AdminClasesView.vue'
-
+import ClasesInscripcionesView from '@/views/ClasesInscripcionesView.vue'
 
 export default router
