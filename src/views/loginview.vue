@@ -87,7 +87,6 @@ const ingresarFormulario1 = async () => {
   try {
     const response = await fetch('http://3.149.253.171/loginClientes', {
       method: 'POST',
-      mode: 'no-cors',
       headers: {
         'Content-Type': 'application/json'
       },
@@ -104,17 +103,26 @@ const ingresarFormulario1 = async () => {
     const result = await response.json();
 
     if (result.status === 200 && result.msg === "success") {
-      localStorage.setItem('token', result.data._token);
-      userStore.setUsuario(result.data.usuario);
+      const usuarioData = result.data.usuario;
+      const token = result.data._token;
+      
+      // Almacenar el token y el usuario en userStore
+      userStore.setUsuario(usuarioData);
+      localStorage.setItem('token', token);
+      
+      // Redirigir al perfil del usuario
       router.push({ name: 'perfilusuario' });
     } else {
-      alert(result.data.msg || 'Credenciales inválidas.');
+      alert(result.msg || 'Credenciales inválidas.');
     }
   } catch (error) {
     console.error('Error en la solicitud:', error);
     alert('Hubo un error al intentar iniciar sesión. Por favor, inténtelo de nuevo.');
   }
 };
+
+
+
 
 const ingresarFormulario2 = async () => {
   if (usuario.value === 'Peniche1234' && contrasena2.value === '123456') {
@@ -123,7 +131,6 @@ const ingresarFormulario2 = async () => {
     try {
       const response = await fetch('http://3.149.253.171/loginSocios', {
         method: 'POST',
-        mode:'no-cors',
         headers: {
           'Content-Type': 'application/json'
         },
@@ -134,7 +141,8 @@ const ingresarFormulario2 = async () => {
       });
 
       if (!response.ok) {
-        throw new Error('Error en la respuesta de red');
+        const errorData = await response.json();
+        throw new Error(errorData.msg || 'Error en la respuesta de red');
       }
 
       const result = await response.json();
