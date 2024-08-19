@@ -13,7 +13,10 @@ export const useProductosStore = defineStore('productos', {
         }
         const data = await response.json();
         console.log('Datos de productos:', data); // Verifica la estructura de los datos
-        this.productos = data.data; // Asegúrate de que esta propiedad es correcta
+        this.productos = data.data.map(producto => ({
+          ...producto,
+          IMAGEN:producto.IMAGEN, // Asegúrate de que el formato sea correcto
+        }));
       } catch (error) {
         console.error('Error fetching productos:', error);
       }
